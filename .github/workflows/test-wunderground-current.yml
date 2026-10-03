@@ -1,0 +1,34 @@
+name: Test osservazioni Weather Underground
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Test osservazioni correnti PWS
+        env:
+          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+        run: python scripts/test_wunderground_current.py
+
+      - name: Salva risultato test
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/wunderground_current_test.json
+          git commit -m "Salva test osservazioni Weather Underground" || exit 0
+          git push
