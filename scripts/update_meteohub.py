@@ -12,6 +12,7 @@ BASE = "https://meteohub.agenziaitaliameteo.it"
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
+MIN_RUN_INTERVAL_MIN = 22
 
 V_TEMP="B12101"; V_RH="B13003"; V_WDIR="B11001"; V_WSPD="B11002"; V_GUST="B11041"; V_RAIN="B13011"
 DESIRED={V_TEMP,V_RH,V_WDIR,V_WSPD,V_GUST,V_RAIN}
@@ -206,7 +207,28 @@ def aggregate(raw):
         "stations":output
     }
 
+def should_skip_recent_run():
+    if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
+        return False
+    if not OUT.exists():
+        return False
+    try:
+        prev=json.loads(OUT.read_text(encoding="utf-8"))
+        ts=prev.get("checked_at")
+        if not ts:
+            return False
+        dt=parse_dt(ts)
+        age=(datetime.now(UTC)-dt.astimezone(UTC)).total_seconds()/60
+        if age < MIN_RUN_INTERVAL_MIN:
+            print(f"Salto aggiornamento: ultimo controllo {age:.1f} min fa")
+            return True
+    except Exception:
+        pass
+    return False
+
 def main():
+    if should_skip_recent_run():
+        return
     token=login(); rid=None
     try:
         rid,filename=submit_and_wait(token)
@@ -214,6 +236,7 @@ def main():
         raw=api("GET","/api/data/"+urllib.parse.quote(str(filename),safe=""),token,timeout=240,parse_json=False)
         if not isinstance(raw,(bytes,bytearray)): raw=json.dumps(raw).encode("utf-8")
         result=aggregate(bytes(raw))
+        result["checked_at"]=datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00","Z")
         OUT.parent.mkdir(parents=True,exist_ok=True)
         OUT.write_text(json.dumps(result,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
         print(f"Scritte {result['station_count']} stazioni; timestamp {result['generated_at']}")
