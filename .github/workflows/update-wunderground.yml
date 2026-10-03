@@ -2,8 +2,13 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_wunderground.py'
+      - '.github/workflows/update-wunderground.yml'
   schedule:
-    - cron: '17,47 * * * *'
+    - cron: '8,18,28,38,48,58 * * * *'
 
 permissions:
   contents: write
@@ -29,6 +34,7 @@ jobs:
       - name: Scarica ed elabora Weather Underground
         env:
           WU_API_KEY: ${{ secrets.WU_API_KEY }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
       - name: Pubblica il JSON aggiornato
