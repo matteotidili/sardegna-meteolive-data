@@ -2,6 +2,8 @@ name: Aggiorna frame satellite EUMETSAT
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '3,13,23,33,43,53 * * * *'
 
 permissions:
   contents: write
