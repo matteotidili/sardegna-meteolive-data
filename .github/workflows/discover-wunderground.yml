@@ -1,0 +1,34 @@
+name: Scopri stazioni Weather Underground
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Scopri PWS in Sardegna
+        env:
+          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+        run: python scripts/discover_wunderground.py
+
+      - name: Salva elenco stazioni
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/wunderground_stations.json
+          git commit -m "Aggiorna elenco Weather Underground" || exit 0
+          git push
