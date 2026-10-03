@@ -27,6 +27,7 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
+MIN_RUN_INTERVAL_MIN = 22
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
@@ -66,7 +67,30 @@ def station_ids(inventory):
             pass
     return rows
 
+def should_skip_recent_run():
+    if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
+        return False
+    if not OUT.exists():
+        return False
+    try:
+        prev=json.loads(OUT.read_text(encoding="utf-8"))
+        ts=prev.get("generated_at")
+        if not ts:
+            return False
+        dt=parse_utc(ts)
+        if not dt:
+            return False
+        age=(datetime.now(UTC)-dt).total_seconds()/60
+        if age < MIN_RUN_INTERVAL_MIN:
+            print(f"Salto aggiornamento: ultimo aggiornamento {age:.1f} min fa")
+            return True
+    except Exception:
+        pass
+    return False
+
 def main():
+    if should_skip_recent_run():
+        return
     key = os.environ.get("WU_API_KEY")
     if not key:
         raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
