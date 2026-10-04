@@ -1,0 +1,59 @@
+name: Aggiorna tutte le reti stazioni
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-observations.yml'
+      - 'scripts/update_meteohub.py'
+      - 'scripts/update_wunderground.py'
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-observations-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Aggiorna MeteoHub
+        env:
+          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
+          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python scripts/update_meteohub.py
+
+      - name: Aggiorna Weather Underground
+        env:
+          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python scripts/update_wunderground.py
+
+      - name: Pubblica i JSON aggiornati
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/stations.json data/wunderground.json
+          if git diff --cached --quiet; then
+            echo "Nessuna variazione nei dati"
+            exit 0
+          fi
+          git commit -m "Aggiorna osservazioni reti stazioni"
+          git pull --rebase
+          git push
