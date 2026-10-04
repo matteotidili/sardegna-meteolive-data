@@ -11,33 +11,28 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect RadarEU browser assets
+      - name: Extract RadarEU endpoints
         run: |
           python - <<'PY'
-          import urllib.request,re,urllib.parse
+          import urllib.request,re
           UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154 Safari/537.36'
-          def get(url):
-              req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','Referer':'https://radareu.cz/'})
-              return urllib.request.urlopen(req,timeout=30).read().decode('utf-8','replace')
-          html=get('https://radareu.cz/')
-          print('HTML_LEN',len(html))
-          assets=[]
-          for x in re.findall(r'(?:src|href)=["\']([^"\']+)["\']',html):
-              if '.js' in x:
-                  u=urllib.parse.urljoin('https://radareu.cz/',x)
-                  assets.append(u);print('JS',u)
-          for u in assets:
-              try:
-                  js=get(u)
-                  print('JS_LEN',u,len(js))
-                  for pat in ['tile','radar','forecast','opera','api/','frames','png','webp']:
-                      if pat.lower() in js.lower():
-                          print('HAS',pat)
-                  for m in re.finditer(r'https?://[^"\' ]+',js):
-                      s=m.group(0)
-                      if any(k in s.lower() for k in ['radar','tile','api','png','webp','json']):
-                          print('URL',s[:500])
-                  for m in re.finditer(r'[^"\']{0,100}(?:tiles?|frames?|radar)[^"\']{0,180}',js,re.I):
-                      print('SNIP',m.group(0)[:350])
-              except Exception as e: print('JSERR',u,repr(e))
+          req=urllib.request.Request('https://radareu.cz/',headers={'User-Agent':UA,'Accept':'text/html,*/*'})
+          html=urllib.request.urlopen(req,timeout=30).read().decode('utf-8','replace')
+          print('LEN',len(html))
+          strings=set()
+          for m in re.finditer(r'["\']([^"\']{3,300})["\']',html):
+              s=m.group(1)
+              sl=s.lower()
+              if any(k in sl for k in ['radar','forecast','frame','opera','tile']) and any(k in sl for k in ['http','/api','/data','/tile','/radar','json','png','webp','latest']):
+                  strings.add(s)
+          for s in sorted(strings):
+              print('STR',s)
+          for kw in ['forecast','radarFrames','observed','latest','tiles/','radar/','api/']:
+              pos=0
+              while True:
+                  i=html.lower().find(kw.lower(),pos)
+                  if i<0: break
+                  print('CTX',kw,html[max(0,i-220):i+420].replace('\n',' ')[:650])
+                  pos=i+len(kw)
+                  if pos>i+5000: break
           PY
