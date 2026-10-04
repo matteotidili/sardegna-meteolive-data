@@ -20,9 +20,12 @@ UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
 
 STATIONS = {
+    "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},
     "16522": {"name": "Capo Caccia", "lat": 40.5608, "lon": 8.1631, "elev": 204},
-    "16546": {"name": "Decimomannu", "lat": 39.3461, "lon": 8.9675, "elev": 28},
+    "16531": {"name": "Olbia-Costa Smeralda", "icao": "LIEO", "lat": 40.9000, "lon": 9.5167, "elev": 11},
+    "16546": {"name": "Decimomannu", "icao": "LIED", "lat": 39.3461, "lon": 8.9675, "elev": 28},
     "16550": {"name": "Capo Bellavista", "lat": 39.9307, "lon": 9.7132, "elev": 156},
+    "16560": {"name": "Cagliari-Elmas", "icao": "LIEE", "lat": 39.2500, "lon": 9.0667, "elev": 4},
     "16564": {"name": "Capo Carbonara", "lat": 39.1039, "lon": 9.5135, "elev": 118},
 }
 
@@ -216,8 +219,9 @@ def main():
         rec = {
             "name": meta["name"],
             "network": "aeronautica-militare",
-            "station_id": wmo,
+            "station_id": meta.get("icao") or wmo,
             "wmo": wmo,
+            "icao": meta.get("icao"),
             "lat": meta["lat"],
             "lon": meta["lon"],
             "elev": meta["elev"],
