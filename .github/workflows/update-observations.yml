@@ -7,8 +7,8 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Heartbeat operativo ogni 20 minuti, sfalsato dai minuti più congestionati.
-    - cron: '5,25,45 * * * *'
+    # Heartbeat operativo ogni 10 minuti, sfalsato dai minuti più congestionati.
+    - cron: '4,14,24,34,44,54 * * * *'
 
 permissions:
   contents: write
@@ -35,13 +35,13 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
           METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
-          FORCE_UPDATE: '1'
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_meteohub.py
 
       - name: Aggiorna Weather Underground
         env:
           WU_API_KEY: ${{ secrets.WU_API_KEY }}
-          FORCE_UPDATE: '1'
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
       - name: Aggiorna Aeronautica Militare
