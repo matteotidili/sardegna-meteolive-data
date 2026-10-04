@@ -8,13 +8,13 @@ on:
       - 'scripts/update_wunderground.py'
       - '.github/workflows/update-wunderground.yml'
   schedule:
-    - cron: '8,18,28,38,48,58 * * * *'
+    - cron: '8,38 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: observations-data
+  group: observations-wu
   cancel-in-progress: false
 
 jobs:
