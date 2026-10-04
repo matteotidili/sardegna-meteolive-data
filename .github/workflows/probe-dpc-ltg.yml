@@ -10,34 +10,29 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Verifica LTG WMS e tile
+      - name: Analizza frontend Radar-DPC per LTG
         shell: bash
         run: |
           set -u
-          CAP='https://radar-geowebcache.protezionecivile.it/service/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=getcapabilities&TILED=true'
-          echo '=== CAPABILITIES LTG ==='
-          curl -fsSL "$CAP" -o /tmp/cap.xml
-          grep -oiE '<Name>[^<]*ltg[^<]*</Name>' /tmp/cap.xml | head -20 || true
-          grep -oiE '<Title>[^<]*[Ll]tg[^<]*</Title>' /tmp/cap.xml | head -20 || true
+          echo '=== RADAR APP HTML ==='
+          curl -fsSL 'https://radar.protezionecivile.it/' -o /tmp/radar.html
+          grep -oiE '<script[^>]+src="[^"]+"' /tmp/radar.html | head -40 || true
+          grep -oiE 'src="[^"]+\.js[^"]*"' /tmp/radar.html | sed 's/^src="//;s/"$//' > /tmp/scripts.txt || true
+          cat /tmp/scripts.txt || true
 
-          echo '=== WMS radar:ltg ==='
-          URL='https://radar-geowebcache.protezionecivile.it/service/wms?service=WMS&request=GetMap&layers=radar:ltg&styles=&format=image/png&transparent=true&version=1.1.1&tiled=true&width=512&height=512&srs=EPSG:4326&bbox=7.5,38.5,10.5,41.5'
-          curl -sS -D /tmp/h -o /tmp/ltg.png "$URL" || true
-          grep -iE 'HTTP/|content-type|content-length' /tmp/h || true
-          file /tmp/ltg.png || true
-          wc -c /tmp/ltg.png || true
+          echo '=== DOWNLOAD BUNDLES / SEARCH LTG ==='
+          while IFS= read -r src; do
+            [ -z "$src" ] && continue
+            case "$src" in
+              http*) url="$src" ;;
+              /*) url="https://radar.protezionecivile.it$src" ;;
+              *) url="https://radar.protezionecivile.it/$src" ;;
+            esac
+            name="/tmp/$(basename "$src" | cut -d'?' -f1)"
+            curl -fsSL "$url" -o "$name" || continue
+            echo "--- $url ($(wc -c < "$name") bytes)"
+            grep -oEi '.{0,220}(LTG|lightning|lampinet|fulmin).{0,420}' "$name" | head -60 || true
+          done < /tmp/scripts.txt
 
-          echo '=== S3 candidates ==='
-          python - <<'PY'
-          from datetime import datetime, timezone, timedelta
-          import subprocess
-          now=datetime.now(timezone.utc)
-          for mins in range(0,50,10):
-              d=now-timedelta(minutes=mins)
-              d=d.replace(minute=(d.minute//10)*10,second=0,microsecond=0)
-              stamp=f"{d:%Y/%m/%d/%H%M}"
-              for name in ['ltg','LTG']:
-                  u=f"https://s3-prod-dpc-radar-webp-cache.s3.eu-south-1.amazonaws.com/LTG/{stamp}/6/33/24/{name}.webp"
-                  p=subprocess.run(['curl','-sS','-o','/dev/null','-w','%{http_code} %{size_download}','-L',u],capture_output=True,text=True)
-                  print(stamp,name,p.stdout,u)
-          PY
+          echo '=== DIRECT HTML SEARCH ==='
+          grep -oEi '.{0,200}(LTG|lightning|lampinet|fulmin).{0,400}' /tmp/radar.html | head -80 || true
