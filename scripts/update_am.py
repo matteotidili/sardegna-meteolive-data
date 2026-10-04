@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aggiorna alcune stazioni della rete Aeronautica Militare da METAR internazionali."""\n# Trigger iniziale workflow AM
+"""Aggiorna alcune stazioni della rete Aeronautica Militare da METAR internazionali."""
 from __future__ import annotations
 
 import json
