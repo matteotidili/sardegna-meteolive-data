@@ -22,29 +22,21 @@ from pathlib import Path
 OUT = Path("data/wunderground_stations.json")
 BASE = "https://api.weather.com/v3/location/near"
 
-# Profilo approssimato della Sardegna (lon, lat), sufficiente per escludere
-# stazioni esterne restituite come "nearest" nei punti costieri.
-SARDINIA = [
-    (8.10, 39.00), (8.20, 38.86), (8.55, 38.86), (8.85, 38.93),
-    (9.12, 39.08), (9.36, 39.18), (9.52, 39.45), (9.63, 39.82),
-    (9.71, 40.16), (9.80, 40.48), (9.79, 40.82), (9.67, 41.05),
-    (9.48, 41.25), (9.20, 41.30), (8.90, 41.24), (8.58, 41.16),
-    (8.32, 40.98), (8.12, 40.74), (8.05, 40.45), (8.03, 40.10),
-    (8.00, 39.72), (8.02, 39.35), (8.10, 39.00)
-]
+# Inviluppo geografico prudente della Sardegna e delle isole minori.
+# Il precedente poligono semplificato tagliava parte della costa sud-orientale
+# (Costa Rei/Villasimius) e quindi escludeva PWS reali prima della discovery.
+REGION = {
+    "lat_min": 38.80,
+    "lat_max": 41.32,
+    "lon_min": 7.95,
+    "lon_max": 9.90,
+}
 
-def inside_polygon(lon: float, lat: float) -> bool:
-    inside = False
-    j = len(SARDINIA) - 1
-    for i, (xi, yi) in enumerate(SARDINIA):
-        xj, yj = SARDINIA[j]
-        hit = ((yi > lat) != (yj > lat)) and (
-            lon < (xj - xi) * (lat - yi) / ((yj - yi) or 1e-12) + xi
-        )
-        if hit:
-            inside = not inside
-        j = i
-    return inside
+def inside_region(lon: float, lat: float) -> bool:
+    return (
+        REGION["lon_min"] <= lon <= REGION["lon_max"]
+        and REGION["lat_min"] <= lat <= REGION["lat_max"]
+    )
 
 def get_json(url: str) -> dict:
     req = urllib.request.Request(url, headers={"User-Agent": "sardegna-meteolive/1.0"})
@@ -97,13 +89,12 @@ def main():
     if not key:
         raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
 
-    # Griglia regionale + raffinamento adattivo nelle aree dense.
-    # L'endpoint restituisce al massimo 10 PWS: quando una query è satura,
-    # interroghiamo punti più ravvicinati attorno a quella cella per non perdere
-    # le stazioni dei cluster urbani (Cagliari, Sassari, Olbia, Alghero, ecc.).
-    base_step = 0.18
-    latitudes = list(frange(38.90, 41.30, base_step))
-    longitudes = list(frange(8.05, 9.75, base_step))
+    # Griglia uniforme abbastanza fitta su tutta la Sardegna.
+    # In questo modo intercettiamo anche piccoli cluster costieri/rurali che non
+    # saturano l'endpoint e che una griglia regionale troppo larga può saltare.
+    base_step = 0.07
+    latitudes = list(frange(REGION["lat_min"], REGION["lat_max"], base_step))
+    longitudes = list(frange(REGION["lon_min"], REGION["lon_max"], base_step))
 
     found = {}
     calls = 0
@@ -112,7 +103,7 @@ def main():
     def query_point(lat, lon):
         nonlocal calls
         keypt = (round(lat, 4), round(lon, 4))
-        if keypt in visited or not inside_polygon(lon, lat):
+        if keypt in visited or not inside_region(lon, lat):
             return []
         visited.add(keypt)
         q = urllib.parse.urlencode({
@@ -126,7 +117,7 @@ def main():
             calls += 1
             rows = list(rows_from_location(payload))
             for row in rows:
-                if inside_polygon(row["lon"], row["lat"]):
+                if inside_region(row["lon"], row["lat"]):
                     found[row["station_id"]] = row
             time.sleep(0.08)
             return rows
@@ -141,8 +132,8 @@ def main():
             if len(rows) >= 10:
                 saturated.append((lat, lon))
 
-    # Primo raffinamento: circa 5 km tra i punti.
-    fine_step = 0.045
+    # Raffinamento nelle celle dense: circa 2-3 km.
+    fine_step = 0.025
     saturated_fine = []
     for lat, lon in saturated:
         for dy in (-fine_step, 0.0, fine_step):
@@ -151,10 +142,9 @@ def main():
                 if len(rows) >= 10:
                     saturated_fine.append((lat + dy, lon + dx))
 
-    # Secondo raffinamento, solo dove anche la griglia fine è ancora satura:
-    # circa 1.7 km tra i punti. Un tetto evita esplosioni di chiamate.
-    micro_step = 0.015
-    for lat, lon in saturated_fine[:120]:
+    # Ultimo passaggio nei cluster ancora saturi: circa 1 km.
+    micro_step = 0.010
+    for lat, lon in saturated_fine[:220]:
         for dy in (-micro_step, 0.0, micro_step):
             for dx in (-micro_step, 0.0, micro_step):
                 query_point(lat + dy, lon + dx)
