@@ -6,6 +6,7 @@ import csv
 import io
 import json
 import math
+import os
 import time
 import urllib.parse
 import urllib.request
@@ -19,6 +20,7 @@ ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
 AWC = "https://aviationweather.gov/api/data/metar"
+MIN_RUN_INTERVAL_MIN = 25
 
 STATIONS = {
     "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},
@@ -253,6 +255,20 @@ def load_previous():
 
 def main():
     now = datetime.now(UTC)
+    force = str(os.environ.get("FORCE_UPDATE", "")).lower() in {"1", "true", "yes"}
+    if OUT.exists() and not force:
+        try:
+            prev_meta = json.loads(OUT.read_text(encoding="utf-8"))
+            checked = prev_meta.get("checked_at")
+            if checked:
+                dt = datetime.fromisoformat(str(checked).replace("Z", "+00:00")).astimezone(UTC)
+                age = (now - dt).total_seconds() / 60
+                if age < MIN_RUN_INTERVAL_MIN:
+                    print(f"AM già controllata {age:.1f} minuti fa: salto aggiornamento")
+                    return
+        except Exception:
+            pass
+
     local_day = now.astimezone(ROME).date()
     raw = fetch_synops()
     metars = fetch_metars()
