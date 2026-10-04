@@ -1,0 +1,17 @@
+name: Probe Blitz archive form
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-blitz-archive.yml'
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read public archive form
+        shell: bash
+        run: |
+          set -e
+          curl -fsSL 'https://www.blitzortung.org/en/archive_data.php' -o /tmp/a.html
+          echo '=== FORM ==='
+          grep -oEi '<form[^>]*>|<input[^>]*>|<select[^>]*>|<option[^>]*>' /tmp/a.html | grep -Ei 'name=|action=|value=' | head -220 || true
