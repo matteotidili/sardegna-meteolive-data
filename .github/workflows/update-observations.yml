@@ -2,14 +2,6 @@ name: Aggiorna tutte le reti stazioni
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/update-observations.yml'
-      - 'scripts/update_meteohub.py'
-      - 'scripts/update_wunderground.py'
-  schedule:
-    - cron: '7,22,37,52 * * * *'
 
 permissions:
   contents: write
