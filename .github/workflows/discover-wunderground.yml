@@ -2,6 +2,11 @@ name: Scopri stazioni Weather Underground
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/discover_wunderground.py'
+      - '.github/workflows/discover-wunderground.yml'
 
 permissions:
   contents: write
