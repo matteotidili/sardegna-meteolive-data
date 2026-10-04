@@ -97,34 +97,67 @@ def main():
     if not key:
         raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
 
-    # Griglia abbastanza fitta per intercettare la rete regionale.
-    # Ogni query restituisce max 10 PWS; la deduplicazione avviene per stationId.
-    latitudes = list(frange(38.90, 41.30, 0.18))
-    longitudes = list(frange(8.05, 9.75, 0.18))
+    # Griglia regionale + raffinamento adattivo nelle aree dense.
+    # L'endpoint restituisce al massimo 10 PWS: quando una query è satura,
+    # interroghiamo punti più ravvicinati attorno a quella cella per non perdere
+    # le stazioni dei cluster urbani (Cagliari, Sassari, Olbia, Alghero, ecc.).
+    base_step = 0.18
+    latitudes = list(frange(38.90, 41.30, base_step))
+    longitudes = list(frange(8.05, 9.75, base_step))
 
     found = {}
     calls = 0
+    visited = set()
+
+    def query_point(lat, lon):
+        nonlocal calls
+        keypt = (round(lat, 4), round(lon, 4))
+        if keypt in visited or not inside_polygon(lon, lat):
+            return []
+        visited.add(keypt)
+        q = urllib.parse.urlencode({
+            "geocode": f"{lat:.4f},{lon:.4f}",
+            "product": "pws",
+            "format": "json",
+            "apiKey": key,
+        })
+        try:
+            payload = get_json(BASE + "?" + q)
+            calls += 1
+            rows = list(rows_from_location(payload))
+            for row in rows:
+                if inside_polygon(row["lon"], row["lat"]):
+                    found[row["station_id"]] = row
+            time.sleep(0.08)
+            return rows
+        except Exception as exc:
+            print(f"AVVISO punto {lat},{lon}: {exc}")
+            return []
+
+    saturated = []
     for lat in latitudes:
         for lon in longitudes:
-            # Evita gran parte dei punti lontani dall'isola.
-            if not inside_polygon(lon, lat):
-                continue
-            q = urllib.parse.urlencode({
-                "geocode": f"{lat:.4f},{lon:.4f}",
-                "product": "pws",
-                "format": "json",
-                "apiKey": key,
-            })
-            try:
-                payload = get_json(BASE + "?" + q)
-                calls += 1
-                for row in rows_from_location(payload):
-                    if inside_polygon(row["lon"], row["lat"]):
-                        found[row["station_id"]] = row
-            except Exception as exc:
-                print(f"AVVISO punto {lat},{lon}: {exc}")
-            # Ritmo prudente per non martellare l'API.
-            time.sleep(0.08)
+            rows = query_point(lat, lon)
+            if len(rows) >= 10:
+                saturated.append((lat, lon))
+
+    # Primo raffinamento: circa 5 km tra i punti.
+    fine_step = 0.045
+    saturated_fine = []
+    for lat, lon in saturated:
+        for dy in (-fine_step, 0.0, fine_step):
+            for dx in (-fine_step, 0.0, fine_step):
+                rows = query_point(lat + dy, lon + dx)
+                if len(rows) >= 10:
+                    saturated_fine.append((lat + dy, lon + dx))
+
+    # Secondo raffinamento, solo dove anche la griglia fine è ancora satura:
+    # circa 1.7 km tra i punti. Un tetto evita esplosioni di chiamate.
+    micro_step = 0.015
+    for lat, lon in saturated_fine[:120]:
+        for dy in (-micro_step, 0.0, micro_step):
+            for dx in (-micro_step, 0.0, micro_step):
+                query_point(lat + dy, lon + dx)
 
     stations = sorted(found.values(), key=lambda x: (x["name"].casefold(), x["station_id"]))
     out = {
