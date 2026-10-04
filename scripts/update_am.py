@@ -25,6 +25,7 @@ STATIONS = {
     "16522": {"name": "Capo Caccia", "lat": 40.5608, "lon": 8.1631, "elev": 204},
     "16531": {"name": "Olbia-Costa Smeralda", "icao": "LIEO", "lat": 40.9000, "lon": 9.5167, "elev": 11},
     "16539": {"name": "Capo Frasca", "icao": "LIEF", "lat": 39.7500, "lon": 8.4667, "elev": 89},
+    "16542": {"name": "Capo San Lorenzo", "icao": "LIEL", "lat": 39.4981, "lon": 9.6292, "elev": 5},
     "16546": {"name": "Decimomannu", "icao": "LIED", "lat": 39.3461, "lon": 8.9675, "elev": 28},
     "16550": {"name": "Capo Bellavista", "icao": "LIEB", "lat": 39.9333, "lon": 9.7167, "elev": 150},
     "16560": {"name": "Cagliari-Elmas", "icao": "LIEE", "lat": 39.2500, "lon": 9.0667, "elev": 4},
