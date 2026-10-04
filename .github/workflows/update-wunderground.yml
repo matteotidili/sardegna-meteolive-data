@@ -9,15 +9,11 @@ on:
       - 'scripts/update_wunderground.py'
       - 'data/wunderground_stations.json'
       - '.github/workflows/update-wunderground.yml'
-  schedule:
-    # Fallback ridondante; l'intervallo interno evita chiamate inutili se i dati sono freschi.
-    - cron: '9,39 * * * *'
-
 permissions:
   contents: write
 
 concurrency:
-  group: observations-data
+  group: observations-wunderground
   cancel-in-progress: false
 
 jobs:
