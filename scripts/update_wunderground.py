@@ -27,7 +27,7 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-MIN_RUN_INTERVAL_MIN = 22
+MIN_RUN_INTERVAL_MIN = 12
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
