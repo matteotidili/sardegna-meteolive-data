@@ -8,7 +8,8 @@ on:
       - 'scripts/update_meteohub.py'
       - '.github/workflows/update-meteohub.yml'
   schedule:
-    - cron: '3,33 * * * *'
+    # Fallback ridondante; il workflow combinato gira più spesso.
+    - cron: '7,37 * * * *'
 
 permissions:
   contents: write
