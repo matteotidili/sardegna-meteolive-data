@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/update_wunderground.py'
+      - 'data/wunderground_stations.json'
       - '.github/workflows/update-wunderground.yml'
   schedule:
     - cron: '8,38 * * * *'
