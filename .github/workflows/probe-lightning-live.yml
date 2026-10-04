@@ -1,0 +1,62 @@
+name: Probe LightningMaps live
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-lightning-live.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install websockets pillow
+      - name: Test WebSocket e tiles
+        shell: bash
+        run: |
+          python - <<'PY'
+          import asyncio, json, time, urllib.request
+          import websockets
+
+          async def main():
+              uri='wss://live2.lightningmaps.org/'
+              try:
+                  async with websockets.connect(uri, open_timeout=15, close_timeout=3, ping_interval=None, origin='https://matteotidili.github.io') as ws:
+                      sub={"v":24,"i":{},"s":False,"x":0,"w":0,"tx":0,"tw":1,"a":4,"z":5,"b":True,"h":"","l":1,"t":1,"p":[48,35,28,-12],"r":"A"}
+                      await ws.send(json.dumps(sub))
+                      print('WS CONNECTED')
+                      deadline=time.time()+35
+                      n=0
+                      while time.time()<deadline:
+                          try:
+                              msg=await asyncio.wait_for(ws.recv(),timeout=10)
+                          except asyncio.TimeoutError:
+                              print('WS TIMEOUT')
+                              continue
+                          print('MSG',str(msg)[:500])
+                          try:
+                              d=json.loads(msg)
+                              if isinstance(d,dict) and d.get('strokes'):
+                                  print('STROKES',len(d['strokes']))
+                                  print('FIRST',d['strokes'][0])
+                                  n+=len(d['strokes'])
+                                  if n>=3: break
+                          except Exception: pass
+                      print('TOTAL_STROKES',n)
+              except Exception as e:
+                  print('WS ERROR',type(e).__name__,e)
+
+          asyncio.run(main())
+          PY
+
+          echo '=== TILE ==='
+          NOW=$(date +%s)
+          URL="https://tiles.lightningmaps.org/?x=16&y=11&z=5&s=256&t=5&T=$NOW"
+          curl -sS -L -D /tmp/h -o /tmp/tile.png -H 'Origin: https://matteotidili.github.io' "$URL" || true
+          grep -iE 'HTTP/|content-type|content-length|access-control-allow-origin' /tmp/h || true
+          file /tmp/tile.png || true
+          wc -c /tmp/tile.png || true
