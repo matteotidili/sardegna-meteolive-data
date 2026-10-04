@@ -22,6 +22,15 @@ from pathlib import Path
 OUT = Path("data/wunderground_stations.json")
 BASE = "https://api.weather.com/v3/location/near"
 
+# PWS confermate direttamente su Weather Underground e usate come seed.
+# Restano nell'inventario anche quando l'endpoint "near" non le restituisce.
+KNOWN_PWS = {
+    "ICASTI188": {"station_id": "ICASTI188", "name": "Olia Speciosa", "lat": 39.28, "lon": 9.53},
+    "ICASTI47": {"station_id": "ICASTI47", "name": "Castiadas", "lat": 39.20, "lon": 9.55},
+    "IVILLA845": {"station_id": "IVILLA845", "name": "Villasimius", "lat": 39.15, "lon": 9.52},
+    "IVILLA927": {"station_id": "IVILLA927", "name": "Villasimius", "lat": 39.14, "lon": 9.53},
+}
+
 # Inviluppo geografico prudente della Sardegna e delle isole minori.
 # Il precedente poligono semplificato tagliava parte della costa sud-orientale
 # (Costa Rei/Villasimius) e quindi escludeva PWS reali prima della discovery.
@@ -110,7 +119,19 @@ def main():
     latitudes = list(frange(REGION["lat_min"], REGION["lat_max"], base_step))
     longitudes = list(frange(REGION["lon_min"], REGION["lon_max"], base_step))
 
-    found = {}
+    # Manteniamo le stazioni già note: una discovery successiva deve aggiungere,
+    # non perdere PWS solo perché l'endpoint "near" non le restituisce quel giorno.
+    found = dict(KNOWN_PWS)
+    if OUT.exists():
+        try:
+            previous = json.loads(OUT.read_text(encoding="utf-8"))
+            for row in previous.get("stations") or []:
+                sid = row.get("station_id")
+                if sid and row.get("lat") is not None and row.get("lon") is not None:
+                    found[sid] = row
+        except Exception as exc:
+            print("AVVISO inventario precedente non leggibile:", exc)
+
     calls = 0
     visited = set()
 
@@ -138,6 +159,13 @@ def main():
         except Exception as exc:
             print(f"AVVISO punto {lat},{lon}: {exc}")
             return []
+
+    # Passaggio dedicato sul sud-est (Villasimius-Castiadas-Costa Rei-Muravera):
+    # qui piccoli cluster di 2-5 PWS possono sfuggire alla griglia regionale perché
+    # non saturano mai il limite di 10 risultati dell'endpoint.
+    for lat in frange(39.05, 39.52, 0.025):
+        for lon in frange(9.42, 9.72, 0.025):
+            query_point(lat, lon)
 
     saturated = []
     for lat in latitudes:
