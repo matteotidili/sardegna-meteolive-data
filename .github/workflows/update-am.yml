@@ -8,7 +8,7 @@ on:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
   schedule:
-    - cron: '2,17,32,47 * * * *'
+    - cron: '7,37 * * * *'
 
 permissions:
   contents: write
