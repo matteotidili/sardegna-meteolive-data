@@ -11,24 +11,33 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Check OPERA CORS
+      - name: Inspect RadarEU browser assets
         run: |
           python - <<'PY'
-          import urllib.request, urllib.parse, xml.etree.ElementTree as ET
-          from datetime import datetime,timezone,timedelta
-          base='https://s3.waw3-1.cloudferro.com/openradar-24h'
-          for d in [datetime.now(timezone.utc), datetime.now(timezone.utc)-timedelta(days=1)]:
-              prefix=d.strftime('%Y/%m/%d/OPERA/COMP/')
-              u=base+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix})
-              req=urllib.request.Request(u,headers={'Origin':'https://matteotidili.github.io'})
-              r=urllib.request.urlopen(req,timeout=30)
-              print('LIST_CORS',r.headers.get('Access-Control-Allow-Origin'),r.headers.get('Access-Control-Allow-Methods'))
-              root=ET.fromstring(r.read())
-              keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text and e.text.endswith('@DBZH.tiff')]
-              if keys:
-                  t=base+'/'+keys[-1]
-                  req=urllib.request.Request(t,headers={'Origin':'https://matteotidili.github.io','Range':'bytes=0-1023'})
-                  rr=urllib.request.urlopen(req,timeout=30)
-                  print('TIFF_CORS',rr.headers.get('Access-Control-Allow-Origin'),rr.headers.get('Access-Control-Allow-Headers'),rr.status,rr.headers.get('Content-Range'))
-                  break
+          import urllib.request,re,urllib.parse
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154 Safari/537.36'
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','Referer':'https://radareu.cz/'})
+              return urllib.request.urlopen(req,timeout=30).read().decode('utf-8','replace')
+          html=get('https://radareu.cz/')
+          print('HTML_LEN',len(html))
+          assets=[]
+          for x in re.findall(r'(?:src|href)=["\']([^"\']+)["\']',html):
+              if '.js' in x:
+                  u=urllib.parse.urljoin('https://radareu.cz/',x)
+                  assets.append(u);print('JS',u)
+          for u in assets:
+              try:
+                  js=get(u)
+                  print('JS_LEN',u,len(js))
+                  for pat in ['tile','radar','forecast','opera','api/','frames','png','webp']:
+                      if pat.lower() in js.lower():
+                          print('HAS',pat)
+                  for m in re.finditer(r'https?://[^"\' ]+',js):
+                      s=m.group(0)
+                      if any(k in s.lower() for k in ['radar','tile','api','png','webp','json']):
+                          print('URL',s[:500])
+                  for m in re.finditer(r'[^"\']{0,100}(?:tiles?|frames?|radar)[^"\']{0,180}',js,re.I):
+                      print('SNIP',m.group(0)[:350])
+              except Exception as e: print('JSERR',u,repr(e))
           PY
