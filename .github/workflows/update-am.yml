@@ -7,15 +7,11 @@ on:
     paths:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
-  schedule:
-    # Sfalsato dai minuti più congestionati di GitHub Actions.
-    - cron: '12,42 * * * *'
-
 permissions:
   contents: write
 
 concurrency:
-  group: observations-data
+  group: observations-am
   cancel-in-progress: false
 
 jobs:
@@ -33,6 +29,8 @@ jobs:
           python-version: '3.12'
 
       - name: Scarica ed elabora SYNOP AM
+        env:
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_am.py
 
       - name: Pubblica il JSON aggiornato
