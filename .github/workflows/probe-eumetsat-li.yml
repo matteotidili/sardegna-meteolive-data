@@ -19,6 +19,10 @@ jobs:
           curl -fsSL "$BASE?service=WMS&version=1.1.1&request=GetCapabilities" -o /tmp/cap.xml
           grep -oEi '<Name>[^<]*li_afa[^<]*</Name>|<Title>[^<]*Accumulated Flash Area[^<]*</Title>' /tmp/cap.xml | head -20 || true
 
+          echo '=== legend ==='
+          curl -sS -L -o /tmp/legend.png -w '%{http_code} %{size_download} %{content_type}\n' "$BASE?service=WMS&request=GetLegendGraphic&version=1.1.1&format=image/png&layer=mtg_fd:li_afa" || true
+          file /tmp/legend.png || true
+
           echo '=== probe recent frames ==='
           python - <<'PY'
           from datetime import datetime, timezone, timedelta
