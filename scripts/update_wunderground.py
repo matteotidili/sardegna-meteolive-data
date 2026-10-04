@@ -71,6 +71,16 @@ def should_skip_recent_run():
         dt=parse_utc(ts)
         if not dt:
             return False
+
+        # Se l'inventario PWS è stato rigenerato dopo l'ultimo dataset,
+        # il refresh va eseguito subito anche dentro la finestra dei 22 minuti.
+        if SRC.exists():
+            inv=json.loads(SRC.read_text(encoding="utf-8"))
+            inv_ts=parse_utc(inv.get("generated_at"))
+            if inv_ts and inv_ts > dt:
+                print("Inventario WU più recente del dataset: forzo aggiornamento")
+                return False
+
         age=(datetime.now(UTC)-dt).total_seconds()/60
         if age < MIN_RUN_INTERVAL_MIN:
             print(f"Salto aggiornamento: ultimo aggiornamento {age:.1f} min fa")
