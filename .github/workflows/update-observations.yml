@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: update-observations-data
+  group: observations-data
   cancel-in-progress: false
 
 jobs:
