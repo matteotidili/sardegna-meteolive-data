@@ -2,12 +2,19 @@ name: Aggiorna dati MeteoHub
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_meteohub.py'
+      - '.github/workflows/update-meteohub.yml'
+  schedule:
+    - cron: '3,13,23,33,43,53 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-meteohub-data
+  group: observations-data
   cancel-in-progress: false
 
 jobs:
