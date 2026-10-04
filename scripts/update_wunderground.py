@@ -54,18 +54,9 @@ def round1(v):
     return round(float(v), 1) if num(v) else None
 
 def station_ids(inventory):
-    rows = inventory.get("stations") or []
-    # Dopo il test iniziale, preferiamo gli ID che hanno risposto almeno una volta.
-    if TEST.exists():
-        try:
-            test = json.loads(TEST.read_text(encoding="utf-8"))
-            ok = {x.get("station_id") for x in (test.get("stations") or []) if x.get("station_id")}
-            filtered = [x for x in rows if x.get("station_id") in ok]
-            if filtered:
-                return filtered
-        except Exception:
-            pass
-    return rows
+    # Proviamo sempre tutte le stazioni dell'inventario corrente.
+    # Una PWS che non ha risposto a un vecchio test può tornare online in seguito.
+    return inventory.get("stations") or []
 
 def should_skip_recent_run():
     if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
