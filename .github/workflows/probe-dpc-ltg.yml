@@ -10,28 +10,40 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Analizza bundle applicazione Radar-DPC
+      - name: Spider bundle Radar-DPC
         shell: bash
         run: |
-          set -u
-          curl -fsSL 'https://radar.protezionecivile.it/' -o /tmp/radar.html
-          grep -oEi '(src|href)="[^"]+\.js(\?[^"]*)?"' /tmp/radar.html | sed -E 's/^(src|href)="//;s/"$//' | sort -u > /tmp/jsrefs.txt
-          cat /tmp/jsrefs.txt
+          python - <<'PY'
+          import re, requests, urllib.parse
+          from collections import deque
 
-          echo '=== SEARCH APP BUNDLES ==='
-          n=0
-          while IFS= read -r src; do
-            [ -z "$src" ] && continue
-            case "$src" in
-              http*) url="$src" ;;
-              /*) url="https://radar.protezionecivile.it$src" ;;
-              *) url="https://radar.protezionecivile.it/$src" ;;
-            esac
-            n=$((n+1))
-            name="/tmp/app_$n.js"
-            curl -fsSL "$url" -o "$name" || continue
-            echo "--- $url ($(wc -c < "$name") bytes)"
-            grep -oEi '.{0,300}(LTG|lightning|lampinet|fulmin|strike|brokerURL|wss://|ws://|/topic/|stompClient|StompJs|subscribe).{0,900}' "$name" | head -120 || true
-            echo '--- ABS URLS'
-            grep -oE 'https?://[^"'\''<> ]+|wss?://[^"'\''<> ]+' "$name" | sort -u | head -100 || true
-          done < /tmp/jsrefs.txt
+          base='https://radar.protezionecivile.it/'
+          html=requests.get(base,timeout=20).text
+          seeds=[]
+          for m in re.finditer(r'(?:src|href)=["\']([^"\']+\.js(?:\?[^"\']*)?)["\']',html,re.I):
+              u=urllib.parse.urljoin(base,m.group(1)); seeds.append(u)
+          q=deque(seeds); seen=set(); hits=[]
+          pats=re.compile(r'LTG|lightning|lampinet|fulmin|strike|brokerURL|wss://|ws://|/topic/|stomp|subscribe',re.I)
+          ref_re=re.compile(r'(?:from\s*|import\s*\(|import\s*)["\']([^"\']+\.js)["\']|["\']([^"\']+\.js)["\']')
+          while q and len(seen)<140:
+              u=q.popleft()
+              if u in seen: continue
+              seen.add(u)
+              try:
+                  txt=requests.get(u,timeout=20).text
+              except Exception:
+                  continue
+              if pats.search(txt):
+                  print('\n=== MATCH',u,'bytes',len(txt),'===')
+                  for m in pats.finditer(txt):
+                      a=max(0,m.start()-350); b=min(len(txt),m.end()+1100)
+                      print(txt[a:b].replace('\n',' ')[:1600])
+                      if m.start()>200000: break
+              for m in ref_re.finditer(txt):
+                  ref=m.group(1) or m.group(2)
+                  if not ref: continue
+                  nu=urllib.parse.urljoin(u,ref)
+                  if nu.startswith(base) and nu not in seen:
+                      q.append(nu)
+          print('\nVISITED',len(seen))
+          PY
