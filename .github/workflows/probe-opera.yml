@@ -11,38 +11,24 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe latest OPERA GeoTIFF
+      - name: Inspect RadarEU assets and legacy image
         run: |
-          pip install --quiet rasterio
           python - <<'PY'
-          import urllib.request, urllib.parse, xml.etree.ElementTree as ET, re
-          from datetime import datetime, timezone, timedelta
-          import rasterio, numpy as np
-          base='https://s3.waw3-1.cloudferro.com/openradar-24h'
-          keys=[]
-          for d in [datetime.now(timezone.utc), datetime.now(timezone.utc)-timedelta(days=1)]:
-              prefix=d.strftime('%Y/%m/%d/OPERA/COMP/')
-              url=base+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix})
-              raw=urllib.request.urlopen(url,timeout=30).read()
-              root=ET.fromstring(raw)
-              keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text and e.text.endswith('@DBZH.tiff')]
-              if keys: break
-          key=keys[-1]
-          url=base+'/'+key
-          print('LATEST',key,url)
-          urllib.request.urlretrieve(url,'/tmp/opera.tiff')
-          with rasterio.open('/tmp/opera.tiff') as ds:
-              print('CRS',ds.crs)
-              print('BOUNDS',ds.bounds)
-              print('SHAPE',ds.width,ds.height,'COUNT',ds.count,'DTYPE',ds.dtypes)
-              print('TRANSFORM',ds.transform)
-              print('NODATA',ds.nodata)
-              print('SCALES',ds.scales,'OFFSETS',ds.offsets,'UNITS',ds.units)
-              print('TAGS',ds.tags())
-              print('BANDTAGS',ds.tags(1))
-              a=ds.read(1,masked=True)
-              comp=a.compressed()
-              print('RAW_STATS',float(comp.min()),float(comp.max()),float(np.percentile(comp,[1,5,50,95,99])[0]),float(np.percentile(comp,[1,5,50,95,99])[-1]))
-              vals=np.unique(comp[:min(200000,comp.size)])
-              print('SAMPLE_UNIQUE',vals[:30],vals[-30:])
+          import urllib.request,re
+          from datetime import datetime,timezone,timedelta
+          html=urllib.request.urlopen('https://radareu.cz/',timeout=30).read().decode('utf-8','replace')
+          print('HTML_LEN',len(html))
+          for x in re.findall(r'(?:src|href)=["\']([^"\']+)["\']',html):
+              if '.js' in x or '.css' in x:
+                  print('ASSET',x)
+          for d in [datetime.now(timezone.utc)-timedelta(minutes=i*5) for i in range(0,12)]:
+              m=(d.minute//5)*5
+              d=d.replace(minute=m,second=0,microsecond=0)
+              u='https://radareu.cz/data/radar/radar.anim.'+d.strftime('%Y%m%d.%H%M')+'.0.png'
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request(u,method='HEAD'),timeout=10)
+                  print('LEGACY_OK',u,r.status,r.headers.get('Content-Length'),r.headers.get('Content-Type'))
+                  break
+              except Exception as e:
+                  print('LEGACY_NO',u,type(e).__name__,e)
           PY
