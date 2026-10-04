@@ -18,13 +18,15 @@ OUT = Path("data/am.json")
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
+AWC = "https://aviationweather.gov/api/data/metar"
 
 STATIONS = {
     "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},
     "16522": {"name": "Capo Caccia", "lat": 40.5608, "lon": 8.1631, "elev": 204},
     "16531": {"name": "Olbia-Costa Smeralda", "icao": "LIEO", "lat": 40.9000, "lon": 9.5167, "elev": 11},
+    "16539": {"name": "Capo Frasca", "icao": "LIEF", "lat": 39.7500, "lon": 8.4667, "elev": 89},
     "16546": {"name": "Decimomannu", "icao": "LIED", "lat": 39.3461, "lon": 8.9675, "elev": 28},
-    "16550": {"name": "Capo Bellavista", "lat": 39.9307, "lon": 9.7132, "elev": 156},
+    "16550": {"name": "Capo Bellavista", "icao": "LIEB", "lat": 39.9333, "lon": 9.7167, "elev": 150},
     "16560": {"name": "Cagliari-Elmas", "icao": "LIEE", "lat": 39.2500, "lon": 9.0667, "elev": 4},
     "16564": {"name": "Capo Carbonara", "lat": 39.1039, "lon": 9.5135, "elev": 118},
 }
@@ -164,6 +166,56 @@ def fetch_synops():
     raise RuntimeError(f"Download SYNOP fallito: {last_exc}")
 
 
+
+def parse_obs_time(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return datetime.fromtimestamp(float(value), tz=UTC)
+    s = str(value).strip().replace("Z", "+00:00")
+    try:
+        d = datetime.fromisoformat(s)
+        return d if d.tzinfo else d.replace(tzinfo=UTC)
+    except ValueError:
+        return None
+
+
+def fetch_metars():
+    ids = ",".join(meta["icao"] for meta in STATIONS.values() if meta.get("icao"))
+    params = urllib.parse.urlencode({"ids": ids, "format": "json", "hours": "48"})
+    req = urllib.request.Request(
+        AWC + "?" + params,
+        headers={"User-Agent": "sardegna-meteolive/1.0", "Accept": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=45) as resp:
+            if resp.status == 204:
+                return []
+            data = json.loads(resp.read().decode("utf-8"))
+            return data if isinstance(data, list) else []
+    except Exception as exc:
+        print("ATTENZIONE: fallback METAR non disponibile:", exc)
+        return []
+
+
+def decode_metar(row):
+    temp = fnum(row.get("temp"))
+    dew = fnum(row.get("dewp"))
+    wspd = fnum(row.get("wspd"))
+    wgst = fnum(row.get("wgst"))
+    wdir = fnum(row.get("wdir"))
+    altim = fnum(row.get("altim"))
+    return {
+        "temp": temp,
+        "dewpoint": dew,
+        "rh": rel_humidity(temp, dew),
+        "wind_dir": wdir,
+        "wind_kmh": wspd * 1.852 if wspd is not None else None,
+        "gust_kmh": wgst * 1.852 if wgst is not None else None,
+        "pressure_hpa": altim,
+    }
+
+
 def load_previous():
     if not OUT.exists():
         return {}
@@ -178,7 +230,9 @@ def main():
     now = datetime.now(UTC)
     local_day = now.astimezone(ROME).date()
     raw = fetch_synops()
+    metars = fetch_metars()
     rows = defaultdict(list)
+    metar_rows = defaultdict(list)
 
     for row in csv.reader(io.StringIO(raw)):
         if len(row) < 7:
@@ -198,12 +252,31 @@ def main():
             continue
         rows[wmo].append((dt, report, decoded))
 
+    icao_to_wmo = {meta.get("icao"): wmo for wmo, meta in STATIONS.items() if meta.get("icao")}
+    for row in metars:
+        icao = str(row.get("icaoId") or "").upper()
+        wmo = icao_to_wmo.get(icao)
+        if not wmo:
+            continue
+        dt = parse_obs_time(row.get("obsTime") or row.get("reportTime"))
+        if dt is None:
+            continue
+        decoded = decode_metar(row)
+        if decoded.get("temp") is None and decoded.get("wind_kmh") is None:
+            continue
+        metar_rows[wmo].append((dt, row.get("rawOb") or "", decoded))
+
     previous = load_previous()
     output = []
 
     for wmo, meta in STATIONS.items():
-        series = sorted(rows.get(wmo, []), key=lambda x: x[0])
-        if not series:
+        synop_series = sorted(rows.get(wmo, []), key=lambda x: x[0])
+        metar_series = sorted(metar_rows.get(wmo, []), key=lambda x: x[0])
+        combined = [(dt, raw, dec, "SYNOP") for dt, raw, dec in synop_series] + [
+            (dt, raw, dec, "METAR") for dt, raw, dec in metar_series
+        ]
+        combined.sort(key=lambda x: x[0])
+        if not combined:
             old = previous.get(wmo)
             if old:
                 rec = dict(old)
@@ -212,8 +285,8 @@ def main():
                 output.append(rec)
             continue
 
-        latest_dt, latest_raw, latest = series[-1]
-        today = [x for x in series if x[0].astimezone(ROME).date() == local_day]
+        latest_dt, latest_raw, latest, latest_kind = combined[-1]
+        today = [x for x in combined if x[0].astimezone(ROME).date() == local_day]
         temps = [x[2].get("temp") for x in today if x[2].get("temp") is not None]
 
         rec = {
@@ -234,20 +307,22 @@ def main():
             "wind_dir": round(latest["wind_dir"]) if latest.get("wind_dir") is not None else None,
             "wind_ms": round(latest["wind_kmh"] / 3.6, 1) if latest.get("wind_kmh") is not None else None,
             "wind_kmh": round(latest["wind_kmh"], 1) if latest.get("wind_kmh") is not None else None,
-            "gust_ms": None,
-            "gust_kmh": None,
+            "gust_ms": round(latest.get("gust_kmh") / 3.6, 1) if latest.get("gust_kmh") is not None else None,
+            "gust_kmh": round(latest["gust_kmh"], 1) if latest.get("gust_kmh") is not None else None,
             "rain_1m": None,
             "rain_rate": None,
             "rain_today": None,
             "last": latest_dt.isoformat(timespec="seconds").replace("+00:00", "Z"),
             "stale_min": round((now - latest_dt).total_seconds() / 60),
-            "raw_synop": latest_raw,
+            "observation_type": latest_kind,
+            "raw_synop": latest_raw if latest_kind == "SYNOP" else None,
+            "raw_metar": latest_raw if latest_kind == "METAR" else None,
             "available": {
                 "temp": latest.get("temp") is not None,
                 "rh": latest.get("rh") is not None,
                 "wind": latest.get("wind_kmh") is not None,
                 "wind_dir": latest.get("wind_dir") is not None,
-                "gust": False,
+                "gust": latest.get("gust_kmh") is not None,
                 "rain": False,
             },
         }
@@ -264,7 +339,7 @@ def main():
         "generated_at": newest.astimezone(UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "checked_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
         "local_day": str(local_day),
-        "source": "Aeronautica Militare / SYNOP via OGIMET",
+        "source": "Rete aeronautica / SYNOP via OGIMET + METAR via Aviation Weather Center",
         "station_count": len(output),
         "stations": sorted(output, key=lambda x: x["name"].casefold()),
     }
