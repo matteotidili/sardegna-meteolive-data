@@ -11,25 +11,38 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe public OPERA S3
+      - name: Probe latest OPERA GeoTIFF
         run: |
+          pip install --quiet rasterio
           python - <<'PY'
-          import urllib.request, urllib.parse, xml.etree.ElementTree as ET
+          import urllib.request, urllib.parse, xml.etree.ElementTree as ET, re
           from datetime import datetime, timezone, timedelta
+          import rasterio, numpy as np
           base='https://s3.waw3-1.cloudferro.com/openradar-24h'
+          keys=[]
           for d in [datetime.now(timezone.utc), datetime.now(timezone.utc)-timedelta(days=1)]:
               prefix=d.strftime('%Y/%m/%d/OPERA/COMP/')
               url=base+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix})
-              print('URL',url)
-              try:
-                  raw=urllib.request.urlopen(url,timeout=30).read()
-                  print(raw[:500].decode('utf-8','replace'))
-                  root=ET.fromstring(raw)
-                  keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text]
-                  print('KEYS',len(keys))
-                  for k in keys[-30:]:
-                      print(k)
-                  if keys: break
-              except Exception as e:
-                  print('ERR',repr(e))
+              raw=urllib.request.urlopen(url,timeout=30).read()
+              root=ET.fromstring(raw)
+              keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text and e.text.endswith('@DBZH.tiff')]
+              if keys: break
+          key=keys[-1]
+          url=base+'/'+key
+          print('LATEST',key,url)
+          urllib.request.urlretrieve(url,'/tmp/opera.tiff')
+          with rasterio.open('/tmp/opera.tiff') as ds:
+              print('CRS',ds.crs)
+              print('BOUNDS',ds.bounds)
+              print('SHAPE',ds.width,ds.height,'COUNT',ds.count,'DTYPE',ds.dtypes)
+              print('TRANSFORM',ds.transform)
+              print('NODATA',ds.nodata)
+              print('SCALES',ds.scales,'OFFSETS',ds.offsets,'UNITS',ds.units)
+              print('TAGS',ds.tags())
+              print('BANDTAGS',ds.tags(1))
+              a=ds.read(1,masked=True)
+              comp=a.compressed()
+              print('RAW_STATS',float(comp.min()),float(comp.max()),float(np.percentile(comp,[1,5,50,95,99])[0]),float(np.percentile(comp,[1,5,50,95,99])[-1]))
+              vals=np.unique(comp[:min(200000,comp.size)])
+              print('SAMPLE_UNIQUE',vals[:30],vals[-30:])
           PY
