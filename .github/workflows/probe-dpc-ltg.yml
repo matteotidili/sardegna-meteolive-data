@@ -10,28 +10,45 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Verifica filename LTG
+      - name: Cerca file LTG esistente
         shell: bash
         run: |
-          set -euo pipefail
-          API='https://radar-api.protezionecivile.it/findLastProductByType?type=SRI&lang=it'
-          curl -fsSL "$API" -o /tmp/latest.json
-          cat /tmp/latest.json
           python - <<'PY'
-          import json, subprocess, datetime
-          d=json.load(open('/tmp/latest.json'))
-          p=d['lastProducts'][0]
-          t=int(p['time'])
-          print('\nTIME',t,'ISO',datetime.datetime.fromtimestamp(t/1000,datetime.timezone.utc))
-          base='https://s3-prod-dpc-radar-webp-cache.s3.eu-south-1.amazonaws.com/LGT'
-          vals=[str(t),str(t//1000)]
-          dt=datetime.datetime.fromtimestamp(t/1000,datetime.timezone.utc)
-          vals += [dt.strftime('%Y%m%d%H%M'),dt.strftime('%Y%m%dT%H%M'),dt.strftime('%Y-%m-%dT%H:%M:%S.000Z')]
-          for v in vals:
-              u=f'{base}/lgt_5min_{v}.bin'
-              r=subprocess.run(['curl','-sS','-L','-o','/tmp/x.bin','-w','%{http_code} %{size_download} %{content_type}',u],capture_output=True,text=True)
-              print(v,r.stdout,u)
-              if r.stdout.startswith('200 '):
-                  b=open('/tmp/x.bin','rb').read(16)
-                  print('HEAD',b.hex())
+          import urllib.request, urllib.error, datetime, struct
+          base='https://s3-prod-dpc-radar-webp-cache.s3.eu-south-1.amazonaws.com/LGT/lgt_5min_{}.bin'
+          now=datetime.datetime.now(datetime.timezone.utc)
+          now=now.replace(second=0,microsecond=0,minute=(now.minute//5)*5)
+          found=[]
+          # 72 ore a passo 5 min: include le recenti fasi temporalesche sul Mediterraneo occidentale.
+          for i in range(1, 72*12+1):
+              d=now-datetime.timedelta(minutes=5*i)
+              t=int(d.timestamp()*1000)
+              u=base.format(t)
+              req=urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0','Referer':'https://radar.protezionecivile.it/'})
+              try:
+                  with urllib.request.urlopen(req,timeout=8) as r:
+                      b=r.read()
+                  if b:
+                      print('FOUND',d.isoformat(),t,len(b),'HEAD',b[:16].hex())
+                      if len(b)>=3:
+                          ver=b[0]; count=int.from_bytes(b[1:3],'big')
+                          print('VERSION',ver,'COUNT',count)
+                          # decode first 5 strikes using official frontend format
+                          pos=3
+                          for j in range(min(count,5)):
+                              u16=int.from_bytes(b[pos:pos+2],'big'); p16=int.from_bytes(b[pos+2:pos+4],'big')
+                              flags=b[pos+4]; g=b[pos+5]
+                              xx=u16+((flags>>6)&3)*65536
+                              yy=p16+((flags>>4)&3)*65536
+                              lon=xx*(360/262144)-180
+                              lat=yy*(180/262144)-90
+                              print('STRIKE',j,lat,lon)
+                              pos += 6 if g<255 else 8
+                      found.append((t,len(b)))
+                      if len(found)>=3: break
+              except urllib.error.HTTPError as e:
+                  if e.code not in (403,404): print('HTTP',e.code,u)
+              except Exception as e:
+                  print('ERR',type(e).__name__,u)
+          print('FOUND_TOTAL',len(found))
           PY
