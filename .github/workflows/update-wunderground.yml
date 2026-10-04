@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: observations-wu
+  group: observations-data
   cancel-in-progress: false
 
 jobs:
@@ -49,5 +49,8 @@ jobs:
             exit 0
           fi
           git commit -m "Aggiorna osservazioni Weather Underground"
-          git pull --rebase
-          git push
+          if ! git push; then
+            git fetch origin main
+            git rebase -X theirs origin/main
+            git push
+          fi
