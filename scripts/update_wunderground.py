@@ -19,6 +19,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -28,6 +29,7 @@ TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 MIN_RUN_INTERVAL_MIN = 12
+MAX_WORKERS = 6
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
@@ -89,6 +91,104 @@ def should_skip_recent_run():
         pass
     return False
 
+def process_station(st, key, now, today_local):
+    sid = st.get("station_id")
+    if not sid:
+        return None, {"station_id": None, "error": "station_id mancante"}, False
+
+    q = urllib.parse.urlencode({
+        "stationId": sid,
+        "format": "json",
+        "units": "m",
+        "numericPrecision": "decimal",
+        "apiKey": key,
+    })
+    try:
+        payload = fetch_json(BASE + "?" + q)
+        obs_all = payload.get("observations") or []
+        parsed = []
+        for o in obs_all:
+            dt = parse_utc(o.get("obsTimeUtc"))
+            if dt:
+                parsed.append((dt, o))
+        if not parsed:
+            raise RuntimeError("nessuna osservazione valida")
+
+        parsed.sort(key=lambda x: x[0])
+        last_dt, last = parsed[-1]
+        lm = last.get("metric") or {}
+
+        today_obs = [(dt, o) for dt, o in parsed if dt.astimezone(ROME).date() == today_local]
+        if not today_obs:
+            today_obs = [(last_dt, last)]
+
+        tmins, tmaxs, gusts = [], [], []
+        for _, o in today_obs:
+            m = o.get("metric") or {}
+            if num(m.get("tempLow")):
+                tmins.append(float(m["tempLow"]))
+            if num(m.get("tempHigh")):
+                tmaxs.append(float(m["tempHigh"]))
+            if num(m.get("windgustHigh")):
+                gusts.append(float(m["windgustHigh"]))
+
+        rain_today = lm.get("precipTotal")
+        pressure = None
+        pmin, pmax = lm.get("pressureMin"), lm.get("pressureMax")
+        if num(pmin) and num(pmax):
+            pressure = (float(pmin) + float(pmax)) / 2
+        elif num(pmax):
+            pressure = float(pmax)
+        elif num(pmin):
+            pressure = float(pmin)
+
+        age_min = max(0.0, (now - last_dt).total_seconds() / 60)
+        row = {
+            "station_id": sid,
+            "name": st.get("name") or sid,
+            "network": "wunderground",
+            "lat": float(last.get("lat", st.get("lat"))),
+            "lon": float(last.get("lon", st.get("lon"))),
+            "elev": None,
+            "temp": round1(lm.get("tempAvg")),
+            "tmin": round(min(tmins), 1) if tmins else None,
+            "tmax": round(max(tmaxs), 1) if tmaxs else None,
+            "rh": round1(last.get("humidityAvg")),
+            "wind_kmh": round1(lm.get("windspeedAvg")),
+            "wind_dir": round(float(last["winddirAvg"])) if num(last.get("winddirAvg")) else None,
+            "gust_kmh": round(max(gusts), 1) if gusts else round1(lm.get("windgustHigh")),
+            "rain_rate": round1(lm.get("precipRate")),
+            "rain_today": round1(rain_today),
+            "dewpoint": round1(lm.get("dewptAvg")),
+            "pressure_hpa": round1(pressure),
+            "solar_wm2": round1(last.get("solarRadiationHigh")),
+            "uv": round1(last.get("uvHigh")),
+            "qc_status": last.get("qcStatus"),
+            "last": last_dt.isoformat().replace("+00:00", "Z"),
+            "stale_min": round(age_min),
+            "available": {
+                "temp": num(lm.get("tempAvg")),
+                "rh": num(last.get("humidityAvg")),
+                "wind": num(lm.get("windspeedAvg")),
+                "wind_dir": num(last.get("winddirAvg")),
+                "gust": bool(gusts) or num(lm.get("windgustHigh")),
+                "rain": num(rain_today) or num(lm.get("precipRate")),
+            },
+        }
+        return row, None, False
+
+    except urllib.error.HTTPError as exc:
+        body = ""
+        try:
+            body = exc.read().decode("utf-8", errors="replace")[:250]
+        except Exception:
+            pass
+        err = {"station_id": sid, "http": exc.code, "error": body or str(exc)}
+        return None, err, exc.code in (401, 403, 429)
+    except Exception as exc:
+        return None, {"station_id": sid, "error": str(exc)[:250]}, False
+
+
 def main():
     if should_skip_recent_run():
         return
@@ -106,111 +206,40 @@ def main():
     out_rows = []
     errors = []
     quota_stop = False
+    completed = 0
 
-    for idx, st in enumerate(stations, 1):
-        sid = st.get("station_id")
-        if not sid:
-            continue
-        q = urllib.parse.urlencode({
-            "stationId": sid,
-            "format": "json",
-            "units": "m",
-            "numericPrecision": "decimal",
-            "apiKey": key,
-        })
-        try:
-            payload = fetch_json(BASE + "?" + q)
-            obs_all = payload.get("observations") or []
-            parsed = []
-            for o in obs_all:
-                dt = parse_utc(o.get("obsTimeUtc"))
-                if not dt:
-                    continue
-                parsed.append((dt, o))
-            if not parsed:
-                raise RuntimeError("nessuna osservazione valida")
-
-            parsed.sort(key=lambda x: x[0])
-            last_dt, last = parsed[-1]
-            lm = last.get("metric") or {}
-
-            today_obs = [(dt, o) for dt, o in parsed if dt.astimezone(ROME).date() == today_local]
-            if not today_obs:
-                today_obs = [(last_dt, last)]
-
-            tmins, tmaxs, gusts = [], [], []
-            for _, o in today_obs:
-                m = o.get("metric") or {}
-                if num(m.get("tempLow")):
-                    tmins.append(float(m["tempLow"]))
-                if num(m.get("tempHigh")):
-                    tmaxs.append(float(m["tempHigh"]))
-                if num(m.get("windgustHigh")):
-                    gusts.append(float(m["windgustHigh"]))
-
-            # precipTotal è il cumulato giornaliero: usiamo il record più recente.
-            rain_today = lm.get("precipTotal")
-            pressure = None
-            pmin, pmax = lm.get("pressureMin"), lm.get("pressureMax")
-            if num(pmin) and num(pmax):
-                pressure = (float(pmin) + float(pmax)) / 2
-            elif num(pmax):
-                pressure = float(pmax)
-            elif num(pmin):
-                pressure = float(pmin)
-
-            age_min = max(0.0, (now - last_dt).total_seconds() / 60)
-            row = {
-                "station_id": sid,
-                "name": st.get("name") or sid,
-                "network": "wunderground",
-                "lat": float(last.get("lat", st.get("lat"))),
-                "lon": float(last.get("lon", st.get("lon"))),
-                "elev": None,
-                "temp": round1(lm.get("tempAvg")),
-                "tmin": round(min(tmins), 1) if tmins else None,
-                "tmax": round(max(tmaxs), 1) if tmaxs else None,
-                "rh": round1(last.get("humidityAvg")),
-                "wind_kmh": round1(lm.get("windspeedAvg")),
-                "wind_dir": round(float(last["winddirAvg"])) if num(last.get("winddirAvg")) else None,
-                "gust_kmh": round(max(gusts), 1) if gusts else round1(lm.get("windgustHigh")),
-                "rain_rate": round1(lm.get("precipRate")),
-                "rain_today": round1(rain_today),
-                "dewpoint": round1(lm.get("dewptAvg")),
-                "pressure_hpa": round1(pressure),
-                "solar_wm2": round1(last.get("solarRadiationHigh")),
-                "uv": round1(last.get("uvHigh")),
-                "qc_status": last.get("qcStatus"),
-                "last": last_dt.isoformat().replace("+00:00", "Z"),
-                "stale_min": round(age_min),
-                "available": {
-                    "temp": num(lm.get("tempAvg")),
-                    "rh": num(last.get("humidityAvg")),
-                    "wind": num(lm.get("windspeedAvg")),
-                    "wind_dir": num(last.get("winddirAvg")),
-                    "gust": bool(gusts) or num(lm.get("windgustHigh")),
-                    "rain": num(rain_today) or num(lm.get("precipRate")),
-                },
-            }
-            out_rows.append(row)
-
-        except urllib.error.HTTPError as exc:
-            body = ""
+    print(f"Aggiornamento WU: {len(stations)} stazioni con {MAX_WORKERS} richieste concorrenti")
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures = {
+            pool.submit(process_station, st, key, now, today_local): st
+            for st in stations
+            if st.get("station_id")
+        }
+        for future in as_completed(futures):
+            completed += 1
             try:
-                body = exc.read().decode("utf-8", errors="replace")[:250]
-            except Exception:
-                pass
-            errors.append({"station_id": sid, "http": exc.code, "error": body or str(exc)})
-            if exc.code in (401, 403, 429):
-                quota_stop = True
-                print(f"Stop anticipato su HTTP {exc.code} alla stazione {idx}/{len(stations)}")
-                break
-        except Exception as exc:
-            errors.append({"station_id": sid, "error": str(exc)[:250]})
+                row, error, fatal = future.result()
+            except Exception as exc:
+                st = futures[future]
+                row, error, fatal = None, {
+                    "station_id": st.get("station_id"),
+                    "error": str(exc)[:250],
+                }, False
 
-        if idx % 25 == 0:
-            print(f"Processate {idx}/{len(stations)} stazioni")
-        time.sleep(0.06)
+            if row:
+                out_rows.append(row)
+            if error:
+                errors.append(error)
+            if fatal:
+                quota_stop = True
+                print(f"Stop anticipato per quota/autenticazione dopo {completed}/{len(futures)} risposte")
+                for pending in futures:
+                    if not pending.done():
+                        pending.cancel()
+                break
+
+            if completed % 25 == 0:
+                print(f"Processate {completed}/{len(futures)} stazioni")
 
     # Non sostituiamo un dataset buono con uno tronco in caso di quota/autenticazione.
     minimum_ok = max(1, int(len(stations) * 0.70))
