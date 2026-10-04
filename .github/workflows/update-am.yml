@@ -8,7 +8,8 @@ on:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
   schedule:
-    - cron: '7,37 * * * *'
+    # Sfalsato dai minuti più congestionati di GitHub Actions.
+    - cron: '12,42 * * * *'
 
 permissions:
   contents: write
