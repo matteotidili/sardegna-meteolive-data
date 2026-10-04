@@ -2,6 +2,13 @@ name: Aggiorna tutte le reti stazioni
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-observations.yml'
+  schedule:
+    # Heartbeat operativo ogni 20 minuti, sfalsato dai minuti più congestionati.
+    - cron: '5,25,45 * * * *'
 
 permissions:
   contents: write
@@ -28,24 +35,30 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
           METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: '1'
         run: python scripts/update_meteohub.py
 
       - name: Aggiorna Weather Underground
         env:
           WU_API_KEY: ${{ secrets.WU_API_KEY }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: '1'
         run: python scripts/update_wunderground.py
+
+      - name: Aggiorna Aeronautica Militare
+        run: python scripts/update_am.py
 
       - name: Pubblica i JSON aggiornati
         run: |
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/stations.json data/wunderground.json
+          git add data/stations.json data/wunderground.json data/am.json
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
           fi
           git commit -m "Aggiorna osservazioni reti stazioni"
-          git pull --rebase
-          git push
+          if ! git push; then
+            git fetch origin main
+            git rebase -X theirs origin/main
+            git push
+          fi
