@@ -313,8 +313,25 @@ def main():
         today = [x for x in combined if x[0].astimezone(ROME).date() == local_day]
         temps = [x[2].get("temp") for x in today if x[2].get("temp") is not None]
         synop_today = [x for x in synop_series if x[0].astimezone(ROME).date() == local_day]
-        reported_mins = [x[2].get("reported_tmin") for x in synop_today if x[2].get("reported_tmin") is not None]
-        reported_maxs = [x[2].get("reported_tmax") for x in synop_today if x[2].get("reported_tmax") is not None]
+
+        # In Europa i gruppi di estrema della sezione 333 sono normalmente
+        # utilizzabili come Tmin alle 06 UTC e come Tmax alle 18 UTC.
+        # Gruppi 1xxxx/2xxxx presenti ad altre ore possono avere uso regionale
+        # o nazionale diverso e non devono essere interpretati come estremi.
+        reported_mins = [
+            x[2].get("reported_tmin")
+            for x in synop_today
+            if x[0].hour == 6
+            and x[2].get("reported_tmin") is not None
+            and -60 <= x[2].get("reported_tmin") <= 60
+        ]
+        reported_maxs = [
+            x[2].get("reported_tmax")
+            for x in synop_today
+            if x[0].hour == 18
+            and x[2].get("reported_tmax") is not None
+            and -60 <= x[2].get("reported_tmax") <= 60
+        ]
 
         min_candidates = list(temps) + reported_mins
         max_candidates = list(temps) + reported_maxs
