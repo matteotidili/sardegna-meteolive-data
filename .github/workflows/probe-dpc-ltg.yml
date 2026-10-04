@@ -10,22 +10,28 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Cerca endpoint realtime LTG Radar-DPC
+      - name: Analizza bundle applicazione Radar-DPC
         shell: bash
         run: |
           set -u
           curl -fsSL 'https://radar.protezionecivile.it/' -o /tmp/radar.html
-          echo "HTML bytes: $(wc -c < /tmp/radar.html)"
+          grep -oEi '(src|href)="[^"]+\.js(\?[^"]*)?"' /tmp/radar.html | sed -E 's/^(src|href)="//;s/"$//' | sort -u > /tmp/jsrefs.txt
+          cat /tmp/jsrefs.txt
 
-          echo '=== URL / SOCKET / STOMP / TOPIC CONTEXT ==='
-          for pat in 'Stomp' 'stomp' 'WebSocket' 'SockJS' 'wss://' 'ws://' '/topic/' '/queue/' 'brokerURL' 'activate()' 'subscribe(' 'radar-api' 's3-prod' 'light' 'fulmin' 'lampi' 'strike'; do
-            echo "--- PATTERN: $pat"
-            grep -oEi ".{0,260}${pat}.{0,600}" /tmp/radar.html | head -50 || true
-          done
-
-          echo '=== URL ABSOLUTI NEL DOCUMENTO ==='
-          grep -oE 'https?://[^"<> ]+' /tmp/radar.html | sort -u | head -200 || true
-
-          echo '=== JS/MJS/MODULE REFERENCES ==='
-          grep -oEi '(src|href)="[^"]+\.(js|mjs)(\?[^"]*)?"' /tmp/radar.html | head -100 || true
-          grep -oEi 'import\([^)]+' /tmp/radar.html | head -100 || true
+          echo '=== SEARCH APP BUNDLES ==='
+          n=0
+          while IFS= read -r src; do
+            [ -z "$src" ] && continue
+            case "$src" in
+              http*) url="$src" ;;
+              /*) url="https://radar.protezionecivile.it$src" ;;
+              *) url="https://radar.protezionecivile.it/$src" ;;
+            esac
+            n=$((n+1))
+            name="/tmp/app_$n.js"
+            curl -fsSL "$url" -o "$name" || continue
+            echo "--- $url ($(wc -c < "$name") bytes)"
+            grep -oEi '.{0,300}(LTG|lightning|lampinet|fulmin|strike|brokerURL|wss://|ws://|/topic/|stompClient|StompJs|subscribe).{0,900}' "$name" | head -120 || true
+            echo '--- ABS URLS'
+            grep -oE 'https?://[^"'\''<> ]+|wss?://[^"'\''<> ]+' "$name" | sort -u | head -100 || true
+          done < /tmp/jsrefs.txt
