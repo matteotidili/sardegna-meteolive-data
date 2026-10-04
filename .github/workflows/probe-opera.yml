@@ -11,28 +11,16 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract RadarEU endpoints
+      - name: Fetch RadarEU frames manifest
         run: |
           python - <<'PY'
-          import urllib.request,re
-          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154 Safari/537.36'
-          req=urllib.request.Request('https://radareu.cz/',headers={'User-Agent':UA,'Accept':'text/html,*/*'})
-          html=urllib.request.urlopen(req,timeout=30).read().decode('utf-8','replace')
-          print('LEN',len(html))
-          strings=set()
-          for m in re.finditer(r'["\']([^"\']{3,300})["\']',html):
-              s=m.group(1)
-              sl=s.lower()
-              if any(k in sl for k in ['radar','forecast','frame','opera','tile']) and any(k in sl for k in ['http','/api','/data','/tile','/radar','json','png','webp','latest']):
-                  strings.add(s)
-          for s in sorted(strings):
-              print('STR',s)
-          for kw in ['forecast','radarFrames','observed','latest','tiles/','radar/','api/']:
-              pos=0
-              while True:
-                  i=html.lower().find(kw.lower(),pos)
-                  if i<0: break
-                  print('CTX',kw,html[max(0,i-220):i+420].replace('\n',' ')[:650])
-                  pos=i+len(kw)
-                  if pos>i+5000: break
+          import urllib.request,json
+          UA='Mozilla/5.0'
+          u='https://tiles.radareu.cz/tiles/nimbus/rate/frames.json'
+          req=urllib.request.Request(u,headers={'User-Agent':UA,'Referer':'https://radareu.cz/'})
+          r=urllib.request.urlopen(req,timeout=30)
+          print('STATUS',r.status)
+          print('HEADERS',dict(r.headers))
+          raw=r.read().decode('utf-8','replace')
+          print(raw[:30000])
           PY
