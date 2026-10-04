@@ -38,6 +38,20 @@ def inside_region(lon: float, lat: float) -> bool:
         and REGION["lat_min"] <= lat <= REGION["lat_max"]
     )
 
+def distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    r = 6371.0
+    p1 = math.radians(lat1)
+    p2 = math.radians(lat2)
+    dp = math.radians(lat2 - lat1)
+    dl = math.radians(lon2 - lon1)
+    a = math.sin(dp / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * r * math.asin(math.sqrt(a))
+
+def saturated_nearby(rows, lat: float, lon: float, max_km: float = 14.0) -> bool:
+    if len(rows) < 10:
+        return False
+    return any(distance_km(lat, lon, row["lat"], row["lon"]) <= max_km for row in rows)
+
 def get_json(url: str) -> dict:
     req = urllib.request.Request(url, headers={"User-Agent": "sardegna-meteolive/1.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -129,7 +143,7 @@ def main():
     for lat in latitudes:
         for lon in longitudes:
             rows = query_point(lat, lon)
-            if len(rows) >= 10:
+            if saturated_nearby(rows, lat, lon):
                 saturated.append((lat, lon))
 
     # Raffinamento nelle celle dense: circa 2-3 km.
@@ -139,7 +153,7 @@ def main():
         for dy in (-fine_step, 0.0, fine_step):
             for dx in (-fine_step, 0.0, fine_step):
                 rows = query_point(lat + dy, lon + dx)
-                if len(rows) >= 10:
+                if saturated_nearby(rows, lat + dy, lon + dx):
                     saturated_fine.append((lat + dy, lon + dx))
 
     # Ultimo passaggio nei cluster ancora saturi: circa 1 km.
