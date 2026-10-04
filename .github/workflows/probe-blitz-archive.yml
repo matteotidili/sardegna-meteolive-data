@@ -13,5 +13,11 @@ jobs:
         run: |
           set -e
           curl -fsSL 'https://www.blitzortung.org/en/archive_data.php' -o /tmp/a.html
-          echo '=== FORM ==='
-          grep -oEi '<form[^>]*>|<input[^>]*>|<select[^>]*>|<option[^>]*>' /tmp/a.html | grep -Ei 'name=|action=|value=' | head -220 || true
+          echo '=== UNIQUE FIELD NAMES ==='
+          grep -oEi '<(input|select)[^>]*name="[^"]+"' /tmp/a.html | sed -E 's/.*name="([^"]+)".*/\1/' | sort -u
+          echo '=== FORM ACTION ==='
+          grep -oEi '<form[^>]*>' /tmp/a.html | head -5
+          echo '=== INPUTS ==='
+          grep -oEi '<input[^>]*name="[^"]+"[^>]*>' /tmp/a.html | head -120
+          echo '=== JS REFS ==='
+          grep -nEi 'make_maps|archive_data|parameter_file|submit|gif|frames|north|south|west|east|end_time|start_time|time_span' /tmp/a.html | head -220
