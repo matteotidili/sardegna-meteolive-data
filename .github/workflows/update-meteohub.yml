@@ -7,15 +7,11 @@ on:
     paths:
       - 'scripts/update_meteohub.py'
       - '.github/workflows/update-meteohub.yml'
-  schedule:
-    # Fallback ridondante; il workflow combinato gira più spesso.
-    - cron: '7,37 * * * *'
-
 permissions:
   contents: write
 
 concurrency:
-  group: observations-data
+  group: observations-meteohub
   cancel-in-progress: false
 
 jobs:
