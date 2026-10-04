@@ -89,7 +89,7 @@ def decode_report(report, wmo):
         return {}
 
     # Dopo l'indicativo WMO: iRiXhVV, Nddff.
-    wind_group = groups[1] if len(groups[1]) == 5 and groups[1].isdigit() else None
+    wind_group = groups[1] if len(groups[1]) == 5 and groups[1][1:].isdigit() else None
     wind_dir = wind_speed = None
     if wind_group:
         dd = int(wind_group[1:3])
