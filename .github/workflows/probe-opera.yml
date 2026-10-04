@@ -1,0 +1,35 @@
+name: Probe OPERA radar
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-opera.yml'
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe public OPERA S3
+        run: |
+          python - <<'PY'
+          import urllib.request, urllib.parse, xml.etree.ElementTree as ET
+          from datetime import datetime, timezone, timedelta
+          base='https://s3.waw3-1.cloudferro.com/openradar-24h'
+          for d in [datetime.now(timezone.utc), datetime.now(timezone.utc)-timedelta(days=1)]:
+              prefix=d.strftime('%Y/%m/%d/OPERA/COMP/')
+              url=base+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix})
+              print('URL',url)
+              try:
+                  raw=urllib.request.urlopen(url,timeout=30).read()
+                  print(raw[:500].decode('utf-8','replace'))
+                  root=ET.fromstring(raw)
+                  keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text]
+                  print('KEYS',len(keys))
+                  for k in keys[-30:]:
+                      print(k)
+                  if keys: break
+              except Exception as e:
+                  print('ERR',repr(e))
+          PY
