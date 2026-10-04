@@ -2,12 +2,19 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_wunderground.py'
+      - '.github/workflows/update-wunderground.yml'
+  schedule:
+    - cron: '8,18,28,38,48,58 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-wunderground-data
+  group: observations-data
   cancel-in-progress: false
 
 jobs:
