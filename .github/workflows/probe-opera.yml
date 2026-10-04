@@ -11,24 +11,24 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect RadarEU assets and legacy image
+      - name: Check OPERA CORS
         run: |
           python - <<'PY'
-          import urllib.request,re
+          import urllib.request, urllib.parse, xml.etree.ElementTree as ET
           from datetime import datetime,timezone,timedelta
-          html=urllib.request.urlopen('https://radareu.cz/',timeout=30).read().decode('utf-8','replace')
-          print('HTML_LEN',len(html))
-          for x in re.findall(r'(?:src|href)=["\']([^"\']+)["\']',html):
-              if '.js' in x or '.css' in x:
-                  print('ASSET',x)
-          for d in [datetime.now(timezone.utc)-timedelta(minutes=i*5) for i in range(0,12)]:
-              m=(d.minute//5)*5
-              d=d.replace(minute=m,second=0,microsecond=0)
-              u='https://radareu.cz/data/radar/radar.anim.'+d.strftime('%Y%m%d.%H%M')+'.0.png'
-              try:
-                  r=urllib.request.urlopen(urllib.request.Request(u,method='HEAD'),timeout=10)
-                  print('LEGACY_OK',u,r.status,r.headers.get('Content-Length'),r.headers.get('Content-Type'))
+          base='https://s3.waw3-1.cloudferro.com/openradar-24h'
+          for d in [datetime.now(timezone.utc), datetime.now(timezone.utc)-timedelta(days=1)]:
+              prefix=d.strftime('%Y/%m/%d/OPERA/COMP/')
+              u=base+'?'+urllib.parse.urlencode({'list-type':'2','prefix':prefix})
+              req=urllib.request.Request(u,headers={'Origin':'https://matteotidili.github.io'})
+              r=urllib.request.urlopen(req,timeout=30)
+              print('LIST_CORS',r.headers.get('Access-Control-Allow-Origin'),r.headers.get('Access-Control-Allow-Methods'))
+              root=ET.fromstring(r.read())
+              keys=[e.text for e in root.iter() if e.tag.endswith('Key') and e.text and e.text.endswith('@DBZH.tiff')]
+              if keys:
+                  t=base+'/'+keys[-1]
+                  req=urllib.request.Request(t,headers={'Origin':'https://matteotidili.github.io','Range':'bytes=0-1023'})
+                  rr=urllib.request.urlopen(req,timeout=30)
+                  print('TIFF_CORS',rr.headers.get('Access-Control-Allow-Origin'),rr.headers.get('Access-Control-Allow-Headers'),rr.status,rr.headers.get('Content-Range'))
                   break
-              except Exception as e:
-                  print('LEGACY_NO',u,type(e).__name__,e)
           PY
