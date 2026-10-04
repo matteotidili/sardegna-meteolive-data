@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: discover-wunderground
+  cancel-in-progress: true
+
 jobs:
   discover:
     runs-on: ubuntu-latest
