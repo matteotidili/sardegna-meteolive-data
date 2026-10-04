@@ -72,7 +72,7 @@ def report_groups(report, wmo):
     try:
         idx = parts.index(wmo)
     except ValueError:
-        return [], None
+        return [], None, []
     iw = None
     if "AAXX" in parts:
         try:
@@ -81,16 +81,28 @@ def report_groups(report, wmo):
                 iw = int(parts[a + 1][-1])
         except ValueError:
             pass
+
     groups = []
+    section333 = []
+    mode = "main"
     for token in parts[idx + 1:]:
-        if token in {"222", "333", "444", "555"} or token.startswith(("222", "333", "444", "555")):
-            break
-        groups.append(token)
-    return groups, iw
+        if token == "333" or token.startswith("333"):
+            mode = "333"
+            continue
+        if token in {"222", "444", "555"} or token.startswith(("222", "444", "555")):
+            if mode == "main":
+                break
+            if mode == "333":
+                break
+        if mode == "main":
+            groups.append(token)
+        elif mode == "333":
+            section333.append(token)
+    return groups, iw, section333
 
 
 def decode_report(report, wmo):
-    groups, iw = report_groups(report, wmo)
+    groups, iw, section333 = report_groups(report, wmo)
     if len(groups) < 2:
         return {}
 
@@ -125,6 +137,15 @@ def decode_report(report, wmo):
         elif g[0] == "4" and pressure is None:
             pressure = sea_level_pressure(g)
 
+    reported_tmax = reported_tmin = None
+    for g in section333:
+        if len(g) != 5 or not g.isdigit():
+            continue
+        if g[0] == "1" and reported_tmax is None:
+            reported_tmax = synop_temp(g)
+        elif g[0] == "2" and reported_tmin is None:
+            reported_tmin = synop_temp(g)
+
     rh = rh_direct if rh_direct is not None else rel_humidity(temp, dew)
     return {
         "temp": temp,
@@ -133,6 +154,8 @@ def decode_report(report, wmo):
         "wind_dir": wind_dir,
         "wind_kmh": wind_speed,
         "pressure_hpa": pressure,
+        "reported_tmax": reported_tmax,
+        "reported_tmin": reported_tmin,
     }
 
 
@@ -289,6 +312,14 @@ def main():
         latest_dt, latest_raw, latest, latest_kind = combined[-1]
         today = [x for x in combined if x[0].astimezone(ROME).date() == local_day]
         temps = [x[2].get("temp") for x in today if x[2].get("temp") is not None]
+        synop_today = [x for x in synop_series if x[0].astimezone(ROME).date() == local_day]
+        reported_mins = [x[2].get("reported_tmin") for x in synop_today if x[2].get("reported_tmin") is not None]
+        reported_maxs = [x[2].get("reported_tmax") for x in synop_today if x[2].get("reported_tmax") is not None]
+
+        min_candidates = list(temps) + reported_mins
+        max_candidates = list(temps) + reported_maxs
+        tmin = min(min_candidates) if min_candidates else None
+        tmax = max(max_candidates) if max_candidates else None
 
         rec = {
             "name": meta["name"],
@@ -300,8 +331,10 @@ def main():
             "lon": meta["lon"],
             "elev": meta["elev"],
             "temp": round(latest["temp"], 1) if latest.get("temp") is not None else None,
-            "tmin": round(min(temps), 1) if temps else None,
-            "tmax": round(max(temps), 1) if temps else None,
+            "tmin": round(tmin, 1) if tmin is not None else None,
+            "tmax": round(tmax, 1) if tmax is not None else None,
+            "tmin_provisional": not bool(reported_mins),
+            "tmax_provisional": not bool(reported_maxs),
             "rh": round(latest["rh"]) if latest.get("rh") is not None else None,
             "dewpoint": round(latest["dewpoint"], 1) if latest.get("dewpoint") is not None else None,
             "pressure_hpa": round(latest["pressure_hpa"], 1) if latest.get("pressure_hpa") is not None else None,
