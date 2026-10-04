@@ -1,4 +1,5 @@
 name: Aggiorna dati Weather Underground
+# Inventario WU adattivo
 
 on:
   workflow_dispatch:
