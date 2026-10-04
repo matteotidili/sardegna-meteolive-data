@@ -24,6 +24,7 @@ STATIONS = {
     "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},
     "16522": {"name": "Capo Caccia", "lat": 40.5608, "lon": 8.1631, "elev": 204},
     "16531": {"name": "Olbia-Costa Smeralda", "icao": "LIEO", "lat": 40.9000, "lon": 9.5167, "elev": 11},
+    "16532": {"name": "Monte Limbara", "icao": "LIEW", "lat": 40.8525, "lon": 9.1764, "elev": 1363},
     "16539": {"name": "Capo Frasca", "icao": "LIEF", "lat": 39.7500, "lon": 8.4667, "elev": 89},
     "16542": {"name": "Capo San Lorenzo", "icao": "LIEL", "lat": 39.4981, "lon": 9.6292, "elev": 5},
     "16546": {"name": "Decimomannu", "icao": "LIED", "lat": 39.3461, "lon": 8.9675, "elev": 28},
