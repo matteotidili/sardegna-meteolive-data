@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Scarica ed elabora METAR AM
+      - name: Scarica ed elabora SYNOP AM
         run: python scripts/update_am.py
 
       - name: Pubblica il JSON aggiornato
@@ -44,5 +44,8 @@ jobs:
             exit 0
           fi
           git commit -m "Aggiorna osservazioni Aeronautica Militare"
-          git pull --rebase
-          git push
+          if ! git push; then
+            git fetch origin main
+            git rebase -X theirs origin/main
+            git push
+          fi
