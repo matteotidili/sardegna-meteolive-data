@@ -7,14 +7,15 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Heartbeat operativo ogni 10 minuti, sfalsato dai minuti più congestionati.
-    - cron: '4,14,24,34,44,54 * * * *'
+    # Heartbeat operativo ogni 5 minuti: è la frequenza minima supportata da GitHub Actions.
+    # Gli updater applicano autonomamente il proprio intervallo minimo per evitare richieste inutili.
+    - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: observations-data
+  group: observations-heartbeat
   cancel-in-progress: false
 
 jobs:
@@ -45,6 +46,8 @@ jobs:
         run: python scripts/update_wunderground.py
 
       - name: Aggiorna Aeronautica Militare
+        env:
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_am.py
 
       - name: Pubblica i JSON aggiornati
