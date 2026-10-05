@@ -1,0 +1,15 @@
+{
+  "source": "MeteoAlarm",
+  "provider": "EUMETNET members",
+  "country": "Italy",
+  "region": "Sardegna",
+  "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
+  "generated_at": null,
+  "feed_updated": null,
+  "warning_count": 0,
+  "max_level": 0,
+  "warnings": [],
+  "errors": [
+    "In attesa del primo aggiornamento automatico"
+  ]
+}
