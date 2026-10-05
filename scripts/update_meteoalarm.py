@@ -166,6 +166,8 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
     now = datetime.now(UTC)
     if expires and expires < now:
         return None
+    start = onset or effective or sent
+    status = "upcoming" if start and start > now else "active"
 
     headline = text(info, "headline")
     description = text(info, "description")
@@ -192,6 +194,7 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
         records.append(
             {
                 "id": text(root, "identifier"),
+                "status": status,
                 "sent": iso(sent),
                 "effective": iso(effective),
                 "onset": iso(onset),
@@ -257,23 +260,36 @@ def main() -> None:
         )
     )
 
+    active = [w for w in warnings if w.get("status") == "active"]
+    upcoming = [w for w in warnings if w.get("status") == "upcoming"]
     max_level = max((w.get("level") or 0 for w in warnings), default=0)
+    active_max_level = max((w.get("level") or 0 for w in active), default=0)
+    upcoming_max_level = max((w.get("level") or 0 for w in upcoming), default=0)
     payload = {
         "source": "MeteoAlarm",
         "provider": "EUMETNET members",
         "country": "Italy",
         "region": "Sardegna",
         "feed_url": FEED_URL,
-        "generated_at": iso(now),
+        # Usiamo l'istante di aggiornamento della fonte, così il file non cambia
+        # ad ogni controllo se MeteoAlarm non ha pubblicato novità.
+        "generated_at": feed_updated or iso(now),
         "feed_updated": feed_updated,
         "warning_count": len(warnings),
+        "active_count": len(active),
+        "upcoming_count": len(upcoming),
         "max_level": max_level,
+        "active_max_level": active_max_level,
+        "upcoming_max_level": upcoming_max_level,
         "warnings": warnings,
         "errors": errors[:10],
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"MeteoAlarm Sardegna: {len(warnings)} allerte, livello max {max_level or 0}")
+    print(
+        f"MeteoAlarm Sardegna: {len(active)} attive, {len(upcoming)} prossime, "
+        f"livello max {max_level or 0}"
+    )
 
 
 if __name__ == "__main__":
