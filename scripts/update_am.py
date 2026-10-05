@@ -20,7 +20,8 @@ ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
 AWC = "https://aviationweather.gov/api/data/metar"
-MIN_RUN_INTERVAL_MIN = 25
+# Margine per la durata del job: il cron resta ogni 5 minuti.
+MIN_RUN_INTERVAL_MIN = 4
 
 STATIONS = {
     "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},

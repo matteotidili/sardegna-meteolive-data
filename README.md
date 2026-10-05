@@ -1,13 +1,23 @@
 # Sardegna MeteoLive Data
 
-Repository pubblico dei dati osservativi usati da **Sardegna MeteoLive**.
+Dati pubblici MeteoHub / DPCN Sardegna, Weather Underground e Aeronautica Militare.
+Le credenziali sono conservate esclusivamente nei GitHub Actions Secrets.
 
-Contiene esclusivamente dati meteorologici pubblici elaborati dalla rete **MeteoHub / DPCN Sardegna**. Le credenziali di accesso a MeteoHub non sono presenti nel codice e devono essere salvate esclusivamente nei **GitHub Actions Secrets** del repository.
+Il workflow `Aggiorna tutte le reti stazioni` è programmato ogni 5 minuti.
+Ogni rete viene raccolta e pubblicata in un job indipendente: un servizio lento o
+non disponibile non blocca gli altri. I job della stessa rete non si sovrappongono,
+anche quando avviati manualmente. Gli updater applicano un margine di 4 minuti
+tra i controlli per non saltare il ciclo successivo a causa della durata del job.
 
-File principale:
+GitHub Actions può ritardare gli avvii: questa pianificazione non garantisce
+osservazioni nuove ogni 5 minuti. La frequenza delle misure dipende dalle fonti.
+I limiti e gli errori di autenticazione WU continuano a interrompere la raccolta,
+preservando il dataset precedente. Non sono previste richieste con nuove chiavi
+o altri tentativi di aggirare le quote del servizio.
 
-- `data/stations.json` — osservazioni aggregate per stazione.
+- `data/stations.json`: MeteoHub / DPCN
+- `data/wunderground.json`: PWS Weather Underground
+- `data/am.json`: SYNOP / METAR Aeronautica Militare
 
-Il workflow `Aggiorna dati MeteoHub` è predisposto per l'aggiornamento automatico circa ogni 30 minuti.
-
-Il sito pubblico legge questo repository come sorgente dati, così gli aggiornamenti meteorologici non generano nuovi deploy Netlify.
+`last` indica l'ora reale dell'osservazione. Il sito legge questi file separatamente
+dal proprio deploy e mantiene il colore dell'ultimo valore disponibile.

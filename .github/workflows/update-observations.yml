@@ -14,54 +14,65 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: observations-heartbeat
-  cancel-in-progress: false
-
 jobs:
   update:
+    name: Aggiorna ${{ matrix.network }}
     runs-on: ubuntu-latest
-    timeout-minutes: 35
-
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - network: meteohub
+            file: stations
+          - network: wunderground
+            file: wunderground
+          - network: am
+            file: am
+    # Stesso lock dei workflow manuali: niente doppie richieste alla stessa rete.
+    concurrency:
+      group: observations-${{ matrix.network }}
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Configura Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Aggiorna MeteoHub
+      - name: Aggiorna rete
         env:
-          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
-          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+          METEOHUB_USERNAME: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_USERNAME || '' }}
+          METEOHUB_PASSWORD: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_PASSWORD || '' }}
+          WU_API_KEY: ${{ matrix.network == 'wunderground' && secrets.WU_API_KEY || '' }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
-        run: python scripts/update_meteohub.py
+          NETWORK: ${{ matrix.network }}
+        run: python "scripts/update_${NETWORK}.py"
 
-      - name: Aggiorna Weather Underground
+      - name: Pubblica subito la rete aggiornata
         env:
-          WU_API_KEY: ${{ secrets.WU_API_KEY }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
-        run: python scripts/update_wunderground.py
-
-      - name: Aggiorna Aeronautica Militare
-        env:
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
-        run: python scripts/update_am.py
-
-      - name: Pubblica i JSON aggiornati
+          NETWORK: ${{ matrix.network }}
+          DATA_FILE: data/${{ matrix.file }}.json
         run: |
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/stations.json data/wunderground.json data/am.json
+          git add "$DATA_FILE"
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
           fi
-          git commit -m "Aggiorna osservazioni reti stazioni"
-          if ! git push; then
+          git commit -m "Aggiorna osservazioni ${NETWORK}"
+          for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase -X theirs origin/main
-            git push
-          fi
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "Pubblicazione non riuscita dopo cinque tentativi" >&2
+          exit 1

@@ -28,7 +28,8 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-MIN_RUN_INTERVAL_MIN = 12
+# Margine per la durata del job: il cron resta ogni 5 minuti.
+MIN_RUN_INTERVAL_MIN = 4
 MAX_WORKERS = 6
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
@@ -75,7 +76,7 @@ def should_skip_recent_run():
             return False
 
         # Se l'inventario PWS è stato rigenerato dopo l'ultimo dataset,
-        # il refresh va eseguito subito anche dentro la finestra dei 22 minuti.
+        # il refresh va eseguito subito anche dentro la finestra minima tra due controlli.
         if SRC.exists():
             inv=json.loads(SRC.read_text(encoding="utf-8"))
             inv_ts=parse_utc(inv.get("generated_at"))
