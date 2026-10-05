@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Scarica le allerte MeteoAlarm per l'Italia e pubblica quelle riferite alla Sardegna."""
+"""Pubblica gli avvisi Atom/CAP dei paesi mediterranei coperti da MeteoAlarm."""
 from __future__ import annotations
 
 import json
 import re
 import urllib.request
 import xml.etree.ElementTree as ET
+from concurrent.futures import ThreadPoolExecutor
+from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -14,6 +16,8 @@ FEED_URL = "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy"
 ATOM = "http://www.w3.org/2005/Atom"
 CAP = "urn:oasis:names:tc:emergency:cap:1.2"
 UTC = timezone.utc
+COUNTRIES = {"italy":"Italia", "spain":"Spagna", "france":"Francia", "slovenia":"Slovenia", "croatia":"Croazia", "bosnia-herzegovina":"Bosnia ed Erzegovina", "montenegro":"Montenegro", "greece":"Grecia", "malta":"Malta", "cyprus":"Cipro", "israel":"Israele"}
+UNCOVERED = ["Marocco", "Algeria", "Tunisia", "Libia", "Egitto", "Palestina", "Libano", "Siria", "Turchia", "Albania", "Monaco"]
 
 # Il feed italiano usa normalmente una descrizione territoriale esplicita.
 # Manteniamo anche i principali riferimenti geografici sardi per non perdere
@@ -99,6 +103,24 @@ def choose_info(root: ET.Element) -> ET.Element | None:
     return infos[0]
 
 
+def parse_entry(entry, cap_url):
+    """The maintained Atom feed includes CAP fields, without extra CAP requests."""
+    root = ET.Element(f"{{{CAP}}}alert")
+    info = ET.SubElement(root, f"{{{CAP}}}info")
+    area = ET.SubElement(info, f"{{{CAP}}}area")
+    for child in entry:
+        if not child.tag.startswith(f"{{{CAP}}}"):
+            continue
+        name = child.tag.split("}")[-1]
+        target = root if name in ("identifier", "sent", "status", "msgType", "message_type", "scope") else area if name in ("areaDesc", "geocode", "polygon", "circle") else info
+        copied = deepcopy(child)
+        for descendant in copied.iter():
+            descendant.tag = f"{{{CAP}}}" + descendant.tag.split("}")[-1]
+        if name == "message_type": copied.tag = f"{{{CAP}}}msgType"
+        target.append(copied)
+    return parse_alert(ET.tostring(root), cap_url) or []
+
+
 def parse_geometry(area: ET.Element | None):
     if area is None:
         return None
@@ -151,6 +173,8 @@ def is_sardinia(*values: str) -> bool:
 
 def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
     root = ET.fromstring(xml_bytes)
+    if text(root, "status") != "Actual" or text(root, "msgType") == "Cancel":
+        return []
     info = choose_info(root)
     if info is None:
         return None
@@ -164,7 +188,7 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
     onset = parse_dt(text(info, "onset"))
     expires = parse_dt(text(info, "expires"))
     now = datetime.now(UTC)
-    if expires and expires < now:
+    if not expires or expires <= now:
         return None
     start = onset or effective or sent
     status = "upcoming" if start and start > now else "active"
@@ -175,13 +199,18 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
     aw_level = parameter(info, "awareness_level")
     aw_type = parameter(info, "awareness_type")
     level = leading_code(aw_level)
+    if level is None:
+        level = {"Moderate":2, "Severe":3, "Extreme":4}.get(text(info, "severity"))
+    if level == 1:
+        return []
+    if not start or level not in (2, 3, 4):
+        raise ValueError("Validità o livello non riconosciuto")
     type_code = leading_code(aw_type)
 
     matched = []
     for area in areas:
         area_desc = text(area, "areaDesc") if area is not None else ""
-        if is_sardinia(area_desc, headline, description):
-            matched.append(area)
+        matched.append(area)
 
     if not matched:
         return None
@@ -211,7 +240,7 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
                 "level": level,
                 "level_name": LEVEL_NAMES.get(level, ""),
                 "type_code": type_code,
-                "type_name": TYPE_NAMES.get(type_code, event or "Allerta meteo"),
+                "type_name": TYPE_NAMES.get(type_code) or next((label for word, label in [("thunderstorm", "Temporali"), ("rain", "Pioggia"), ("wind", "Vento"), ("snow", "Neve / ghiaccio"), ("fog", "Nebbia")] if word in event.lower()), event or "Allerta meteo"),
                 "area_desc": area_desc,
                 "emma_id": area_geocode(area),
                 "geometry": geometry,
@@ -226,31 +255,34 @@ def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
 
 def main() -> None:
     now = datetime.now(UTC)
-    feed = ET.fromstring(http_get(FEED_URL))
-    feed_updated_el = feed.find(f"{{{ATOM}}}updated")
-    feed_updated = (feed_updated_el.text or "").strip() if feed_updated_el is not None else None
-
-    warnings = []
-    errors = []
-    seen = set()
-
-    for entry in feed.findall(f"{{{ATOM}}}entry"):
-        link = entry.find(f"{{{ATOM}}}link[@type='application/cap+xml']")
-        if link is None:
-            continue
-        href = link.get("href")
-        if not href:
-            continue
+    warnings, errors, countries = [], [], []
+    def fetch_country(item):
+        slug, name = item
+        url = "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-" + slug
+        rows, failures = [], []
         try:
-            records = parse_alert(http_get(href), href)
-            for record in records or []:
-                key = (record["id"], record["area_desc"], record["onset"], record["expires"])
-                if key in seen:
-                    continue
-                seen.add(key)
-                warnings.append(record)
+            feed = ET.fromstring(http_get(url))
+            if feed.tag != f"{{{ATOM}}}feed":
+                raise ValueError("Risposta non Atom")
+            for entry in feed.findall(f"{{{ATOM}}}entry"):
+                link = entry.find(f"{{{ATOM}}}link[@type='application/cap+xml']")
+                href = link.get("href", "") if link is not None else url
+                try:
+                    records = parse_entry(entry, href)
+                    for row in records:
+                        row.update(country=name, country_code=slug)
+                        rows.append(row)
+                except Exception as exc:
+                    failures.append(f"{href}: {type(exc).__name__}")
+            updated = feed.find(f"{{{ATOM}}}updated")
+            return rows, dict(country=name, status="partial" if failures else "ok", checked_at=iso(datetime.now(UTC)), feed_updated=updated.text if updated is not None else None), failures
         except Exception as exc:
-            errors.append(f"{href}: {type(exc).__name__}")
+            return [], dict(country=name, status="unavailable", checked_at=iso(datetime.now(UTC))), [f"{name}: {type(exc).__name__}"]
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        for rows, country, failures in pool.map(fetch_country, COUNTRIES.items()):
+            warnings.extend(rows); countries.append(country); errors.extend(failures)
+    warnings = list({(w["country"], w["id"], w["area_desc"], w["onset"], w["expires"]):w for w in warnings}.values())
+    feed_updated = max((c["feed_updated"] for c in countries if c.get("feed_updated")), default=None)
 
     warnings.sort(
         key=lambda w: (
@@ -268,17 +300,17 @@ def main() -> None:
     payload = {
         "source": "MeteoAlarm",
         "provider": "EUMETNET members",
-        "country": "Italy",
-        "region": "Sardegna",
+        "countries": countries,
+        "uncovered": UNCOVERED,
+        "region": "Mediterraneo",
         "feed_url": FEED_URL,
-        # Usiamo l'istante di aggiornamento della fonte, così il file non cambia
-        # ad ogni controllo se MeteoAlarm non ha pubblicato novità.
-        "generated_at": feed_updated or iso(now),
+        # Il controllo e l'emissione della fonte hanno orari distinti.
+        "generated_at": iso(datetime.now(UTC)),
         "feed_updated": feed_updated,
         "warning_count": len(warnings),
         "active_count": len(active),
         "upcoming_count": len(upcoming),
-        "max_level": max_level,
+        "max_level": active_max_level,
         "active_max_level": active_max_level,
         "upcoming_max_level": upcoming_max_level,
         "warnings": warnings,
@@ -287,7 +319,7 @@ def main() -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"MeteoAlarm Sardegna: {len(active)} attive, {len(upcoming)} prossime, "
+        f"MeteoAlarm Mediterraneo: {len(active)} attive, {len(upcoming)} prossime, "
         f"livello max {max_level or 0}"
     )
 
