@@ -4,13 +4,18 @@
   "country": "Italy",
   "region": "Sardegna",
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-05T15:36:34.075945Z",
-  "feed_updated": "2026-10-05T15:05:52.199173Z",
+  "generated_at": "2026-10-05T15:35:53.578521Z",
+  "feed_updated": "2026-10-05T15:35:53.578521Z",
   "warning_count": 4,
+  "active_count": 2,
+  "upcoming_count": 2,
   "max_level": 3,
+  "active_max_level": 2,
+  "upcoming_max_level": 3,
   "warnings": [
     {
       "id": "2.49.0.0.380.3.IT.261005115746.058",
+      "status": "upcoming",
       "sent": "2026-10-05T09:57:47Z",
       "effective": "2026-10-06T00:00:00Z",
       "onset": "2026-10-06T00:00:00Z",
@@ -38,6 +43,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261005115746.057",
+      "status": "upcoming",
       "sent": "2026-10-05T09:57:47Z",
       "effective": "2026-10-06T00:00:00Z",
       "onset": "2026-10-06T00:00:00Z",
@@ -65,6 +71,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261005115746.056",
+      "status": "active",
       "sent": "2026-10-05T09:57:47Z",
       "effective": "2026-10-05T00:00:00Z",
       "onset": "2026-10-05T00:00:00Z",
@@ -92,6 +99,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261005115746.055",
+      "status": "active",
       "sent": "2026-10-05T09:57:47Z",
       "effective": "2026-10-05T00:00:00Z",
       "onset": "2026-10-05T00:00:00Z",
