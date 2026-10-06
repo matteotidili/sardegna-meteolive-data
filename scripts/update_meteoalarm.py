@@ -378,6 +378,11 @@ def load_region_geometries(needed_codes: set[str]):
             if needed_codes.issubset(regions):
                 break
         except Exception as exc:
+            try:
+                detail = exc.read().decode("utf-8", "replace")[:2000] if hasattr(exc, "read") else ""
+            except Exception:
+                detail = ""
+            print(f"DEBUG_REGION_ERROR source={source_name} code={getattr(exc, 'code', None)} error={type(exc).__name__} detail={detail}")
             failures.append(f"geometrie {source_name}: {type(exc).__name__}")
     return regions, failures
 
