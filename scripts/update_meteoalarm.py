@@ -2,8 +2,11 @@
 """Pubblica gli avvisi Atom/CAP dei paesi mediterranei coperti da MeteoAlarm."""
 from __future__ import annotations
 
+import gzip
 import json
+import math
 import re
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
@@ -11,29 +14,24 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
 
+import mapbox_vector_tile
+from shapely.geometry import GeometryCollection, MultiPolygon, Polygon, mapping, shape
+from shapely.ops import unary_union
+
 OUT = Path("data/meteoalarm.json")
+MAP_OUT = Path("data/meteoalarm-map.geojson")
 FEED_URL = "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy"
 ATOM = "http://www.w3.org/2005/Atom"
 CAP = "urn:oasis:names:tc:emergency:cap:1.2"
 UTC = timezone.utc
 COUNTRIES = {"italy":"Italia", "spain":"Spagna", "france":"Francia", "slovenia":"Slovenia", "croatia":"Croazia", "bosnia-herzegovina":"Bosnia ed Erzegovina", "montenegro":"Montenegro", "greece":"Grecia", "malta":"Malta", "cyprus":"Cipro", "israel":"Israele"}
 UNCOVERED = ["Marocco", "Algeria", "Tunisia", "Libia", "Egitto", "Palestina", "Libano", "Siria", "Turchia", "Albania", "Monaco"]
-REGION_SOURCES = (
-    ("metadata", "https://api.meteoalarm.org/metadata/v1/regions"),
-    ("visservice", "https://visservice.meteoalarm.org/api/v1/regions?language=ATOM"),
-)
-COUNTRY_LIMITS = {
-    "IT": (5.5, 35.0, 19.5, 48.5),
-    "ES": (-10.5, 35.0, 5.0, 44.5),
-    "FR": (-6.0, 41.0, 10.5, 52.0),
-    "SI": (13.0, 45.0, 17.0, 47.0),
-    "HR": (13.0, 42.0, 20.5, 47.0),
-    "BA": (15.0, 42.0, 20.0, 46.5),
-    "ME": (18.0, 41.0, 21.0, 44.0),
-    "GR": (19.0, 34.0, 30.0, 42.5),
-    "MT": (14.0, 35.5, 15.0, 36.5),
-    "CY": (32.0, 34.0, 35.5, 36.5),
-    "IL": (34.0, 29.0, 36.5, 34.0),
+MVT_FRAMES_URL = "https://visservice.meteoalarm.org/api/v1/stream-buffers/live/frames"
+MVT_TILE_URL = "https://visservice.meteoalarm.org/stream-buffers/live/tiles/{z}/{x}/{y}.mvt"
+MVT_ZOOM = 5
+MEDITERRANEAN_BOUNDS = (-10.5, 29.0, 38.0, 48.5)  # ovest, sud, est, nord
+MEDITERRANEAN_REGION_CODES = {
+    "ES", "FR", "MC", "IT", "SI", "HR", "BA", "ME", "AL", "GR", "MT", "CY", "IL"
 }
 
 # Il feed italiano usa normalmente una descrizione territoriale esplicita.
@@ -193,192 +191,175 @@ def http_get_json(url: str, timeout: int = 30):
         url,
         headers={
             "User-Agent": "SardegnaMeteoMonitor/1.0 (+https://github.com/matteotidili/sardegna-meteolive-data)",
-            "Accept": "application/json, application/geo+json;q=0.9, */*;q=0.5",
+            "Accept": "application/json, */*;q=0.5",
         },
     )
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode("utf-8"))
 
 
-def walk_objects(value):
-    if isinstance(value, dict):
-        yield value
-        for child in value.values():
-            yield from walk_objects(child)
-    elif isinstance(value, list):
-        for child in value:
-            yield from walk_objects(child)
+def http_get_mvt(url: str, timeout: int = 30) -> bytes:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "SardegnaMeteoMonitor/1.0 (+https://github.com/matteotidili/sardegna-meteolive-data)",
+            "Accept": "application/vnd.mapbox-vector-tile, */*;q=0.5",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        raw = r.read()
+        encoding = (r.headers.get("Content-Encoding") or "").lower()
+    if encoding == "gzip" or raw[:2] == b"\\x1f\\x8b":
+        raw = gzip.decompress(raw)
+    return raw
 
 
-def emma_code(obj: dict) -> str:
-    candidates = []
-    props = obj.get("properties")
-    if isinstance(props, dict):
-        candidates.append(props)
-    candidates.append(obj)
-    for source in candidates:
-        for key in ("code", "geocode", "region_code", "regionCode", "id", "identifier"):
-            value = source.get(key)
-            if isinstance(value, str):
-                value = value.upper().replace("EMMA_ID:", "").strip()
-                if re.fullmatch(r"[A-Z]{2}\d{3}", value):
-                    return value
-        if str(source.get("valueName", "")).upper() == "EMMA_ID":
-            value = str(source.get("value", "")).upper().strip()
-            if re.fullmatch(r"[A-Z]{2}\d{3}", value):
-                return value
-    return ""
+def lonlat_to_tile(lon: float, lat: float, zoom: int) -> tuple[int, int]:
+    lat = max(-85.05112878, min(85.05112878, lat))
+    n = 2 ** zoom
+    x = int((lon + 180.0) / 360.0 * n)
+    y = int((1.0 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2.0 * n)
+    return max(0, min(n - 1, x)), max(0, min(n - 1, y))
 
 
-def as_geojson_geometry(value):
-    if isinstance(value, str):
-        try:
-            value = json.loads(value)
-        except (TypeError, ValueError, json.JSONDecodeError):
-            return None
-    if not isinstance(value, dict):
-        return None
-    if value.get("type") == "Feature":
-        value = value.get("geometry")
-    if not isinstance(value, dict):
-        return None
-    if value.get("type") in ("Polygon", "MultiPolygon") and value.get("coordinates"):
-        return value
+def tile_point_to_lonlat(px: float, py: float, tx: int, ty: int, zoom: int, extent: int) -> list[float]:
+    n = 2 ** zoom
+    world_x = (tx + px / extent) / n
+    world_y = (ty + py / extent) / n
+    lon = world_x * 360.0 - 180.0
+    lat = math.degrees(math.atan(math.sinh(math.pi * (1.0 - 2.0 * world_y))))
+    return [lon, lat]
+
+
+def transform_tile_coords(value, tx: int, ty: int, zoom: int, extent: int):
+    if (
+        isinstance(value, (list, tuple))
+        and len(value) >= 2
+        and isinstance(value[0], (int, float))
+        and isinstance(value[1], (int, float))
+    ):
+        return tile_point_to_lonlat(float(value[0]), float(value[1]), tx, ty, zoom, extent)
+    return [transform_tile_coords(v, tx, ty, zoom, extent) for v in value]
+
+
+def polygonal_only(geom):
+    if isinstance(geom, (Polygon, MultiPolygon)):
+        return geom
+    if isinstance(geom, GeometryCollection):
+        pieces = [g for g in geom.geoms if isinstance(g, (Polygon, MultiPolygon))]
+        return unary_union(pieces) if pieces else None
     return None
 
 
-def valid_bbox(west, south, east, north):
-    return (
-        all(isinstance(v, (int, float)) for v in (west, south, east, north))
-        and -180 <= west < east <= 180
-        and -90 <= south < north <= 90
-    )
+def build_meteoalarm_map(reference_date: str) -> dict:
+    query = urllib.parse.urlencode({"preset": "now", "referenceDate": reference_date})
+    frames = http_get_json(f"{MVT_FRAMES_URL}?{query}", timeout=45).get("frames", [])
 
-
-def bbox_score(code: str, bbox):
-    west, south, east, north = bbox
-    score = 0
-    limits = COUNTRY_LIMITS.get(code[:2])
-    if limits:
-        lw, ls, le, ln = limits
-        cx, cy = (west + east) / 2, (south + north) / 2
-        if lw <= cx <= le and ls <= cy <= ln:
-            score += 10
-    if east - west <= 30 and north - south <= 20:
-        score += 1
-    return score
-
-
-def bbox_geometry(value, code: str):
-    candidates = []
-    if isinstance(value, dict):
-        aliases = [
-            ("west", "south", "east", "north"),
-            ("minx", "miny", "maxx", "maxy"),
-            ("xmin", "ymin", "xmax", "ymax"),
-        ]
-        for keys in aliases:
-            if all(k in value for k in keys):
-                candidates.append(tuple(value[k] for k in keys))
-    elif isinstance(value, list):
-        if len(value) == 4 and all(isinstance(v, (int, float)) for v in value):
-            candidates.append(tuple(value))
-        elif (
-            len(value) == 2
-            and all(isinstance(pair, list) and len(pair) >= 2 for pair in value)
-            and all(isinstance(v, (int, float)) for pair in value for v in pair[:2])
-        ):
-            a, b = value[0][:2], value[1][:2]
-            candidates.append((a[0], a[1], b[0], b[1]))
-            candidates.append((a[1], a[0], b[1], b[0]))
-    candidates = [bbox for bbox in candidates if valid_bbox(*bbox)]
-    if not candidates:
-        return None
-    west, south, east, north = max(candidates, key=lambda bbox: bbox_score(code, bbox))
-    return {
-        "type": "Polygon",
-        "coordinates": [[
-            [west, south],
-            [east, south],
-            [east, north],
-            [west, north],
-            [west, south],
-        ]],
-    }
-
-
-def regions_from_payload(payload, source_name: str):
-    regions = {}
-    for obj in walk_objects(payload):
-        code = emma_code(obj)
-        if not code:
+    levels: dict[int, int] = {}
+    types: dict[int, set[int]] = {}
+    feature_ids: dict[int, str] = {}
+    for row in frames:
+        if int(row.get("frame") or 0) != 1:
             continue
-        geometry = (
-            as_geojson_geometry(obj.get("geometry"))
-            or as_geojson_geometry(obj.get("geojson"))
-            or as_geojson_geometry(obj.get("shape"))
-        )
-        precision = "region"
-        if geometry is None:
-            bbox = obj.get("bbox")
-            if bbox is None:
-                bbox = obj.get("bb")
-            geometry = bbox_geometry(bbox, code)
-            precision = "bbox"
-        if geometry is None:
-            continue
-        current = regions.get(code)
-        if current and current.get("precision") == "region" and precision == "bbox":
-            continue
-        regions[code] = {
-            "geometry": geometry,
-            "source": source_name,
-            "precision": precision,
-        }
-    return regions
-
-
-def load_region_geometries(needed_codes: set[str]):
-    if not needed_codes:
-        return {}, []
-    regions, failures = {}, []
-    for source_name, base_url in REGION_SOURCES:
         try:
-            if source_name == "metadata":
-                for page in range(1, 21):
-                    sep = "&" if "?" in base_url else "?"
-                    url = f"{base_url}{sep}page={page}&limit=500"
-                    try:
-                        payload = http_get_json(url)
-                    except Exception:
-                        if page != 1:
-                            break
-                        payload = http_get_json(base_url)
-                    parsed = regions_from_payload(payload, source_name)
-                    before = len(regions)
-                    for code, record in parsed.items():
-                        if code in needed_codes and (
-                            code not in regions
-                            or (regions[code].get("precision") == "bbox" and record.get("precision") == "region")
-                        ):
-                            regions[code] = record
-                    if needed_codes.issubset(regions):
-                        break
-                    if page > 1 and len(regions) == before:
-                        break
-                    if page == 1 and url == base_url:
-                        break
-            else:
-                payload = http_get_json(base_url)
-                parsed = regions_from_payload(payload, source_name)
-                for code, record in parsed.items():
-                    if code in needed_codes and code not in regions:
-                        regions[code] = record
-            if needed_codes.issubset(regions):
-                break
-        except Exception as exc:
-            failures.append(f"geometrie {source_name}: {type(exc).__name__}")
-    return regions, failures
+            fid = int(row["fid"])
+            level = int(row["levelId"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if level not in (2, 3, 4):
+            continue
+        levels[fid] = max(levels.get(fid, 0), level)
+        try:
+            types.setdefault(fid, set()).add(int(row["typeId"]))
+        except (KeyError, TypeError, ValueError):
+            pass
+        if row.get("featureId"):
+            feature_ids[fid] = str(row["featureId"])
+
+    west, south, east, north = MEDITERRANEAN_BOUNDS
+    x0, y_south = lonlat_to_tile(west, south, MVT_ZOOM)
+    x1, y_north = lonlat_to_tile(east, north, MVT_ZOOM)
+    x_min, x_max = sorted((x0, x1))
+    y_min, y_max = sorted((y_north, y_south))
+
+    pieces: dict[int, list] = {}
+    meta: dict[int, dict] = {}
+    for tx in range(x_min, x_max + 1):
+        for ty in range(y_min, y_max + 1):
+            url = MVT_TILE_URL.format(z=MVT_ZOOM, x=tx, y=ty) + "?" + query
+            decoded = mapbox_vector_tile.decode(
+                http_get_mvt(url, timeout=45),
+                default_options={"y_coord_down": True},
+            )
+            area_layer = decoded.get("areas") or {}
+            extent = int(area_layer.get("extent") or 4096)
+            for feature in area_layer.get("features") or []:
+                props = feature.get("properties") or {}
+                region_code = str(props.get("region_code") or "").upper()
+                if region_code not in MEDITERRANEAN_REGION_CODES:
+                    continue
+                try:
+                    fid = int(feature.get("id") or props.get("fidd"))
+                except (TypeError, ValueError):
+                    continue
+                level = levels.get(fid)
+                if level not in (2, 3, 4):
+                    continue
+                geometry = feature.get("geometry") or {}
+                if geometry.get("type") not in ("Polygon", "MultiPolygon"):
+                    continue
+                try:
+                    geographic = {
+                        "type": geometry["type"],
+                        "coordinates": transform_tile_coords(
+                            geometry["coordinates"], tx, ty, MVT_ZOOM, extent
+                        ),
+                    }
+                    geom = polygonal_only(shape(geographic))
+                    if geom is None or geom.is_empty:
+                        continue
+                    pieces.setdefault(fid, []).append(geom)
+                    meta[fid] = {
+                        "fid": fid,
+                        "feature_id": str(props.get("uuid") or feature_ids.get(fid) or ""),
+                        "region_code": region_code,
+                        "level": level,
+                        "type_ids": sorted(types.get(fid, set())),
+                    }
+                except Exception:
+                    continue
+
+    features = []
+    for fid, geoms in pieces.items():
+        geom = polygonal_only(unary_union(geoms))
+        if geom is None or geom.is_empty:
+            continue
+        if not geom.is_valid:
+            geom = polygonal_only(geom.buffer(0))
+        if geom is None or geom.is_empty:
+            continue
+        features.append({
+            "type": "Feature",
+            "id": fid,
+            "properties": meta[fid],
+            "geometry": mapping(geom),
+        })
+
+    features.sort(key=lambda f: (int(f["properties"]["level"]), f["properties"]["region_code"], int(f["id"])))
+    return {
+        "type": "FeatureCollection",
+        "metadata": {
+            "source": "MeteoAlarm / EUMETNET",
+            "reference_date": reference_date,
+            "preset": "now",
+            "generated_at": iso(datetime.now(UTC)),
+            "zoom": MVT_ZOOM,
+            "bounds": list(MEDITERRANEAN_BOUNDS),
+            "region_codes": sorted(MEDITERRANEAN_REGION_CODES),
+            "feature_count": len(features),
+        },
+        "features": features,
+    }
 
 
 def parse_alert(xml_bytes: bytes, cap_url: str) -> dict | None:
@@ -494,12 +475,6 @@ def main() -> None:
     warnings = list({(w["country"], w["id"], w["area_desc"], w["onset"], w["expires"]):w for w in warnings}.values())
     feed_updated = max((c["feed_updated"] for c in countries if c.get("feed_updated")), default=None)
 
-    needed_codes = {
-        str(w.get("emma_id") or "").upper()
-        for w in warnings
-        if re.fullmatch(r"[A-Z]{2}\d{3}", str(w.get("emma_id") or "").upper())
-    }
-    regions, region_errors = load_region_geometries(needed_codes)
 
     warnings.sort(
         key=lambda w: (
@@ -514,15 +489,35 @@ def main() -> None:
     max_level = max((w.get("level") or 0 for w in warnings), default=0)
     active_max_level = max((w.get("level") or 0 for w in active), default=0)
     upcoming_max_level = max((w.get("level") or 0 for w in upcoming), default=0)
+
+    map_status = "ok"
+    map_feature_count = 0
+    map_reference_date = iso(datetime.now(UTC))
+    try:
+        map_payload = build_meteoalarm_map(map_reference_date)
+        MAP_OUT.parent.mkdir(parents=True, exist_ok=True)
+        MAP_OUT.write_text(json.dumps(map_payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        map_feature_count = len(map_payload.get("features") or [])
+    except Exception as exc:
+        map_status = f"stale: {type(exc).__name__}"
+        try:
+            previous_map = json.loads(MAP_OUT.read_text(encoding="utf-8"))
+            map_feature_count = len(previous_map.get("features") or [])
+        except Exception:
+            map_feature_count = 0
+        errors.append(f"mappa MeteoAlarm: {type(exc).__name__}")
+
     payload = {
         "source": "MeteoAlarm",
         "provider": "EUMETNET members",
         "countries": countries,
         "uncovered": UNCOVERED,
         "region": "Mediterraneo",
-        "regions": regions,
-        "region_count": len(regions),
-        "region_geometry_errors": region_errors,
+        "map_file": "meteoalarm-map.geojson",
+        "map_status": map_status,
+        "map_feature_count": map_feature_count,
+        "map_reference_date": map_reference_date,
+        "map_region_codes": sorted(MEDITERRANEAN_REGION_CODES),
         "feed_url": FEED_URL,
         # Il controllo e l'emissione della fonte hanno orari distinti.
         "generated_at": iso(datetime.now(UTC)),
@@ -540,7 +535,7 @@ def main() -> None:
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"MeteoAlarm Mediterraneo: {len(active)} attive, {len(upcoming)} prossime, "
-        f"livello max {max_level or 0}"
+        f"livello max {max_level or 0}, aree mappa {map_feature_count} ({map_status})"
     )
 
 
