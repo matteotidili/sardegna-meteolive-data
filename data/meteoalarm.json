@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:11.033334Z",
+      "checked_at": "2026-10-06T20:53:39.795013Z",
       "feed_updated": "2026-10-06T20:35:32.594686Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:12.662519Z",
-      "feed_updated": "2026-10-06T20:35:19.269540Z"
+      "checked_at": "2026-10-06T20:53:41.255924Z",
+      "feed_updated": "2026-10-06T20:44:05.278083Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:11.499507Z",
+      "checked_at": "2026-10-06T20:53:40.260781Z",
       "feed_updated": "2026-10-06T20:35:07.205349Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:11.838375Z",
+      "checked_at": "2026-10-06T20:53:40.547822Z",
       "feed_updated": "2026-10-06T20:35:43.055878Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:12.155257Z",
+      "checked_at": "2026-10-06T20:53:40.876371Z",
       "feed_updated": "2026-10-06T20:35:35.957998Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:12.525378Z",
+      "checked_at": "2026-10-06T20:53:41.427776Z",
       "feed_updated": "2026-10-06T20:35:08.652790Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:13.081102Z",
+      "checked_at": "2026-10-06T20:53:41.469159Z",
       "feed_updated": "2026-10-06T20:35:02.090255Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:13.090911Z",
+      "checked_at": "2026-10-06T20:53:42.360743Z",
       "feed_updated": "2026-10-06T20:35:26.486935Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:13.331335Z",
+      "checked_at": "2026-10-06T20:53:42.348255Z",
       "feed_updated": "2026-10-06T20:35:26.069554Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:13.614552Z",
+      "checked_at": "2026-10-06T20:53:42.366019Z",
       "feed_updated": "2026-10-06T20:35:06.231086Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-06T20:40:13.779635Z",
+      "checked_at": "2026-10-06T20:53:43.225492Z",
       "feed_updated": "2026-10-06T20:35:28.452204Z"
     }
   ],
@@ -8593,6 +8593,778 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT005",
+      "matched_by": "code"
+    },
+    "ES172": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.611,
+              40.942
+            ],
+            [
+              -1.611,
+              40.871
+            ],
+            [
+              -1.559,
+              40.827
+            ],
+            [
+              -1.551,
+              40.787
+            ],
+            [
+              -1.56,
+              40.749
+            ],
+            [
+              -1.539,
+              40.693
+            ],
+            [
+              -1.547,
+              40.663
+            ],
+            [
+              -1.595,
+              40.569
+            ],
+            [
+              -1.675,
+              40.577
+            ],
+            [
+              -1.703,
+              40.482
+            ],
+            [
+              -1.75,
+              40.458
+            ],
+            [
+              -1.799,
+              40.395
+            ],
+            [
+              -1.85,
+              40.424
+            ],
+            [
+              -1.915,
+              40.571
+            ],
+            [
+              -1.94,
+              40.597
+            ],
+            [
+              -1.975,
+              40.609
+            ],
+            [
+              -2.11,
+              40.774
+            ],
+            [
+              -2.13,
+              40.831
+            ],
+            [
+              -2.113,
+              40.854
+            ],
+            [
+              -2.069,
+              40.955
+            ],
+            [
+              -2.13,
+              41.009
+            ],
+            [
+              -2.205,
+              41.023
+            ],
+            [
+              -2.263,
+              41.067
+            ],
+            [
+              -2.078,
+              41.093
+            ],
+            [
+              -2.059,
+              41.121
+            ],
+            [
+              -2.057,
+              41.151
+            ],
+            [
+              -1.982,
+              41.165
+            ],
+            [
+              -1.952,
+              41.163
+            ],
+            [
+              -1.936,
+              41.142
+            ],
+            [
+              -1.814,
+              41.091
+            ],
+            [
+              -1.611,
+              40.942
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ES172",
+      "matched_by": "code"
+    },
+    "ES168": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.41,
+              40.063
+            ],
+            [
+              -2.528,
+              40.101
+            ],
+            [
+              -2.549,
+              40.122
+            ],
+            [
+              -2.516,
+              40.173
+            ],
+            [
+              -2.533,
+              40.199
+            ],
+            [
+              -2.592,
+              40.252
+            ],
+            [
+              -2.662,
+              40.275
+            ],
+            [
+              -2.699,
+              40.264
+            ],
+            [
+              -2.713,
+              40.241
+            ],
+            [
+              -2.753,
+              40.129
+            ],
+            [
+              -2.773,
+              40.096
+            ],
+            [
+              -2.924,
+              40.064
+            ],
+            [
+              -3.065,
+              40.095
+            ],
+            [
+              -3.059,
+              40.12
+            ],
+            [
+              -3.066,
+              40.151
+            ],
+            [
+              -2.88,
+              40.169
+            ],
+            [
+              -2.823,
+              40.209
+            ],
+            [
+              -2.807,
+              40.252
+            ],
+            [
+              -2.798,
+              40.405
+            ],
+            [
+              -2.727,
+              40.403
+            ],
+            [
+              -2.666,
+              40.436
+            ],
+            [
+              -2.517,
+              40.45
+            ],
+            [
+              -2.519,
+              40.49
+            ],
+            [
+              -2.482,
+              40.512
+            ],
+            [
+              -2.38,
+              40.543
+            ],
+            [
+              -2.364,
+              40.607
+            ],
+            [
+              -2.226,
+              40.624
+            ],
+            [
+              -2.266,
+              40.556
+            ],
+            [
+              -2.27,
+              40.393
+            ],
+            [
+              -2.236,
+              40.284
+            ],
+            [
+              -2.233,
+              40.246
+            ],
+            [
+              -2.251,
+              40.205
+            ],
+            [
+              -2.274,
+              40.178
+            ],
+            [
+              -2.313,
+              40.195
+            ],
+            [
+              -2.35,
+              40.2
+            ],
+            [
+              -2.371,
+              40.18
+            ],
+            [
+              -2.392,
+              40.091
+            ],
+            [
+              -2.41,
+              40.063
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ES168",
+      "matched_by": "code"
+    },
+    "ES169": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.975,
+              40.609
+            ],
+            [
+              -1.94,
+              40.597
+            ],
+            [
+              -1.915,
+              40.571
+            ],
+            [
+              -1.85,
+              40.424
+            ],
+            [
+              -1.799,
+              40.395
+            ],
+            [
+              -1.553,
+              40.2
+            ],
+            [
+              -1.453,
+              40.147
+            ],
+            [
+              -1.433,
+              40.128
+            ],
+            [
+              -1.387,
+              40.045
+            ],
+            [
+              -1.256,
+              39.997
+            ],
+            [
+              -1.186,
+              40.006
+            ],
+            [
+              -1.16,
+              40.001
+            ],
+            [
+              -1.148,
+              39.972
+            ],
+            [
+              -1.184,
+              39.956
+            ],
+            [
+              -1.206,
+              39.914
+            ],
+            [
+              -1.223,
+              39.799
+            ],
+            [
+              -1.264,
+              39.75
+            ],
+            [
+              -1.27,
+              39.706
+            ],
+            [
+              -1.311,
+              39.684
+            ],
+            [
+              -1.389,
+              39.662
+            ],
+            [
+              -1.423,
+              39.644
+            ],
+            [
+              -1.454,
+              39.591
+            ],
+            [
+              -1.484,
+              39.565
+            ],
+            [
+              -1.527,
+              39.549
+            ],
+            [
+              -1.598,
+              39.55
+            ],
+            [
+              -1.688,
+              39.611
+            ],
+            [
+              -1.729,
+              39.661
+            ],
+            [
+              -1.765,
+              39.665
+            ],
+            [
+              -1.803,
+              39.682
+            ],
+            [
+              -1.842,
+              39.736
+            ],
+            [
+              -1.994,
+              39.791
+            ],
+            [
+              -2.086,
+              39.887
+            ],
+            [
+              -2.201,
+              39.898
+            ],
+            [
+              -2.29,
+              39.893
+            ],
+            [
+              -2.324,
+              39.902
+            ],
+            [
+              -2.434,
+              40.003
+            ],
+            [
+              -2.392,
+              40.091
+            ],
+            [
+              -2.371,
+              40.18
+            ],
+            [
+              -2.35,
+              40.2
+            ],
+            [
+              -2.313,
+              40.195
+            ],
+            [
+              -2.274,
+              40.178
+            ],
+            [
+              -2.251,
+              40.205
+            ],
+            [
+              -2.233,
+              40.246
+            ],
+            [
+              -2.236,
+              40.284
+            ],
+            [
+              -2.27,
+              40.393
+            ],
+            [
+              -2.266,
+              40.556
+            ],
+            [
+              -2.226,
+              40.624
+            ],
+            [
+              -2.118,
+              40.641
+            ],
+            [
+              -2.084,
+              40.64
+            ],
+            [
+              -2.054,
+              40.616
+            ],
+            [
+              -2.011,
+              40.602
+            ],
+            [
+              -1.975,
+              40.609
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ES169",
+      "matched_by": "code"
+    },
+    "ES170": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.41,
+              40.063
+            ],
+            [
+              -2.434,
+              40.003
+            ],
+            [
+              -2.324,
+              39.902
+            ],
+            [
+              -2.29,
+              39.893
+            ],
+            [
+              -2.201,
+              39.898
+            ],
+            [
+              -2.086,
+              39.887
+            ],
+            [
+              -1.994,
+              39.791
+            ],
+            [
+              -1.842,
+              39.736
+            ],
+            [
+              -1.803,
+              39.682
+            ],
+            [
+              -1.765,
+              39.665
+            ],
+            [
+              -1.729,
+              39.661
+            ],
+            [
+              -1.688,
+              39.611
+            ],
+            [
+              -1.598,
+              39.55
+            ],
+            [
+              -1.527,
+              39.549
+            ],
+            [
+              -1.509,
+              39.45
+            ],
+            [
+              -1.516,
+              39.413
+            ],
+            [
+              -1.732,
+              39.323
+            ],
+            [
+              -1.758,
+              39.295
+            ],
+            [
+              -1.792,
+              39.284
+            ],
+            [
+              -1.883,
+              39.302
+            ],
+            [
+              -1.97,
+              39.295
+            ],
+            [
+              -2.0,
+              39.305
+            ],
+            [
+              -2.037,
+              39.35
+            ],
+            [
+              -2.075,
+              39.345
+            ],
+            [
+              -2.086,
+              39.267
+            ],
+            [
+              -2.18,
+              39.275
+            ],
+            [
+              -2.281,
+              39.229
+            ],
+            [
+              -2.381,
+              39.237
+            ],
+            [
+              -2.492,
+              39.316
+            ],
+            [
+              -2.627,
+              39.338
+            ],
+            [
+              -2.745,
+              39.321
+            ],
+            [
+              -2.787,
+              39.387
+            ],
+            [
+              -2.813,
+              39.379
+            ],
+            [
+              -2.839,
+              39.355
+            ],
+            [
+              -2.862,
+              39.371
+            ],
+            [
+              -2.904,
+              39.433
+            ],
+            [
+              -2.937,
+              39.463
+            ],
+            [
+              -2.912,
+              39.61
+            ],
+            [
+              -2.914,
+              39.647
+            ],
+            [
+              -3.003,
+              39.728
+            ],
+            [
+              -3.067,
+              39.842
+            ],
+            [
+              -3.122,
+              39.875
+            ],
+            [
+              -3.103,
+              39.958
+            ],
+            [
+              -3.108,
+              39.986
+            ],
+            [
+              -3.145,
+              39.994
+            ],
+            [
+              -3.156,
+              40.066
+            ],
+            [
+              -3.065,
+              40.095
+            ],
+            [
+              -2.924,
+              40.064
+            ],
+            [
+              -2.773,
+              40.096
+            ],
+            [
+              -2.753,
+              40.129
+            ],
+            [
+              -2.713,
+              40.241
+            ],
+            [
+              -2.699,
+              40.264
+            ],
+            [
+              -2.662,
+              40.275
+            ],
+            [
+              -2.592,
+              40.252
+            ],
+            [
+              -2.533,
+              40.199
+            ],
+            [
+              -2.516,
+              40.173
+            ],
+            [
+              -2.549,
+              40.122
+            ],
+            [
+              -2.528,
+              40.101
+            ],
+            [
+              -2.41,
+              40.063
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ES170",
       "matched_by": "code"
     },
     "ES235": {
@@ -41513,13 +42285,13 @@
       "matched_by": "code"
     }
   },
-  "region_count": 236,
+  "region_count": 240,
   "region_geometry_errors": [],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-06T20:40:13.811376Z",
-  "feed_updated": "2026-10-06T20:35:43.055878Z",
-  "warning_count": 489,
-  "active_count": 273,
+  "generated_at": "2026-10-06T20:53:43.248663Z",
+  "feed_updated": "2026-10-06T20:44:05.278083Z",
+  "warning_count": 493,
+  "active_count": 277,
   "upcoming_count": 216,
   "max_level": 3,
   "active_max_level": 3,
@@ -48996,6 +49768,36 @@
       "country_code": "spain"
     },
     {
+      "id": "2.49.0.0.724.0.ES.261006203808.681601TOTO062219088",
+      "status": "active",
+      "sent": "2026-10-06T20:38:08Z",
+      "effective": "2026-10-06T20:35:37Z",
+      "onset": "2026-10-06T20:00:00Z",
+      "expires": "2026-10-06T21:59:59Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Alcarria conquense",
+      "emma_id": "ES168",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/e6253983-420f-4484-b390-11dabd7e0876",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
       "id": "2.49.0.0.724.0.ES.261006200808.754801PRP1062217288",
       "status": "active",
       "sent": "2026-10-06T20:08:08Z",
@@ -49020,6 +49822,96 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/313243ae-5d9b-4ec5-9d11-a1a06b450515",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261006203808.681603TOTO062219088",
+      "status": "active",
+      "sent": "2026-10-06T20:38:08Z",
+      "effective": "2026-10-06T20:35:37Z",
+      "onset": "2026-10-06T20:00:00Z",
+      "expires": "2026-10-06T21:59:59Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "La Mancha conquense",
+      "emma_id": "ES170",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/c3b68610-6897-4611-8f79-38b30c230029",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261006203808.681902TOTO062219088",
+      "status": "active",
+      "sent": "2026-10-06T20:38:08Z",
+      "effective": "2026-10-06T20:35:37Z",
+      "onset": "2026-10-06T20:00:00Z",
+      "expires": "2026-10-06T21:59:59Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Parameras de Molina",
+      "emma_id": "ES172",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/f4a34993-106c-4ca7-8dbf-222595ed4ab5",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261006203808.681602TOTO062219088",
+      "status": "active",
+      "sent": "2026-10-06T20:38:08Z",
+      "effective": "2026-10-06T20:35:37Z",
+      "onset": "2026-10-06T20:00:00Z",
+      "expires": "2026-10-06T21:59:59Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Serranía de Cuenca",
+      "emma_id": "ES169",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/d8b8735d-ef19-4c37-a12f-8ed28e986b05",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
