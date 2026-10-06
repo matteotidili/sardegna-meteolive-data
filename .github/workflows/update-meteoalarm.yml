@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   push:
-    branches: [main, fix/meteoalarm-visual-map]
+    branches: [main]
     paths:
       - 'scripts/update_meteoalarm.py'
       - 'scripts/update_meteoalarm_map.py'
