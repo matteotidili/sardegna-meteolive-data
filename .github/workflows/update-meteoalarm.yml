@@ -31,6 +31,38 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Diagnostica endpoint cartografici MeteoAlarm
+        run: |
+          python - <<'PY'
+          import re, urllib.request, urllib.error
+          for url in (
+              "https://api.meteoalarm.org/metadata/v1/geocodes",
+              "https://api.meteoalarm.org/metadata/v1/geocode-aliases",
+          ):
+              try:
+                  req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/json"})
+                  with urllib.request.urlopen(req,timeout=20) as r:
+                      body=r.read(12000).decode("utf-8","replace")
+                      print("DEBUG_ENDPOINT",url,"status",r.status,"body",body[:2500])
+              except urllib.error.HTTPError as e:
+                  print("DEBUG_ENDPOINT",url,"status",e.code,"body",e.read().decode("utf-8","replace")[:2500])
+              except Exception as e:
+                  print("DEBUG_ENDPOINT",url,"error",type(e).__name__,str(e))
+          html=urllib.request.urlopen("https://meteoalarm.org/en/live/",timeout=20).read().decode("utf-8","replace")
+          m=re.search(r'src="(/assets/index\.[^"]+\.js)"',html)
+          print("DEBUG_FRONTEND_ASSET",m.group(1) if m else "not-found")
+          if m:
+              js=urllib.request.urlopen("https://meteoalarm.org"+m.group(1),timeout=30).read().decode("utf-8","replace")
+              for needle in ("APP_WARNINGTILES_URL","warningtiles","warningTiles","warning-tile","/tiles/","{z}"):
+                  start=0
+                  hits=0
+                  while True:
+                      i=js.find(needle,start)
+                      if i<0 or hits>=8: break
+                      print("DEBUG_JS",needle,js[max(0,i-900):i+1800])
+                      start=i+len(needle);hits+=1
+          PY
+
       - name: Scarica allerte MeteoAlarm
         run: python scripts/update_meteoalarm.py
 
