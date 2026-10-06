@@ -370,6 +370,7 @@ def load_region_geometries(needed_codes: set[str]):
                         break
             else:
                 payload = http_get_json(base_url)
+                print("DEBUG_REGION_PAYLOAD " + json.dumps(payload, ensure_ascii=False)[:12000])
                 parsed = regions_from_payload(payload, source_name)
                 for code, record in parsed.items():
                     if code in needed_codes and code not in regions:
