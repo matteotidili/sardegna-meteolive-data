@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:07.217192Z",
-      "feed_updated": "2026-10-06T18:35:23.569015Z"
+      "checked_at": "2026-10-06T19:09:45.432748Z",
+      "feed_updated": "2026-10-06T19:05:57.232025Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:09.034779Z",
-      "feed_updated": "2026-10-06T18:51:30.690271Z"
+      "checked_at": "2026-10-06T19:09:46.951490Z",
+      "feed_updated": "2026-10-06T19:05:15.650615Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:07.767872Z",
-      "feed_updated": "2026-10-06T18:35:03.979939Z"
+      "checked_at": "2026-10-06T19:09:46.005683Z",
+      "feed_updated": "2026-10-06T19:05:05.249098Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:08.030979Z",
-      "feed_updated": "2026-10-06T18:35:31.095816Z"
+      "checked_at": "2026-10-06T19:09:46.110543Z",
+      "feed_updated": "2026-10-06T19:06:02.228278Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:08.436065Z",
-      "feed_updated": "2026-10-06T18:35:24.892767Z"
+      "checked_at": "2026-10-06T19:09:46.669558Z",
+      "feed_updated": "2026-10-06T19:05:53.218700Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:08.860113Z",
-      "feed_updated": "2026-10-06T18:35:03.911739Z"
+      "checked_at": "2026-10-06T19:09:46.668490Z",
+      "feed_updated": "2026-10-06T19:05:30.131718Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:09.879551Z",
-      "feed_updated": "2026-10-06T18:35:01.970608Z"
+      "checked_at": "2026-10-06T19:09:47.197567Z",
+      "feed_updated": "2026-10-06T19:05:01.803816Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:09.887129Z",
-      "feed_updated": "2026-10-06T18:35:05.218917Z"
+      "checked_at": "2026-10-06T19:09:47.170291Z",
+      "feed_updated": "2026-10-06T19:05:34.971636Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:09.876697Z",
-      "feed_updated": "2026-10-06T18:35:16.878796Z"
+      "checked_at": "2026-10-06T19:09:47.712247Z",
+      "feed_updated": "2026-10-06T19:05:37.010373Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:10.769971Z",
-      "feed_updated": "2026-10-06T18:35:08.421562Z"
+      "checked_at": "2026-10-06T19:09:47.691658Z",
+      "feed_updated": "2026-10-06T19:05:48.954332Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-06T18:57:10.940589Z",
-      "feed_updated": "2026-10-06T18:41:01.482074Z"
+      "checked_at": "2026-10-06T19:09:47.948076Z",
+      "feed_updated": "2026-10-06T19:05:37.803397Z"
     }
   ],
   "uncovered": [
@@ -41730,11 +41730,11 @@
   "region_count": 238,
   "region_geometry_errors": [],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-06T18:57:10.973662Z",
-  "feed_updated": "2026-10-06T18:51:30.690271Z",
-  "warning_count": 497,
+  "generated_at": "2026-10-06T19:09:47.970785Z",
+  "feed_updated": "2026-10-06T19:06:02.228278Z",
+  "warning_count": 494,
   "active_count": 278,
-  "upcoming_count": 219,
+  "upcoming_count": 216,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -42604,96 +42604,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/cf0051f4-1318-4410-8b11-6af688e3bb84",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006165408.694304TOTO061905648",
-      "status": "active",
-      "sent": "2026-10-06T16:54:08Z",
-      "effective": "2026-10-06T16:51:49Z",
-      "onset": "2026-10-06T16:00:00Z",
-      "expires": "2026-10-06T18:59:59Z",
-      "event": "Severe thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Observed",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Litoral sur de Tarragona",
-      "emma_id": "ES192",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/2a61e11c-44c4-4666-8c2d-22d6a40cead0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006165408.694304PRP1061905648",
-      "status": "active",
-      "sent": "2026-10-06T16:54:08Z",
-      "effective": "2026-10-06T16:51:49Z",
-      "onset": "2026-10-06T16:00:00Z",
-      "expires": "2026-10-06T18:59:59Z",
-      "event": "Severe rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Observed",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Litoral sur de Tarragona",
-      "emma_id": "ES192",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/62603b41-e3db-4212-a47b-336975dce5a4",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006172408.722802PRP1061907448",
-      "status": "active",
-      "sent": "2026-10-06T17:24:08Z",
-      "effective": "2026-10-06T17:21:18Z",
-      "onset": "2026-10-06T17:00:00Z",
-      "expires": "2026-10-06T18:59:59Z",
-      "event": "Severe rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Observed",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Metropolitana y Henares",
-      "emma_id": "ES219",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/09cc7489-2a7c-49bf-a6f7-a42d77949e35",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
@@ -50681,7 +50591,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165408.694304TOTO062205648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:54:08Z",
       "effective": "2026-10-06T16:51:49Z",
       "onset": "2026-10-06T19:00:00Z",
@@ -50711,7 +50621,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165408.694304PRP1062205648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:54:08Z",
       "effective": "2026-10-06T16:51:49Z",
       "onset": "2026-10-06T19:00:00Z",
@@ -50741,7 +50651,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006172408.722802PRP1062207448",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T17:24:08Z",
       "effective": "2026-10-06T17:21:18Z",
       "onset": "2026-10-06T19:00:00Z",
