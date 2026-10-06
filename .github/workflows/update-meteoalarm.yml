@@ -1,116 +1,41 @@
-name: Aggiorna allerte MeteoAlarm Mediterraneo
+name: Debug MeteoAlarm vector tiles
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/5 * * * *'
   push:
-    branches: [main, debug/meteoalarm-region-schema]
+    branches: [debug/meteoalarm-region-schema]
     paths:
-      - 'scripts/update_meteoalarm.py'
       - '.github/workflows/update-meteoalarm.yml'
 
 permissions:
-  contents: write
-
-concurrency:
-  group: meteoalarm-mediterraneo
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  update:
+  debug:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Configura Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Diagnostica endpoint cartografici MeteoAlarm
+      - name: Ispeziona frontend e API visservice
         run: |
           python - <<'PY'
-          import re, urllib.request, urllib.error
-          from datetime import datetime, timezone, timedelta
-          now=datetime.now(timezone.utc)
-          start=(now-timedelta(hours=12)).isoformat(timespec="milliseconds").replace("+00:00","Z")
-          end=(now+timedelta(hours=48)).isoformat(timespec="milliseconds").replace("+00:00","Z")
-          query=f"?startDate={start}&endDate={end}&language=en&include_geocodes=1"
-          for url in (
-              "https://api.meteoalarm.org/metadata/v1/geocodes",
-              "https://api.meteoalarm.org/metadata/v1/geocode-aliases",
-              "https://hub.meteoalarm.org/api/v1/stream-buffers/all-warnings/warnings"+query,
-              "https://feeds.meteoalarm.org/api/v1/warnings/all-warnings"+query,
-          ):
-              try:
-                  req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/json"})
-                  with urllib.request.urlopen(req,timeout=20) as r:
-                      body=r.read(12000).decode("utf-8","replace")
-                      print("DEBUG_ENDPOINT",url,"status",r.status,"body",body[:2500])
-              except urllib.error.HTTPError as e:
-                  print("DEBUG_ENDPOINT",url,"status",e.code,"body",e.read().decode("utf-8","replace")[:2500])
-              except Exception as e:
-                  print("DEBUG_ENDPOINT",url,"error",type(e).__name__,str(e))
-          import json
-          url="https://feeds.meteoalarm.org/api/v1/warnings/all-warnings"+query
-          try:
-              req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/json"})
-              with urllib.request.urlopen(req,timeout=45) as r:
-                  raw=r.read()
-              obj=json.loads(raw)
-              print("DEBUG_ALL_WARNINGS_SIZE",len(raw))
-              print("DEBUG_ALL_WARNINGS_KEYS",list(obj) if isinstance(obj,dict) else type(obj).__name__)
-              if isinstance(obj,dict):
-                  for key,value in obj.items():
-                      if isinstance(value,list):
-                          print("DEBUG_ALL_WARNINGS_LIST",key,len(value))
-                          if value: print("DEBUG_ALL_WARNINGS_SAMPLE",key,json.dumps(value[0],ensure_ascii=False)[:6000])
-                  stack=[obj]
-                  found=0
-                  while stack and found<8:
-                      value=stack.pop()
-                      if isinstance(value,dict):
-                          if "geometry" in value or ("type" in value and "coordinates" in value):
-                              print("DEBUG_GEOMETRY_OBJECT",json.dumps(value,ensure_ascii=False)[:6000]);found+=1
-                          stack.extend(value.values())
-                      elif isinstance(value,list):
-                          stack.extend(value[:2000])
-          except Exception as e:
-              print("DEBUG_ALL_WARNINGS_ERROR",type(e).__name__,str(e))
+          import re, urllib.request, json
           html=urllib.request.urlopen("https://meteoalarm.org/en/live/",timeout=20).read().decode("utf-8","replace")
           m=re.search(r'src="(/assets/index\.[^"]+\.js)"',html)
-          print("DEBUG_FRONTEND_ASSET",m.group(1) if m else "not-found")
-          if m:
-              js=urllib.request.urlopen("https://meteoalarm.org"+m.group(1),timeout=30).read().decode("utf-8","replace")
-              for needle in ("APP_WARNINGTILES_URL","warningtiles","warningTiles","warning-tile","/tiles/","{z}"):
-                  start=0
-                  hits=0
-                  while True:
-                      i=js.find(needle,start)
-                      if i<0 or hits>=8: break
-                      print("DEBUG_JS",needle,js[max(0,i-900):i+1800])
-                      start=i+len(needle);hits+=1
+          print("ASSET",m.group(1) if m else "none")
+          js=urllib.request.urlopen("https://meteoalarm.org"+m.group(1),timeout=30).read().decode("utf-8","replace")
+          layers=sorted(set(re.findall(r'["\']source-layer["\']\s*:\s*["\']([^"\']+)',js)))
+          print("SOURCE_LAYERS",json.dumps(layers))
+          for needle in ("APP_VIS_SERVICE_API_URL","stream-buffers/","/frames","referenceDateISO","areaStyles","iconStyles","featuresInCurrentFrame"):
+              start=0;hits=0
+              while hits<12:
+                  i=js.find(needle,start)
+                  if i<0: break
+                  print("CTX",needle,js[max(0,i-1400):i+2800])
+                  start=i+len(needle);hits+=1
           PY
-
-      - name: Scarica allerte MeteoAlarm
-        run: python scripts/update_meteoalarm.py
-
-      - name: Pubblica JSON aggiornato
-        run: |
-          git config user.name "sardegna-meteolive-data-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/meteoalarm.json
-          if git diff --cached --quiet; then
-            echo "Nessuna variazione nei dati"
-            exit 0
-          fi
-          git commit -m "Aggiorna allerte MeteoAlarm Mediterraneo"
-          if ! git push; then
-            git fetch origin main
-            git rebase -X theirs origin/main
-            git push
-          fi
