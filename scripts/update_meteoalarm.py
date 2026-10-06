@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 import urllib.request
+import unicodedata
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
@@ -12,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 OUT = Path("data/meteoalarm.json")
+REGION_FILE = Path("data/meteoalarm_regions_mediterraneo.json")
 FEED_URL = "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy"
 ATOM = "http://www.w3.org/2005/Atom"
 CAP = "urn:oasis:names:tc:emergency:cap:1.2"
@@ -338,6 +340,84 @@ def regions_from_payload(payload, source_name: str):
     return regions
 
 
+def normalize_region_name(value: str) -> str:
+    text_value = unicodedata.normalize("NFKD", value or "")
+    text_value = "".join(ch for ch in text_value if not unicodedata.combining(ch))
+    return re.sub(r"[^a-z0-9]+", "", text_value.lower())
+
+
+def geometry_from_bundled_region(record: dict):
+    rings = record.get("p")
+    if not isinstance(rings, list) or not rings:
+        return None
+    valid_rings = []
+    for ring in rings:
+        if not isinstance(ring, list) or len(ring) < 3:
+            continue
+        cleaned = []
+        for point in ring:
+            if (
+                isinstance(point, list)
+                and len(point) >= 2
+                and all(isinstance(v, (int, float)) for v in point[:2])
+            ):
+                cleaned.append([float(point[0]), float(point[1])])
+        if len(cleaned) < 3:
+            continue
+        if cleaned[0] != cleaned[-1]:
+            cleaned.append(cleaned[0])
+        valid_rings.append(cleaned)
+    if not valid_rings:
+        return None
+    if len(valid_rings) == 1:
+        return {"type": "Polygon", "coordinates": [valid_rings[0]]}
+    return {"type": "MultiPolygon", "coordinates": [[[point for point in ring]] for ring in valid_rings]}
+
+
+def load_bundled_region_geometries(warnings: list[dict]):
+    if not REGION_FILE.exists():
+        return {}, ["geometrie bundle: file assente"]
+    try:
+        payload = json.loads(REGION_FILE.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {}, [f"geometrie bundle: {type(exc).__name__}"]
+
+    records = payload.get("regions") if isinstance(payload, dict) else None
+    if not isinstance(records, list):
+        return {}, ["geometrie bundle: formato non riconosciuto"]
+
+    by_code, by_name = {}, {}
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        code = str(record.get("c") or "").upper().strip()
+        country = str(record.get("k") or "").upper().strip()
+        name = normalize_region_name(str(record.get("n") or ""))
+        geometry = geometry_from_bundled_region(record)
+        if not code or not geometry:
+            continue
+        item = {"geometry": geometry, "source": "bundled-emma", "precision": "region", "source_code": code}
+        by_code[code] = item
+        if country and name:
+            by_name[(country, name)] = item
+
+    regions = {}
+    for warning in warnings:
+        code = str(warning.get("emma_id") or "").upper().strip()
+        if not re.fullmatch(r"[A-Z]{2}\d{3}", code):
+            continue
+        item = by_code.get(code)
+        matched_by = "code"
+        if item is None:
+            country = code[:2]
+            area_name = normalize_region_name(str(warning.get("area_desc") or ""))
+            item = by_name.get((country, area_name))
+            matched_by = "name"
+        if item is not None:
+            regions[code] = {**item, "matched_by": matched_by}
+    return regions, []
+
+
 def load_region_geometries(needed_codes: set[str]):
     if not needed_codes:
         return {}, []
@@ -499,7 +579,11 @@ def main() -> None:
         for w in warnings
         if re.fullmatch(r"[A-Z]{2}\d{3}", str(w.get("emma_id") or "").upper())
     }
-    regions, region_errors = load_region_geometries(needed_codes)
+    bundled_regions, bundled_errors = load_bundled_region_geometries(warnings)
+    missing_codes = needed_codes.difference(bundled_regions)
+    remote_regions, region_errors = load_region_geometries(missing_codes)
+    regions = {**remote_regions, **bundled_regions}
+    region_errors = bundled_errors + region_errors
 
     warnings.sort(
         key=lambda w: (

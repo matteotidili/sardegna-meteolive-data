@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/update_meteoalarm.py'
+      - 'data/meteoalarm_regions_mediterraneo.json'
       - '.github/workflows/update-meteoalarm.yml'
 
 permissions:
