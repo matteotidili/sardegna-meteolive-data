@@ -35,9 +35,16 @@ jobs:
         run: |
           python - <<'PY'
           import re, urllib.request, urllib.error
+          from datetime import datetime, timezone, timedelta
+          now=datetime.now(timezone.utc)
+          start=(now-timedelta(hours=12)).isoformat(timespec="milliseconds").replace("+00:00","Z")
+          end=(now+timedelta(hours=48)).isoformat(timespec="milliseconds").replace("+00:00","Z")
+          query=f"?startDate={start}&endDate={end}&language=en&include_geocodes=1"
           for url in (
               "https://api.meteoalarm.org/metadata/v1/geocodes",
               "https://api.meteoalarm.org/metadata/v1/geocode-aliases",
+              "https://hub.meteoalarm.org/api/v1/stream-buffers/all-warnings/warnings"+query,
+              "https://feeds.meteoalarm.org/api/v1/warnings/all-warnings"+query,
           ):
               try:
                   req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/json"})
