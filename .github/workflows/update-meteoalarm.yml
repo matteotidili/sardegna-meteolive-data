@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   push:
-    branches: [main]
+    branches: [main, debug/meteoalarm-region-schema]
     paths:
       - 'scripts/update_meteoalarm.py'
       - '.github/workflows/update-meteoalarm.yml'
