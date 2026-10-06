@@ -24,6 +24,14 @@ WEST, SOUTH, EAST, NORTH = -10.5, 29.0, 38.0, 48.5
 ZOOM = 5
 PRESET = "now"
 
+# Paesi affacciati sul Mediterraneo coperti o potenzialmente coperti dal servizio visuale.
+# La Spagna e la Francia vengono considerate sull'intero territorio nazionale; il Portogallo
+# è escluso perché non è un paese mediterraneo, anche se ricade nel riquadro cartografico.
+MEDITERRANEAN_COUNTRY_CODES = {
+    "ES", "FR", "MC", "IT", "SI", "HR", "BA", "ME", "AL",
+    "GR", "TR", "CY", "MT", "IL",
+}
+
 LEVEL_NAMES = {1: "rosso", 2: "arancione", 3: "giallo"}
 LEVEL_COLORS = {1: "#d7191c", 2: "#f28e2b", 3: "#ffd54f"}
 
@@ -133,6 +141,9 @@ def build() -> dict:
         for feat in area_layer.get("features", []):
             props = feat.get("properties") or {}
             feature_id = str(props.get("uuid") or "")
+            country_code = str(props.get("region_code") or "").upper()
+            if country_code not in MEDITERRANEAN_COUNTRY_CODES:
+                continue
             if feature_id not in severity_by_feature:
                 continue
             geom = feat.get("geometry")
