@@ -1,4 +1,4 @@
-name: Debug MeteoAlarm MVT schema
+name: Debug MeteoAlarm MVT transport
 
 on:
   workflow_dispatch:
@@ -23,48 +23,52 @@ jobs:
           python-version: '3.12'
       - name: Installa decoder MVT
         run: pip install mapbox-vector-tile
-      - name: Decodifica tile MeteoAlarm
+      - name: Verifica trasporto, CORS e schema
         run: |
           python - <<'PY'
-          import math, urllib.request, urllib.parse, json
+          import math, urllib.request, urllib.parse, json, gzip, zlib
           from datetime import datetime, timezone
           import mapbox_vector_tile
 
           def tile(lon,lat,z):
               n=2**z
-              x=int((lon+180)/360*n)
-              y=int((1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n)
-              return x,y
+              return int((lon+180)/360*n), int((1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*n)
 
           ref=datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00","Z")
-          for name,lon,lat,z in [
-              ("sardegna",9.0,40.0,5),
-              ("med-occ",5.0,41.5,4),
-              ("italia",12.0,42.0,5),
-              ("francia",3.0,44.0,5),
-              ("spagna",-3.0,40.0,5),
-              ("balcani",18.0,43.0,5),
-              ("grecia",23.0,39.0,5),
-          ]:
-              x,y=tile(lon,lat,z)
-              qs=urllib.parse.urlencode({"referenceDate":ref,"preset":"now"})
-              url=f"https://visservice.meteoalarm.org/stream-buffers/live/tiles/{z}/{x}/{y}.mvt?{qs}"
-              req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/vnd.mapbox-vector-tile,*/*"})
+          x,y=tile(5.0,41.5,4)
+          qs=urllib.parse.urlencode({"referenceDate":ref,"preset":"now"})
+          url=f"https://visservice.meteoalarm.org/stream-buffers/live/tiles/4/{x}/{y}.mvt?{qs}"
+          for origin in (None,"https://meteoalarm.org","https://matteotidili.github.io"):
+              headers={"User-Agent":"Mozilla/5.0","Accept":"application/vnd.mapbox-vector-tile,*/*","Accept-Encoding":"gzip"}
+              if origin: headers["Origin"]=origin
+              req=urllib.request.Request(url,headers=headers)
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  raw=r.read()
+                  h=dict(r.headers)
+                  print("RESPONSE",origin or "none","status",r.status,"bytes",len(raw),
+                        "type",r.headers.get("Content-Type"),
+                        "encoding",r.headers.get("Content-Encoding"),
+                        "cors",r.headers.get("Access-Control-Allow-Origin"),
+                        "vary",r.headers.get("Vary"),
+                        "magic",raw[:8].hex())
+              enc=(h.get("Content-Encoding") or h.get("content-encoding") or "").lower()
+              if enc=="gzip" or raw[:2]==b"\x1f\x8b":
+                  raw=gzip.decompress(raw)
+              elif enc=="deflate":
+                  raw=zlib.decompress(raw)
+              print("DECOMPRESSED",origin or "none","bytes",len(raw),"magic",raw[:16].hex())
               try:
-                  with urllib.request.urlopen(req,timeout=30) as r:
-                      raw=r.read()
-                      print("TILE",name,z,x,y,"status",r.status,"bytes",len(raw),"cors",r.headers.get("Access-Control-Allow-Origin"))
                   decoded=mapbox_vector_tile.decode(raw)
-                  print("LAYERS",name,list(decoded.keys()))
+                  print("LAYERS",origin or "none",list(decoded.keys()))
                   for layer_name,layer in decoded.items():
                       feats=layer.get("features",[])
                       print("LAYER",layer_name,"count",len(feats),"extent",layer.get("extent"))
-                      for feat in feats[:5]:
+                      for feat in feats[:8]:
                           print("FEATURE",layer_name,json.dumps({
                               "id":feat.get("id"),
                               "type":feat.get("geometry",{}).get("type"),
                               "properties":feat.get("properties",{})
-                          },ensure_ascii=False)[:4000])
+                          },ensure_ascii=False)[:5000])
               except Exception as e:
-                  print("ERROR",name,type(e).__name__,str(e))
+                  print("DECODE_ERROR",origin or "none",type(e).__name__,str(e))
           PY
