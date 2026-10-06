@@ -55,6 +55,32 @@ jobs:
                   print("DEBUG_ENDPOINT",url,"status",e.code,"body",e.read().decode("utf-8","replace")[:2500])
               except Exception as e:
                   print("DEBUG_ENDPOINT",url,"error",type(e).__name__,str(e))
+          import json
+          url="https://feeds.meteoalarm.org/api/v1/warnings/all-warnings"+query
+          try:
+              req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoMonitor/1.0","Accept":"application/json"})
+              with urllib.request.urlopen(req,timeout=45) as r:
+                  raw=r.read()
+              obj=json.loads(raw)
+              print("DEBUG_ALL_WARNINGS_SIZE",len(raw))
+              print("DEBUG_ALL_WARNINGS_KEYS",list(obj) if isinstance(obj,dict) else type(obj).__name__)
+              if isinstance(obj,dict):
+                  for key,value in obj.items():
+                      if isinstance(value,list):
+                          print("DEBUG_ALL_WARNINGS_LIST",key,len(value))
+                          if value: print("DEBUG_ALL_WARNINGS_SAMPLE",key,json.dumps(value[0],ensure_ascii=False)[:6000])
+                  stack=[obj]
+                  found=0
+                  while stack and found<8:
+                      value=stack.pop()
+                      if isinstance(value,dict):
+                          if "geometry" in value or ("type" in value and "coordinates" in value):
+                              print("DEBUG_GEOMETRY_OBJECT",json.dumps(value,ensure_ascii=False)[:6000]);found+=1
+                          stack.extend(value.values())
+                      elif isinstance(value,list):
+                          stack.extend(value[:2000])
+          except Exception as e:
+              print("DEBUG_ALL_WARNINGS_ERROR",type(e).__name__,str(e))
           html=urllib.request.urlopen("https://meteoalarm.org/en/live/",timeout=20).read().decode("utf-8","replace")
           m=re.search(r'src="(/assets/index\.[^"]+\.js)"',html)
           print("DEBUG_FRONTEND_ASSET",m.group(1) if m else "not-found")
