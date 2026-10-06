@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: meteoalarm-sardegna
+  group: meteoalarm-mediterraneo
   cancel-in-progress: false
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
             echo "Nessuna variazione nei dati"
             exit 0
           fi
-          git commit -m "Aggiorna allerte MeteoAlarm Sardegna"
+          git commit -m "Aggiorna allerte MeteoAlarm Mediterraneo"
           if ! git push; then
             git fetch origin main
             git rebase -X theirs origin/main
