@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   push:
-    branches: [main]
+    branches: [main, fix/meteoalarm-map-geojson]
     paths:
       - 'scripts/update_meteoalarm.py'
       - '.github/workflows/update-meteoalarm.yml'
@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Dipendenze cartografiche MeteoAlarm
+        run: pip install --disable-pip-version-check "mapbox-vector-tile>=2.2,<3" "shapely>=2.0,<3"
+
       - name: Scarica allerte MeteoAlarm
         run: python scripts/update_meteoalarm.py
 
@@ -38,7 +41,7 @@ jobs:
         run: |
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/meteoalarm.json
+          git add data/meteoalarm.json data/meteoalarm-map.geojson
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
