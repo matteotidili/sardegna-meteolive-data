@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:43.096865Z",
+      "checked_at": "2026-10-06T14:02:08.905011Z",
       "feed_updated": "2026-10-06T13:35:53.842910Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.416446Z",
+      "checked_at": "2026-10-06T14:02:10.713990Z",
       "feed_updated": "2026-10-06T13:35:49.482723Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:43.312691Z",
+      "checked_at": "2026-10-06T14:02:09.425509Z",
       "feed_updated": "2026-10-06T13:35:16.252362Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.259377Z",
+      "checked_at": "2026-10-06T14:02:09.665269Z",
       "feed_updated": "2026-10-06T13:36:02.503250Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.280986Z",
+      "checked_at": "2026-10-06T14:02:10.018873Z",
       "feed_updated": "2026-10-06T13:35:55.314370Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.917871Z",
+      "checked_at": "2026-10-06T14:02:10.445758Z",
       "feed_updated": "2026-10-06T13:35:14.128927Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.916910Z",
+      "checked_at": "2026-10-06T14:02:10.648417Z",
       "feed_updated": "2026-10-06T13:35:12.215197Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:44.898491Z",
+      "checked_at": "2026-10-06T14:02:11.242286Z",
       "feed_updated": "2026-10-06T13:35:06.710980Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:45.460862Z",
+      "checked_at": "2026-10-06T14:02:11.241556Z",
       "feed_updated": "2026-10-06T13:35:31.945970Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:45.447327Z",
+      "checked_at": "2026-10-06T14:02:12.829389Z",
       "feed_updated": "2026-10-06T13:35:20.709386Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-06T13:46:45.552905Z",
+      "checked_at": "2026-10-06T14:02:12.984297Z",
       "feed_updated": "2026-10-06T13:35:34.399089Z"
     }
   ],
@@ -41740,11 +41740,11 @@
   "region_count": 232,
   "region_geometry_errors": [],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-06T13:46:45.585679Z",
+  "generated_at": "2026-10-06T14:02:13.024529Z",
   "feed_updated": "2026-10-06T13:36:02.503250Z",
   "warning_count": 482,
-  "active_count": 262,
-  "upcoming_count": 220,
+  "active_count": 274,
+  "upcoming_count": 208,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -50181,7 +50181,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.681903TOTO062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50211,7 +50211,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.681903PRP1062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50241,7 +50241,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005170010.674001PRP1062219610",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T17:00:10Z",
       "effective": "2026-10-05T16:57:41Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50271,7 +50271,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005170010.674001TOTO062219610",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T17:00:10Z",
       "effective": "2026-10-05T16:57:41Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50301,7 +50301,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722802TOTO062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50331,7 +50331,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722802PRP1062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50361,7 +50361,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722801PRP1062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50391,7 +50391,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722801TOTO062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50421,7 +50421,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005092609.674002TOTO062292369",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:26:09Z",
       "effective": "2026-10-05T09:23:00Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50451,7 +50451,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005092609.674002PRP1062292369",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:26:09Z",
       "effective": "2026-10-05T09:23:00Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50481,7 +50481,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722803PRP1062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
@@ -50511,7 +50511,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261005094009.722803TOTO062293209",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-05T09:40:09Z",
       "effective": "2026-10-05T09:37:38Z",
       "onset": "2026-10-06T14:00:00Z",
