@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:28.450811Z",
+      "checked_at": "2026-10-07T23:27:38.929977Z",
       "feed_updated": "2026-10-07T23:06:01.365319Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:29.113292Z",
+      "checked_at": "2026-10-07T23:27:39.586274Z",
       "feed_updated": "2026-10-07T23:05:33.226676Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:28.812942Z",
+      "checked_at": "2026-10-07T23:27:39.200964Z",
       "feed_updated": "2026-10-07T23:05:17.970271Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:29.764906Z",
+      "checked_at": "2026-10-07T23:27:39.762122Z",
       "feed_updated": "2026-10-07T23:06:07.918945Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:29.864663Z",
+      "checked_at": "2026-10-07T23:27:40.168718Z",
       "feed_updated": "2026-10-07T23:06:02.241947Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:30.128192Z",
+      "checked_at": "2026-10-07T23:27:40.207570Z",
       "feed_updated": "2026-10-07T23:05:20.902417Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:30.458801Z",
+      "checked_at": "2026-10-07T23:27:40.281234Z",
       "feed_updated": "2026-10-07T23:06:03.700806Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:30.561401Z",
+      "checked_at": "2026-10-07T23:27:40.815011Z",
       "feed_updated": "2026-10-07T23:05:44.981739Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:30.795749Z",
+      "checked_at": "2026-10-07T23:27:40.706599Z",
       "feed_updated": "2026-10-07T23:05:05.928544Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:31.192955Z",
+      "checked_at": "2026-10-07T23:27:40.819791Z",
       "feed_updated": "2026-10-07T23:05:43.009242Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-07T23:13:31.192526Z",
+      "checked_at": "2026-10-07T23:27:41.243883Z",
       "feed_updated": "2026-10-07T23:05:48.361734Z"
     }
   ],
@@ -21630,7 +21630,7 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-07T23:13:33.162906Z",
+  "generated_at": "2026-10-07T23:27:42.859401Z",
   "feed_updated": "2026-10-07T23:06:07.918945Z",
   "warning_count": 226,
   "active_count": 99,
