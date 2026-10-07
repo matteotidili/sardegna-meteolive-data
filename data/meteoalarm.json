@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:54.969076Z",
+      "checked_at": "2026-10-07T08:02:09.893776Z",
       "feed_updated": "2026-10-07T07:35:33.772083Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:56.188834Z",
+      "checked_at": "2026-10-07T08:02:10.942433Z",
       "feed_updated": "2026-10-07T07:35:20.341444Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:55.343463Z",
+      "checked_at": "2026-10-07T08:02:10.138348Z",
       "feed_updated": "2026-10-07T07:35:13.113509Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:56.861184Z",
-      "feed_updated": "2026-10-07T07:40:33.095497Z"
+      "checked_at": "2026-10-07T08:02:11.656289Z",
+      "feed_updated": "2026-10-07T07:46:19.371847Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:56.952081Z",
+      "checked_at": "2026-10-07T08:02:11.763758Z",
       "feed_updated": "2026-10-07T07:35:34.968310Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:57.163517Z",
+      "checked_at": "2026-10-07T08:02:11.825303Z",
       "feed_updated": "2026-10-07T07:35:14.645134Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:57.664555Z",
+      "checked_at": "2026-10-07T08:02:12.510789Z",
       "feed_updated": "2026-10-07T07:35:02.977008Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:57.445227Z",
+      "checked_at": "2026-10-07T08:02:12.496080Z",
       "feed_updated": "2026-10-07T07:35:22.502441Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:57.815654Z",
+      "checked_at": "2026-10-07T08:02:12.506977Z",
       "feed_updated": "2026-10-07T07:35:17.298243Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:58.090676Z",
+      "checked_at": "2026-10-07T08:02:13.352617Z",
       "feed_updated": "2026-10-07T07:35:22.273103Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-07T07:44:58.567658Z",
+      "checked_at": "2026-10-07T08:02:13.442652Z",
       "feed_updated": "2026-10-07T07:35:26.545494Z"
     }
   ],
@@ -26834,11 +26834,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-07T07:45:00.809683Z",
-  "feed_updated": "2026-10-07T07:40:33.095497Z",
+  "generated_at": "2026-10-07T08:02:15.795107Z",
+  "feed_updated": "2026-10-07T07:46:19.371847Z",
   "warning_count": 324,
-  "active_count": 126,
-  "upcoming_count": 198,
+  "active_count": 128,
+  "upcoming_count": 196,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -27654,9 +27654,9 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.0081002",
+      "id": "2.49.0.0.705.0.SI.261007094058.0081002",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T00:00:00Z",
       "expires": "2026-10-08T22:59:00Z",
@@ -28023,7 +28023,7 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/3a05d3fd-0aae-4bad-b4ad-1261618becff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/505309aa-d69b-4944-ace2-5735f9ab821b",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
@@ -31811,7 +31811,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261006113209.117",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:32:10Z",
       "effective": "2026-10-07T08:00:00Z",
       "onset": "2026-10-07T08:00:00Z",
@@ -31841,7 +31841,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261006113209.116",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:32:10Z",
       "effective": "2026-10-07T08:00:00Z",
       "onset": "2026-10-07T08:00:00Z",
@@ -34990,9 +34990,9 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.0071001",
+      "id": "2.49.0.0.705.0.SI.261007094058.0071001",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T00:00:00Z",
       "expires": "2026-10-08T22:59:00Z",
@@ -35283,7 +35283,7 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/c56880b5-3c6e-4ba6-8f05-786a09f3954c",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/23f94d66-b0ed-40c8-be33-95cc4c89bc5c",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
@@ -35590,9 +35590,9 @@
       "country_code": "slovenia"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.8010301",
+      "id": "2.49.0.0.705.0.SI.261007094058.8010301",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T00:00:00Z",
       "expires": "2026-10-09T11:59:00Z",
@@ -35691,16 +35691,16 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/058a8f0d-5386-4117-81aa-087b659b6550",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/b591a17b-f8ca-4f29-bf65-ea6c77013014",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
       "country_code": "slovenia"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.0101001",
+      "id": "2.49.0.0.705.0.SI.261007094058.0101001",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T00:00:00Z",
       "expires": "2026-10-09T07:59:00Z",
@@ -35999,16 +35999,16 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/673d3e7d-9254-4607-be0e-31e6c25c7d76",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/f1a5be20-9185-4b88-9501-55fffbcb989c",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
       "country_code": "slovenia"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.0080301",
+      "id": "2.49.0.0.705.0.SI.261007094058.0080301",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T00:00:00Z",
       "expires": "2026-10-09T11:59:00Z",
@@ -36375,16 +36375,16 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/dece2de0-cc83-48c2-9356-d3a601df9eeb",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/777a7b82-b893-45d3-85c2-fa09c3ee9e4c",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
       "country_code": "slovenia"
     },
     {
-      "id": "2.49.0.0.705.0.SI.261007093512.0100301",
+      "id": "2.49.0.0.705.0.SI.261007094058.0100301",
       "status": "upcoming",
-      "sent": "2026-10-07T07:35:12Z",
+      "sent": "2026-10-07T07:40:58Z",
       "effective": "2026-10-07T05:31:00Z",
       "onset": "2026-10-08T01:00:00Z",
       "expires": "2026-10-08T22:59:00Z",
@@ -36683,7 +36683,7 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/16a036fd-e5e3-4f20-ae24-c73ee156792f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/e4bb40f3-bef4-4c2c-9b1a-4ef0b2398f7a",
       "source_web": "",
       "sender_name": "",
       "country": "Slovenia",
