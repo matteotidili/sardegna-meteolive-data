@@ -1,0 +1,66 @@
+name: Aggiorna incendi MTG FRP
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_frp.py'
+      - '.github/workflows/update-frp.yml'
+  schedule:
+    # Offset rispetto ai workflow delle stazioni; il prodotto MTG è nominalmente a 10 minuti.
+    - cron: '6,16,26,36,46,56 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-eumetsat-frp
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Aggiorna Fire Radiative Power
+        env:
+          EUMETSAT_ACCESS_TOKEN: ${{ secrets.EUMETSAT_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$EUMETSAT_ACCESS_TOKEN" ]; then
+            echo "Secret EUMETSAT_ACCESS_TOKEN non configurato: nessun aggiornamento FRP."
+            exit 0
+          fi
+          python scripts/update_frp.py
+
+      - name: Pubblica FRP
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/frp.json
+          if git diff --cached --quiet; then
+            echo "Nessuna variazione nei dati FRP"
+            exit 0
+          fi
+          git commit -m "Aggiorna incendi MTG FRP"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "Pubblicazione FRP non riuscita dopo cinque tentativi" >&2
+          exit 1
