@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:55.197355Z",
+      "checked_at": "2026-10-07T04:35:24.482672Z",
       "feed_updated": "2026-10-07T04:05:27.448310Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:56.761224Z",
-      "feed_updated": "2026-10-07T04:05:15.355457Z"
+      "checked_at": "2026-10-07T04:35:25.900974Z",
+      "feed_updated": "2026-10-07T04:33:19.556019Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:55.498597Z",
+      "checked_at": "2026-10-07T04:35:24.859827Z",
       "feed_updated": "2026-10-07T04:11:02.138771Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:56.406128Z",
+      "checked_at": "2026-10-07T04:35:25.540204Z",
       "feed_updated": "2026-10-07T04:05:30.446979Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:56.748456Z",
+      "checked_at": "2026-10-07T04:35:26.384492Z",
       "feed_updated": "2026-10-07T04:05:30.878439Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:57.295450Z",
+      "checked_at": "2026-10-07T04:35:26.600968Z",
       "feed_updated": "2026-10-07T04:05:10.914293Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:57.784340Z",
+      "checked_at": "2026-10-07T04:35:26.606730Z",
       "feed_updated": "2026-10-07T04:05:06.715817Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:57.763831Z",
+      "checked_at": "2026-10-07T04:35:27.216854Z",
       "feed_updated": "2026-10-07T04:05:24.219146Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:57.975452Z",
-      "feed_updated": "2026-10-07T04:05:06.938046Z"
+      "checked_at": "2026-10-07T04:35:27.214421Z",
+      "feed_updated": "2026-10-07T04:35:02.996695Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:58.608628Z",
+      "checked_at": "2026-10-07T04:35:27.212812Z",
       "feed_updated": "2026-10-07T04:05:20.039972Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-07T04:15:58.606190Z",
+      "checked_at": "2026-10-07T04:35:30.310592Z",
       "feed_updated": "2026-10-07T04:05:24.703175Z"
     }
   ],
@@ -9313,6 +9313,139 @@
       "source_code": "IT005",
       "matched_by": "code"
     },
+    "ES117": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.747,
+              39.654
+            ],
+            [
+              2.773,
+              39.641
+            ],
+            [
+              2.881,
+              39.529
+            ],
+            [
+              2.962,
+              39.519
+            ],
+            [
+              2.976,
+              39.465
+            ],
+            [
+              3.064,
+              39.48
+            ],
+            [
+              3.096,
+              39.424
+            ],
+            [
+              3.076,
+              39.325
+            ],
+            [
+              3.059,
+              39.299
+            ],
+            [
+              3.028,
+              39.279
+            ],
+            [
+              3.016,
+              39.303
+            ],
+            [
+              2.961,
+              39.358
+            ],
+            [
+              2.781,
+              39.369
+            ],
+            [
+              2.739,
+              39.412
+            ],
+            [
+              2.725,
+              39.504
+            ],
+            [
+              2.704,
+              39.54
+            ],
+            [
+              2.621,
+              39.561
+            ],
+            [
+              2.492,
+              39.485
+            ],
+            [
+              2.468,
+              39.499
+            ],
+            [
+              2.455,
+              39.529
+            ],
+            [
+              2.39,
+              39.543
+            ],
+            [
+              2.355,
+              39.58
+            ],
+            [
+              2.373,
+              39.604
+            ],
+            [
+              2.419,
+              39.632
+            ],
+            [
+              2.436,
+              39.652
+            ],
+            [
+              2.495,
+              39.6
+            ],
+            [
+              2.531,
+              39.597
+            ],
+            [
+              2.565,
+              39.608
+            ],
+            [
+              2.612,
+              39.655
+            ],
+            [
+              2.747,
+              39.654
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ES117",
+      "matched_by": "code"
+    },
     "ES099": {
       "geometry": {
         "type": "Polygon",
@@ -13673,139 +13806,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "ES118",
-      "matched_by": "code"
-    },
-    "ES117": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.747,
-              39.654
-            ],
-            [
-              2.773,
-              39.641
-            ],
-            [
-              2.881,
-              39.529
-            ],
-            [
-              2.962,
-              39.519
-            ],
-            [
-              2.976,
-              39.465
-            ],
-            [
-              3.064,
-              39.48
-            ],
-            [
-              3.096,
-              39.424
-            ],
-            [
-              3.076,
-              39.325
-            ],
-            [
-              3.059,
-              39.299
-            ],
-            [
-              3.028,
-              39.279
-            ],
-            [
-              3.016,
-              39.303
-            ],
-            [
-              2.961,
-              39.358
-            ],
-            [
-              2.781,
-              39.369
-            ],
-            [
-              2.739,
-              39.412
-            ],
-            [
-              2.725,
-              39.504
-            ],
-            [
-              2.704,
-              39.54
-            ],
-            [
-              2.621,
-              39.561
-            ],
-            [
-              2.492,
-              39.485
-            ],
-            [
-              2.468,
-              39.499
-            ],
-            [
-              2.455,
-              39.529
-            ],
-            [
-              2.39,
-              39.543
-            ],
-            [
-              2.355,
-              39.58
-            ],
-            [
-              2.373,
-              39.604
-            ],
-            [
-              2.419,
-              39.632
-            ],
-            [
-              2.436,
-              39.652
-            ],
-            [
-              2.495,
-              39.6
-            ],
-            [
-              2.531,
-              39.597
-            ],
-            [
-              2.565,
-              39.608
-            ],
-            [
-              2.612,
-              39.655
-            ],
-            [
-              2.747,
-              39.654
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES117",
       "matched_by": "code"
     },
     "ES116": {
@@ -26986,8 +26986,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-07T04:16:00.894420Z",
-  "feed_updated": "2026-10-07T04:11:02.138771Z",
+  "generated_at": "2026-10-07T04:35:32.641791Z",
+  "feed_updated": "2026-10-07T04:35:02.996695Z",
   "warning_count": 301,
   "active_count": 143,
   "upcoming_count": 158,
@@ -27140,6 +27140,66 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/b421db6c-2873-4ce8-8b0f-90dfb51f2bd2",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261007042808.645404PRP1071447288",
+      "status": "active",
+      "sent": "2026-10-07T04:28:08Z",
+      "effective": "2026-10-07T04:24:35Z",
+      "onset": "2026-10-07T04:00:00Z",
+      "expires": "2026-10-07T13:59:59Z",
+      "event": "Severe rain warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Sur de Mallorca",
+      "emma_id": "ES117",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/85998763-020c-42be-bbcb-f28a0ae71207",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261007042808.645404TOTO071447288",
+      "status": "active",
+      "sent": "2026-10-07T04:28:08Z",
+      "effective": "2026-10-07T04:24:35Z",
+      "onset": "2026-10-07T04:00:00Z",
+      "expires": "2026-10-07T13:59:59Z",
+      "event": "Severe thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Sur de Mallorca",
+      "emma_id": "ES117",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/577afd23-3adb-4ac9-b51e-d8d07d622b4b",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
@@ -29660,66 +29720,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/20538d64-217b-47b3-948b-40430dbae75e",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006091909.645404PRP1071478349",
-      "status": "active",
-      "sent": "2026-10-06T09:19:09Z",
-      "effective": "2026-10-06T09:16:03Z",
-      "onset": "2026-10-07T02:00:00Z",
-      "expires": "2026-10-07T13:59:59Z",
-      "event": "Moderate rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Sur de Mallorca",
-      "emma_id": "ES117",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/8066c160-1b2e-4354-9eda-ae4f111a6830",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006091909.645404TOTO071478349",
-      "status": "active",
-      "sent": "2026-10-06T09:19:09Z",
-      "effective": "2026-10-06T09:16:03Z",
-      "onset": "2026-10-07T02:00:00Z",
-      "expires": "2026-10-07T13:59:59Z",
-      "event": "Moderate thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Sur de Mallorca",
-      "emma_id": "ES117",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/2bb8cfba-b496-4691-bb58-e8657816460f",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
