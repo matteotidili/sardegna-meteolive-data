@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:02.131559Z",
-      "feed_updated": "2026-10-07T04:35:30.793996Z"
+      "checked_at": "2026-10-07T05:24:07.427937Z",
+      "feed_updated": "2026-10-07T05:05:52.734690Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:03.122463Z",
-      "feed_updated": "2026-10-07T04:35:18.591636Z"
+      "checked_at": "2026-10-07T05:24:08.328681Z",
+      "feed_updated": "2026-10-07T05:05:20.381525Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:02.405165Z",
-      "feed_updated": "2026-10-07T04:35:10.832288Z"
+      "checked_at": "2026-10-07T05:24:07.869574Z",
+      "feed_updated": "2026-10-07T05:05:11.980614Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:02.962020Z",
-      "feed_updated": "2026-10-07T04:35:34.989146Z"
+      "checked_at": "2026-10-07T05:24:08.107542Z",
+      "feed_updated": "2026-10-07T05:05:57.090992Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:03.731831Z",
-      "feed_updated": "2026-10-07T04:35:31.434831Z"
+      "checked_at": "2026-10-07T05:24:08.801618Z",
+      "feed_updated": "2026-10-07T05:05:43.327992Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:03.764345Z",
-      "feed_updated": "2026-10-07T04:35:15.610922Z"
+      "checked_at": "2026-10-07T05:24:08.994506Z",
+      "feed_updated": "2026-10-07T05:05:17.611567Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:03.650879Z",
-      "feed_updated": "2026-10-07T04:35:12.095952Z"
+      "checked_at": "2026-10-07T05:24:08.853616Z",
+      "feed_updated": "2026-10-07T05:05:15.467818Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:04.395313Z",
-      "feed_updated": "2026-10-07T04:35:35.690170Z"
+      "checked_at": "2026-10-07T05:24:09.474860Z",
+      "feed_updated": "2026-10-07T05:05:37.364809Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:04.391901Z",
-      "feed_updated": "2026-10-07T04:35:02.996695Z"
+      "checked_at": "2026-10-07T05:24:09.470721Z",
+      "feed_updated": "2026-10-07T05:05:04.056428Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:04.348901Z",
-      "feed_updated": "2026-10-07T04:35:23.040460Z"
+      "checked_at": "2026-10-07T05:24:09.495181Z",
+      "feed_updated": "2026-10-07T05:05:38.861078Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-07T05:05:04.876151Z",
-      "feed_updated": "2026-10-07T04:35:26.398985Z"
+      "checked_at": "2026-10-07T05:24:09.918984Z",
+      "feed_updated": "2026-10-07T05:05:50.256919Z"
     }
   ],
   "uncovered": [
@@ -26979,18 +26979,467 @@
       "precision": "region",
       "source_code": "BA008",
       "matched_by": "code"
+    },
+    "ME003": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.653,
+              42.638
+            ],
+            [
+              19.649,
+              42.611
+            ],
+            [
+              19.436,
+              42.373
+            ],
+            [
+              19.36,
+              42.262
+            ],
+            [
+              19.335,
+              42.24
+            ],
+            [
+              19.19,
+              42.264
+            ],
+            [
+              19.12,
+              42.311
+            ],
+            [
+              19.088,
+              42.32
+            ],
+            [
+              19.066,
+              42.298
+            ],
+            [
+              19.0,
+              42.271
+            ],
+            [
+              18.912,
+              42.321
+            ],
+            [
+              18.822,
+              42.344
+            ],
+            [
+              18.77,
+              42.496
+            ],
+            [
+              18.741,
+              42.507
+            ],
+            [
+              18.685,
+              42.58
+            ],
+            [
+              18.667,
+              42.62
+            ],
+            [
+              18.701,
+              42.646
+            ],
+            [
+              18.716,
+              42.675
+            ],
+            [
+              18.742,
+              42.7
+            ],
+            [
+              18.941,
+              42.619
+            ],
+            [
+              19.059,
+              42.695
+            ],
+            [
+              19.148,
+              42.695
+            ],
+            [
+              19.285,
+              42.667
+            ],
+            [
+              19.417,
+              42.663
+            ],
+            [
+              19.451,
+              42.667
+            ],
+            [
+              19.523,
+              42.724
+            ],
+            [
+              19.557,
+              42.711
+            ],
+            [
+              19.653,
+              42.638
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ME003",
+      "matched_by": "code"
+    },
+    "ME002": {
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                19.088,
+                42.32
+              ],
+              [
+                19.096,
+                42.291
+              ],
+              [
+                19.137,
+                42.226
+              ],
+              [
+                19.384,
+                42.081
+              ],
+              [
+                19.391,
+                42.028
+              ],
+              [
+                19.384,
+                41.873
+              ],
+              [
+                19.362,
+                41.85
+              ],
+              [
+                18.8,
+                42.277
+              ],
+              [
+                18.639,
+                42.411
+              ],
+              [
+                18.666,
+                42.428
+              ],
+              [
+                18.734,
+                42.44
+              ],
+              [
+                18.761,
+                42.454
+              ],
+              [
+                18.77,
+                42.496
+              ],
+              [
+                18.822,
+                42.344
+              ],
+              [
+                18.912,
+                42.321
+              ],
+              [
+                19.0,
+                42.271
+              ],
+              [
+                19.066,
+                42.298
+              ],
+              [
+                19.088,
+                42.32
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                18.667,
+                42.62
+              ],
+              [
+                18.685,
+                42.58
+              ],
+              [
+                18.741,
+                42.507
+              ],
+              [
+                18.668,
+                42.506
+              ],
+              [
+                18.548,
+                42.468
+              ],
+              [
+                18.515,
+                42.448
+              ],
+              [
+                18.501,
+                42.424
+              ],
+              [
+                18.434,
+                42.567
+              ],
+              [
+                18.453,
+                42.599
+              ],
+              [
+                18.548,
+                42.596
+              ],
+              [
+                18.667,
+                42.62
+              ]
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ME002",
+      "matched_by": "code"
+    },
+    "ME001": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.182,
+              43.518
+            ],
+            [
+              19.291,
+              43.362
+            ],
+            [
+              19.628,
+              43.194
+            ],
+            [
+              19.905,
+              43.084
+            ],
+            [
+              20.253,
+              42.909
+            ],
+            [
+              20.257,
+              42.869
+            ],
+            [
+              20.211,
+              42.757
+            ],
+            [
+              20.181,
+              42.748
+            ],
+            [
+              20.024,
+              42.745
+            ],
+            [
+              20.0,
+              42.735
+            ],
+            [
+              20.029,
+              42.608
+            ],
+            [
+              20.045,
+              42.574
+            ],
+            [
+              20.078,
+              42.563
+            ],
+            [
+              20.025,
+              42.524
+            ],
+            [
+              19.931,
+              42.511
+            ],
+            [
+              19.862,
+              42.485
+            ],
+            [
+              19.825,
+              42.492
+            ],
+            [
+              19.785,
+              42.51
+            ],
+            [
+              19.762,
+              42.543
+            ],
+            [
+              19.737,
+              42.663
+            ],
+            [
+              19.707,
+              42.657
+            ],
+            [
+              19.684,
+              42.641
+            ],
+            [
+              19.653,
+              42.638
+            ],
+            [
+              19.557,
+              42.711
+            ],
+            [
+              19.523,
+              42.724
+            ],
+            [
+              19.451,
+              42.667
+            ],
+            [
+              19.417,
+              42.663
+            ],
+            [
+              19.285,
+              42.667
+            ],
+            [
+              19.148,
+              42.695
+            ],
+            [
+              19.059,
+              42.695
+            ],
+            [
+              18.941,
+              42.619
+            ],
+            [
+              18.742,
+              42.7
+            ],
+            [
+              18.716,
+              42.675
+            ],
+            [
+              18.701,
+              42.646
+            ],
+            [
+              18.667,
+              42.62
+            ],
+            [
+              18.548,
+              42.596
+            ],
+            [
+              18.453,
+              42.599
+            ],
+            [
+              18.445,
+              42.63
+            ],
+            [
+              18.475,
+              42.853
+            ],
+            [
+              18.502,
+              42.975
+            ],
+            [
+              18.696,
+              43.261
+            ],
+            [
+              19.008,
+              43.505
+            ],
+            [
+              19.039,
+              43.517
+            ],
+            [
+              19.182,
+              43.518
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "ME001",
+      "matched_by": "code"
     }
   },
-  "region_count": 144,
+  "region_count": 147,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-07T05:05:07.102638Z",
-  "feed_updated": "2026-10-07T04:35:35.690170Z",
-  "warning_count": 301,
+  "generated_at": "2026-10-07T05:24:11.656232Z",
+  "feed_updated": "2026-10-07T05:05:57.090992Z",
+  "warning_count": 306,
   "active_count": 143,
-  "upcoming_count": 158,
+  "upcoming_count": 163,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -33536,6 +33985,36 @@
       "country_code": "croatia"
     },
     {
+      "id": "2.49.0.1.499.0.1791348977355",
+      "status": "upcoming",
+      "sent": "2026-10-07T04:56:17Z",
+      "effective": "2026-10-07T22:00:00Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Adriatic coast",
+      "emma_id": "ME002",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4b6a8dd1-21fb-43d6-be9a-b208e0e98944",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
+    },
+    {
       "id": "2.49.0.0.250.0.FR.20261007060228.459023",
       "status": "upcoming",
       "sent": "2026-10-07T04:02:28Z",
@@ -33654,6 +34133,66 @@
       "sender_name": "",
       "country": "Bosnia ed Erzegovina",
       "country_code": "bosnia-herzegovina"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791348977355",
+      "status": "upcoming",
+      "sent": "2026-10-07T04:56:17Z",
+      "effective": "2026-10-07T22:00:00Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Central",
+      "emma_id": "ME003",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4b6a8dd1-21fb-43d6-be9a-b208e0e98944",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791348977355",
+      "status": "upcoming",
+      "sent": "2026-10-07T04:56:17Z",
+      "effective": "2026-10-07T22:00:00Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Continental and Mountains",
+      "emma_id": "ME001",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4b6a8dd1-21fb-43d6-be9a-b208e0e98944",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.250.0.FR.20261007060228.459023",
@@ -36742,6 +37281,66 @@
       "sender_name": "",
       "country": "Slovenia",
       "country_code": "slovenia"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791349113285",
+      "status": "upcoming",
+      "sent": "2026-10-07T04:58:33Z",
+      "effective": "2026-10-08T10:00:00Z",
+      "onset": "2026-10-08T10:00:00Z",
+      "expires": "2026-10-08T21:59:00Z",
+      "event": "Rain",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Adriatic coast",
+      "emma_id": "ME002",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/9642180c-d7ce-419f-93fa-7754b3437d77",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791349113285",
+      "status": "upcoming",
+      "sent": "2026-10-07T04:58:33Z",
+      "effective": "2026-10-08T10:00:00Z",
+      "onset": "2026-10-08T10:00:00Z",
+      "expires": "2026-10-08T21:59:00Z",
+      "event": "Rain",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Central",
+      "emma_id": "ME003",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/9642180c-d7ce-419f-93fa-7754b3437d77",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.724.0.ES.261006093408.691703COCO082279248",
