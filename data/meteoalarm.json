@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:29.058502Z",
-      "feed_updated": "2026-10-07T12:36:04.145511Z"
+      "checked_at": "2026-10-07T13:19:58.290440Z",
+      "feed_updated": "2026-10-07T13:06:00.038736Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:30.180326Z",
-      "feed_updated": "2026-10-07T12:35:28.405836Z"
+      "checked_at": "2026-10-07T13:19:59.452790Z",
+      "feed_updated": "2026-10-07T13:05:23.018553Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:29.398090Z",
-      "feed_updated": "2026-10-07T12:35:12.626811Z"
+      "checked_at": "2026-10-07T13:19:58.622846Z",
+      "feed_updated": "2026-10-07T13:05:20.504924Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:30.245089Z",
-      "feed_updated": "2026-10-07T12:36:01.493724Z"
+      "checked_at": "2026-10-07T13:19:59.232799Z",
+      "feed_updated": "2026-10-07T13:06:07.791582Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:30.435784Z",
-      "feed_updated": "2026-10-07T12:35:54.278329Z"
+      "checked_at": "2026-10-07T13:19:59.681642Z",
+      "feed_updated": "2026-10-07T13:06:02.388403Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:31.456301Z",
-      "feed_updated": "2026-10-07T12:35:14.992808Z"
+      "checked_at": "2026-10-07T13:20:00.082791Z",
+      "feed_updated": "2026-10-07T13:05:45.272941Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:30.975216Z",
-      "feed_updated": "2026-10-07T12:36:01.265363Z"
+      "checked_at": "2026-10-07T13:20:00.188001Z",
+      "feed_updated": "2026-10-07T13:06:07.490709Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:31.097832Z",
-      "feed_updated": "2026-10-07T12:35:38.297523Z"
+      "checked_at": "2026-10-07T13:20:00.604108Z",
+      "feed_updated": "2026-10-07T13:05:38.990506Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:31.513789Z",
-      "feed_updated": "2026-10-07T12:35:15.197539Z"
+      "checked_at": "2026-10-07T13:20:00.843260Z",
+      "feed_updated": "2026-10-07T13:05:45.702746Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:31.905568Z",
-      "feed_updated": "2026-10-07T12:35:59.359831Z"
+      "checked_at": "2026-10-07T13:20:01.093006Z",
+      "feed_updated": "2026-10-07T13:06:06.180817Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-07T12:59:32.042637Z",
-      "feed_updated": "2026-10-07T12:55:17.790922Z"
+      "checked_at": "2026-10-07T13:20:01.411902Z",
+      "feed_updated": "2026-10-07T13:05:46.799839Z"
     }
   ],
   "uncovered": [
@@ -14475,123 +14475,6 @@
       "source_code": "ES236",
       "matched_by": "code"
     },
-    "ES842": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -3.137,
-              43.584
-            ],
-            [
-              -3.148,
-              43.411
-            ],
-            [
-              -3.14,
-              43.354
-            ],
-            [
-              -3.227,
-              43.394
-            ],
-            [
-              -3.317,
-              43.413
-            ],
-            [
-              -3.414,
-              43.413
-            ],
-            [
-              -3.445,
-              43.467
-            ],
-            [
-              -3.567,
-              43.503
-            ],
-            [
-              -3.608,
-              43.508
-            ],
-            [
-              -3.737,
-              43.46
-            ],
-            [
-              -3.775,
-              43.454
-            ],
-            [
-              -3.822,
-              43.492
-            ],
-            [
-              -4.028,
-              43.44
-            ],
-            [
-              -4.288,
-              43.387
-            ],
-            [
-              -4.48,
-              43.394
-            ],
-            [
-              -4.518,
-              43.389
-            ],
-            [
-              -4.516,
-              43.544
-            ],
-            [
-              -4.503,
-              43.595
-            ],
-            [
-              -4.306,
-              43.59
-            ],
-            [
-              -3.855,
-              43.692
-            ],
-            [
-              -3.745,
-              43.688
-            ],
-            [
-              -3.616,
-              43.712
-            ],
-            [
-              -3.546,
-              43.709
-            ],
-            [
-              -3.322,
-              43.646
-            ],
-            [
-              -3.204,
-              43.598
-            ],
-            [
-              -3.137,
-              43.584
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES842",
-      "matched_by": "code"
-    },
     "ES234": {
       "geometry": {
         "type": "Polygon",
@@ -28619,16 +28502,16 @@
       "matched_by": "code"
     }
   },
-  "region_count": 156,
+  "region_count": 155,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-07T12:59:34.045209Z",
-  "feed_updated": "2026-10-07T12:55:17.790922Z",
-  "warning_count": 372,
-  "active_count": 184,
-  "upcoming_count": 188,
+  "generated_at": "2026-10-07T13:20:03.404855Z",
+  "feed_updated": "2026-10-07T13:06:07.791582Z",
+  "warning_count": 371,
+  "active_count": 192,
+  "upcoming_count": 179,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -30894,36 +30777,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/36876fa1-c8c5-4f6a-824c-cea03a3bd591",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261006092408.663901COCO071378648",
-      "status": "active",
-      "sent": "2026-10-06T09:24:08Z",
-      "effective": "2026-10-06T09:20:40Z",
-      "onset": "2026-10-07T07:00:00Z",
-      "expires": "2026-10-07T12:59:59Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Costa - Litoral cántabro",
-      "emma_id": "ES842",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/d77ef78f-a4c3-4281-b5c4-1c1a8c40d33a",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
@@ -34981,7 +34834,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006092408.754802PRP1072278648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:24:08Z",
       "effective": "2026-10-06T09:20:40Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35011,7 +34864,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165809.754801TOTO072205889",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:58:09Z",
       "effective": "2026-10-06T16:56:21Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35041,7 +34894,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006092408.754801PRP1072278648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:24:08Z",
       "effective": "2026-10-06T09:20:40Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35071,7 +34924,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165809.750101PRP1072205889",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:58:09Z",
       "effective": "2026-10-06T16:56:21Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35101,7 +34954,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006092408.752002PRP1072278648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:24:08Z",
       "effective": "2026-10-06T09:20:40Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35131,7 +34984,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165809.752001TOTO072205889",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:58:09Z",
       "effective": "2026-10-06T16:56:21Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35161,7 +35014,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006092408.752001PRP1072278648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:24:08Z",
       "effective": "2026-10-06T09:20:40Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35191,7 +35044,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006165809.743101TOTO072205889",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T16:58:09Z",
       "effective": "2026-10-06T16:56:21Z",
       "onset": "2026-10-07T13:00:00Z",
@@ -35221,7 +35074,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261006092408.743101PRP1072278648",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-06T09:24:08Z",
       "effective": "2026-10-06T09:20:40Z",
       "onset": "2026-10-07T13:00:00Z",
