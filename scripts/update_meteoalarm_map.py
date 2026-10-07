@@ -124,11 +124,16 @@ def frame_profile(frames: list[dict]) -> dict[str, dict]:
         if not feature_id or level not in (1, 2, 3):
             continue
         level = int(level)
-        item = profile.setdefault(feature_id, {"level": level, "types": set(), "fid": None})
+        item = profile.setdefault(
+            feature_id,
+            {"level": level, "types": set(), "levels_by_type": {}, "fid": None},
+        )
         item["level"] = min(item["level"], level)
         type_id = row.get("typeId")
         if isinstance(type_id, int):
             item["types"].add(type_id)
+            previous = item["levels_by_type"].get(type_id)
+            item["levels_by_type"][type_id] = level if previous is None else min(previous, level)
         fid = row.get("fid")
         if isinstance(fid, int):
             item["fid"] = fid
@@ -287,33 +292,31 @@ def build() -> tuple[dict, dict]:
         snapshots.append((ref, profile))
 
     # "Prossime": nuove aree, nuovi fenomeni o cambi di livello rispetto al frame attuale.
-    active_signatures = {
-        (fid, type_id, level)
-        for fid, item in active_profile.items()
-        for type_id in item["types"]
-        for level in [item["level"]]
-    }
+    # Il confronto è fatto per singolo hazard per non attribuire a un nuovo fenomeno
+    # il livello più severo di un altro hazard già presente sulla stessa area.
     upcoming_profile: dict[str, dict] = {}
     upcoming_refs: dict[str, set[str]] = defaultdict(set)
     for ref, profile in future_profiles:
         for feature_id, item in profile.items():
-            changed_types = {
-                type_id
-                for type_id in item["types"]
-                if (feature_id, type_id, item["level"]) not in active_signatures
+            current_levels = active_profile.get(feature_id, {}).get("levels_by_type", {})
+            changed_levels = {
+                type_id: level
+                for type_id, level in item.get("levels_by_type", {}).items()
+                if current_levels.get(type_id) != level
             }
-            if feature_id in active_profile and not changed_types and item["level"] == active_profile[feature_id]["level"]:
+            if not changed_levels:
                 continue
+            changed_level = min(changed_levels.values())
             current = upcoming_profile.get(feature_id)
             if current is None:
                 upcoming_profile[feature_id] = {
-                    "level": item["level"],
-                    "types": set(changed_types or item["types"]),
+                    "level": changed_level,
+                    "types": set(changed_levels),
                     "fid": item.get("fid"),
                 }
             else:
-                current["level"] = min(current["level"], item["level"])
-                current["types"].update(changed_types or item["types"])
+                current["level"] = min(current["level"], changed_level)
+                current["types"].update(changed_levels)
                 current["fid"] = current.get("fid") or item.get("fid")
             upcoming_refs[feature_id].add(iso(ref))
 
