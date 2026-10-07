@@ -25,6 +25,7 @@ WEST, SOUTH, EAST, NORTH = -10.5, 29.0, 38.0, 48.5
 ZOOM = 5
 PRESET = "now"
 MAX_FUTURE_HOURS = 48
+# La cache evita di riscaricare geometrie territoriali già acquisite nei cicli successivi.
 
 MEDITERRANEAN_COUNTRY_CODES = {
     "ES", "FR", "MC", "IT", "SI", "HR", "BA", "ME", "AL",
