@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:55.408432Z",
-      "feed_updated": "2026-10-08T06:05:37.674933Z"
+      "checked_at": "2026-10-08T06:50:51.185241Z",
+      "feed_updated": "2026-10-08T06:35:57.437548Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:55.881140Z",
-      "feed_updated": "2026-10-08T06:05:19.718383Z"
+      "checked_at": "2026-10-08T06:50:51.793064Z",
+      "feed_updated": "2026-10-08T06:46:21.841176Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:55.488291Z",
-      "feed_updated": "2026-10-08T06:05:24.507635Z"
+      "checked_at": "2026-10-08T06:50:51.390931Z",
+      "feed_updated": "2026-10-08T06:35:14.728480Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:56.829541Z",
-      "feed_updated": "2026-10-08T06:05:46.989575Z"
+      "checked_at": "2026-10-08T06:50:52.269338Z",
+      "feed_updated": "2026-10-08T06:36:02.301997Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:56.897121Z",
-      "feed_updated": "2026-10-08T06:05:41.303923Z"
+      "checked_at": "2026-10-08T06:50:52.261927Z",
+      "feed_updated": "2026-10-08T06:35:58.842541Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:56.844707Z",
-      "feed_updated": "2026-10-08T06:05:26.473548Z"
+      "checked_at": "2026-10-08T06:50:52.683845Z",
+      "feed_updated": "2026-10-08T06:48:29.934753Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:57.790538Z",
-      "feed_updated": "2026-10-08T06:05:17.149516Z"
+      "checked_at": "2026-10-08T06:50:52.774544Z",
+      "feed_updated": "2026-10-08T06:35:17.118680Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:57.792012Z",
-      "feed_updated": "2026-10-08T06:05:30.509505Z"
+      "checked_at": "2026-10-08T06:50:53.049953Z",
+      "feed_updated": "2026-10-08T06:35:41.924373Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:57.590499Z",
-      "feed_updated": "2026-10-08T06:05:28.158982Z"
+      "checked_at": "2026-10-08T06:50:53.560708Z",
+      "feed_updated": "2026-10-08T06:35:59.265846Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:58.193769Z",
-      "feed_updated": "2026-10-08T06:05:27.081374Z"
+      "checked_at": "2026-10-08T06:50:53.562046Z",
+      "feed_updated": "2026-10-08T06:35:52.954584Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-08T06:26:58.250388Z",
-      "feed_updated": "2026-10-08T06:05:31.723971Z"
+      "checked_at": "2026-10-08T06:50:53.575381Z",
+      "feed_updated": "2026-10-08T06:46:08.009467Z"
     }
   ],
   "uncovered": [
@@ -17766,148 +17766,6 @@
       "source_code": "HR802",
       "matched_by": "code"
     },
-    "BA010": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              18.539,
-              43.031
-            ],
-            [
-              18.502,
-              42.975
-            ],
-            [
-              18.491,
-              42.942
-            ],
-            [
-              18.445,
-              42.63
-            ],
-            [
-              18.453,
-              42.599
-            ],
-            [
-              18.434,
-              42.567
-            ],
-            [
-              18.398,
-              42.57
-            ],
-            [
-              18.101,
-              42.697
-            ],
-            [
-              18.135,
-              42.742
-            ],
-            [
-              18.138,
-              42.769
-            ],
-            [
-              17.919,
-              43.021
-            ],
-            [
-              17.925,
-              43.06
-            ],
-            [
-              18.0,
-              43.239
-            ],
-            [
-              18.042,
-              43.234
-            ],
-            [
-              18.511,
-              43.035
-            ],
-            [
-              18.539,
-              43.031
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "BA010",
-      "matched_by": "code"
-    },
-    "BA005": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              16.471,
-              44.505
-            ],
-            [
-              16.489,
-              44.481
-            ],
-            [
-              17.151,
-              44.054
-            ],
-            [
-              17.182,
-              44.067
-            ],
-            [
-              17.231,
-              44.107
-            ],
-            [
-              17.25,
-              44.088
-            ],
-            [
-              17.53,
-              43.614
-            ],
-            [
-              17.467,
-              43.592
-            ],
-            [
-              17.074,
-              43.534
-            ],
-            [
-              16.276,
-              44.166
-            ],
-            [
-              16.21,
-              44.268
-            ],
-            [
-              16.437,
-              44.507
-            ],
-            [
-              16.471,
-              44.505
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "BA005",
-      "matched_by": "code"
-    },
     "BA008": {
       "geometry": {
         "type": "Polygon",
@@ -18001,174 +17859,69 @@
       "source_code": "BA008",
       "matched_by": "code"
     },
-    "BA001": {
+    "BA005": {
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              16.257,
-              45.123
-            ],
-            [
-              16.272,
-              45.09
-            ],
-            [
-              16.286,
-              44.899
-            ],
-            [
-              16.296,
-              44.866
-            ],
-            [
-              16.766,
-              44.798
-            ],
-            [
-              16.792,
-              44.789
-            ],
-            [
-              16.887,
-              44.565
-            ],
-            [
-              16.891,
-              44.528
-            ],
-            [
-              16.504,
-              44.515
-            ],
-            [
               16.471,
               44.505
             ],
             [
-              16.437,
-              44.507
+              16.489,
+              44.481
+            ],
+            [
+              17.151,
+              44.054
+            ],
+            [
+              17.182,
+              44.067
+            ],
+            [
+              17.231,
+              44.107
+            ],
+            [
+              17.25,
+              44.088
+            ],
+            [
+              17.53,
+              43.614
+            ],
+            [
+              17.467,
+              43.592
+            ],
+            [
+              17.074,
+              43.534
+            ],
+            [
+              16.276,
+              44.166
             ],
             [
               16.21,
               44.268
             ],
             [
-              15.759,
-              44.928
+              16.437,
+              44.507
             ],
             [
-              15.753,
-              44.965
-            ],
-            [
-              15.757,
-              45.074
-            ],
-            [
-              15.798,
-              45.175
-            ],
-            [
-              15.821,
-              45.2
-            ],
-            [
-              15.917,
-              45.221
-            ],
-            [
-              15.987,
-              45.218
-            ],
-            [
-              16.011,
-              45.209
-            ],
-            [
-              16.033,
-              45.192
-            ],
-            [
-              16.068,
-              45.147
-            ],
-            [
-              16.113,
-              45.132
-            ],
-            [
-              16.257,
-              45.123
+              16.471,
+              44.505
             ]
           ]
         ]
       },
       "source": "bundled-emma",
       "precision": "region",
-      "source_code": "BA001",
-      "matched_by": "code"
-    },
-    "BA009": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.008,
-              43.505
-            ],
-            [
-              18.696,
-              43.261
-            ],
-            [
-              18.539,
-              43.031
-            ],
-            [
-              18.511,
-              43.035
-            ],
-            [
-              18.042,
-              43.234
-            ],
-            [
-              18.0,
-              43.239
-            ],
-            [
-              18.006,
-              43.482
-            ],
-            [
-              18.319,
-              43.476
-            ],
-            [
-              18.356,
-              43.482
-            ],
-            [
-              18.534,
-              43.694
-            ],
-            [
-              18.565,
-              43.692
-            ],
-            [
-              19.008,
-              43.505
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "BA009",
+      "source_code": "BA005",
       "matched_by": "code"
     },
     "BA003": {
@@ -18302,6 +18055,253 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "BA003",
+      "matched_by": "code"
+    },
+    "BA010": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.539,
+              43.031
+            ],
+            [
+              18.502,
+              42.975
+            ],
+            [
+              18.491,
+              42.942
+            ],
+            [
+              18.445,
+              42.63
+            ],
+            [
+              18.453,
+              42.599
+            ],
+            [
+              18.434,
+              42.567
+            ],
+            [
+              18.398,
+              42.57
+            ],
+            [
+              18.101,
+              42.697
+            ],
+            [
+              18.135,
+              42.742
+            ],
+            [
+              18.138,
+              42.769
+            ],
+            [
+              17.919,
+              43.021
+            ],
+            [
+              17.925,
+              43.06
+            ],
+            [
+              18.0,
+              43.239
+            ],
+            [
+              18.042,
+              43.234
+            ],
+            [
+              18.511,
+              43.035
+            ],
+            [
+              18.539,
+              43.031
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "BA010",
+      "matched_by": "code"
+    },
+    "BA009": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19.008,
+              43.505
+            ],
+            [
+              18.696,
+              43.261
+            ],
+            [
+              18.539,
+              43.031
+            ],
+            [
+              18.511,
+              43.035
+            ],
+            [
+              18.042,
+              43.234
+            ],
+            [
+              18.0,
+              43.239
+            ],
+            [
+              18.006,
+              43.482
+            ],
+            [
+              18.319,
+              43.476
+            ],
+            [
+              18.356,
+              43.482
+            ],
+            [
+              18.534,
+              43.694
+            ],
+            [
+              18.565,
+              43.692
+            ],
+            [
+              19.008,
+              43.505
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "BA009",
+      "matched_by": "code"
+    },
+    "BA001": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.257,
+              45.123
+            ],
+            [
+              16.272,
+              45.09
+            ],
+            [
+              16.286,
+              44.899
+            ],
+            [
+              16.296,
+              44.866
+            ],
+            [
+              16.766,
+              44.798
+            ],
+            [
+              16.792,
+              44.789
+            ],
+            [
+              16.887,
+              44.565
+            ],
+            [
+              16.891,
+              44.528
+            ],
+            [
+              16.504,
+              44.515
+            ],
+            [
+              16.471,
+              44.505
+            ],
+            [
+              16.437,
+              44.507
+            ],
+            [
+              16.21,
+              44.268
+            ],
+            [
+              15.759,
+              44.928
+            ],
+            [
+              15.753,
+              44.965
+            ],
+            [
+              15.757,
+              45.074
+            ],
+            [
+              15.798,
+              45.175
+            ],
+            [
+              15.821,
+              45.2
+            ],
+            [
+              15.917,
+              45.221
+            ],
+            [
+              15.987,
+              45.218
+            ],
+            [
+              16.011,
+              45.209
+            ],
+            [
+              16.033,
+              45.192
+            ],
+            [
+              16.068,
+              45.147
+            ],
+            [
+              16.113,
+              45.132
+            ],
+            [
+              16.257,
+              45.123
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "BA001",
       "matched_by": "code"
     },
     "ME003": {
@@ -19388,11 +19388,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-08T06:27:00.766423Z",
-  "feed_updated": "2026-10-08T06:05:46.989575Z",
-  "warning_count": 197,
-  "active_count": 112,
-  "upcoming_count": 85,
+  "generated_at": "2026-10-08T06:50:55.183495Z",
+  "feed_updated": "2026-10-08T06:48:29.934753Z",
+  "warning_count": 209,
+  "active_count": 117,
+  "upcoming_count": 92,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -21090,6 +21090,36 @@
       "country_code": "montenegro"
     },
     {
+      "id": "2.49.0.0.70.1.BA.261008083614.41206451",
+      "status": "active",
+      "sent": "2026-10-08T06:36:14Z",
+      "effective": "2026-10-08T06:36:14Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T14:00:59Z",
+      "event": "Wind Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Banja Luka",
+      "emma_id": "BA003",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/51291769-e951-43f7-b729-2f75406933f7",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
       "id": "2.49.0.0.70.1.BA.261006121953.51015039",
       "status": "active",
       "sent": "2026-10-06T10:19:53Z",
@@ -21360,6 +21390,36 @@
       "country_code": "spain"
     },
     {
+      "id": "2.49.0.0.70.0.BA.261008083723.56224832",
+      "status": "active",
+      "sent": "2026-10-08T06:37:23Z",
+      "effective": "2026-10-08T06:37:23Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Livno",
+      "emma_id": "BA005",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/ef95d0ec-4105-4ed4-908c-b6a1039e95fb",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
       "id": "2.49.0.0.70.0.BA.261007083232.18054525",
       "status": "active",
       "sent": "2026-10-07T06:32:32Z",
@@ -21478,6 +21538,36 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.70.0.BA.261008083723.80369674",
+      "status": "active",
+      "sent": "2026-10-08T06:37:23Z",
+      "effective": "2026-10-08T06:37:23Z",
+      "onset": "2026-10-07T22:00:00Z",
+      "expires": "2026-10-08T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Mostar",
+      "emma_id": "BA008",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/0003d85f-fa51-4f80-87c0-6f6bff0c87fd",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
     },
     {
       "id": "2.49.0.0.70.0.BA.261007083232.49726352",
@@ -24570,6 +24660,36 @@
       "country_code": "slovenia"
     },
     {
+      "id": "2.49.0.0.70.1.BA.261008083614.47816490",
+      "status": "active",
+      "sent": "2026-10-08T06:36:14Z",
+      "effective": "2026-10-08T06:36:14Z",
+      "onset": "2026-10-08T04:00:00Z",
+      "expires": "2026-10-08T18:00:59Z",
+      "event": "Wind Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Foca",
+      "emma_id": "BA009",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/18038515-1a20-4e43-997f-b872e451cea8",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
       "id": "2.49.0.0.70.1.BA.261006121953.68530355",
       "status": "active",
       "sent": "2026-10-06T10:19:53Z",
@@ -24594,6 +24714,36 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/03725722-853b-4542-95bf-70e7efb9bf14",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
+      "id": "2.49.0.0.70.1.BA.261008083614.43051226",
+      "status": "active",
+      "sent": "2026-10-08T06:36:14Z",
+      "effective": "2026-10-08T06:36:14Z",
+      "onset": "2026-10-08T04:00:00Z",
+      "expires": "2026-10-08T21:59:59Z",
+      "event": "Wind Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Trebinje",
+      "emma_id": "BA010",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/1f4242ab-7752-4f18-94e4-3ae62c938df3",
       "source_web": "",
       "sender_name": "",
       "country": "Bosnia ed Erzegovina",
@@ -25932,6 +26082,482 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.376.0.261008093945.59080",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:39:45Z",
+      "effective": "2026-10-08T06:39:45Z",
+      "onset": "2026-10-08T07:00:00Z",
+      "expires": "2026-10-08T19:00:00Z",
+      "event": "COASTAL EVENT",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "COASTAL EVENT",
+      "area_desc": "Sea - Center",
+      "emma_id": "",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.76002585,
+              32.55460249
+            ],
+            [
+              34.90175258,
+              32.54809375
+            ],
+            [
+              34.89822756,
+              32.53573688
+            ],
+            [
+              34.8886165,
+              32.50204554
+            ],
+            [
+              34.88593681,
+              32.47824044
+            ],
+            [
+              34.8334535,
+              32.28422551
+            ],
+            [
+              34.82936416,
+              32.26910843
+            ],
+            [
+              34.8046875,
+              32.20089717
+            ],
+            [
+              34.78386014,
+              32.12913316
+            ],
+            [
+              34.75379761,
+              32.05717134
+            ],
+            [
+              34.74650284,
+              32.05289925
+            ],
+            [
+              34.73129662,
+              32.00780154
+            ],
+            [
+              34.71860569,
+              31.97016349
+            ],
+            [
+              34.68869906,
+              31.9181786
+            ],
+            [
+              34.65992935,
+              31.85243066
+            ],
+            [
+              34.47905253,
+              31.93965631
+            ],
+            [
+              34.51996666,
+              32.02198252
+            ],
+            [
+              34.54895146,
+              32.08814809
+            ],
+            [
+              34.5601488,
+              32.12439226
+            ],
+            [
+              34.57171962,
+              32.14785558
+            ],
+            [
+              34.58507872,
+              32.16796771
+            ],
+            [
+              34.62010515,
+              32.27089322
+            ],
+            [
+              34.64022055,
+              32.33006283
+            ],
+            [
+              34.68436813,
+              32.49870592
+            ],
+            [
+              34.69793194,
+              32.55744207
+            ],
+            [
+              34.76002585,
+              32.55460249
+            ]
+          ]
+        ]
+      },
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/2c9e515a-8d9d-4d34-a033-1424145fa454",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Israele",
+      "country_code": "israel"
+    },
+    {
+      "id": "2.49.0.0.376.0.261008093945.59080",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:39:45Z",
+      "effective": "2026-10-08T06:39:45Z",
+      "onset": "2026-10-08T07:00:00Z",
+      "expires": "2026-10-08T19:00:00Z",
+      "event": "COASTAL EVENT",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "COASTAL EVENT",
+      "area_desc": "Sea - North",
+      "emma_id": "",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.1006572,
+              33.04941234
+            ],
+            [
+              35.08811183,
+              33.01372234
+            ],
+            [
+              35.0729703,
+              32.94214905
+            ],
+            [
+              35.07076649,
+              32.93138607
+            ],
+            [
+              35.08248171,
+              32.90611044
+            ],
+            [
+              35.07735869,
+              32.87929741
+            ],
+            [
+              35.05968276,
+              32.84308658
+            ],
+            [
+              35.04246966,
+              32.82702152
+            ],
+            [
+              35.02769122,
+              32.81322873
+            ],
+            [
+              35.00400312,
+              32.81840925
+            ],
+            [
+              34.98049926,
+              32.83665464
+            ],
+            [
+              34.96931443,
+              32.83178786
+            ],
+            [
+              34.96925838,
+              32.83176348
+            ],
+            [
+              34.95549363,
+              32.82577412
+            ],
+            [
+              34.95420449,
+              32.81187675
+            ],
+            [
+              34.94726736,
+              32.73709171
+            ],
+            [
+              34.92821211,
+              32.70119638
+            ],
+            [
+              34.92575638,
+              32.68414496
+            ],
+            [
+              34.91034977,
+              32.57716885
+            ],
+            [
+              34.90731078,
+              32.5668912
+            ],
+            [
+              34.90175258,
+              32.54809375
+            ],
+            [
+              34.88752452,
+              32.54877191
+            ],
+            [
+              34.88752444,
+              32.54877191
+            ],
+            [
+              34.76002585,
+              32.55460249
+            ],
+            [
+              34.69793194,
+              32.55744207
+            ],
+            [
+              34.73785616,
+              32.7615851
+            ],
+            [
+              34.75296884,
+              32.82852533
+            ],
+            [
+              34.76665077,
+              32.8940272
+            ],
+            [
+              34.76685088,
+              32.89457282
+            ],
+            [
+              34.78832736,
+              32.93682268
+            ],
+            [
+              34.88163955,
+              33.01265064
+            ],
+            [
+              34.90384654,
+              33.09650468
+            ],
+            [
+              35.10342556,
+              33.09169738
+            ],
+            [
+              35.1006572,
+              33.04941234
+            ]
+          ]
+        ]
+      },
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/2c9e515a-8d9d-4d34-a033-1424145fa454",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Israele",
+      "country_code": "israel"
+    },
+    {
+      "id": "2.49.0.0.376.0.261008093945.59080",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:39:45Z",
+      "effective": "2026-10-08T06:39:45Z",
+      "onset": "2026-10-08T07:00:00Z",
+      "expires": "2026-10-08T19:00:00Z",
+      "event": "COASTAL EVENT",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Expected",
+      "certainty": "Observed",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "COASTAL EVENT",
+      "area_desc": "Sea - South",
+      "emma_id": "",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.65992935,
+              31.85243066
+            ],
+            [
+              34.6597712,
+              31.85211572
+            ],
+            [
+              34.65962016,
+              31.85181495
+            ],
+            [
+              34.65959727,
+              31.85176935
+            ],
+            [
+              34.65849895,
+              31.84933344
+            ],
+            [
+              34.64992102,
+              31.83030876
+            ],
+            [
+              34.63020604,
+              31.79766588
+            ],
+            [
+              34.62914036,
+              31.7959014
+            ],
+            [
+              34.62760901,
+              31.79336588
+            ],
+            [
+              34.62705221,
+              31.79244395
+            ],
+            [
+              34.58983753,
+              31.73082613
+            ],
+            [
+              34.55826994,
+              31.68417179
+            ],
+            [
+              34.55800185,
+              31.6838237
+            ],
+            [
+              34.55716397,
+              31.68273578
+            ],
+            [
+              34.55526376,
+              31.6802685
+            ],
+            [
+              34.55460744,
+              31.67941633
+            ],
+            [
+              34.55376627,
+              31.67832413
+            ],
+            [
+              34.55190564,
+              31.67590825
+            ],
+            [
+              34.52320126,
+              31.63863787
+            ],
+            [
+              34.52292231,
+              31.63827569
+            ],
+            [
+              34.52194991,
+              31.6370131
+            ],
+            [
+              34.52178363,
+              31.63679719
+            ],
+            [
+              34.52060902,
+              31.63527207
+            ],
+            [
+              34.51916194,
+              31.63339314
+            ],
+            [
+              34.51642301,
+              31.62983686
+            ],
+            [
+              34.51373231,
+              31.6263432
+            ],
+            [
+              34.49053578,
+              31.59622433
+            ],
+            [
+              34.3216845,
+              31.69907982
+            ],
+            [
+              34.37759099,
+              31.77712639
+            ],
+            [
+              34.44409888,
+              31.87460583
+            ],
+            [
+              34.47905253,
+              31.93965631
+            ],
+            [
+              34.65992935,
+              31.85243066
+            ]
+          ]
+        ]
+      },
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/2c9e515a-8d9d-4d34-a033-1424145fa454",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Israele",
+      "country_code": "israel"
     },
     {
       "id": "2.49.0.0.724.0.ES.261007165409.690804PRP1082292049",
@@ -28208,6 +28834,36 @@
       "country_code": "croatia"
     },
     {
+      "id": "2.49.0.0.70.0.BA.261008083723.86294276",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:37:23Z",
+      "effective": "2026-10-08T06:37:23Z",
+      "onset": "2026-10-08T13:00:00Z",
+      "expires": "2026-10-08T21:59:59Z",
+      "event": "Thunderstorm Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Mostar",
+      "emma_id": "BA008",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/940133e6-bfdc-4462-8c1a-9a348083749b",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
       "id": "2.49.0.0.70.0.BA.261007083232.55902656",
       "status": "upcoming",
       "sent": "2026-10-07T06:32:32Z",
@@ -28262,6 +28918,36 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/ac70444c-8601-4f7d-8cac-d187fca16fe8",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
+      "id": "2.49.0.0.70.1.BA.261008083614.70927881",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:36:14Z",
+      "effective": "2026-10-08T06:36:14Z",
+      "onset": "2026-10-08T15:00:00Z",
+      "expires": "2026-10-08T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Trebinje",
+      "emma_id": "BA010",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/5a709553-2601-4f1f-aa0e-931fa35fb976",
       "source_web": "",
       "sender_name": "",
       "country": "Bosnia ed Erzegovina",
@@ -30202,6 +30888,66 @@
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.70.0.BA.261008083651.84918981",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:36:51Z",
+      "effective": "2026-10-08T06:36:51Z",
+      "onset": "2026-10-08T22:00:00Z",
+      "expires": "2026-10-09T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Livno",
+      "emma_id": "BA005",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/d7a026fc-6909-477c-afd2-13ab23fb00f9",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
+    },
+    {
+      "id": "2.49.0.0.70.0.BA.261008083651.12149829",
+      "status": "upcoming",
+      "sent": "2026-10-08T06:36:51Z",
+      "effective": "2026-10-08T06:36:51Z",
+      "onset": "2026-10-08T22:00:00Z",
+      "expires": "2026-10-09T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Mostar",
+      "emma_id": "BA008",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/13824899-ae97-4632-af9b-fbe2a26b0008",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
     },
     {
       "id": "2.49.0.0.70.0.BA.261007083356.27661359",
