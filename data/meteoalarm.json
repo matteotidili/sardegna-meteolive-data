@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:50.109846Z",
+      "checked_at": "2026-10-08T12:02:11.339240Z",
       "feed_updated": "2026-10-08T11:35:40.033977Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:50.883019Z",
+      "checked_at": "2026-10-08T12:02:12.321200Z",
       "feed_updated": "2026-10-08T11:35:27.695157Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:50.550062Z",
+      "checked_at": "2026-10-08T12:02:11.677285Z",
       "feed_updated": "2026-10-08T11:35:19.781562Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:51.357155Z",
+      "checked_at": "2026-10-08T12:02:13.032149Z",
       "feed_updated": "2026-10-08T11:35:45.702384Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:52.121275Z",
+      "checked_at": "2026-10-08T12:02:13.049010Z",
       "feed_updated": "2026-10-08T11:35:41.826623Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:51.822930Z",
+      "checked_at": "2026-10-08T12:02:14.090601Z",
       "feed_updated": "2026-10-08T11:35:24.754622Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:52.685109Z",
+      "checked_at": "2026-10-08T12:02:14.114351Z",
       "feed_updated": "2026-10-08T11:35:23.813874Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:52.586279Z",
-      "feed_updated": "2026-10-08T11:42:35.764114Z"
+      "checked_at": "2026-10-08T12:02:13.956555Z",
+      "feed_updated": "2026-10-08T11:52:45.673209Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:53.005236Z",
+      "checked_at": "2026-10-08T12:02:14.833579Z",
       "feed_updated": "2026-10-08T11:35:35.280399Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:53.478246Z",
+      "checked_at": "2026-10-08T12:02:14.826652Z",
       "feed_updated": "2026-10-08T11:35:29.552347Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-08T11:49:53.465623Z",
+      "checked_at": "2026-10-08T12:02:14.842493Z",
       "feed_updated": "2026-10-08T11:35:37.417688Z"
     }
   ],
@@ -19846,11 +19846,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-08T11:49:55.645155Z",
-  "feed_updated": "2026-10-08T11:42:35.764114Z",
-  "warning_count": 231,
-  "active_count": 144,
-  "upcoming_count": 87,
+  "generated_at": "2026-10-08T12:02:17.466631Z",
+  "feed_updated": "2026-10-08T11:52:45.673209Z",
+  "warning_count": 229,
+  "active_count": 149,
+  "upcoming_count": 80,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 4,
@@ -20290,66 +20290,6 @@
       "sender_name": "",
       "country": "Slovenia",
       "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008065809.694304VIRM081242689",
-      "status": "active",
-      "sent": "2026-10-08T06:58:09Z",
-      "effective": "2026-10-08T06:55:17Z",
-      "onset": "2026-10-08T06:00:00Z",
-      "expires": "2026-10-08T11:59:59Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Litoral sur de Tarragona",
-      "emma_id": "ES192",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/23a0a0fa-dc4b-4ffe-ab19-fe7d48d3f7fe",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008065809.694305VIRM081242689",
-      "status": "active",
-      "sent": "2026-10-08T06:58:09Z",
-      "effective": "2026-10-08T06:55:17Z",
-      "onset": "2026-10-08T06:00:00Z",
-      "expires": "2026-10-08T11:59:59Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Prelitoral sur de Tarragona",
-      "emma_id": "ES193",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/5217b44a-adef-4f9e-87f8-31673852a070",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.145",
@@ -29577,7 +29517,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261007110000.001000008",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-07T11:00:00Z",
       "effective": "2026-10-07T11:00:00Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29607,7 +29547,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.121",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-08T12:00:00Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29637,7 +29577,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261008065809.694304VIRM082242689",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T06:58:09Z",
       "effective": "2026-10-08T06:55:17Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29667,7 +29607,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.129",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-08T12:00:00Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29697,7 +29637,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261008065809.694305VIRM082242689",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T06:58:09Z",
       "effective": "2026-10-08T06:55:17Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29727,7 +29667,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.107",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:09Z",
       "effective": "2026-10-08T12:00:00Z",
       "onset": "2026-10-08T12:00:00Z",
@@ -29757,7 +29697,7 @@
     },
     {
       "id": "2.49.0.0.191.0.HR.261008115609_3_002_yellow_HR023",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:56:09Z",
       "effective": "2026-10-08T09:56:09Z",
       "onset": "2026-10-08T12:00:00Z",
