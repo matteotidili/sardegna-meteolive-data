@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:38.127197Z",
+      "checked_at": "2026-10-08T08:01:00.860396Z",
       "feed_updated": "2026-10-08T07:35:35.564723Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:38.843983Z",
+      "checked_at": "2026-10-08T08:01:01.306501Z",
       "feed_updated": "2026-10-08T07:35:22.567221Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:38.263698Z",
+      "checked_at": "2026-10-08T08:01:00.910559Z",
       "feed_updated": "2026-10-08T07:35:15.549188Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:39.318013Z",
+      "checked_at": "2026-10-08T08:01:02.423589Z",
       "feed_updated": "2026-10-08T07:35:43.679793Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:39.336209Z",
+      "checked_at": "2026-10-08T08:01:02.534172Z",
       "feed_updated": "2026-10-08T07:38:05.649911Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:39.820805Z",
+      "checked_at": "2026-10-08T08:01:02.310830Z",
       "feed_updated": "2026-10-08T07:35:17.731149Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:40.092064Z",
+      "checked_at": "2026-10-08T08:01:02.844125Z",
       "feed_updated": "2026-10-08T07:35:17.217644Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:40.260651Z",
+      "checked_at": "2026-10-08T08:01:02.955932Z",
       "feed_updated": "2026-10-08T07:35:26.182467Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:40.479689Z",
+      "checked_at": "2026-10-08T08:01:02.951788Z",
       "feed_updated": "2026-10-08T07:35:37.811627Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:40.902241Z",
+      "checked_at": "2026-10-08T08:01:03.161858Z",
       "feed_updated": "2026-10-08T07:35:33.115677Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-08T07:46:40.899659Z",
+      "checked_at": "2026-10-08T08:01:03.276783Z",
       "feed_updated": "2026-10-08T07:35:31.920308Z"
     }
   ],
@@ -19388,11 +19388,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-08T07:46:42.643827Z",
+  "generated_at": "2026-10-08T08:01:05.043182Z",
   "feed_updated": "2026-10-08T07:38:05.649911Z",
   "warning_count": 231,
-  "active_count": 117,
-  "upcoming_count": 114,
+  "active_count": 121,
+  "upcoming_count": 110,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 4,
@@ -26175,7 +26175,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261007165409.690804PRP1082292049",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-07T16:54:09Z",
       "effective": "2026-10-07T16:51:12Z",
       "onset": "2026-10-08T08:00:00Z",
@@ -26205,7 +26205,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261007165409.691704PRP1082292049",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-07T16:54:09Z",
       "effective": "2026-10-07T16:51:12Z",
       "onset": "2026-10-08T08:00:00Z",
@@ -26235,7 +26235,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261007165409.690803PRP1082292049",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-07T16:54:09Z",
       "effective": "2026-10-07T16:51:12Z",
       "onset": "2026-10-08T08:00:00Z",
@@ -26265,7 +26265,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261007165409.691702PRP1082292049",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-07T16:54:09Z",
       "effective": "2026-10-07T16:51:12Z",
       "onset": "2026-10-08T08:00:00Z",
