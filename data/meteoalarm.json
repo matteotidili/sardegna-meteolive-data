@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:44.596137Z",
-      "feed_updated": "2026-10-09T03:05:52.353432Z"
+      "checked_at": "2026-10-09T03:40:42.937614Z",
+      "feed_updated": "2026-10-09T03:35:54.636567Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:44.428470Z",
-      "feed_updated": "2026-10-09T03:05:28.736916Z"
+      "checked_at": "2026-10-09T03:40:42.845551Z",
+      "feed_updated": "2026-10-09T03:35:32.380899Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:44.250685Z",
-      "feed_updated": "2026-10-09T03:05:17.055985Z"
+      "checked_at": "2026-10-09T03:40:42.732535Z",
+      "feed_updated": "2026-10-09T03:35:10.695025Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:45.797375Z",
-      "feed_updated": "2026-10-09T03:06:00.160465Z"
+      "checked_at": "2026-10-09T03:40:43.781020Z",
+      "feed_updated": "2026-10-09T03:35:58.727257Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:46.539400Z",
-      "feed_updated": "2026-10-09T03:05:55.015676Z"
+      "checked_at": "2026-10-09T03:40:43.798954Z",
+      "feed_updated": "2026-10-09T03:35:57.910648Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:46.116197Z",
-      "feed_updated": "2026-10-09T03:05:19.297973Z"
+      "checked_at": "2026-10-09T03:40:43.579481Z",
+      "feed_updated": "2026-10-09T03:35:23.070510Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:46.956100Z",
-      "feed_updated": "2026-10-09T03:05:12.980572Z"
+      "checked_at": "2026-10-09T03:40:44.325915Z",
+      "feed_updated": "2026-10-09T03:35:10.348874Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:46.982892Z",
-      "feed_updated": "2026-10-09T03:05:45.050468Z"
+      "checked_at": "2026-10-09T03:40:44.577881Z",
+      "feed_updated": "2026-10-09T03:35:21.611439Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:47.021049Z",
-      "feed_updated": "2026-10-09T03:05:55.852892Z"
+      "checked_at": "2026-10-09T03:40:44.466860Z",
+      "feed_updated": "2026-10-09T03:35:55.842831Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:47.626044Z",
-      "feed_updated": "2026-10-09T03:05:12.093238Z"
+      "checked_at": "2026-10-09T03:40:45.112630Z",
+      "feed_updated": "2026-10-09T03:35:12.521602Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-09T03:22:47.942545Z",
-      "feed_updated": "2026-10-09T03:05:48.418431Z"
+      "checked_at": "2026-10-09T03:40:45.444755Z",
+      "feed_updated": "2026-10-09T03:35:42.993791Z"
     }
   ],
   "uncovered": [
@@ -14780,45 +14780,15 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-09T03:22:50.170395Z",
-  "feed_updated": "2026-10-09T03:06:00.160465Z",
-  "warning_count": 140,
-  "active_count": 78,
+  "generated_at": "2026-10-09T03:40:47.362368Z",
+  "feed_updated": "2026-10-09T03:35:58.727257Z",
+  "warning_count": 139,
+  "active_count": 77,
   "upcoming_count": 62,
-  "max_level": 4,
-  "active_max_level": 4,
+  "max_level": 3,
+  "active_max_level": 3,
   "upcoming_max_level": 3,
   "warnings": [
-    {
-      "id": "2.49.0.1.499.0.1791443473395",
-      "status": "active",
-      "sent": "2026-10-08T07:11:13Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Rain",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Extreme",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 4,
-      "level_name": "rosso",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Adriatic coast",
-      "emma_id": "ME002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/a72ee35a-abd6-4c8d-8912-da6c7d782a4c",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.141",
       "status": "active",
