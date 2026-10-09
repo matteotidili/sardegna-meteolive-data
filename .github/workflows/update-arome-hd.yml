@@ -14,7 +14,7 @@ permissions:
   contents: write
 concurrency:
   group: ar0me-hd-sardegna
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   update:
     runs-on: ubuntu-latest
