@@ -1,0 +1,46 @@
+name: Aggiorna radar ARPAS Monte Rasu
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_arpas_radar.py'
+      - '.github/workflows/update-arpas-radar.yml'
+  schedule:
+    # Radar ARPAS DPSRI pubblica solitamente nuovi frame ogni 10 minuti.
+    - cron: '2,12,22,32,42,52 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arpas-radar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Raccogli metadati e timestamp ARPAS
+        run: python3 scripts/update_arpas_radar.py
+      - name: Pubblica solo se i frame cambiano
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/arpas_radar.json
+          if git diff --cached --quiet; then
+            echo "Nessun nuovo frame disponibile"
+            exit 0
+          fi
+          git commit -m "Aggiorna frame radar ARPAS Monte Rasu"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
