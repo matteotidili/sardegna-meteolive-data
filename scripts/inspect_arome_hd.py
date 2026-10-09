@@ -2,6 +2,7 @@
 """Diagnostica sorgente ufficiale GRIB2 AROME HD 0,01 gradi Météo-France."""
 import datetime as dt
 import io
+import tempfile
 import urllib.error
 import urllib.request
 
@@ -25,7 +26,8 @@ for cycle_back in (3, 6, 9, 12):
                     print("GRIB_BYTES",len(blob),"header",repr(blob[:12]),flush=True)
                     try:
                         from eccodes import codes_grib_new_from_file,codes_get,codes_get_values,codes_release
-                        f=io.BytesIO(blob)
+                        f=tempfile.TemporaryFile(mode='w+b')
+                        f.write(blob);f.seek(0)
                         while (gid:=codes_grib_new_from_file(f)) is not None:
                             try:
                                 print("FIELD", {k:codes_get(gid,k) for k in ("shortName","name","units","stepType","startStep","endStep","gridType","Ni","Nj","longitudeOfFirstGridPointInDegrees","latitudeOfFirstGridPointInDegrees","iScansNegatively","jScansPositively","jPointsAreConsecutive")},flush=True)
