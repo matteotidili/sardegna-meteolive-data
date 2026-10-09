@@ -190,4 +190,8 @@ class Renderer:
         print(f"Products H+{lead:02d}: {len(products)} WebP; total output {self.bytes/1048576:.1f} MB",flush=True)
 
     def manifest(self):
-        return PARAMETERS
+        # La stessa scala dei raster è pubblicata nel JSON per una legenda fedele.
+        return {name:{**p,
+                     "stops":STOPS.get(p["scale"],[]),
+                     "phase_colors":PHASE_RGB if p["scale"]=="phase" else None}
+                for name,p in PARAMETERS.items()}
