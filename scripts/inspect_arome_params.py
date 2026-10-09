@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import datetime as dt,urllib.request,tempfile,os
-from eccodes import codes_grib_new_from_file,codes_get,codes_release
+from eccodes import codes_grib_new_from_file,codes_get,codes_get_values,codes_release
+import numpy as np
 now=dt.datetime.now(dt.timezone.utc).replace(minute=0,second=0,microsecond=0)
 now=now.replace(hour=(now.hour//3)*3)-dt.timedelta(hours=6)
 stamp=now.strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -19,6 +20,10 @@ for pack in ("SP1","SP2","SP3"):
       try:meta[key]=codes_get(gid,key)
       except Exception:pass
      i+=1
+     if (pack=="SP2" and meta.get("parameterCategory")==16) or pack=="SP3":
+      v=np.array(codes_get_values(gid))
+      v=v[np.isfinite(v) & (v<9998)]
+      meta["stats"]={"count":int(v.size),"min":float(v.min()),"p10":float(np.quantile(v,.1)),"p50":float(np.quantile(v,.5)),"p90":float(np.quantile(v,.9)),"max":float(v.max())}
      print("PARAM",pack,i,meta,flush=True)
     finally:codes_release(gid)
  except Exception as e:print("PACKERR",pack,str(e),flush=True)
