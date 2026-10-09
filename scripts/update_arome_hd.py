@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AROME HD 0,01°: raster GeoPNG della precipitazione TOTALE oraria per la Sardegna.
+"""AROME HD 0,01°: raster GeoPNG di precipitazione oraria sul Mediterraneo occidentale.
 
 Fonte ufficiale Météo-France: pacchetti aperti GRIB2, SP2.
 I tre campi tirf, tsnowp e tgrp sono accumuli dall'inizio del run (0..lead).
@@ -27,10 +27,13 @@ BASE = "https://meteofrance-pnt.s3.rbx.io.cloud.ovh.net"
 OUT = Path("data/arome")
 META = OUT / "forecast.json"
 SOURCE = "https://www.data.gouv.fr/datasets/paquets-arome-resolution-0-01deg"
-BOUNDING = {"west":7.55, "east":10.55, "south":38.45, "north":41.85}
+# Porzione centro-meridionale del dominio ufficiale EURW1S100.
+# 37,5°N è il limite SUD ufficiale: non estendere l'immagine su Algeria/Tunisia.
+# Longitudine -12/+16: intercetta l'arrivo delle perturbazioni atlantiche.
+BOUNDING = {"west":-12.0, "east":16.0, "south":37.5, "north":47.5}
 # Dataset originale EURW1S100; si verifichino sempre i valori effettivi del GRIB.
 GRID_LON_0, GRID_LAT_0, GRID_RES = -12.0, 55.4, 0.01
-LEADS = list(range(1, 13))
+LEADS = list(range(1, 52))  # 51 scadenze orarie, massimo ufficiale H+51
 FIELDS = ("tirf", "tsnowp", "tgrp")
 PALETTE = [
     (0.00,(0,0,0)), (0.10,(30,190,245)), (0.50,(31,130,245)),
@@ -63,7 +66,7 @@ def latest_cycle():
     for offset in range(0,9):
         candidate=start-dt.timedelta(hours=offset*3)
         # Entrambe le scadenze devono esistere per produrre una sequenza completa.
-        if head_ok(url_for(candidate,1)) and head_ok(url_for(candidate,12)):
+        if head_ok(url_for(candidate,1)) and head_ok(url_for(candidate,51)):
             return candidate
     raise RuntimeError("Nessun run recente AROME HD completamente pubblicato")
 
@@ -125,8 +128,13 @@ def decode_sp2(blob, lead, window):
                 grid=v[r0:r1,c0:c1].copy()
                 # ecCodes nel rettangolo esterno restituisce il sentinella 9999, non NaN.
                 grid[(~np.isfinite(grid)) | (grid>=9998) | (grid<-0.01)]=np.nan
-                if float(np.isfinite(grid).mean())<0.99:
-                    raise RuntimeError(f"AROME: troppi punti mancanti su Sardegna: {name}")
+                # L'area realmente simulata è trapezoidale dentro il GRIB rettangolare.
+                # Mantenere le celle non definite trasparenti senza inventare dati.
+                valid_fraction=float(np.isfinite(grid).mean())
+                if valid_fraction < .05:
+                    raise RuntimeError(f"AROME: dominio quasi interamente privo di dati {name}: {valid_fraction:.1%}")
+                if name=="tirf":
+                    print(f"Copertura valida {name} H+{lead}: {valid_fraction:.1%}",flush=True)
                 fields[name]=grid
             finally:
                 codes_release(gid)
@@ -150,7 +158,9 @@ def run():
     if META.exists():
         try:
             existing=json.loads(META.read_text(encoding="utf-8"))
-            if existing.get("run_time")==iso(cycle) and len(existing.get("frames",[]))==len(LEADS):
+            if (existing.get("run_time")==iso(cycle)
+                and len(existing.get("frames",[]))==len(LEADS)
+                and existing.get("domain")=="EURW1S100-WesternMediterranean-H51"):
                 print("Ciclo invariato: nessuna modifica",flush=True)
                 return
         except (ValueError,OSError):pass
@@ -185,6 +195,9 @@ def run():
         print("Frame",lead,filename,"max",round(maximum,1),"size",(OUT/filename).stat().st_size,flush=True)
     meta={
         "model":"AROME-France HD",
+        "domain":"EURW1S100-WesternMediterranean-H51",
+        "forecast_horizon_hours":LEADS[-1],
+        "domain_note":"Copertura effettiva AROME variabile entro la griglia EURW1S100; sud del Mediterraneo non coperto sotto 37,5°N. Celle mancanti trasparenti.",
         "producer":"Météo-France",
         "source":SOURCE,
         "license":"Licence Ouverte / Open Licence 2.0",
