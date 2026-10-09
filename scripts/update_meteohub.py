@@ -12,8 +12,12 @@ BASE = "https://meteohub.agenziaitaliameteo.it"
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
-# Margine per la durata del job: il cron resta ogni 5 minuti.
-MIN_RUN_INTERVAL_MIN = 4
+# Il workflow gira ogni 5 min, ma MeteoHub limita le richieste orarie.
+# Con un intervallo minimo di 9 min si invia circa una richiesta ogni 10 min.
+MIN_RUN_INTERVAL_MIN = 9
+# Durante i primi minuti del giorno i dati DPCN possono non essere ancora
+# disponibili nel nuovo intervallo di riferimento (00:00 -> adesso).
+MIDNIGHT_GRACE_MINUTES = 40
 
 V_TEMP="B12101"; V_RH="B13003"; V_WDIR="B11001"; V_WSPD="B11002"; V_GUST="B11041"; V_RAIN="B13011"
 DESIRED={V_TEMP,V_RH,V_WDIR,V_WSPD,V_GUST,V_RAIN}
@@ -95,26 +99,35 @@ def get_id(obj):
     if not isinstance(obj,dict): return None
     return obj.get("request_id") or obj.get("id") or obj.get("task_id") or obj.get("taskid")
 
-def submit_and_wait(token):
+def submit_request(token):
+    """Restituisce l'ID immediatamente: deve restare disponibile anche in caso di FAILURE."""
     res=api("POST","/api/data",token,request_body())
     rid=get_id(res)
-    if not rid: raise RuntimeError(f"MeteoHub non ha restituito request_id: {res}")
+    if rid is None: raise RuntimeError(f"MeteoHub non ha restituito request_id: {res}")
     print("Richiesta MeteoHub:",rid)
+    return rid
+
+def wait_for_request(token,rid):
+    """Attende l'esito, senza perdere l'ID necessario alla pulizia."""
     deadline=time.time()+12*60
+    last_status=None
     while time.time()<deadline:
         items=normalize_requests(api("GET","/api/requests",token))
         row=next((x for x in items if str(get_id(x))==str(rid)),None)
         if row:
-            status=str(row.get("status","")).upper()
-            print("Stato:",status)
+            status=str(row.get("status","")).upper().strip()
+            if status!=last_status:
+                print("Stato:",status)
+                last_status=status
             if status=="SUCCESS":
                 filename=row.get("fileoutput") or row.get("file_output") or row.get("filename")
                 if not filename: raise RuntimeError("SUCCESS senza fileoutput")
-                return rid,filename
-            if status in {"FAILED","ERROR","CANCELLED"}:
-                raise RuntimeError(f"Richiesta MeteoHub fallita: {row}")
+                return filename
+            if status in {"FAILURE","FAILED","ERROR","CANCELLED","CANCELED","REJECTED","EXPIRED"}:
+                detail=row.get("message") or row.get("error") or row.get("detail") or "nessun dettaglio"
+                raise RuntimeError(f"Richiesta MeteoHub {rid} terminata con {status}: {detail}")
         time.sleep(20)
-    raise TimeoutError("Richiesta MeteoHub ancora PENDING dopo 12 minuti")
+    raise TimeoutError(f"Richiesta MeteoHub {rid} ancora {last_status or 'PENDING'} dopo 12 minuti")
 
 def unpack(raw):
     if raw[:2]==b"\x1f\x8b": return gzip.decompress(raw)
@@ -227,12 +240,24 @@ def should_skip_recent_run():
         pass
     return False
 
+def should_skip_midnight():
+    """Evita query vuote prima dell'arrivo delle osservazioni del nuovo giorno."""
+    if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
+        return False
+    now=datetime.now(ROME)
+    if now.hour==0 and now.minute<MIDNIGHT_GRACE_MINUTES:
+        print(f"Salto MeteoHub: le prime osservazioni del {now.date()} "
+              f"potrebbero non essere disponibili fino alle 00:{MIDNIGHT_GRACE_MINUTES:02d}.")
+        return True
+    return False
+
 def main():
-    if should_skip_recent_run():
+    if should_skip_midnight() or should_skip_recent_run():
         return
     token=login(); rid=None
     try:
-        rid,filename=submit_and_wait(token)
+        rid=submit_request(token)
+        filename=wait_for_request(token,rid)
         print("Download:",filename)
         raw=api("GET","/api/data/"+urllib.parse.quote(str(filename),safe=""),token,timeout=240,parse_json=False)
         if not isinstance(raw,(bytes,bytearray)): raw=json.dumps(raw).encode("utf-8")
@@ -242,10 +267,13 @@ def main():
         OUT.write_text(json.dumps(result,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
         print(f"Scritte {result['station_count']} stazioni; timestamp {result['generated_at']}")
     finally:
+        # Eseguito anche su FAILURE, ERROR, timeout o download non riuscito.
+        # Il server può comunque inviare l'email prima della cancellazione:
+        # la prevenzione delle query vuote è gestita dalla finestra di sicurezza.
         if rid is not None:
             try:
                 api("DELETE",f"/api/requests/{urllib.parse.quote(str(rid),safe='')}",token)
-                print("Richiesta temporanea eliminata da MeteoHub")
+                print("Richiesta temporanea eliminata da MeteoHub:",rid)
             except Exception as exc:
                 print("ATTENZIONE: impossibile eliminare la richiesta temporanea:",exc,file=sys.stderr)
 
