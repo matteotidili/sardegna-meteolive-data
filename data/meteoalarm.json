@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:30.450200Z",
+      "checked_at": "2026-10-09T12:02:15.687054Z",
       "feed_updated": "2026-10-09T11:35:33.886472Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:30.237641Z",
+      "checked_at": "2026-10-09T12:02:15.859004Z",
       "feed_updated": "2026-10-09T11:35:24.413610Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:30.108483Z",
+      "checked_at": "2026-10-09T12:02:15.511762Z",
       "feed_updated": "2026-10-09T11:35:19.884772Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:31.340853Z",
+      "checked_at": "2026-10-09T12:02:17.016240Z",
       "feed_updated": "2026-10-09T11:35:41.108082Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:31.457224Z",
+      "checked_at": "2026-10-09T12:02:17.102006Z",
       "feed_updated": "2026-10-09T11:35:36.549482Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:31.426760Z",
+      "checked_at": "2026-10-09T12:02:16.874979Z",
       "feed_updated": "2026-10-09T11:35:19.237611Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:32.379666Z",
+      "checked_at": "2026-10-09T12:02:17.880495Z",
       "feed_updated": "2026-10-09T11:35:17.069010Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:32.351554Z",
+      "checked_at": "2026-10-09T12:02:17.906480Z",
       "feed_updated": "2026-10-09T11:42:35.677789Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:32.127483Z",
+      "checked_at": "2026-10-09T12:02:17.646111Z",
       "feed_updated": "2026-10-09T11:35:37.036001Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:32.942964Z",
+      "checked_at": "2026-10-09T12:02:18.018098Z",
       "feed_updated": "2026-10-09T11:35:41.519876Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-09T11:50:33.239686Z",
+      "checked_at": "2026-10-09T12:02:18.648266Z",
       "feed_updated": "2026-10-09T11:35:14.668518Z"
     }
   ],
@@ -12816,45 +12816,15 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-09T11:50:35.789981Z",
+  "generated_at": "2026-10-09T12:02:20.482566Z",
   "feed_updated": "2026-10-09T11:42:35.677789Z",
-  "warning_count": 123,
-  "active_count": 76,
-  "upcoming_count": 47,
+  "warning_count": 121,
+  "active_count": 78,
+  "upcoming_count": 43,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
   "warnings": [
-    {
-      "id": "2.49.0.0.724.0.ES.261008102209.691703COCO091254929",
-      "status": "active",
-      "sent": "2026-10-08T10:22:09Z",
-      "effective": "2026-10-08T10:20:18Z",
-      "onset": "2026-10-08T10:00:00Z",
-      "expires": "2026-10-09T11:59:59Z",
-      "event": "Severe coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Severe coastalevent warning",
-      "area_desc": "Costa - Ampurdán",
-      "emma_id": "ES890",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/103cb67e-7cce-4b01-b553-83ba6a07b34b",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
     {
       "id": "2.49.0.0.724.0.ES.261008092209.645501COCO091351329",
       "status": "active",
@@ -15276,36 +15246,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/6d69d2c9-24c6-4ecb-af11-57e387ff028b",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009102430_3_000_yellow_HR018",
-      "status": "active",
-      "sent": "2026-10-09T08:24:30Z",
-      "effective": "2026-10-09T08:24:30Z",
-      "onset": "2026-10-09T08:24:24Z",
-      "expires": "2026-10-09T11:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Primorsko-goranska",
-      "emma_id": "HR018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/fb453850-fc4d-4f6c-b5af-ae051837e680",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -17759,7 +17699,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261009094009.691703COCO100638809",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-09T09:40:09Z",
       "effective": "2026-10-09T09:37:30Z",
       "onset": "2026-10-09T12:00:00Z",
@@ -17789,7 +17729,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261008114100.010000008",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T11:41:00Z",
       "effective": "2026-10-08T11:41:00Z",
       "onset": "2026-10-09T12:00:00Z",
@@ -17819,7 +17759,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261008121600.010000006",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T12:16:00Z",
       "effective": "2026-10-08T12:16:00Z",
       "onset": "2026-10-09T12:00:00Z",
@@ -17849,7 +17789,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261008121600.010000002",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T12:16:00Z",
       "effective": "2026-10-08T12:16:00Z",
       "onset": "2026-10-09T12:00:00Z",
