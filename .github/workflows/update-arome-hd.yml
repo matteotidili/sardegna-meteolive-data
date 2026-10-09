@@ -1,4 +1,4 @@
-name: Aggiorna previsioni AROME HD Sardegna
+name: Aggiorna AROME HD Mediterraneo occidentale H+51
 on:
   workflow_dispatch:
   push:
@@ -17,14 +17,14 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
       - name: Installa decodifica scientifica GRIB2
         run: python3 -m pip install --disable-pip-version-check eccodes numpy pillow
-      - name: Scarica AROME HD e genera raster geografici Sardegna
+      - name: Scarica AROME HD H+51 e genera raster Mediterraneo occidentale
         run: python3 scripts/update_arome_hd.py
       - name: Controlla metadati e immagini
         run: |
@@ -35,7 +35,12 @@ jobs:
           p=Path('data/arome/forecast.json')
           obj=json.loads(p.read_text(encoding='utf-8'))
           assert obj['model']=='AROME-France HD'
-          assert len(obj['frames'])==12
+          assert len(obj['frames'])==51
+          assert obj['forecast_horizon_hours']==51
+          assert obj['domain']=='EURW1S100-WesternMediterranean-H51'
+          assert obj['bounds'][0][0]<=37.5
+          assert obj['bounds'][0][1]<-11.9
+          assert obj['bounds'][1][1]>=15.9
           assert obj['run_time'] and obj['source']
           assert obj['bounds'][0][0]<obj['bounds'][1][0]
           assert obj['bounds'][0][1]<obj['bounds'][1][1]
@@ -44,8 +49,8 @@ jobs:
               path=Path(frame['image'])
               assert path.is_file()
               with Image.open(path) as im:
-                  assert im.mode=='RGBA' and im.size[0]>=250 and im.size[1]>=300
-          print('AROME HD valido:',obj['run_time'],len(obj['frames']),'raster')
+                  assert im.mode=='RGBA' and im.size[0]>=2700 and im.size[1]>=990
+          print('AROME HD Mediterraneo H+51 valido:',obj['run_time'],len(obj['frames']),'raster')
           PY
       - name: Pubblica solo la nuova corsa AROME
         run: |
@@ -56,7 +61,7 @@ jobs:
             echo "Nessuna nuova corsa disponibile"
             exit 0
           fi
-          git commit -m "Aggiorna previsione AROME HD Sardegna (pioggia oraria)"
+          git commit -m "Aggiorna AROME HD H+51 Mediterraneo occidentale (pioggia oraria)"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase origin/main
