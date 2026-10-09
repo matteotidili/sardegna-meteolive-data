@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:51.467432Z",
-      "feed_updated": "2026-10-09T08:05:40.892623Z"
+      "checked_at": "2026-10-09T08:43:57.763572Z",
+      "feed_updated": "2026-10-09T08:35:42.323776Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:51.328175Z",
-      "feed_updated": "2026-10-09T08:05:23.313695Z"
+      "checked_at": "2026-10-09T08:43:57.658620Z",
+      "feed_updated": "2026-10-09T08:35:27.545718Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:51.192219Z",
-      "feed_updated": "2026-10-09T08:05:20.696093Z"
+      "checked_at": "2026-10-09T08:43:57.532792Z",
+      "feed_updated": "2026-10-09T08:35:19.088644Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:52.411379Z",
-      "feed_updated": "2026-10-09T08:05:47.238814Z"
+      "checked_at": "2026-10-09T08:43:58.760225Z",
+      "feed_updated": "2026-10-09T08:35:47.297776Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:52.571923Z",
-      "feed_updated": "2026-10-09T08:05:45.533371Z"
+      "checked_at": "2026-10-09T08:43:58.876929Z",
+      "feed_updated": "2026-10-09T08:37:41.778831Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:52.815877Z",
-      "feed_updated": "2026-10-09T08:05:25.381700Z"
+      "checked_at": "2026-10-09T08:43:58.616680Z",
+      "feed_updated": "2026-10-09T08:35:22.457316Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:53.329652Z",
-      "feed_updated": "2026-10-09T08:05:20.026070Z"
+      "checked_at": "2026-10-09T08:43:59.543565Z",
+      "feed_updated": "2026-10-09T08:40:59.998158Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:53.466466Z",
-      "feed_updated": "2026-10-09T08:05:33.736656Z"
+      "checked_at": "2026-10-09T08:43:59.555404Z",
+      "feed_updated": "2026-10-09T08:35:33.210615Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:53.553846Z",
-      "feed_updated": "2026-10-09T08:05:44.254642Z"
+      "checked_at": "2026-10-09T08:43:59.420565Z",
+      "feed_updated": "2026-10-09T08:35:39.610365Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:53.761514Z",
-      "feed_updated": "2026-10-09T08:05:27.091703Z"
+      "checked_at": "2026-10-09T08:43:59.968384Z",
+      "feed_updated": "2026-10-09T08:35:22.555585Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-09T08:25:54.547634Z",
-      "feed_updated": "2026-10-09T08:05:18.493277Z"
+      "checked_at": "2026-10-09T08:44:00.226016Z",
+      "feed_updated": "2026-10-09T08:35:16.088509Z"
     }
   ],
   "uncovered": [
@@ -13041,455 +13041,6 @@
       "source_code": "BA008",
       "matched_by": "code"
     },
-    "ME002": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                19.088,
-                42.32
-              ],
-              [
-                19.096,
-                42.291
-              ],
-              [
-                19.137,
-                42.226
-              ],
-              [
-                19.384,
-                42.081
-              ],
-              [
-                19.391,
-                42.028
-              ],
-              [
-                19.384,
-                41.873
-              ],
-              [
-                19.362,
-                41.85
-              ],
-              [
-                18.8,
-                42.277
-              ],
-              [
-                18.639,
-                42.411
-              ],
-              [
-                18.666,
-                42.428
-              ],
-              [
-                18.734,
-                42.44
-              ],
-              [
-                18.761,
-                42.454
-              ],
-              [
-                18.77,
-                42.496
-              ],
-              [
-                18.822,
-                42.344
-              ],
-              [
-                18.912,
-                42.321
-              ],
-              [
-                19.0,
-                42.271
-              ],
-              [
-                19.066,
-                42.298
-              ],
-              [
-                19.088,
-                42.32
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                18.667,
-                42.62
-              ],
-              [
-                18.685,
-                42.58
-              ],
-              [
-                18.741,
-                42.507
-              ],
-              [
-                18.668,
-                42.506
-              ],
-              [
-                18.548,
-                42.468
-              ],
-              [
-                18.515,
-                42.448
-              ],
-              [
-                18.501,
-                42.424
-              ],
-              [
-                18.434,
-                42.567
-              ],
-              [
-                18.453,
-                42.599
-              ],
-              [
-                18.548,
-                42.596
-              ],
-              [
-                18.667,
-                42.62
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ME002",
-      "matched_by": "code"
-    },
-    "ME003": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.653,
-              42.638
-            ],
-            [
-              19.649,
-              42.611
-            ],
-            [
-              19.436,
-              42.373
-            ],
-            [
-              19.36,
-              42.262
-            ],
-            [
-              19.335,
-              42.24
-            ],
-            [
-              19.19,
-              42.264
-            ],
-            [
-              19.12,
-              42.311
-            ],
-            [
-              19.088,
-              42.32
-            ],
-            [
-              19.066,
-              42.298
-            ],
-            [
-              19.0,
-              42.271
-            ],
-            [
-              18.912,
-              42.321
-            ],
-            [
-              18.822,
-              42.344
-            ],
-            [
-              18.77,
-              42.496
-            ],
-            [
-              18.741,
-              42.507
-            ],
-            [
-              18.685,
-              42.58
-            ],
-            [
-              18.667,
-              42.62
-            ],
-            [
-              18.701,
-              42.646
-            ],
-            [
-              18.716,
-              42.675
-            ],
-            [
-              18.742,
-              42.7
-            ],
-            [
-              18.941,
-              42.619
-            ],
-            [
-              19.059,
-              42.695
-            ],
-            [
-              19.148,
-              42.695
-            ],
-            [
-              19.285,
-              42.667
-            ],
-            [
-              19.417,
-              42.663
-            ],
-            [
-              19.451,
-              42.667
-            ],
-            [
-              19.523,
-              42.724
-            ],
-            [
-              19.557,
-              42.711
-            ],
-            [
-              19.653,
-              42.638
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ME003",
-      "matched_by": "code"
-    },
-    "ME001": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.182,
-              43.518
-            ],
-            [
-              19.291,
-              43.362
-            ],
-            [
-              19.628,
-              43.194
-            ],
-            [
-              19.905,
-              43.084
-            ],
-            [
-              20.253,
-              42.909
-            ],
-            [
-              20.257,
-              42.869
-            ],
-            [
-              20.211,
-              42.757
-            ],
-            [
-              20.181,
-              42.748
-            ],
-            [
-              20.024,
-              42.745
-            ],
-            [
-              20.0,
-              42.735
-            ],
-            [
-              20.029,
-              42.608
-            ],
-            [
-              20.045,
-              42.574
-            ],
-            [
-              20.078,
-              42.563
-            ],
-            [
-              20.025,
-              42.524
-            ],
-            [
-              19.931,
-              42.511
-            ],
-            [
-              19.862,
-              42.485
-            ],
-            [
-              19.825,
-              42.492
-            ],
-            [
-              19.785,
-              42.51
-            ],
-            [
-              19.762,
-              42.543
-            ],
-            [
-              19.737,
-              42.663
-            ],
-            [
-              19.707,
-              42.657
-            ],
-            [
-              19.684,
-              42.641
-            ],
-            [
-              19.653,
-              42.638
-            ],
-            [
-              19.557,
-              42.711
-            ],
-            [
-              19.523,
-              42.724
-            ],
-            [
-              19.451,
-              42.667
-            ],
-            [
-              19.417,
-              42.663
-            ],
-            [
-              19.285,
-              42.667
-            ],
-            [
-              19.148,
-              42.695
-            ],
-            [
-              19.059,
-              42.695
-            ],
-            [
-              18.941,
-              42.619
-            ],
-            [
-              18.742,
-              42.7
-            ],
-            [
-              18.716,
-              42.675
-            ],
-            [
-              18.701,
-              42.646
-            ],
-            [
-              18.667,
-              42.62
-            ],
-            [
-              18.548,
-              42.596
-            ],
-            [
-              18.453,
-              42.599
-            ],
-            [
-              18.445,
-              42.63
-            ],
-            [
-              18.475,
-              42.853
-            ],
-            [
-              18.502,
-              42.975
-            ],
-            [
-              18.696,
-              43.261
-            ],
-            [
-              19.008,
-              43.505
-            ],
-            [
-              19.039,
-              43.517
-            ],
-            [
-              19.182,
-              43.518
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ME001",
-      "matched_by": "code"
-    },
     "GR006": {
       "geometry": {
         "type": "Polygon",
@@ -14434,15 +13985,15 @@
       "matched_by": "code"
     }
   },
-  "region_count": 49,
+  "region_count": 46,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-09T08:25:56.665301Z",
-  "feed_updated": "2026-10-09T08:05:47.238814Z",
-  "warning_count": 111,
-  "active_count": 73,
+  "generated_at": "2026-10-09T08:44:01.923260Z",
+  "feed_updated": "2026-10-09T08:40:59.998158Z",
+  "warning_count": 103,
+  "active_count": 65,
   "upcoming_count": 38,
   "max_level": 3,
   "active_max_level": 3,
@@ -14687,66 +14238,6 @@
       "sender_name": "",
       "country": "Spagna",
       "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791516994223",
-      "status": "active",
-      "sent": "2026-10-09T03:36:34Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Rain",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Adriatic coast",
-      "emma_id": "ME002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/833fe101-e1e4-4a98-9caa-06a36298781d",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443542965",
-      "status": "active",
-      "sent": "2026-10-08T07:12:22Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Rain",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Central",
-      "emma_id": "ME003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4ae4c77b-f770-40c6-9b8e-dd1464019364",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.122",
@@ -15409,186 +14900,6 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.1.499.0.1791443404921",
-      "status": "active",
-      "sent": "2026-10-08T07:10:04Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Thunderstorm",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Adriatic coast",
-      "emma_id": "ME002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/ef4a530d-a5ef-47a3-8fbc-7905f55aff32",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443351326",
-      "status": "active",
-      "sent": "2026-10-08T07:09:11Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Wind",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Adriatic coast",
-      "emma_id": "ME002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/b6a0a914-5d29-4d81-af85-02e0e7b99d61",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443404921",
-      "status": "active",
-      "sent": "2026-10-08T07:10:04Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Thunderstorm",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Central",
-      "emma_id": "ME003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/ef4a530d-a5ef-47a3-8fbc-7905f55aff32",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443351326",
-      "status": "active",
-      "sent": "2026-10-08T07:09:11Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Wind",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Central",
-      "emma_id": "ME003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/b6a0a914-5d29-4d81-af85-02e0e7b99d61",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443404921",
-      "status": "active",
-      "sent": "2026-10-08T07:10:04Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Thunderstorm",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Continental and Mountains",
-      "emma_id": "ME001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/ef4a530d-a5ef-47a3-8fbc-7905f55aff32",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1791443351326",
-      "status": "active",
-      "sent": "2026-10-08T07:09:11Z",
-      "effective": "2026-10-08T22:01:00Z",
-      "onset": "2026-10-08T22:01:00Z",
-      "expires": "2026-10-09T21:59:00Z",
-      "event": "Wind",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Continental and Mountains",
-      "emma_id": "ME001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/b6a0a914-5d29-4d81-af85-02e0e7b99d61",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261007082231_0_yellow_HR805",
       "status": "active",
       "sent": "2026-10-07T06:22:31Z",
@@ -16189,96 +15500,6 @@
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_005_yellow_HR028",
-      "status": "active",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T05:33:39Z",
-      "expires": "2026-10-09T10:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Istarska",
-      "emma_id": "HR028",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/d8b37cbe-3b35-4d21-a4ab-e5f57c537dd8",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_001_yellow_HR019",
-      "status": "active",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T05:33:39Z",
-      "expires": "2026-10-09T21:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Ličko-senjska",
-      "emma_id": "HR019",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/c8b3d84d-ca96-46bc-a0ab-1e1d87cbb3cb",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_000_yellow_HR018",
-      "status": "active",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T05:33:39Z",
-      "expires": "2026-10-09T11:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Primorsko-goranska",
-      "emma_id": "HR018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/cf956b41-0ad1-48b8-aa46-26cd2029da08",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261008114809.137",
       "status": "active",
       "sent": "2026-10-08T09:48:10Z",
@@ -16397,36 +15618,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_002_yellow_HR023",
-      "status": "active",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T06:00:00Z",
-      "expires": "2026-10-09T21:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Zadarska",
-      "emma_id": "HR023",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/3e7a29c3-b55b-40ef-98b7-a4fb08c4daa5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
     },
     {
       "id": "2.49.0.0.300.0.GR.261008120300.001000008",
@@ -17053,6 +16244,126 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.191.0.HR.261009102430_3_004_yellow_HR028",
+      "status": "active",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
+      "onset": "2026-10-09T08:24:24Z",
+      "expires": "2026-10-09T10:59:59Z",
+      "event": "Yellow thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Istarska",
+      "emma_id": "HR028",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/56eea55c-5ca0-449f-ba33-02a8c068d411",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.191.0.HR.261009102430_3_001_yellow_HR019",
+      "status": "active",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
+      "onset": "2026-10-09T08:24:24Z",
+      "expires": "2026-10-09T21:59:59Z",
+      "event": "Yellow thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Ličko-senjska",
+      "emma_id": "HR019",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/6d69d2c9-24c6-4ecb-af11-57e387ff028b",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.191.0.HR.261009102430_3_000_yellow_HR018",
+      "status": "active",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
+      "onset": "2026-10-09T08:24:24Z",
+      "expires": "2026-10-09T11:59:59Z",
+      "event": "Yellow thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Primorsko-goranska",
+      "emma_id": "HR018",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/fb453850-fc4d-4f6c-b5af-ae051837e680",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.191.0.HR.261009102430_3_002_yellow_HR023",
+      "status": "active",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
+      "onset": "2026-10-09T08:24:24Z",
+      "expires": "2026-10-09T21:59:59Z",
+      "event": "Yellow thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Immediate",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Zadarska",
+      "emma_id": "HR023",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/150ae922-f735-49b8-be6f-3bdca8472079",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
     },
     {
       "id": "2.49.0.0.376.0.261008154433.59085",
@@ -19621,10 +18932,10 @@
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_007_yellow_HR029",
+      "id": "2.49.0.0.191.0.HR.261009102430_3_005_yellow_HR029",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
       "onset": "2026-10-09T17:00:00Z",
       "expires": "2026-10-09T21:59:59Z",
       "event": "Yellow thunderstorm warning",
@@ -19644,17 +18955,17 @@
       "emma_id": "HR029",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/466868b3-6213-49ef-9e5d-8eb642b0aa5c",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/8e21bf1b-b35f-4fa1-84c6-7a177d8d07f3",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_004_yellow_HR027",
+      "id": "2.49.0.0.191.0.HR.261009102430_3_003_yellow_HR027",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
       "onset": "2026-10-09T18:00:00Z",
       "expires": "2026-10-10T03:59:59Z",
       "event": "Yellow thunderstorm warning",
@@ -19674,7 +18985,7 @@
       "emma_id": "HR027",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f9268878-d25c-4ed1-9e79-55b0c9c55143",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/11f9f2c8-c015-4cfd-95eb-96ae37eb961c",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -19741,10 +19052,10 @@
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009074835_1_004_yellow_HR029",
+      "id": "2.49.0.0.191.0.HR.261009103200_1_004_yellow_HR029",
       "status": "upcoming",
-      "sent": "2026-10-09T05:48:35Z",
-      "effective": "2026-10-09T05:48:35Z",
+      "sent": "2026-10-09T08:32:00Z",
+      "effective": "2026-10-09T08:32:00Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-11T12:59:59Z",
       "event": "Yellow rain warning",
@@ -19764,17 +19075,17 @@
       "emma_id": "HR029",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9f11671a-7b60-44ad-bbaa-049e8605afde",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9d8a74b4-edcd-4aa5-ae1f-c575f9b8a477",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_008_yellow_HR029",
+      "id": "2.49.0.0.191.0.HR.261009102430_3_006_yellow_HR029",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T08:24:30Z",
+      "effective": "2026-10-09T08:24:30Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-10T21:59:59Z",
       "event": "Yellow thunderstorm warning",
@@ -19794,7 +19105,7 @@
       "emma_id": "HR029",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1d6077cf-da0c-4cf6-bbb3-2d80c1c4b32a",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/88aa7e0a-b0e6-40fd-b4e2-9a17a694d6dd",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -19831,10 +19142,10 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009074835_1_000_yellow_HR019",
+      "id": "2.49.0.0.191.0.HR.261009103200_1_000_yellow_HR019",
       "status": "upcoming",
-      "sent": "2026-10-09T05:48:35Z",
-      "effective": "2026-10-09T05:48:35Z",
+      "sent": "2026-10-09T08:32:00Z",
+      "effective": "2026-10-09T08:32:00Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-11T04:59:59Z",
       "event": "Yellow rain warning",
@@ -19854,7 +19165,7 @@
       "emma_id": "HR019",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e8075571-c61b-479b-8664-aafcf2983c97",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/830250da-278c-48f5-8461-8ed0d6cca3c2",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -19891,10 +19202,10 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009074835_1_003_yellow_HR027",
+      "id": "2.49.0.0.191.0.HR.261009103200_1_003_yellow_HR027",
       "status": "upcoming",
-      "sent": "2026-10-09T05:48:35Z",
-      "effective": "2026-10-09T05:48:35Z",
+      "sent": "2026-10-09T08:32:00Z",
+      "effective": "2026-10-09T08:32:00Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-11T10:59:59Z",
       "event": "Yellow rain warning",
@@ -19914,7 +19225,7 @@
       "emma_id": "HR027",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/cfce8089-828a-4179-af64-8e828da3f596",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/c95944f4-12c6-489e-a6e9-29d5cbf5635a",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -19951,10 +19262,10 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009074835_1_001_yellow_HR023",
+      "id": "2.49.0.0.191.0.HR.261009103200_1_001_yellow_HR023",
       "status": "upcoming",
-      "sent": "2026-10-09T05:48:35Z",
-      "effective": "2026-10-09T05:48:35Z",
+      "sent": "2026-10-09T08:32:00Z",
+      "effective": "2026-10-09T08:32:00Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-11T06:59:59Z",
       "event": "Yellow rain warning",
@@ -19974,17 +19285,17 @@
       "emma_id": "HR023",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/acc625e8-fa4d-459d-9112-f0c695e8ebb6",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/50522f6b-9539-4502-885a-df3b8eed17ac",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009074835_1_002_yellow_HR025",
+      "id": "2.49.0.0.191.0.HR.261009103200_1_002_yellow_HR025",
       "status": "upcoming",
-      "sent": "2026-10-09T05:48:35Z",
-      "effective": "2026-10-09T05:48:35Z",
+      "sent": "2026-10-09T08:32:00Z",
+      "effective": "2026-10-09T08:32:00Z",
       "onset": "2026-10-09T22:00:00Z",
       "expires": "2026-10-11T07:59:59Z",
       "event": "Yellow rain warning",
@@ -20004,7 +19315,7 @@
       "emma_id": "HR025",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/253d4a9a-a7d2-481d-b139-0bdadceb81a3",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/4ecb9e99-453a-44fe-95f1-05f07acb8734",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
