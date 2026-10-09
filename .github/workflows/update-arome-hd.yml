@@ -1,0 +1,66 @@
+name: Aggiorna previsioni AROME HD Sardegna
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_arome_hd.py'
+      - '.github/workflows/update-arome-hd.yml'
+  schedule:
+    # Le corse ufficiali sono di norma ogni 3 ore, con ritardi di pubblicazione.
+    - cron: '27 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: ar0me-hd-sardegna
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Installa decodifica scientifica GRIB2
+        run: python3 -m pip install --disable-pip-version-check eccodes numpy pillow
+      - name: Scarica AROME HD e genera raster geografici Sardegna
+        run: python3 scripts/update_arome_hd.py
+      - name: Controlla metadati e immagini
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          p=Path('data/arome/forecast.json')
+          obj=json.loads(p.read_text(encoding='utf-8'))
+          assert obj['model']=='AROME-France HD'
+          assert len(obj['frames'])==12
+          assert obj['run_time'] and obj['source']
+          assert obj['bounds'][0][0]<obj['bounds'][1][0]
+          assert obj['bounds'][0][1]<obj['bounds'][1][1]
+          for frame in obj['frames']:
+              assert frame['accumulation_hours']==1
+              path=Path(frame['image'])
+              assert path.is_file()
+              with Image.open(path) as im:
+                  assert im.mode=='RGBA' and im.size[0]>=250 and im.size[1]>=300
+          print('AROME HD valido:',obj['run_time'],len(obj['frames']),'raster')
+          PY
+      - name: Pubblica solo la nuova corsa AROME
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/arome/forecast.json data/arome/precip_h*.png
+          if git diff --cached --quiet; then
+            echo "Nessuna nuova corsa disponibile"
+            exit 0
+          fi
+          git commit -m "Aggiorna previsione AROME HD Sardegna (pioggia oraria)"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
