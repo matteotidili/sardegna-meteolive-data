@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:48.848017Z",
-      "feed_updated": "2026-10-09T05:35:36.920382Z"
+      "checked_at": "2026-10-09T06:09:25.516141Z",
+      "feed_updated": "2026-10-09T06:05:31.385955Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:48.707042Z",
-      "feed_updated": "2026-10-09T05:35:27.493178Z"
+      "checked_at": "2026-10-09T06:09:25.365325Z",
+      "feed_updated": "2026-10-09T06:05:22.305958Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:48.534246Z",
-      "feed_updated": "2026-10-09T05:35:17.783702Z"
+      "checked_at": "2026-10-09T06:09:25.255045Z",
+      "feed_updated": "2026-10-09T06:05:18.471428Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:50.418306Z",
-      "feed_updated": "2026-10-09T05:35:44.785088Z"
+      "checked_at": "2026-10-09T06:09:26.450586Z",
+      "feed_updated": "2026-10-09T06:07:16.455612Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:50.364223Z",
-      "feed_updated": "2026-10-09T05:39:31.540294Z"
+      "checked_at": "2026-10-09T06:09:26.565574Z",
+      "feed_updated": "2026-10-09T06:08:34.124565Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:50.096620Z",
-      "feed_updated": "2026-10-09T05:35:20.598538Z"
+      "checked_at": "2026-10-09T06:09:26.396565Z",
+      "feed_updated": "2026-10-09T06:05:20.537305Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:51.109612Z",
-      "feed_updated": "2026-10-09T05:35:18.155519Z"
+      "checked_at": "2026-10-09T06:09:27.483386Z",
+      "feed_updated": "2026-10-09T06:05:17.907106Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:51.251951Z",
-      "feed_updated": "2026-10-09T05:35:29.192012Z"
+      "checked_at": "2026-10-09T06:09:27.400345Z",
+      "feed_updated": "2026-10-09T06:05:41.316489Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:51.110285Z",
-      "feed_updated": "2026-10-09T05:35:39.789870Z"
+      "checked_at": "2026-10-09T06:09:27.296696Z",
+      "feed_updated": "2026-10-09T06:05:42.787039Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:51.826806Z",
-      "feed_updated": "2026-10-09T05:35:28.980094Z"
+      "checked_at": "2026-10-09T06:09:27.893177Z",
+      "feed_updated": "2026-10-09T06:05:15.954581Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-09T05:54:51.993140Z",
-      "feed_updated": "2026-10-09T05:35:33.080864Z"
+      "checked_at": "2026-10-09T06:09:28.098097Z",
+      "feed_updated": "2026-10-09T06:05:16.206186Z"
     }
   ],
   "uncovered": [
@@ -7136,341 +7136,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT003",
-      "matched_by": "code"
-    },
-    "ES225": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -0.754,
-              37.864
-            ],
-            [
-              -0.764,
-              37.81
-            ],
-            [
-              -0.841,
-              37.739
-            ],
-            [
-              -0.852,
-              37.713
-            ],
-            [
-              -0.738,
-              37.602
-            ],
-            [
-              -0.902,
-              37.558
-            ],
-            [
-              -0.949,
-              37.559
-            ],
-            [
-              -1.064,
-              37.582
-            ],
-            [
-              -1.12,
-              37.555
-            ],
-            [
-              -1.192,
-              37.57
-            ],
-            [
-              -1.318,
-              37.562
-            ],
-            [
-              -1.404,
-              37.507
-            ],
-            [
-              -1.421,
-              37.534
-            ],
-            [
-              -1.454,
-              37.556
-            ],
-            [
-              -1.456,
-              37.682
-            ],
-            [
-              -1.358,
-              37.723
-            ],
-            [
-              -1.282,
-              37.737
-            ],
-            [
-              -1.272,
-              37.82
-            ],
-            [
-              -1.276,
-              37.849
-            ],
-            [
-              -1.182,
-              37.804
-            ],
-            [
-              -1.135,
-              37.755
-            ],
-            [
-              -1.055,
-              37.8
-            ],
-            [
-              -0.943,
-              37.83
-            ],
-            [
-              -0.86,
-              37.879
-            ],
-            [
-              -0.782,
-              37.854
-            ],
-            [
-              -0.754,
-              37.864
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES225",
-      "matched_by": "code"
-    },
-    "ES224": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -1.723,
-              37.943
-            ],
-            [
-              -1.659,
-              37.865
-            ],
-            [
-              -1.604,
-              37.89
-            ],
-            [
-              -1.515,
-              37.887
-            ],
-            [
-              -1.422,
-              37.903
-            ],
-            [
-              -1.355,
-              37.867
-            ],
-            [
-              -1.276,
-              37.849
-            ],
-            [
-              -1.272,
-              37.82
-            ],
-            [
-              -1.282,
-              37.737
-            ],
-            [
-              -1.358,
-              37.723
-            ],
-            [
-              -1.456,
-              37.682
-            ],
-            [
-              -1.454,
-              37.556
-            ],
-            [
-              -1.421,
-              37.534
-            ],
-            [
-              -1.404,
-              37.507
-            ],
-            [
-              -1.512,
-              37.436
-            ],
-            [
-              -1.588,
-              37.396
-            ],
-            [
-              -1.643,
-              37.377
-            ],
-            [
-              -1.704,
-              37.421
-            ],
-            [
-              -1.743,
-              37.439
-            ],
-            [
-              -1.821,
-              37.428
-            ],
-            [
-              -2.012,
-              37.672
-            ],
-            [
-              -2.007,
-              37.78
-            ],
-            [
-              -1.986,
-              37.867
-            ],
-            [
-              -1.832,
-              37.963
-            ],
-            [
-              -1.789,
-              37.962
-            ],
-            [
-              -1.723,
-              37.943
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES224",
-      "matched_by": "code"
-    },
-    "ES867": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              1.23,
-              40.895
-            ],
-            [
-              1.122,
-              40.856
-            ],
-            [
-              1.095,
-              40.827
-            ],
-            [
-              1.136,
-              40.729
-            ],
-            [
-              1.134,
-              40.662
-            ],
-            [
-              1.102,
-              40.599
-            ],
-            [
-              1.029,
-              40.538
-            ],
-            [
-              0.838,
-              40.448
-            ],
-            [
-              0.716,
-              40.425
-            ],
-            [
-              0.548,
-              40.502
-            ],
-            [
-              0.509,
-              40.511
-            ],
-            [
-              0.597,
-              40.615
-            ],
-            [
-              0.737,
-              40.635
-            ],
-            [
-              0.867,
-              40.701
-            ],
-            [
-              0.799,
-              40.76
-            ],
-            [
-              0.71,
-              40.803
-            ],
-            [
-              0.798,
-              40.871
-            ],
-            [
-              0.976,
-              41.03
-            ],
-            [
-              1.089,
-              41.065
-            ],
-            [
-              1.125,
-              41.067
-            ],
-            [
-              1.223,
-              40.923
-            ],
-            [
-              1.23,
-              40.895
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES867",
       "matched_by": "code"
     },
     "ES890": {
@@ -14920,16 +14585,16 @@
       "matched_by": "code"
     }
   },
-  "region_count": 55,
+  "region_count": 52,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-09T05:54:53.825879Z",
-  "feed_updated": "2026-10-09T05:39:31.540294Z",
-  "warning_count": 137,
-  "active_count": 77,
-  "upcoming_count": 60,
+  "generated_at": "2026-10-09T06:09:29.644169Z",
+  "feed_updated": "2026-10-09T06:08:34.124565Z",
+  "warning_count": 118,
+  "active_count": 73,
+  "upcoming_count": 45,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -15079,66 +14744,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/0b423330-e40f-4519-b388-2ffef4535cdd",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261008114809.128",
-      "status": "active",
-      "sent": "2026-10-08T09:48:10Z",
-      "effective": "2026-10-08T09:00:00Z",
-      "onset": "2026-10-08T09:00:00Z",
-      "expires": "2026-10-09T05:59:00Z",
-      "event": "Orange Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Molise",
-      "emma_id": "IT014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/cff1e53e-0a4d-4773-9055-fa268296dd30",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261008114809.127",
-      "status": "active",
-      "sent": "2026-10-08T09:48:10Z",
-      "effective": "2026-10-08T09:00:00Z",
-      "onset": "2026-10-08T09:00:00Z",
-      "expires": "2026-10-09T05:59:00Z",
-      "event": "Orange Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Molise",
-      "emma_id": "IT014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a1cc4838-2e5d-4164-8310-43a94299806c",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -15356,7 +14961,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.138",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -15386,7 +14991,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.139",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -15685,36 +15290,6 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.380.3.IT.261008114809.143",
-      "status": "active",
-      "sent": "2026-10-08T09:48:10Z",
-      "effective": "2026-10-08T09:00:00Z",
-      "onset": "2026-10-08T09:00:00Z",
-      "expires": "2026-10-09T05:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Sicilia",
-      "emma_id": "IT018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c25b117d-1ba5-4eee-b601-c56f76a6dbb6",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261008114809.142",
       "status": "active",
       "sent": "2026-10-08T09:48:10Z",
@@ -15743,36 +15318,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008102209.694304COCO090654929",
-      "status": "active",
-      "sent": "2026-10-08T10:22:09Z",
-      "effective": "2026-10-08T10:20:18Z",
-      "onset": "2026-10-08T10:00:00Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Costa - Litoral sur de Tarragona",
-      "emma_id": "ES867",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/825f02da-dcd7-4687-a2e4-3b2746d1ec63",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.121",
@@ -16371,96 +15916,6 @@
       "country_code": "israel"
     },
     {
-      "id": "2.49.0.0.724.0.ES.261008202809.733005TOTO090691289",
-      "status": "active",
-      "sent": "2026-10-08T20:28:09Z",
-      "effective": "2026-10-08T20:24:29Z",
-      "onset": "2026-10-08T20:00:00Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Moderate thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Campo de Cartagena y Mazarrón",
-      "emma_id": "ES225",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/bf2703d6-dbb8-4b22-a78e-00583fe0f742",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008202809.733004TOTO090691289",
-      "status": "active",
-      "sent": "2026-10-08T20:28:09Z",
-      "effective": "2026-10-08T20:24:29Z",
-      "onset": "2026-10-08T20:00:00Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Moderate thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Valle del Guadalentín, Lorca y Águilas",
-      "emma_id": "ES224",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/37935c4b-3ea6-45b5-a598-cbc1c82d8147",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008091808.733004PRP1090651088",
-      "status": "active",
-      "sent": "2026-10-08T09:18:08Z",
-      "effective": "2026-10-08T09:15:31Z",
-      "onset": "2026-10-08T20:00:00Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Moderate rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Valle del Guadalentín, Lorca y Águilas",
-      "emma_id": "ES224",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/c3a76d63-117c-47e5-a751-e504cae72827",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261008120300.001000010",
       "status": "active",
       "sent": "2026-10-08T12:03:00Z",
@@ -16939,66 +16394,6 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261008204209.733005PRP1090692129",
-      "status": "active",
-      "sent": "2026-10-08T20:42:09Z",
-      "effective": "2026-10-08T20:40:05Z",
-      "onset": "2026-10-08T23:00:00Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Moderate rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Observed",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Campo de Cartagena y Mazarrón",
-      "emma_id": "ES225",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/1a6b001c-e4bf-47ce-abb4-fba48de9b813",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261008114809.095",
-      "status": "active",
-      "sent": "2026-10-08T09:48:09Z",
-      "effective": "2026-10-09T00:00:00Z",
-      "onset": "2026-10-09T00:00:00Z",
-      "expires": "2026-10-09T05:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Lombardia",
-      "emma_id": "IT003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/b7715820-4b42-4129-b6ce-59dc14fb3b55",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.136",
@@ -17571,36 +16966,6 @@
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009065746_0_000_yellow_HR029",
-      "status": "active",
-      "sent": "2026-10-09T04:57:46Z",
-      "effective": "2026-10-09T04:57:46Z",
-      "onset": "2026-10-09T04:57:42Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Yellow wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Dubrovačko-neretvanska",
-      "emma_id": "HR029",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/0dcf35e9-c546-4fd0-a27b-840fc23a0402",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261009073343_3_006_yellow_HR029",
       "status": "active",
       "sent": "2026-10-09T05:33:43Z",
@@ -17721,38 +17086,8 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_3_003_yellow_HR027",
-      "status": "active",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T05:33:39Z",
-      "expires": "2026-10-09T05:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Splitsko-dalmatinska",
-      "emma_id": "HR027",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/789f1764-c870-442a-b173-87a455793f6a",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261008114809.137",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -17782,7 +17117,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.140",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:10Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -17812,7 +17147,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.110",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:09Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -17842,7 +17177,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261008114809.100",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-08T09:48:09Z",
       "effective": "2026-10-09T06:00:00Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -17872,7 +17207,7 @@
     },
     {
       "id": "2.49.0.0.191.0.HR.261009073343_3_002_yellow_HR023",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-09T05:33:43Z",
       "effective": "2026-10-09T05:33:43Z",
       "onset": "2026-10-09T06:00:00Z",
@@ -20647,1998 +19982,6 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_20_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Idrijca",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.993,
-              46.237
-            ],
-            [
-              13.966,
-              46.233
-            ],
-            [
-              13.902,
-              46.23
-            ],
-            [
-              13.892,
-              46.225
-            ],
-            [
-              13.857,
-              46.229
-            ],
-            [
-              13.834,
-              46.239
-            ],
-            [
-              13.813,
-              46.238
-            ],
-            [
-              13.784,
-              46.214
-            ],
-            [
-              13.779,
-              46.201
-            ],
-            [
-              13.793,
-              46.195
-            ],
-            [
-              13.761,
-              46.156
-            ],
-            [
-              13.74,
-              46.152
-            ],
-            [
-              13.752,
-              46.136
-            ],
-            [
-              13.783,
-              46.113
-            ],
-            [
-              13.77,
-              46.077
-            ],
-            [
-              13.745,
-              46.058
-            ],
-            [
-              13.748,
-              46.042
-            ],
-            [
-              13.771,
-              46.03
-            ],
-            [
-              13.803,
-              46.043
-            ],
-            [
-              13.8,
-              46.027
-            ],
-            [
-              13.825,
-              46.003
-            ],
-            [
-              13.851,
-              45.995
-            ],
-            [
-              13.865,
-              45.978
-            ],
-            [
-              13.893,
-              45.973
-            ],
-            [
-              13.912,
-              45.964
-            ],
-            [
-              13.953,
-              45.928
-            ],
-            [
-              13.98,
-              45.915
-            ],
-            [
-              14.025,
-              45.914
-            ],
-            [
-              14.048,
-              45.908
-            ],
-            [
-              14.091,
-              45.89
-            ],
-            [
-              14.094,
-              45.902
-            ],
-            [
-              14.085,
-              45.933
-            ],
-            [
-              14.113,
-              45.949
-            ],
-            [
-              14.12,
-              45.961
-            ],
-            [
-              14.112,
-              45.979
-            ],
-            [
-              14.082,
-              45.986
-            ],
-            [
-              14.072,
-              46.002
-            ],
-            [
-              14.046,
-              46.011
-            ],
-            [
-              14.043,
-              46.026
-            ],
-            [
-              14.058,
-              46.043
-            ],
-            [
-              14.028,
-              46.071
-            ],
-            [
-              14.018,
-              46.071
-            ],
-            [
-              14.0,
-              46.09
-            ],
-            [
-              14.003,
-              46.105
-            ],
-            [
-              14.025,
-              46.114
-            ],
-            [
-              14.019,
-              46.129
-            ],
-            [
-              14.044,
-              46.14
-            ],
-            [
-              14.055,
-              46.138
-            ],
-            [
-              14.073,
-              46.156
-            ],
-            [
-              14.039,
-              46.172
-            ],
-            [
-              14.008,
-              46.17
-            ],
-            [
-              13.998,
-              46.16
-            ],
-            [
-              13.975,
-              46.176
-            ],
-            [
-              13.984,
-              46.19
-            ],
-            [
-              13.986,
-              46.191
-            ],
-            [
-              13.996,
-              46.221
-            ],
-            [
-              13.993,
-              46.237
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/ab81d83f-90bc-4f37-8a28-1eff29324501",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_16_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Kraška Ljubljanica",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              14.562,
-              45.866
-            ],
-            [
-              14.514,
-              45.887
-            ],
-            [
-              14.501,
-              45.886
-            ],
-            [
-              14.474,
-              45.872
-            ],
-            [
-              14.458,
-              45.873
-            ],
-            [
-              14.431,
-              45.859
-            ],
-            [
-              14.409,
-              45.873
-            ],
-            [
-              14.4,
-              45.857
-            ],
-            [
-              14.379,
-              45.873
-            ],
-            [
-              14.36,
-              45.87
-            ],
-            [
-              14.344,
-              45.889
-            ],
-            [
-              14.318,
-              45.894
-            ],
-            [
-              14.301,
-              45.887
-            ],
-            [
-              14.294,
-              45.905
-            ],
-            [
-              14.259,
-              45.932
-            ],
-            [
-              14.255,
-              45.939
-            ],
-            [
-              14.206,
-              45.958
-            ],
-            [
-              14.223,
-              45.966
-            ],
-            [
-              14.213,
-              45.984
-            ],
-            [
-              14.236,
-              45.996
-            ],
-            [
-              14.213,
-              46.008
-            ],
-            [
-              14.19,
-              46.005
-            ],
-            [
-              14.208,
-              45.987
-            ],
-            [
-              14.151,
-              45.977
-            ],
-            [
-              14.144,
-              45.971
-            ],
-            [
-              14.112,
-              45.979
-            ],
-            [
-              14.12,
-              45.961
-            ],
-            [
-              14.113,
-              45.949
-            ],
-            [
-              14.085,
-              45.933
-            ],
-            [
-              14.094,
-              45.902
-            ],
-            [
-              14.091,
-              45.89
-            ],
-            [
-              14.1,
-              45.866
-            ],
-            [
-              14.154,
-              45.86
-            ],
-            [
-              14.187,
-              45.842
-            ],
-            [
-              14.187,
-              45.829
-            ],
-            [
-              14.145,
-              45.807
-            ],
-            [
-              14.13,
-              45.795
-            ],
-            [
-              14.108,
-              45.807
-            ],
-            [
-              14.096,
-              45.806
-            ],
-            [
-              14.083,
-              45.79
-            ],
-            [
-              14.068,
-              45.792
-            ],
-            [
-              14.057,
-              45.749
-            ],
-            [
-              14.093,
-              45.731
-            ],
-            [
-              14.104,
-              45.748
-            ],
-            [
-              14.119,
-              45.749
-            ],
-            [
-              14.141,
-              45.737
-            ],
-            [
-              14.137,
-              45.727
-            ],
-            [
-              14.15,
-              45.698
-            ],
-            [
-              14.186,
-              45.673
-            ],
-            [
-              14.207,
-              45.649
-            ],
-            [
-              14.221,
-              45.625
-            ],
-            [
-              14.241,
-              45.62
-            ],
-            [
-              14.272,
-              45.635
-            ],
-            [
-              14.301,
-              45.635
-            ],
-            [
-              14.322,
-              45.61
-            ],
-            [
-              14.342,
-              45.595
-            ],
-            [
-              14.385,
-              45.603
-            ],
-            [
-              14.463,
-              45.585
-            ],
-            [
-              14.499,
-              45.567
-            ],
-            [
-              14.514,
-              45.607
-            ],
-            [
-              14.535,
-              45.615
-            ],
-            [
-              14.566,
-              45.652
-            ],
-            [
-              14.57,
-              45.673
-            ],
-            [
-              14.558,
-              45.678
-            ],
-            [
-              14.546,
-              45.714
-            ],
-            [
-              14.536,
-              45.729
-            ],
-            [
-              14.538,
-              45.743
-            ],
-            [
-              14.563,
-              45.737
-            ],
-            [
-              14.565,
-              45.757
-            ],
-            [
-              14.548,
-              45.798
-            ],
-            [
-              14.563,
-              45.808
-            ],
-            [
-              14.546,
-              45.82
-            ],
-            [
-              14.528,
-              45.848
-            ],
-            [
-              14.545,
-              45.872
-            ],
-            [
-              14.562,
-              45.866
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/576c43ce-ac43-4a25-80b5-0fcacd0f5862",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_25_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Morje",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.627,
-              45.459
-            ],
-            [
-              13.647,
-              45.463
-            ],
-            [
-              13.648,
-              45.477
-            ],
-            [
-              13.622,
-              45.498
-            ],
-            [
-              13.63,
-              45.524
-            ],
-            [
-              13.647,
-              45.523
-            ],
-            [
-              13.707,
-              45.537
-            ],
-            [
-              13.732,
-              45.515
-            ],
-            [
-              13.752,
-              45.513
-            ],
-            [
-              13.768,
-              45.526
-            ],
-            [
-              13.773,
-              45.546
-            ],
-            [
-              13.767,
-              45.576
-            ],
-            [
-              13.737,
-              45.588
-            ],
-            [
-              13.74,
-              45.597
-            ],
-            [
-              13.712,
-              45.593
-            ],
-            [
-              13.711,
-              45.585
-            ],
-            [
-              13.746,
-              45.57
-            ],
-            [
-              13.735,
-              45.564
-            ],
-            [
-              13.719,
-              45.542
-            ],
-            [
-              13.691,
-              45.548
-            ],
-            [
-              13.644,
-              45.532
-            ],
-            [
-              13.617,
-              45.54
-            ],
-            [
-              13.603,
-              45.538
-            ],
-            [
-              13.584,
-              45.498
-            ],
-            [
-              13.592,
-              45.489
-            ],
-            [
-              13.587,
-              45.474
-            ],
-            [
-              13.627,
-              45.459
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/b008cffb-0d59-45e6-8c9e-d65cff2cdca4",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_23_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Reka",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              14.499,
-              45.567
-            ],
-            [
-              14.463,
-              45.585
-            ],
-            [
-              14.385,
-              45.603
-            ],
-            [
-              14.342,
-              45.595
-            ],
-            [
-              14.322,
-              45.61
-            ],
-            [
-              14.301,
-              45.635
-            ],
-            [
-              14.272,
-              45.635
-            ],
-            [
-              14.241,
-              45.62
-            ],
-            [
-              14.221,
-              45.625
-            ],
-            [
-              14.207,
-              45.649
-            ],
-            [
-              14.186,
-              45.673
-            ],
-            [
-              14.15,
-              45.698
-            ],
-            [
-              14.137,
-              45.727
-            ],
-            [
-              14.141,
-              45.737
-            ],
-            [
-              14.119,
-              45.749
-            ],
-            [
-              14.104,
-              45.748
-            ],
-            [
-              14.093,
-              45.731
-            ],
-            [
-              14.057,
-              45.749
-            ],
-            [
-              14.059,
-              45.727
-            ],
-            [
-              14.048,
-              45.715
-            ],
-            [
-              14.045,
-              45.715
-            ],
-            [
-              14.013,
-              45.713
-            ],
-            [
-              14.001,
-              45.718
-            ],
-            [
-              14.0,
-              45.743
-            ],
-            [
-              13.985,
-              45.744
-            ],
-            [
-              13.966,
-              45.735
-            ],
-            [
-              13.972,
-              45.703
-            ],
-            [
-              13.951,
-              45.679
-            ],
-            [
-              13.958,
-              45.66
-            ],
-            [
-              13.946,
-              45.636
-            ],
-            [
-              14.002,
-              45.624
-            ],
-            [
-              14.027,
-              45.613
-            ],
-            [
-              14.046,
-              45.584
-            ],
-            [
-              14.082,
-              45.589
-            ],
-            [
-              14.088,
-              45.595
-            ],
-            [
-              14.133,
-              45.578
-            ],
-            [
-              14.136,
-              45.547
-            ],
-            [
-              14.157,
-              45.526
-            ],
-            [
-              14.181,
-              45.536
-            ],
-            [
-              14.193,
-              45.531
-            ],
-            [
-              14.197,
-              45.516
-            ],
-            [
-              14.211,
-              45.517
-            ],
-            [
-              14.231,
-              45.505
-            ],
-            [
-              14.245,
-              45.505
-            ],
-            [
-              14.265,
-              45.483
-            ],
-            [
-              14.286,
-              45.49
-            ],
-            [
-              14.32,
-              45.473
-            ],
-            [
-              14.35,
-              45.485
-            ],
-            [
-              14.363,
-              45.484
-            ],
-            [
-              14.394,
-              45.494
-            ],
-            [
-              14.416,
-              45.51
-            ],
-            [
-              14.436,
-              45.509
-            ],
-            [
-              14.5,
-              45.549
-            ],
-            [
-              14.499,
-              45.567
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/af00c09c-3a29-4b5f-8a18-97692ab30334",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_24_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Rižana in Dragonja",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.946,
-              45.636
-            ],
-            [
-              13.927,
-              45.64
-            ],
-            [
-              13.918,
-              45.631
-            ],
-            [
-              13.878,
-              45.611
-            ],
-            [
-              13.851,
-              45.586
-            ],
-            [
-              13.81,
-              45.581
-            ],
-            [
-              13.781,
-              45.584
-            ],
-            [
-              13.74,
-              45.597
-            ],
-            [
-              13.737,
-              45.588
-            ],
-            [
-              13.767,
-              45.576
-            ],
-            [
-              13.773,
-              45.546
-            ],
-            [
-              13.768,
-              45.526
-            ],
-            [
-              13.752,
-              45.513
-            ],
-            [
-              13.732,
-              45.515
-            ],
-            [
-              13.707,
-              45.537
-            ],
-            [
-              13.647,
-              45.523
-            ],
-            [
-              13.63,
-              45.524
-            ],
-            [
-              13.622,
-              45.498
-            ],
-            [
-              13.648,
-              45.477
-            ],
-            [
-              13.647,
-              45.463
-            ],
-            [
-              13.627,
-              45.459
-            ],
-            [
-              13.643,
-              45.457
-            ],
-            [
-              13.675,
-              45.442
-            ],
-            [
-              13.764,
-              45.466
-            ],
-            [
-              13.798,
-              45.463
-            ],
-            [
-              13.803,
-              45.444
-            ],
-            [
-              13.815,
-              45.434
-            ],
-            [
-              13.851,
-              45.433
-            ],
-            [
-              13.858,
-              45.427
-            ],
-            [
-              13.887,
-              45.426
-            ],
-            [
-              13.897,
-              45.442
-            ],
-            [
-              13.915,
-              45.453
-            ],
-            [
-              13.957,
-              45.456
-            ],
-            [
-              13.971,
-              45.448
-            ],
-            [
-              13.985,
-              45.456
-            ],
-            [
-              13.992,
-              45.483
-            ],
-            [
-              13.962,
-              45.506
-            ],
-            [
-              13.987,
-              45.51
-            ],
-            [
-              14.011,
-              45.52
-            ],
-            [
-              14.043,
-              45.498
-            ],
-            [
-              14.073,
-              45.484
-            ],
-            [
-              14.118,
-              45.481
-            ],
-            [
-              14.144,
-              45.475
-            ],
-            [
-              14.173,
-              45.479
-            ],
-            [
-              14.208,
-              45.469
-            ],
-            [
-              14.206,
-              45.482
-            ],
-            [
-              14.231,
-              45.505
-            ],
-            [
-              14.211,
-              45.517
-            ],
-            [
-              14.197,
-              45.516
-            ],
-            [
-              14.193,
-              45.531
-            ],
-            [
-              14.181,
-              45.536
-            ],
-            [
-              14.157,
-              45.526
-            ],
-            [
-              14.136,
-              45.547
-            ],
-            [
-              14.133,
-              45.578
-            ],
-            [
-              14.088,
-              45.595
-            ],
-            [
-              14.082,
-              45.589
-            ],
-            [
-              14.046,
-              45.584
-            ],
-            [
-              14.027,
-              45.613
-            ],
-            [
-              14.002,
-              45.624
-            ],
-            [
-              13.946,
-              45.636
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/8419a078-53ea-4535-9b14-94e49340e085",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_10_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Sora",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              14.417,
-              46.139
-            ],
-            [
-              14.405,
-              46.147
-            ],
-            [
-              14.407,
-              46.162
-            ],
-            [
-              14.393,
-              46.171
-            ],
-            [
-              14.386,
-              46.186
-            ],
-            [
-              14.394,
-              46.204
-            ],
-            [
-              14.356,
-              46.233
-            ],
-            [
-              14.303,
-              46.243
-            ],
-            [
-              14.284,
-              46.234
-            ],
-            [
-              14.252,
-              46.242
-            ],
-            [
-              14.226,
-              46.24
-            ],
-            [
-              14.184,
-              46.256
-            ],
-            [
-              14.188,
-              46.27
-            ],
-            [
-              14.166,
-              46.28
-            ],
-            [
-              14.155,
-              46.275
-            ],
-            [
-              14.119,
-              46.284
-            ],
-            [
-              14.099,
-              46.272
-            ],
-            [
-              14.097,
-              46.271
-            ],
-            [
-              14.093,
-              46.238
-            ],
-            [
-              14.054,
-              46.242
-            ],
-            [
-              14.032,
-              46.253
-            ],
-            [
-              14.015,
-              46.252
-            ],
-            [
-              13.993,
-              46.237
-            ],
-            [
-              13.996,
-              46.221
-            ],
-            [
-              13.986,
-              46.191
-            ],
-            [
-              13.984,
-              46.19
-            ],
-            [
-              13.975,
-              46.176
-            ],
-            [
-              13.998,
-              46.16
-            ],
-            [
-              14.008,
-              46.17
-            ],
-            [
-              14.039,
-              46.172
-            ],
-            [
-              14.073,
-              46.156
-            ],
-            [
-              14.055,
-              46.138
-            ],
-            [
-              14.044,
-              46.14
-            ],
-            [
-              14.019,
-              46.129
-            ],
-            [
-              14.025,
-              46.114
-            ],
-            [
-              14.003,
-              46.105
-            ],
-            [
-              14.0,
-              46.09
-            ],
-            [
-              14.018,
-              46.071
-            ],
-            [
-              14.028,
-              46.071
-            ],
-            [
-              14.058,
-              46.043
-            ],
-            [
-              14.043,
-              46.026
-            ],
-            [
-              14.046,
-              46.011
-            ],
-            [
-              14.072,
-              46.002
-            ],
-            [
-              14.082,
-              45.986
-            ],
-            [
-              14.112,
-              45.979
-            ],
-            [
-              14.144,
-              45.971
-            ],
-            [
-              14.151,
-              45.977
-            ],
-            [
-              14.208,
-              45.987
-            ],
-            [
-              14.19,
-              46.005
-            ],
-            [
-              14.189,
-              46.024
-            ],
-            [
-              14.19,
-              46.039
-            ],
-            [
-              14.209,
-              46.057
-            ],
-            [
-              14.207,
-              46.077
-            ],
-            [
-              14.225,
-              46.096
-            ],
-            [
-              14.244,
-              46.098
-            ],
-            [
-              14.263,
-              46.108
-            ],
-            [
-              14.327,
-              46.096
-            ],
-            [
-              14.336,
-              46.085
-            ],
-            [
-              14.358,
-              46.087
-            ],
-            [
-              14.373,
-              46.098
-            ],
-            [
-              14.365,
-              46.116
-            ],
-            [
-              14.417,
-              46.139
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/1ec9c286-5aaf-4fed-bf14-f5df115b7625",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_21_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Srednja Soča",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.74,
-              46.152
-            ],
-            [
-              13.712,
-              46.172
-            ],
-            [
-              13.698,
-              46.167
-            ],
-            [
-              13.673,
-              46.172
-            ],
-            [
-              13.654,
-              46.161
-            ],
-            [
-              13.646,
-              46.14
-            ],
-            [
-              13.624,
-              46.124
-            ],
-            [
-              13.515,
-              46.062
-            ],
-            [
-              13.496,
-              46.048
-            ],
-            [
-              13.508,
-              46.034
-            ],
-            [
-              13.495,
-              46.015
-            ],
-            [
-              13.48,
-              46.011
-            ],
-            [
-              13.502,
-              45.98
-            ],
-            [
-              13.528,
-              45.967
-            ],
-            [
-              13.569,
-              45.969
-            ],
-            [
-              13.577,
-              45.983
-            ],
-            [
-              13.593,
-              45.99
-            ],
-            [
-              13.643,
-              45.983
-            ],
-            [
-              13.633,
-              45.95
-            ],
-            [
-              13.661,
-              45.943
-            ],
-            [
-              13.674,
-              45.949
-            ],
-            [
-              13.678,
-              45.976
-            ],
-            [
-              13.77,
-              45.954
-            ],
-            [
-              13.794,
-              45.935
-            ],
-            [
-              13.854,
-              45.925
-            ],
-            [
-              13.867,
-              45.942
-            ],
-            [
-              13.912,
-              45.964
-            ],
-            [
-              13.893,
-              45.973
-            ],
-            [
-              13.865,
-              45.978
-            ],
-            [
-              13.851,
-              45.995
-            ],
-            [
-              13.825,
-              46.003
-            ],
-            [
-              13.8,
-              46.027
-            ],
-            [
-              13.803,
-              46.043
-            ],
-            [
-              13.771,
-              46.03
-            ],
-            [
-              13.748,
-              46.042
-            ],
-            [
-              13.745,
-              46.058
-            ],
-            [
-              13.77,
-              46.077
-            ],
-            [
-              13.783,
-              46.113
-            ],
-            [
-              13.752,
-              46.136
-            ],
-            [
-              13.74,
-              46.152
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/898474af-2135-4944-b770-7070d41b4316",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
-      "id": "2.49.0.0.705.2.SI.20261008201557.flash_flood_22_20261009180001",
-      "status": "upcoming",
-      "sent": "2026-10-08T19:15:57Z",
-      "effective": "2026-10-08T19:15:57Z",
-      "onset": "2026-10-09T17:00:01Z",
-      "expires": "2026-10-09T20:00:00Z",
-      "event": "Moderate rain flood",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Vipava",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.912,
-              45.964
-            ],
-            [
-              13.867,
-              45.942
-            ],
-            [
-              13.854,
-              45.925
-            ],
-            [
-              13.794,
-              45.935
-            ],
-            [
-              13.77,
-              45.954
-            ],
-            [
-              13.678,
-              45.976
-            ],
-            [
-              13.674,
-              45.949
-            ],
-            [
-              13.661,
-              45.943
-            ],
-            [
-              13.633,
-              45.95
-            ],
-            [
-              13.638,
-              45.935
-            ],
-            [
-              13.618,
-              45.916
-            ],
-            [
-              13.609,
-              45.899
-            ],
-            [
-              13.596,
-              45.895
-            ],
-            [
-              13.59,
-              45.878
-            ],
-            [
-              13.671,
-              45.862
-            ],
-            [
-              13.688,
-              45.861
-            ],
-            [
-              13.69,
-              45.861
-            ],
-            [
-              13.716,
-              45.863
-            ],
-            [
-              13.739,
-              45.859
-            ],
-            [
-              13.788,
-              45.838
-            ],
-            [
-              13.806,
-              45.842
-            ],
-            [
-              13.837,
-              45.831
-            ],
-            [
-              13.859,
-              45.804
-            ],
-            [
-              13.887,
-              45.788
-            ],
-            [
-              13.945,
-              45.747
-            ],
-            [
-              13.964,
-              45.736
-            ],
-            [
-              13.966,
-              45.735
-            ],
-            [
-              13.985,
-              45.744
-            ],
-            [
-              14.0,
-              45.743
-            ],
-            [
-              14.001,
-              45.718
-            ],
-            [
-              14.013,
-              45.713
-            ],
-            [
-              14.045,
-              45.715
-            ],
-            [
-              14.048,
-              45.715
-            ],
-            [
-              14.059,
-              45.727
-            ],
-            [
-              14.057,
-              45.749
-            ],
-            [
-              14.068,
-              45.792
-            ],
-            [
-              14.083,
-              45.79
-            ],
-            [
-              14.096,
-              45.806
-            ],
-            [
-              14.108,
-              45.807
-            ],
-            [
-              14.13,
-              45.795
-            ],
-            [
-              14.145,
-              45.807
-            ],
-            [
-              14.187,
-              45.829
-            ],
-            [
-              14.187,
-              45.842
-            ],
-            [
-              14.154,
-              45.86
-            ],
-            [
-              14.1,
-              45.866
-            ],
-            [
-              14.091,
-              45.89
-            ],
-            [
-              14.048,
-              45.908
-            ],
-            [
-              14.025,
-              45.914
-            ],
-            [
-              13.98,
-              45.915
-            ],
-            [
-              13.953,
-              45.928
-            ],
-            [
-              13.912,
-              45.964
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-slovenia/7870bd60-2077-4d07-a0e7-a83747911fc5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Slovenia",
-      "country_code": "slovenia"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261009073343_3_004_yellow_HR027",
       "status": "upcoming",
       "sent": "2026-10-09T05:33:43Z",
@@ -22729,6 +20072,36 @@
       "country_code": "spain"
     },
     {
+      "id": "2.49.0.0.191.0.HR.261009074835_1_004_yellow_HR029",
+      "status": "upcoming",
+      "sent": "2026-10-09T05:48:35Z",
+      "effective": "2026-10-09T05:48:35Z",
+      "onset": "2026-10-09T22:00:00Z",
+      "expires": "2026-10-11T12:59:59Z",
+      "event": "Yellow rain warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Dubrovačko-neretvanska",
+      "emma_id": "HR029",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9f11671a-7b60-44ad-bbaa-049e8605afde",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
+    },
+    {
       "id": "2.49.0.0.191.0.HR.261009073343_3_008_yellow_HR029",
       "status": "upcoming",
       "sent": "2026-10-09T05:33:43Z",
@@ -22753,36 +20126,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1d6077cf-da0c-4cf6-bbb3-2d80c1c4b32a",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009073343_1_004_yellow_HR029",
-      "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
-      "onset": "2026-10-09T22:00:00Z",
-      "expires": "2026-10-10T21:59:59Z",
-      "event": "Yellow rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Dubrovačko-neretvanska",
-      "emma_id": "HR029",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/900c284e-47b9-4dcd-bbcf-8b56a019e219",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -22819,12 +20162,12 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_1_000_yellow_HR019",
+      "id": "2.49.0.0.191.0.HR.261009074835_1_000_yellow_HR019",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T05:48:35Z",
+      "effective": "2026-10-09T05:48:35Z",
       "onset": "2026-10-09T22:00:00Z",
-      "expires": "2026-10-10T21:59:59Z",
+      "expires": "2026-10-11T04:59:59Z",
       "event": "Yellow rain warning",
       "headline": "",
       "description": "",
@@ -22842,7 +20185,7 @@
       "emma_id": "HR019",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/7d825c30-e4c3-4082-9d03-27f467814de9",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e8075571-c61b-479b-8664-aafcf2983c97",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -22879,12 +20222,12 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_1_003_yellow_HR027",
+      "id": "2.49.0.0.191.0.HR.261009074835_1_003_yellow_HR027",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T05:48:35Z",
+      "effective": "2026-10-09T05:48:35Z",
       "onset": "2026-10-09T22:00:00Z",
-      "expires": "2026-10-10T21:59:59Z",
+      "expires": "2026-10-11T10:59:59Z",
       "event": "Yellow rain warning",
       "headline": "",
       "description": "",
@@ -22902,7 +20245,7 @@
       "emma_id": "HR027",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/afaa6dce-9b95-430d-8bba-6afd0a407749",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/cfce8089-828a-4179-af64-8e828da3f596",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -22939,12 +20282,12 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_1_001_yellow_HR023",
+      "id": "2.49.0.0.191.0.HR.261009074835_1_001_yellow_HR023",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T05:48:35Z",
+      "effective": "2026-10-09T05:48:35Z",
       "onset": "2026-10-09T22:00:00Z",
-      "expires": "2026-10-10T21:59:59Z",
+      "expires": "2026-10-11T06:59:59Z",
       "event": "Yellow rain warning",
       "headline": "",
       "description": "",
@@ -22962,19 +20305,19 @@
       "emma_id": "HR023",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/ac4ad08b-1f40-48b2-8553-32fb08a6fa9b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/acc625e8-fa4d-459d-9112-f0c695e8ebb6",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261009073343_1_002_yellow_HR025",
+      "id": "2.49.0.0.191.0.HR.261009074835_1_002_yellow_HR025",
       "status": "upcoming",
-      "sent": "2026-10-09T05:33:43Z",
-      "effective": "2026-10-09T05:33:43Z",
+      "sent": "2026-10-09T05:48:35Z",
+      "effective": "2026-10-09T05:48:35Z",
       "onset": "2026-10-09T22:00:00Z",
-      "expires": "2026-10-10T21:59:59Z",
+      "expires": "2026-10-11T07:59:59Z",
       "event": "Yellow rain warning",
       "headline": "",
       "description": "",
@@ -22992,7 +20335,7 @@
       "emma_id": "HR025",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e7c39b80-e83b-40a4-bc69-ce7f41531c7a",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/253d4a9a-a7d2-481d-b139-0bdadceb81a3",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
