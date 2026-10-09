@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-09T10:46:59.359989Z",
+      "checked_at": "2026-10-09T11:00:16.703151Z",
       "feed_updated": "2026-10-09T10:35:34.858516Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-09T10:46:59.204557Z",
+      "checked_at": "2026-10-09T11:00:16.578656Z",
       "feed_updated": "2026-10-09T10:44:05.127543Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-09T10:46:59.031748Z",
+      "checked_at": "2026-10-09T11:00:16.461006Z",
       "feed_updated": "2026-10-09T10:35:18.797000Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:00.708877Z",
+      "checked_at": "2026-10-09T11:00:17.380606Z",
       "feed_updated": "2026-10-09T10:35:42.137787Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:00.955809Z",
+      "checked_at": "2026-10-09T11:00:17.615263Z",
       "feed_updated": "2026-10-09T10:35:37.725980Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:00.577846Z",
+      "checked_at": "2026-10-09T11:00:17.456681Z",
       "feed_updated": "2026-10-09T10:35:21.214811Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:01.594472Z",
+      "checked_at": "2026-10-09T11:00:18.298532Z",
       "feed_updated": "2026-10-09T10:35:18.544091Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:01.759061Z",
+      "checked_at": "2026-10-09T11:00:18.191718Z",
       "feed_updated": "2026-10-09T10:35:27.993092Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:01.609579Z",
+      "checked_at": "2026-10-09T11:00:18.065850Z",
       "feed_updated": "2026-10-09T10:35:38.497604Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:02.267050Z",
+      "checked_at": "2026-10-09T11:00:18.706300Z",
       "feed_updated": "2026-10-09T10:35:31.242513Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-09T10:47:02.648650Z",
-      "feed_updated": "2026-10-09T10:35:16.625084Z"
+      "checked_at": "2026-10-09T11:00:19.028828Z",
+      "feed_updated": "2026-10-09T10:51:06.532132Z"
     }
   ],
   "uncovered": [
@@ -12816,10 +12816,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-09T10:47:04.922861Z",
-  "feed_updated": "2026-10-09T10:44:05.127543Z",
-  "warning_count": 118,
-  "active_count": 77,
+  "generated_at": "2026-10-09T11:00:20.437460Z",
+  "feed_updated": "2026-10-09T10:51:06.532132Z",
+  "warning_count": 117,
+  "active_count": 76,
   "upcoming_count": 41,
   "max_level": 3,
   "active_max_level": 3,
@@ -15250,36 +15250,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261009102430_3_004_yellow_HR028",
-      "status": "active",
-      "sent": "2026-10-09T08:24:30Z",
-      "effective": "2026-10-09T08:24:30Z",
-      "onset": "2026-10-09T08:24:24Z",
-      "expires": "2026-10-09T10:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Istarska",
-      "emma_id": "HR028",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/56eea55c-5ca0-449f-ba33-02a8c068d411",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
     },
     {
       "id": "2.49.0.0.191.0.HR.261009102430_3_001_yellow_HR019",
