@@ -22,6 +22,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from eccodes import codes_get, codes_get_values, codes_grib_new_from_file, codes_release
+from arome_parameters import Renderer, unpack
 
 BASE = "https://meteofrance-pnt.s3.rbx.io.cloud.ovh.net"
 OUT = Path("data/arome")
@@ -45,10 +46,10 @@ PALETTE = [
 def iso(date):
     return date.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-def url_for(run, lead):
+def url_for(run, lead, pack="SP2"):
     stamp=iso(run)
-    return (f"{BASE}/pnt/{stamp}/arome/001/SP2/"
-            f"arome__001__SP2__{lead:02d}H__{stamp}.grib2")
+    return (f"{BASE}/pnt/{stamp}/arome/001/{pack}/"
+            f"arome__001__{pack}__{lead:02d}H__{stamp}.grib2")
 
 def head_ok(url):
     try:
@@ -160,7 +161,10 @@ def run():
             existing=json.loads(META.read_text(encoding="utf-8"))
             if (existing.get("run_time")==iso(cycle)
                 and len(existing.get("frames",[]))==len(LEADS)
-                and existing.get("domain")=="EURW1S100-WesternMediterranean-H51"):
+                and existing.get("domain")=="EURW1S100-WesternMediterranean-H51"
+                and len(existing.get("parameters",{}))>=20
+                and (OUT/"products"/"t2m"/"h51.webp").is_file()
+                and (OUT/"products"/"sim_ir"/"h51.webp").is_file()):
                 print("Ciclo invariato: nessuna modifica",flush=True)
                 return
         except (ValueError,OSError):pass
@@ -170,11 +174,18 @@ def run():
     # Ogni scadenza contiene precipitazioni cumulate da H0.
     # L'analisi H0 di SP2 non ha precipitazioni: cumulato H0=0.
     previous=np.zeros((rows,cols),dtype=np.float32)
+    previous_components=None
     frames=[]
     OUT.mkdir(parents=True,exist_ok=True)
+    renderer=Renderer(OUT)
     for lead in LEADS:
         blob=get_bytes(url_for(cycle,lead))
         accumulated=decode_sp2(blob,lead,window)
+        sp2=unpack(blob,"SP2",lead,window)
+        sp1=unpack(get_bytes(url_for(cycle,lead,"SP1")),"SP1",lead,window)
+        sp3=unpack(get_bytes(url_for(cycle,lead,"SP3")),"SP3",lead,window)
+        renderer.frame(lead,sp1,sp2,sp3,previous_components)
+        previous_components=sp2
         difference=accumulated-previous
         good=np.isfinite(accumulated)&np.isfinite(previous)
         negatives=int(np.count_nonzero((difference<-.1)&good))
@@ -196,6 +207,9 @@ def run():
     meta={
         "model":"AROME-France HD",
         "domain":"EURW1S100-WesternMediterranean-H51",
+        "parameters":renderer.manifest(),
+        "product_path_template":"data/arome/products/{parameter}/h{lead:02d}.webp",
+        "product_count":len(renderer.manifest()),
         "forecast_horizon_hours":LEADS[-1],
         "domain_note":"Copertura effettiva AROME variabile entro la griglia EURW1S100; sud del Mediterraneo non coperto sotto 37,5°N. Celle mancanti trasparenti.",
         "producer":"Météo-France",
