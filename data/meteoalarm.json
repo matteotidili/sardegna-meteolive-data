@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:13.897679Z",
+      "checked_at": "2026-10-10T09:59:27.350495Z",
       "feed_updated": "2026-10-10T09:35:26.503513Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:13.696120Z",
+      "checked_at": "2026-10-10T09:59:27.238642Z",
       "feed_updated": "2026-10-10T09:40:31.229980Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:13.589666Z",
+      "checked_at": "2026-10-10T09:59:27.140417Z",
       "feed_updated": "2026-10-10T09:35:13.733130Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:14.397404Z",
+      "checked_at": "2026-10-10T09:59:28.224806Z",
       "feed_updated": "2026-10-10T09:35:34.167801Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:14.607855Z",
+      "checked_at": "2026-10-10T09:59:28.541286Z",
       "feed_updated": "2026-10-10T09:35:28.111154Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:14.737896Z",
+      "checked_at": "2026-10-10T09:59:28.229913Z",
       "feed_updated": "2026-10-10T09:35:17.064570Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:15.499658Z",
+      "checked_at": "2026-10-10T09:59:28.948383Z",
       "feed_updated": "2026-10-10T09:35:12.282206Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:15.488402Z",
+      "checked_at": "2026-10-10T09:59:28.842354Z",
       "feed_updated": "2026-10-10T09:35:23.040924Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:15.400140Z",
+      "checked_at": "2026-10-10T09:59:29.157954Z",
       "feed_updated": "2026-10-10T09:35:26.324043Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-10T09:48:15.912701Z",
+      "checked_at": "2026-10-10T09:59:29.259113Z",
       "feed_updated": "2026-10-10T09:35:26.112662Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-10T09:48:16.322792Z",
-      "feed_updated": "2026-10-10T09:35:09.239474Z"
+      "checked_at": "2026-10-10T09:59:29.854165Z",
+      "feed_updated": "2026-10-10T09:50:18.357321Z"
     }
   ],
   "uncovered": [
@@ -9685,14 +9685,14 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-10T09:48:17.552943Z",
-  "feed_updated": "2026-10-10T09:40:31.229980Z",
-  "warning_count": 92,
+  "generated_at": "2026-10-10T09:59:31.276281Z",
+  "feed_updated": "2026-10-10T09:50:18.357321Z",
+  "warning_count": 93,
   "active_count": 61,
-  "upcoming_count": 31,
+  "upcoming_count": 32,
   "max_level": 3,
   "active_max_level": 3,
-  "upcoming_max_level": 2,
+  "upcoming_max_level": 3,
   "warnings": [
     {
       "id": "2.49.0.1.499.0.1791535686267",
@@ -9933,6 +9933,134 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.376.0.261010124029.59128",
+      "status": "upcoming",
+      "sent": "2026-10-10T09:40:29Z",
+      "effective": "2026-10-10T09:40:29Z",
+      "onset": "2026-10-11T09:00:00Z",
+      "expires": "2026-10-11T17:00:00Z",
+      "event": "FLOOD",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "FLOOD",
+      "area_desc": "South Judea Desert  Dead Sea",
+      "emma_id": "",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.42713897,
+              31.04533009
+            ],
+            [
+              35.42546174,
+              31.04538051
+            ],
+            [
+              35.36508011,
+              31.06589229
+            ],
+            [
+              35.32096685,
+              31.09071256
+            ],
+            [
+              35.2946378,
+              31.10450395
+            ],
+            [
+              35.28897596,
+              31.20127354
+            ],
+            [
+              35.28394335,
+              31.28728852
+            ],
+            [
+              35.24838506,
+              31.34428397
+            ],
+            [
+              35.23213367,
+              31.37146376
+            ],
+            [
+              35.22783087,
+              31.3773363
+            ],
+            [
+              35.23683445,
+              31.38021464
+            ],
+            [
+              35.29574867,
+              31.42175669
+            ],
+            [
+              35.35626618,
+              31.45179743
+            ],
+            [
+              35.47708495,
+              31.49642939
+            ],
+            [
+              35.4751214,
+              31.42534834
+            ],
+            [
+              35.45473711,
+              31.36030192
+            ],
+            [
+              35.4138859,
+              31.29644389
+            ],
+            [
+              35.39339298,
+              31.24803538
+            ],
+            [
+              35.39884776,
+              31.23601908
+            ],
+            [
+              35.45182792,
+              31.16357798
+            ],
+            [
+              35.45921674,
+              31.12014765
+            ],
+            [
+              35.44999564,
+              31.08581538
+            ],
+            [
+              35.42713897,
+              31.04533009
+            ]
+          ]
+        ]
+      },
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/42e0845a-9f85-440e-9071-cc5640204bf4",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Israele",
+      "country_code": "israel"
     },
     {
       "id": "2.49.0.1.499.0.1791535642979",
