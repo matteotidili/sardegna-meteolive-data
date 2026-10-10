@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:26.485852Z",
-      "feed_updated": "2026-10-10T10:35:33.868182Z"
+      "checked_at": "2026-10-10T11:09:44.504261Z",
+      "feed_updated": "2026-10-10T11:05:18.400352Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:26.343510Z",
-      "feed_updated": "2026-10-10T10:53:06.774806Z"
+      "checked_at": "2026-10-10T11:09:44.343479Z",
+      "feed_updated": "2026-10-10T11:05:10.615176Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:26.175279Z",
-      "feed_updated": "2026-10-10T10:35:16.248510Z"
+      "checked_at": "2026-10-10T11:09:44.167633Z",
+      "feed_updated": "2026-10-10T11:05:07.793194Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:27.255047Z",
-      "feed_updated": "2026-10-10T10:35:39.921017Z"
+      "checked_at": "2026-10-10T11:09:45.312895Z",
+      "feed_updated": "2026-10-10T11:05:22.202727Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:27.533353Z",
-      "feed_updated": "2026-10-10T10:35:32.489549Z"
+      "checked_at": "2026-10-10T11:09:46.172408Z",
+      "feed_updated": "2026-10-10T11:05:33.523759Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:27.265606Z",
-      "feed_updated": "2026-10-10T10:35:20.898192Z"
+      "checked_at": "2026-10-10T11:09:45.612632Z",
+      "feed_updated": "2026-10-10T11:05:09.412338Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:28.058138Z",
-      "feed_updated": "2026-10-10T10:35:18.264803Z"
+      "checked_at": "2026-10-10T11:09:46.324837Z",
+      "feed_updated": "2026-10-10T11:05:07.226420Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:28.179101Z",
-      "feed_updated": "2026-10-10T10:35:26.202495Z"
+      "checked_at": "2026-10-10T11:09:46.858533Z",
+      "feed_updated": "2026-10-10T11:05:26.714467Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:28.077538Z",
-      "feed_updated": "2026-10-10T10:35:38.758800Z"
+      "checked_at": "2026-10-10T11:09:46.675437Z",
+      "feed_updated": "2026-10-10T11:05:32.858445Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-10T10:57:28.841185Z",
-      "feed_updated": "2026-10-10T10:35:36.916108Z"
+      "checked_at": "2026-10-10T11:09:46.976677Z",
+      "feed_updated": "2026-10-10T11:05:19.776847Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-10T10:57:29.224390Z",
-      "feed_updated": "2026-10-10T10:45:59.295467Z"
+      "checked_at": "2026-10-10T11:09:47.816755Z",
+      "feed_updated": "2026-10-10T11:05:03.897200Z"
     }
   ],
   "uncovered": [
@@ -9685,8 +9685,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-10T10:57:31.474686Z",
-  "feed_updated": "2026-10-10T10:53:06.774806Z",
+  "generated_at": "2026-10-10T11:09:50.077369Z",
+  "feed_updated": "2026-10-10T11:05:33.523759Z",
   "warning_count": 93,
   "active_count": 62,
   "upcoming_count": 31,
@@ -16797,8 +16797,6 @@
   ],
   "errors": [
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a6b9f470-ba01-4573-9994-07cf417d41d3: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a6b9f470-ba01-4573-9994-07cf417d41d3: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a1017692-9e27-45ea-8cfc-0e16a6af763d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a1017692-9e27-45ea-8cfc-0e16a6af763d: ValueError"
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a6b9f470-ba01-4573-9994-07cf417d41d3: ValueError"
   ]
 }
