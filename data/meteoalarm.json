@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:56.541197Z",
-      "feed_updated": "2026-10-10T20:35:50.787493Z"
+      "checked_at": "2026-10-10T21:15:15.870052Z",
+      "feed_updated": "2026-10-10T21:05:52.999974Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:56.284615Z",
-      "feed_updated": "2026-10-10T20:35:25.589327Z"
+      "checked_at": "2026-10-10T21:15:15.778035Z",
+      "feed_updated": "2026-10-10T21:05:23.388746Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:56.232648Z",
-      "feed_updated": "2026-10-10T20:35:01.828063Z"
+      "checked_at": "2026-10-10T21:15:15.674250Z",
+      "feed_updated": "2026-10-10T21:05:13.194246Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:57.397469Z",
-      "feed_updated": "2026-10-10T20:35:57.573042Z"
+      "checked_at": "2026-10-10T21:15:16.646604Z",
+      "feed_updated": "2026-10-10T21:05:59.987648Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:57.658993Z",
-      "feed_updated": "2026-10-10T20:35:53.529480Z"
+      "checked_at": "2026-10-10T21:15:16.860885Z",
+      "feed_updated": "2026-10-10T21:05:55.249531Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:57.349258Z",
-      "feed_updated": "2026-10-10T20:35:33.184510Z"
+      "checked_at": "2026-10-10T21:15:16.652230Z",
+      "feed_updated": "2026-10-10T21:05:31.694694Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:58.264759Z",
-      "feed_updated": "2026-10-10T20:35:16.957361Z"
+      "checked_at": "2026-10-10T21:15:18.053032Z",
+      "feed_updated": "2026-10-10T21:05:32.617347Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:58.520976Z",
-      "feed_updated": "2026-10-10T20:35:40.685541Z"
+      "checked_at": "2026-10-10T21:15:18.164362Z",
+      "feed_updated": "2026-10-10T21:05:39.708896Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:58.455639Z",
-      "feed_updated": "2026-10-10T20:35:56.545380Z"
+      "checked_at": "2026-10-10T21:15:17.908543Z",
+      "feed_updated": "2026-10-10T21:05:59.870011Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-10T20:59:58.659150Z",
-      "feed_updated": "2026-10-10T20:35:34.216545Z"
+      "checked_at": "2026-10-10T21:15:18.539410Z",
+      "feed_updated": "2026-10-10T21:05:17.734372Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-10T20:59:59.639857Z",
-      "feed_updated": "2026-10-10T20:35:34.798428Z"
+      "checked_at": "2026-10-10T21:15:19.063083Z",
+      "feed_updated": "2026-10-10T21:05:33.315239Z"
     }
   ],
   "uncovered": [
@@ -11372,11 +11372,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-10T21:00:01.527345Z",
-  "feed_updated": "2026-10-10T20:35:57.573042Z",
-  "warning_count": 103,
+  "generated_at": "2026-10-10T21:15:20.465361Z",
+  "feed_updated": "2026-10-10T21:05:59.987648Z",
+  "warning_count": 102,
   "active_count": 48,
-  "upcoming_count": 55,
+  "upcoming_count": 54,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -11713,7 +11713,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261010123500.002000010",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T12:35:00Z",
       "effective": "2026-10-10T12:35:00Z",
       "onset": "2026-10-10T21:00:00Z",
@@ -13234,134 +13234,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.376.0.261010061819.59116",
-      "status": "active",
-      "sent": "2026-10-10T03:18:19Z",
-      "effective": "2026-10-10T03:18:19Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T21:00:00Z",
-      "event": "EXTREME HIGH TEMP",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "EXTREME HIGH TEMP",
-      "area_desc": "South Judea Desert  Dead Sea",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              35.42713897,
-              31.04533009
-            ],
-            [
-              35.42546174,
-              31.04538051
-            ],
-            [
-              35.36508011,
-              31.06589229
-            ],
-            [
-              35.32096685,
-              31.09071256
-            ],
-            [
-              35.2946378,
-              31.10450395
-            ],
-            [
-              35.28897596,
-              31.20127354
-            ],
-            [
-              35.28394335,
-              31.28728852
-            ],
-            [
-              35.24838506,
-              31.34428397
-            ],
-            [
-              35.23213367,
-              31.37146376
-            ],
-            [
-              35.22783087,
-              31.3773363
-            ],
-            [
-              35.23683445,
-              31.38021464
-            ],
-            [
-              35.29574867,
-              31.42175669
-            ],
-            [
-              35.35626618,
-              31.45179743
-            ],
-            [
-              35.47708495,
-              31.49642939
-            ],
-            [
-              35.4751214,
-              31.42534834
-            ],
-            [
-              35.45473711,
-              31.36030192
-            ],
-            [
-              35.4138859,
-              31.29644389
-            ],
-            [
-              35.39339298,
-              31.24803538
-            ],
-            [
-              35.39884776,
-              31.23601908
-            ],
-            [
-              35.45182792,
-              31.16357798
-            ],
-            [
-              35.45921674,
-              31.12014765
-            ],
-            [
-              35.44999564,
-              31.08581538
-            ],
-            [
-              35.42713897,
-              31.04533009
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a251027d-df90-45cb-890b-58a7fc176402",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
     },
     {
       "id": "2.49.0.0.300.0.GR.261010123600.002000008",
