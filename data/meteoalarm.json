@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:58.665614Z",
-      "feed_updated": "2026-10-10T07:35:52.893431Z"
+      "checked_at": "2026-10-10T08:16:34.937836Z",
+      "feed_updated": "2026-10-10T08:05:23.114036Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:58.460333Z",
-      "feed_updated": "2026-10-10T07:35:28.006355Z"
+      "checked_at": "2026-10-10T08:16:34.701473Z",
+      "feed_updated": "2026-10-10T08:05:27.263921Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:58.326395Z",
-      "feed_updated": "2026-10-10T07:35:16.667308Z"
+      "checked_at": "2026-10-10T08:16:34.546101Z",
+      "feed_updated": "2026-10-10T08:05:13.920378Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:59.439882Z",
-      "feed_updated": "2026-10-10T07:35:52.735695Z"
+      "checked_at": "2026-10-10T08:16:36.759774Z",
+      "feed_updated": "2026-10-10T08:05:50.456155Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:59.751982Z",
-      "feed_updated": "2026-10-10T07:49:57.992339Z"
+      "checked_at": "2026-10-10T08:16:37.020776Z",
+      "feed_updated": "2026-10-10T08:05:33.394211Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-10T07:59:59.900711Z",
-      "feed_updated": "2026-10-10T07:35:19.707772Z"
+      "checked_at": "2026-10-10T08:16:36.626881Z",
+      "feed_updated": "2026-10-10T08:05:18.694284Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-10T08:00:00.396040Z",
-      "feed_updated": "2026-10-10T07:35:15.924798Z"
+      "checked_at": "2026-10-10T08:16:37.399630Z",
+      "feed_updated": "2026-10-10T08:05:16.291842Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-10T08:00:00.577982Z",
-      "feed_updated": "2026-10-10T07:35:37.462354Z"
+      "checked_at": "2026-10-10T08:16:37.423569Z",
+      "feed_updated": "2026-10-10T08:05:40.442932Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-10T08:00:00.893640Z",
-      "feed_updated": "2026-10-10T07:35:37.251369Z"
+      "checked_at": "2026-10-10T08:16:37.540012Z",
+      "feed_updated": "2026-10-10T08:05:40.223627Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-10T08:00:00.992458Z",
-      "feed_updated": "2026-10-10T07:35:40.733161Z"
+      "checked_at": "2026-10-10T08:16:37.952729Z",
+      "feed_updated": "2026-10-10T08:05:22.017448Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-10T08:00:05.761724Z",
-      "feed_updated": "2026-10-10T07:35:15.090691Z"
+      "checked_at": "2026-10-10T08:16:38.311173Z",
+      "feed_updated": "2026-10-10T08:06:02.630725Z"
     }
   ],
   "uncovered": [
@@ -4306,125 +4306,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT020",
-      "matched_by": "code"
-    },
-    "ES123": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                -13.495,
-                29.221
-              ],
-              [
-                -13.46,
-                29.227
-              ],
-              [
-                -13.426,
-                29.199
-              ],
-              [
-                -13.448,
-                29.145
-              ],
-              [
-                -13.457,
-                29.063
-              ],
-              [
-                -13.487,
-                28.999
-              ],
-              [
-                -13.643,
-                28.921
-              ],
-              [
-                -13.705,
-                28.913
-              ],
-              [
-                -13.763,
-                28.859
-              ],
-              [
-                -13.794,
-                28.85
-              ],
-              [
-                -13.87,
-                28.865
-              ],
-              [
-                -13.869,
-                28.9
-              ],
-              [
-                -13.831,
-                28.957
-              ],
-              [
-                -13.813,
-                29.029
-              ],
-              [
-                -13.647,
-                29.123
-              ],
-              [
-                -13.586,
-                29.133
-              ],
-              [
-                -13.558,
-                29.121
-              ],
-              [
-                -13.53,
-                29.141
-              ],
-              [
-                -13.495,
-                29.221
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -13.495,
-                29.221
-              ],
-              [
-                -13.535,
-                29.225
-              ],
-              [
-                -13.512,
-                29.278
-              ],
-              [
-                -13.476,
-                29.27
-              ],
-              [
-                -13.49,
-                29.248
-              ],
-              [
-                -13.495,
-                29.221
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ES123",
       "matched_by": "code"
     },
     "HR805": {
@@ -10135,19 +10016,19 @@
       "matched_by": "code"
     }
   },
-  "region_count": 32,
+  "region_count": 31,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-10T08:00:07.933129Z",
-  "feed_updated": "2026-10-10T07:49:57.992339Z",
-  "warning_count": 85,
+  "generated_at": "2026-10-10T08:16:40.633389Z",
+  "feed_updated": "2026-10-10T08:06:02.630725Z",
+  "warning_count": 84,
   "active_count": 38,
-  "upcoming_count": 47,
+  "upcoming_count": 46,
   "max_level": 3,
   "active_max_level": 3,
-  "upcoming_max_level": 3,
+  "upcoming_max_level": 2,
   "warnings": [
     {
       "id": "2.49.0.0.380.3.IT.261009104343.085",
@@ -10451,7 +10332,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261009104343.079",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-09T08:43:43Z",
       "effective": "2026-10-10T08:00:00Z",
       "onset": "2026-10-10T08:00:00Z",
@@ -10718,36 +10599,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261009091408.659101PRP1100837248",
-      "status": "active",
-      "sent": "2026-10-09T09:14:08Z",
-      "effective": "2026-10-09T09:10:30Z",
-      "onset": "2026-10-09T14:00:00Z",
-      "expires": "2026-10-10T07:59:59Z",
-      "event": "Moderate rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Lanzarote",
-      "emma_id": "ES123",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/a52f1ef7-351a-43c4-b042-0b93361344e9",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.70.1.BA.261009103848.51816675",
