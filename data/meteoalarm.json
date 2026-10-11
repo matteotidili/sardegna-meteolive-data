@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:17.843946Z",
-      "feed_updated": "2026-10-10T23:35:55.461449Z"
+      "checked_at": "2026-10-11T00:19:58.949467Z",
+      "feed_updated": "2026-10-11T00:05:29.291004Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:17.509282Z",
-      "feed_updated": "2026-10-10T23:35:24.680222Z"
+      "checked_at": "2026-10-11T00:19:58.628053Z",
+      "feed_updated": "2026-10-11T00:05:19.637872Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:17.490174Z",
-      "feed_updated": "2026-10-10T23:35:49.656231Z"
+      "checked_at": "2026-10-11T00:19:58.615569Z",
+      "feed_updated": "2026-10-11T00:05:27.935899Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:18.638402Z",
-      "feed_updated": "2026-10-10T23:35:54.179832Z"
+      "checked_at": "2026-10-11T00:19:59.215797Z",
+      "feed_updated": "2026-10-11T00:05:47.036859Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:19.224682Z",
-      "feed_updated": "2026-10-10T23:35:57.615128Z"
+      "checked_at": "2026-10-11T00:19:59.680783Z",
+      "feed_updated": "2026-10-11T00:05:34.721402Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:18.752189Z",
-      "feed_updated": "2026-10-10T23:35:16.314246Z"
+      "checked_at": "2026-10-11T00:19:59.671283Z",
+      "feed_updated": "2026-10-11T00:05:02.455588Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:19.659074Z",
-      "feed_updated": "2026-10-10T23:35:14.082862Z"
+      "checked_at": "2026-10-11T00:19:59.793253Z",
+      "feed_updated": "2026-10-11T00:05:15.395444Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:19.885867Z",
-      "feed_updated": "2026-10-10T23:35:39.756456Z"
+      "checked_at": "2026-10-11T00:20:00.478962Z",
+      "feed_updated": "2026-10-11T00:05:17.458078Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:19.920141Z",
-      "feed_updated": "2026-10-10T23:35:53.970071Z"
+      "checked_at": "2026-10-11T00:20:00.266111Z",
+      "feed_updated": "2026-10-11T00:05:46.821902Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-10T23:58:20.295945Z",
-      "feed_updated": "2026-10-10T23:35:14.425632Z"
+      "checked_at": "2026-10-11T00:20:00.253101Z",
+      "feed_updated": "2026-10-11T00:05:09.470151Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-10T23:58:20.975896Z",
-      "feed_updated": "2026-10-10T23:35:32.531117Z"
+      "checked_at": "2026-10-11T00:20:01.378340Z",
+      "feed_updated": "2026-10-11T00:05:23.657534Z"
     }
   ],
   "uncovered": [
@@ -2589,821 +2589,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT011",
-      "matched_by": "code"
-    },
-    "IT016": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              15.009,
-              41.485
-            ],
-            [
-              14.855,
-              41.424
-            ],
-            [
-              14.786,
-              41.451
-            ],
-            [
-              14.738,
-              41.408
-            ],
-            [
-              14.685,
-              41.412
-            ],
-            [
-              14.613,
-              41.367
-            ],
-            [
-              14.509,
-              41.381
-            ],
-            [
-              14.463,
-              41.425
-            ],
-            [
-              14.123,
-              41.507
-            ],
-            [
-              14.078,
-              41.451
-            ],
-            [
-              14.118,
-              41.388
-            ],
-            [
-              14.045,
-              41.399
-            ],
-            [
-              13.98,
-              41.465
-            ],
-            [
-              13.873,
-              41.419
-            ],
-            [
-              13.872,
-              41.373
-            ],
-            [
-              13.887,
-              41.295
-            ],
-            [
-              13.76,
-              41.222
-            ],
-            [
-              13.818,
-              41.178
-            ],
-            [
-              13.901,
-              41.071
-            ],
-            [
-              13.92,
-              41.023
-            ],
-            [
-              14.001,
-              40.944
-            ],
-            [
-              14.041,
-              40.848
-            ],
-            [
-              14.006,
-              40.774
-            ],
-            [
-              13.892,
-              40.775
-            ],
-            [
-              13.825,
-              40.741
-            ],
-            [
-              13.882,
-              40.662
-            ],
-            [
-              14.085,
-              40.766
-            ],
-            [
-              14.21,
-              40.799
-            ],
-            [
-              14.22,
-              40.822
-            ],
-            [
-              14.304,
-              40.825
-            ],
-            [
-              14.405,
-              40.749
-            ],
-            [
-              14.445,
-              40.75
-            ],
-            [
-              14.47,
-              40.723
-            ],
-            [
-              14.443,
-              40.686
-            ],
-            [
-              14.194,
-              40.56
-            ],
-            [
-              14.194,
-              40.524
-            ],
-            [
-              14.296,
-              40.552
-            ],
-            [
-              14.486,
-              40.623
-            ],
-            [
-              14.524,
-              40.605
-            ],
-            [
-              14.578,
-              40.611
-            ],
-            [
-              14.627,
-              40.645
-            ],
-            [
-              14.691,
-              40.629
-            ],
-            [
-              14.723,
-              40.664
-            ],
-            [
-              14.757,
-              40.673
-            ],
-            [
-              14.793,
-              40.658
-            ],
-            [
-              14.878,
-              40.583
-            ],
-            [
-              14.984,
-              40.42
-            ],
-            [
-              14.999,
-              40.377
-            ],
-            [
-              14.993,
-              40.355
-            ],
-            [
-              14.984,
-              40.358
-            ],
-            [
-              14.969,
-              40.344
-            ],
-            [
-              14.943,
-              40.338
-            ],
-            [
-              14.937,
-              40.318
-            ],
-            [
-              14.944,
-              40.281
-            ],
-            [
-              14.896,
-              40.251
-            ],
-            [
-              14.933,
-              40.225
-            ],
-            [
-              14.943,
-              40.232
-            ],
-            [
-              14.999,
-              40.209
-            ],
-            [
-              15.023,
-              40.174
-            ],
-            [
-              15.066,
-              40.163
-            ],
-            [
-              15.121,
-              40.172
-            ],
-            [
-              15.178,
-              40.125
-            ],
-            [
-              15.264,
-              40.077
-            ],
-            [
-              15.279,
-              40.056
-            ],
-            [
-              15.26,
-              40.017
-            ],
-            [
-              15.421,
-              39.983
-            ],
-            [
-              15.518,
-              40.064
-            ],
-            [
-              15.594,
-              40.073
-            ],
-            [
-              15.643,
-              40.04
-            ],
-            [
-              15.751,
-              40.21
-            ],
-            [
-              15.809,
-              40.263
-            ],
-            [
-              15.45,
-              40.612
-            ],
-            [
-              15.497,
-              40.651
-            ],
-            [
-              15.387,
-              40.728
-            ],
-            [
-              15.354,
-              40.881
-            ],
-            [
-              15.462,
-              40.87
-            ],
-            [
-              15.538,
-              40.926
-            ],
-            [
-              15.569,
-              40.984
-            ],
-            [
-              15.554,
-              41.038
-            ],
-            [
-              15.542,
-              41.055
-            ],
-            [
-              15.401,
-              41.102
-            ],
-            [
-              15.32,
-              41.091
-            ],
-            [
-              15.279,
-              41.103
-            ],
-            [
-              15.214,
-              41.162
-            ],
-            [
-              15.251,
-              41.198
-            ],
-            [
-              15.273,
-              41.257
-            ],
-            [
-              15.147,
-              41.284
-            ],
-            [
-              15.06,
-              41.36
-            ],
-            [
-              15.099,
-              41.421
-            ],
-            [
-              15.009,
-              41.485
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT016",
-      "matched_by": "code"
-    },
-    "IT017": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              16.87,
-              40.395
-            ],
-            [
-              16.73,
-              40.474
-            ],
-            [
-              16.722,
-              40.713
-            ],
-            [
-              16.566,
-              40.764
-            ],
-            [
-              16.41,
-              40.701
-            ],
-            [
-              16.163,
-              40.932
-            ],
-            [
-              16.113,
-              40.9
-            ],
-            [
-              15.97,
-              40.963
-            ],
-            [
-              16.045,
-              41.032
-            ],
-            [
-              15.948,
-              41.106
-            ],
-            [
-              15.89,
-              41.127
-            ],
-            [
-              15.853,
-              41.132
-            ],
-            [
-              15.763,
-              41.089
-            ],
-            [
-              15.568,
-              41.094
-            ],
-            [
-              15.542,
-              41.055
-            ],
-            [
-              15.569,
-              40.984
-            ],
-            [
-              15.538,
-              40.926
-            ],
-            [
-              15.462,
-              40.87
-            ],
-            [
-              15.354,
-              40.881
-            ],
-            [
-              15.387,
-              40.728
-            ],
-            [
-              15.497,
-              40.651
-            ],
-            [
-              15.45,
-              40.612
-            ],
-            [
-              15.809,
-              40.263
-            ],
-            [
-              15.751,
-              40.21
-            ],
-            [
-              15.643,
-              40.04
-            ],
-            [
-              15.669,
-              40.033
-            ],
-            [
-              15.675,
-              40.011
-            ],
-            [
-              15.751,
-              39.921
-            ],
-            [
-              15.768,
-              39.938
-            ],
-            [
-              15.773,
-              39.961
-            ],
-            [
-              15.794,
-              39.971
-            ],
-            [
-              15.82,
-              40.003
-            ],
-            [
-              15.849,
-              40.007
-            ],
-            [
-              16.032,
-              39.996
-            ],
-            [
-              16.016,
-              39.941
-            ],
-            [
-              16.048,
-              39.898
-            ],
-            [
-              16.183,
-              39.909
-            ],
-            [
-              16.31,
-              39.935
-            ],
-            [
-              16.35,
-              39.899
-            ],
-            [
-              16.421,
-              40.143
-            ],
-            [
-              16.621,
-              40.132
-            ],
-            [
-              16.648,
-              40.117
-            ],
-            [
-              16.691,
-              40.148
-            ],
-            [
-              16.87,
-              40.395
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT017",
-      "matched_by": "code"
-    },
-    "IT010": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.191,
-              42.733
-            ],
-            [
-              13.204,
-              42.768
-            ],
-            [
-              13.241,
-              42.765
-            ],
-            [
-              13.263,
-              42.815
-            ],
-            [
-              13.237,
-              42.86
-            ],
-            [
-              13.155,
-              42.831
-            ],
-            [
-              13.051,
-              42.923
-            ],
-            [
-              12.98,
-              42.87
-            ],
-            [
-              12.889,
-              43.012
-            ],
-            [
-              12.872,
-              43.126
-            ],
-            [
-              12.816,
-              43.275
-            ],
-            [
-              12.762,
-              43.381
-            ],
-            [
-              12.768,
-              43.475
-            ],
-            [
-              12.703,
-              43.425
-            ],
-            [
-              12.616,
-              43.428
-            ],
-            [
-              12.452,
-              43.538
-            ],
-            [
-              12.389,
-              43.518
-            ],
-            [
-              12.332,
-              43.523
-            ],
-            [
-              12.305,
-              43.551
-            ],
-            [
-              12.342,
-              43.56
-            ],
-            [
-              12.374,
-              43.584
-            ],
-            [
-              12.361,
-              43.617
-            ],
-            [
-              12.297,
-              43.591
-            ],
-            [
-              12.225,
-              43.594
-            ],
-            [
-              12.212,
-              43.613
-            ],
-            [
-              12.145,
-              43.533
-            ],
-            [
-              12.087,
-              43.518
-            ],
-            [
-              12.143,
-              43.473
-            ],
-            [
-              12.019,
-              43.409
-            ],
-            [
-              12.111,
-              43.364
-            ],
-            [
-              12.136,
-              43.294
-            ],
-            [
-              12.198,
-              43.313
-            ],
-            [
-              12.223,
-              43.286
-            ],
-            [
-              12.111,
-              43.247
-            ],
-            [
-              12.033,
-              43.246
-            ],
-            [
-              12.025,
-              43.189
-            ],
-            [
-              11.916,
-              43.149
-            ],
-            [
-              11.937,
-              43.052
-            ],
-            [
-              11.962,
-              43.075
-            ],
-            [
-              11.987,
-              43.058
-            ],
-            [
-              11.936,
-              42.867
-            ],
-            [
-              11.894,
-              42.835
-            ],
-            [
-              11.981,
-              42.758
-            ],
-            [
-              11.927,
-              42.701
-            ],
-            [
-              12.034,
-              42.645
-            ],
-            [
-              12.197,
-              42.674
-            ],
-            [
-              12.284,
-              42.505
-            ],
-            [
-              12.344,
-              42.475
-            ],
-            [
-              12.406,
-              42.5
-            ],
-            [
-              12.454,
-              42.396
-            ],
-            [
-              12.527,
-              42.379
-            ],
-            [
-              12.575,
-              42.382
-            ],
-            [
-              12.623,
-              42.467
-            ],
-            [
-              12.664,
-              42.439
-            ],
-            [
-              12.74,
-              42.471
-            ],
-            [
-              12.712,
-              42.499
-            ],
-            [
-              12.897,
-              42.571
-            ],
-            [
-              12.881,
-              42.609
-            ],
-            [
-              13.149,
-              42.645
-            ],
-            [
-              13.191,
-              42.733
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT010",
       "matched_by": "code"
     },
     "ES115": {
@@ -10688,200 +9873,20 @@
       "matched_by": "code"
     }
   },
-  "region_count": 33,
+  "region_count": 30,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-10T23:58:22.663544Z",
-  "feed_updated": "2026-10-10T23:35:57.615128Z",
-  "warning_count": 109,
-  "active_count": 44,
-  "upcoming_count": 65,
+  "generated_at": "2026-10-11T00:20:02.883161Z",
+  "feed_updated": "2026-10-11T00:05:47.036859Z",
+  "warning_count": 91,
+  "active_count": 35,
+  "upcoming_count": 56,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
   "warnings": [
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.070",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/ddca42a2-e4b5-4e64-9a61-226877339d0a",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.069",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/b463b2dc-e7e8-401a-9245-973de62b0223",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.066",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Campania",
-      "emma_id": "IT016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/cd7e8449-a2c2-465a-a01d-537fae01f423",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.065",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Campania",
-      "emma_id": "IT016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/15b0f71d-3494-4b24-a26c-e80fd8632a0b",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.068",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/34bee09d-61db-465f-be3e-92e03ba310f9",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.067",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Orange Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/15236359-09a5-4b05-aad9-20173ebd8bfc",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
     {
       "id": "2.49.0.0.191.0.HR.261010185144_3_004_orange_HR029",
       "status": "active",
@@ -11747,336 +10752,6 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.380.3.IT.261010112104.057",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Abruzzo",
-      "emma_id": "IT013",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/ac117f34-232f-4894-b99c-b4794a09d793",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.056",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Abruzzo",
-      "emma_id": "IT013",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/446e34f6-b742-4d1f-b5bf-763de9d8be76",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.059",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Basilicata",
-      "emma_id": "IT017",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/97d2c1ab-e6ac-4fcd-a344-d35532939d25",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.058",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Basilicata",
-      "emma_id": "IT017",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/243f36ab-e90c-4cd0-9eda-f560a819710f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.053",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Marche",
-      "emma_id": "IT011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/8f161df7-ab02-4503-9bc8-1345e354ba85",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.052",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Marche",
-      "emma_id": "IT011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a8833ea3-82ea-4030-907f-177d7191a349",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.061",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Sicilia",
-      "emma_id": "IT018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/1b935930-4729-4cc5-a7d8-0769e7513702",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.060",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Sicilia",
-      "emma_id": "IT018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/57abf9f3-0de1-49a5-9c74-e6e2a99388c2",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.055",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Umbria",
-      "emma_id": "IT010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/2066cec0-6fe7-4f76-b0f9-9bda3a3e5da4",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.054",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T08:00:00Z",
-      "onset": "2026-10-10T08:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Umbria",
-      "emma_id": "IT010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/cb732413-6747-4728-a96a-8726c4089e53",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.063",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Molise",
-      "emma_id": "IT014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/6652fe34-e62f-431b-bbda-7e29032251a2",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261010112104.071",
       "status": "active",
       "sent": "2026-10-10T09:21:04Z",
@@ -12101,36 +10776,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/935da9f7-555c-465b-a9e0-4ccaef5de4b1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261010112104.064",
-      "status": "active",
-      "sent": "2026-10-10T09:21:04Z",
-      "effective": "2026-10-10T09:00:00Z",
-      "onset": "2026-10-10T09:00:00Z",
-      "expires": "2026-10-10T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Sardegna",
-      "emma_id": "IT019",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/fa91f0e1-7d7f-48d4-a036-9fa107301e61",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -12588,7 +11233,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.073",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12618,7 +11263,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.077",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12648,7 +11293,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.072",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12678,7 +11323,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.074",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12708,7 +11353,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.076",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12738,7 +11383,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.075",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:04Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12768,7 +11413,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.080",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:05Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12798,7 +11443,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.079",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:05Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
@@ -12828,7 +11473,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261010112104.078",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-10T09:21:05Z",
       "effective": "2026-10-11T00:00:00Z",
       "onset": "2026-10-11T00:00:00Z",
