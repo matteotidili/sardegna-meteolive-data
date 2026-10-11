@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:14.474915Z",
-      "feed_updated": "2026-10-11T06:05:26.015335Z"
+      "checked_at": "2026-10-11T06:40:43.329264Z",
+      "feed_updated": "2026-10-11T06:35:24.181701Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:14.098908Z",
+      "checked_at": "2026-10-11T06:40:42.987195Z",
       "feed_updated": "2026-10-11T06:05:13.432272Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:14.066292Z",
-      "feed_updated": "2026-10-11T06:05:03.325973Z"
+      "checked_at": "2026-10-11T06:40:42.991910Z",
+      "feed_updated": "2026-10-11T06:35:10.034990Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:14.879342Z",
-      "feed_updated": "2026-10-11T06:05:35.395880Z"
+      "checked_at": "2026-10-11T06:40:43.914822Z",
+      "feed_updated": "2026-10-11T06:35:27.133918Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:15.085446Z",
-      "feed_updated": "2026-10-11T06:05:27.564275Z"
+      "checked_at": "2026-10-11T06:40:44.284423Z",
+      "feed_updated": "2026-10-11T06:35:23.618403Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:15.309609Z",
-      "feed_updated": "2026-10-11T06:05:17.498334Z"
+      "checked_at": "2026-10-11T06:40:44.378643Z",
+      "feed_updated": "2026-10-11T06:35:11.877315Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:15.652892Z",
-      "feed_updated": "2026-10-11T06:05:08.831969Z"
+      "checked_at": "2026-10-11T06:40:44.668042Z",
+      "feed_updated": "2026-10-11T06:35:04.304087Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:16.141703Z",
-      "feed_updated": "2026-10-11T06:05:21.449910Z"
+      "checked_at": "2026-10-11T06:40:45.196342Z",
+      "feed_updated": "2026-10-11T06:35:18.434478Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:15.907194Z",
-      "feed_updated": "2026-10-11T06:05:17.696651Z"
+      "checked_at": "2026-10-11T06:40:44.940032Z",
+      "feed_updated": "2026-10-11T06:35:11.431088Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:16.288737Z",
-      "feed_updated": "2026-10-11T06:05:18.145265Z"
+      "checked_at": "2026-10-11T06:40:45.312028Z",
+      "feed_updated": "2026-10-11T06:35:16.977569Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-11T06:16:17.216426Z",
-      "feed_updated": "2026-10-11T06:05:18.975265Z"
+      "checked_at": "2026-10-11T06:40:46.048190Z",
+      "feed_updated": "2026-10-11T06:35:14.291649Z"
     }
   ],
   "uncovered": [
@@ -2496,555 +2496,6 @@
       "source_code": "ES119",
       "matched_by": "code"
     },
-    "HR806": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              18.229,
-              42.603
-            ],
-            [
-              18.223,
-              42.583
-            ],
-            [
-              18.208,
-              42.581
-            ],
-            [
-              18.225,
-              42.574
-            ],
-            [
-              18.233,
-              42.558
-            ],
-            [
-              18.289,
-              42.523
-            ],
-            [
-              18.406,
-              42.474
-            ],
-            [
-              18.427,
-              42.462
-            ],
-            [
-              18.426,
-              42.456
-            ],
-            [
-              18.414,
-              42.458
-            ],
-            [
-              18.431,
-              42.446
-            ],
-            [
-              18.431,
-              42.452
-            ],
-            [
-              18.457,
-              42.449
-            ],
-            [
-              18.514,
-              42.399
-            ],
-            [
-              18.534,
-              42.394
-            ],
-            [
-              18.512,
-              42.408
-            ],
-            [
-              18.515,
-              42.423
-            ],
-            [
-              18.523,
-              42.421
-            ],
-            [
-              18.54,
-              42.392
-            ],
-            [
-              18.42,
-              42.21
-            ],
-            [
-              18.274,
-              42.278
-            ],
-            [
-              18.203,
-              42.333
-            ],
-            [
-              18.147,
-              42.353
-            ],
-            [
-              18.087,
-              42.388
-            ],
-            [
-              17.866,
-              42.454
-            ],
-            [
-              17.575,
-              42.514
-            ],
-            [
-              17.491,
-              42.52
-            ],
-            [
-              17.398,
-              42.552
-            ],
-            [
-              17.285,
-              42.571
-            ],
-            [
-              17.149,
-              42.561
-            ],
-            [
-              16.917,
-              42.523
-            ],
-            [
-              16.795,
-              42.523
-            ],
-            [
-              16.598,
-              42.566
-            ],
-            [
-              16.538,
-              42.552
-            ],
-            [
-              16.474,
-              42.551
-            ],
-            [
-              16.536,
-              42.513
-            ],
-            [
-              16.58,
-              42.463
-            ],
-            [
-              16.603,
-              42.406
-            ],
-            [
-              16.603,
-              42.35
-            ],
-            [
-              16.582,
-              42.295
-            ],
-            [
-              16.526,
-              42.235
-            ],
-            [
-              16.461,
-              42.199
-            ],
-            [
-              16.385,
-              42.179
-            ],
-            [
-              16.256,
-              42.185
-            ],
-            [
-              16.169,
-              42.201
-            ],
-            [
-              16.098,
-              42.228
-            ],
-            [
-              16.025,
-              42.287
-            ],
-            [
-              15.997,
-              42.334
-            ],
-            [
-              15.987,
-              42.375
-            ],
-            [
-              15.993,
-              42.434
-            ],
-            [
-              16.011,
-              42.474
-            ],
-            [
-              16.051,
-              42.521
-            ],
-            [
-              16.093,
-              42.55
-            ],
-            [
-              16.145,
-              42.573
-            ],
-            [
-              16.218,
-              42.588
-            ],
-            [
-              16.293,
-              42.588
-            ],
-            [
-              16.35,
-              42.578
-            ],
-            [
-              16.295,
-              42.612
-            ],
-            [
-              16.255,
-              42.652
-            ],
-            [
-              16.229,
-              42.697
-            ],
-            [
-              16.218,
-              42.748
-            ],
-            [
-              16.232,
-              42.814
-            ],
-            [
-              16.252,
-              42.818
-            ],
-            [
-              16.317,
-              42.883
-            ],
-            [
-              16.362,
-              43.002
-            ],
-            [
-              16.691,
-              43.002
-            ],
-            [
-              16.86,
-              42.968
-            ],
-            [
-              17.01,
-              42.991
-            ],
-            [
-              16.99,
-              43.015
-            ],
-            [
-              17.001,
-              43.047
-            ],
-            [
-              17.015,
-              43.042
-            ],
-            [
-              17.013,
-              43.029
-            ],
-            [
-              17.034,
-              43.025
-            ],
-            [
-              17.021,
-              43.018
-            ],
-            [
-              17.018,
-              43.005
-            ],
-            [
-              17.006,
-              43.011
-            ],
-            [
-              17.01,
-              43.005
-            ],
-            [
-              17.038,
-              43.003
-            ],
-            [
-              17.065,
-              42.984
-            ],
-            [
-              17.141,
-              42.973
-            ],
-            [
-              17.176,
-              42.971
-            ],
-            [
-              17.216,
-              42.981
-            ],
-            [
-              17.251,
-              42.958
-            ],
-            [
-              17.328,
-              42.934
-            ],
-            [
-              17.365,
-              42.913
-            ],
-            [
-              17.417,
-              42.912
-            ],
-            [
-              17.453,
-              42.893
-            ],
-            [
-              17.43,
-              42.876
-            ],
-            [
-              17.447,
-              42.868
-            ],
-            [
-              17.635,
-              42.818
-            ],
-            [
-              17.668,
-              42.811
-            ],
-            [
-              17.676,
-              42.816
-            ],
-            [
-              17.677,
-              42.808
-            ],
-            [
-              17.707,
-              42.797
-            ],
-            [
-              17.716,
-              42.801
-            ],
-            [
-              17.733,
-              42.792
-            ],
-            [
-              17.742,
-              42.797
-            ],
-            [
-              17.755,
-              42.778
-            ],
-            [
-              17.748,
-              42.772
-            ],
-            [
-              17.761,
-              42.761
-            ],
-            [
-              17.768,
-              42.778
-            ],
-            [
-              17.746,
-              42.804
-            ],
-            [
-              17.697,
-              42.835
-            ],
-            [
-              17.752,
-              42.81
-            ],
-            [
-              17.78,
-              42.788
-            ],
-            [
-              17.797,
-              42.8
-            ],
-            [
-              17.794,
-              42.807
-            ],
-            [
-              17.819,
-              42.799
-            ],
-            [
-              17.844,
-              42.803
-            ],
-            [
-              17.851,
-              42.795
-            ],
-            [
-              17.847,
-              42.787
-            ],
-            [
-              17.863,
-              42.777
-            ],
-            [
-              17.888,
-              42.787
-            ],
-            [
-              17.882,
-              42.773
-            ],
-            [
-              17.873,
-              42.772
-            ],
-            [
-              17.875,
-              42.764
-            ],
-            [
-              17.905,
-              42.745
-            ],
-            [
-              17.953,
-              42.728
-            ],
-            [
-              17.967,
-              42.712
-            ],
-            [
-              18.046,
-              42.685
-            ],
-            [
-              18.044,
-              42.701
-            ],
-            [
-              18.05,
-              42.683
-            ],
-            [
-              18.072,
-              42.668
-            ],
-            [
-              18.135,
-              42.673
-            ],
-            [
-              18.079,
-              42.667
-            ],
-            [
-              18.086,
-              42.655
-            ],
-            [
-              18.061,
-              42.664
-            ],
-            [
-              18.057,
-              42.66
-            ],
-            [
-              18.07,
-              42.655
-            ],
-            [
-              18.06,
-              42.649
-            ],
-            [
-              18.125,
-              42.639
-            ],
-            [
-              18.18,
-              42.615
-            ],
-            [
-              18.207,
-              42.622
-            ],
-            [
-              18.229,
-              42.603
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "HR806",
-      "matched_by": "code"
-    },
     "HR805": {
       "geometry": {
         "type": "Polygon",
@@ -4137,6 +3588,555 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "HR804",
+      "matched_by": "code"
+    },
+    "HR806": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.229,
+              42.603
+            ],
+            [
+              18.223,
+              42.583
+            ],
+            [
+              18.208,
+              42.581
+            ],
+            [
+              18.225,
+              42.574
+            ],
+            [
+              18.233,
+              42.558
+            ],
+            [
+              18.289,
+              42.523
+            ],
+            [
+              18.406,
+              42.474
+            ],
+            [
+              18.427,
+              42.462
+            ],
+            [
+              18.426,
+              42.456
+            ],
+            [
+              18.414,
+              42.458
+            ],
+            [
+              18.431,
+              42.446
+            ],
+            [
+              18.431,
+              42.452
+            ],
+            [
+              18.457,
+              42.449
+            ],
+            [
+              18.514,
+              42.399
+            ],
+            [
+              18.534,
+              42.394
+            ],
+            [
+              18.512,
+              42.408
+            ],
+            [
+              18.515,
+              42.423
+            ],
+            [
+              18.523,
+              42.421
+            ],
+            [
+              18.54,
+              42.392
+            ],
+            [
+              18.42,
+              42.21
+            ],
+            [
+              18.274,
+              42.278
+            ],
+            [
+              18.203,
+              42.333
+            ],
+            [
+              18.147,
+              42.353
+            ],
+            [
+              18.087,
+              42.388
+            ],
+            [
+              17.866,
+              42.454
+            ],
+            [
+              17.575,
+              42.514
+            ],
+            [
+              17.491,
+              42.52
+            ],
+            [
+              17.398,
+              42.552
+            ],
+            [
+              17.285,
+              42.571
+            ],
+            [
+              17.149,
+              42.561
+            ],
+            [
+              16.917,
+              42.523
+            ],
+            [
+              16.795,
+              42.523
+            ],
+            [
+              16.598,
+              42.566
+            ],
+            [
+              16.538,
+              42.552
+            ],
+            [
+              16.474,
+              42.551
+            ],
+            [
+              16.536,
+              42.513
+            ],
+            [
+              16.58,
+              42.463
+            ],
+            [
+              16.603,
+              42.406
+            ],
+            [
+              16.603,
+              42.35
+            ],
+            [
+              16.582,
+              42.295
+            ],
+            [
+              16.526,
+              42.235
+            ],
+            [
+              16.461,
+              42.199
+            ],
+            [
+              16.385,
+              42.179
+            ],
+            [
+              16.256,
+              42.185
+            ],
+            [
+              16.169,
+              42.201
+            ],
+            [
+              16.098,
+              42.228
+            ],
+            [
+              16.025,
+              42.287
+            ],
+            [
+              15.997,
+              42.334
+            ],
+            [
+              15.987,
+              42.375
+            ],
+            [
+              15.993,
+              42.434
+            ],
+            [
+              16.011,
+              42.474
+            ],
+            [
+              16.051,
+              42.521
+            ],
+            [
+              16.093,
+              42.55
+            ],
+            [
+              16.145,
+              42.573
+            ],
+            [
+              16.218,
+              42.588
+            ],
+            [
+              16.293,
+              42.588
+            ],
+            [
+              16.35,
+              42.578
+            ],
+            [
+              16.295,
+              42.612
+            ],
+            [
+              16.255,
+              42.652
+            ],
+            [
+              16.229,
+              42.697
+            ],
+            [
+              16.218,
+              42.748
+            ],
+            [
+              16.232,
+              42.814
+            ],
+            [
+              16.252,
+              42.818
+            ],
+            [
+              16.317,
+              42.883
+            ],
+            [
+              16.362,
+              43.002
+            ],
+            [
+              16.691,
+              43.002
+            ],
+            [
+              16.86,
+              42.968
+            ],
+            [
+              17.01,
+              42.991
+            ],
+            [
+              16.99,
+              43.015
+            ],
+            [
+              17.001,
+              43.047
+            ],
+            [
+              17.015,
+              43.042
+            ],
+            [
+              17.013,
+              43.029
+            ],
+            [
+              17.034,
+              43.025
+            ],
+            [
+              17.021,
+              43.018
+            ],
+            [
+              17.018,
+              43.005
+            ],
+            [
+              17.006,
+              43.011
+            ],
+            [
+              17.01,
+              43.005
+            ],
+            [
+              17.038,
+              43.003
+            ],
+            [
+              17.065,
+              42.984
+            ],
+            [
+              17.141,
+              42.973
+            ],
+            [
+              17.176,
+              42.971
+            ],
+            [
+              17.216,
+              42.981
+            ],
+            [
+              17.251,
+              42.958
+            ],
+            [
+              17.328,
+              42.934
+            ],
+            [
+              17.365,
+              42.913
+            ],
+            [
+              17.417,
+              42.912
+            ],
+            [
+              17.453,
+              42.893
+            ],
+            [
+              17.43,
+              42.876
+            ],
+            [
+              17.447,
+              42.868
+            ],
+            [
+              17.635,
+              42.818
+            ],
+            [
+              17.668,
+              42.811
+            ],
+            [
+              17.676,
+              42.816
+            ],
+            [
+              17.677,
+              42.808
+            ],
+            [
+              17.707,
+              42.797
+            ],
+            [
+              17.716,
+              42.801
+            ],
+            [
+              17.733,
+              42.792
+            ],
+            [
+              17.742,
+              42.797
+            ],
+            [
+              17.755,
+              42.778
+            ],
+            [
+              17.748,
+              42.772
+            ],
+            [
+              17.761,
+              42.761
+            ],
+            [
+              17.768,
+              42.778
+            ],
+            [
+              17.746,
+              42.804
+            ],
+            [
+              17.697,
+              42.835
+            ],
+            [
+              17.752,
+              42.81
+            ],
+            [
+              17.78,
+              42.788
+            ],
+            [
+              17.797,
+              42.8
+            ],
+            [
+              17.794,
+              42.807
+            ],
+            [
+              17.819,
+              42.799
+            ],
+            [
+              17.844,
+              42.803
+            ],
+            [
+              17.851,
+              42.795
+            ],
+            [
+              17.847,
+              42.787
+            ],
+            [
+              17.863,
+              42.777
+            ],
+            [
+              17.888,
+              42.787
+            ],
+            [
+              17.882,
+              42.773
+            ],
+            [
+              17.873,
+              42.772
+            ],
+            [
+              17.875,
+              42.764
+            ],
+            [
+              17.905,
+              42.745
+            ],
+            [
+              17.953,
+              42.728
+            ],
+            [
+              17.967,
+              42.712
+            ],
+            [
+              18.046,
+              42.685
+            ],
+            [
+              18.044,
+              42.701
+            ],
+            [
+              18.05,
+              42.683
+            ],
+            [
+              18.072,
+              42.668
+            ],
+            [
+              18.135,
+              42.673
+            ],
+            [
+              18.079,
+              42.667
+            ],
+            [
+              18.086,
+              42.655
+            ],
+            [
+              18.061,
+              42.664
+            ],
+            [
+              18.057,
+              42.66
+            ],
+            [
+              18.07,
+              42.655
+            ],
+            [
+              18.06,
+              42.649
+            ],
+            [
+              18.125,
+              42.639
+            ],
+            [
+              18.18,
+              42.615
+            ],
+            [
+              18.207,
+              42.622
+            ],
+            [
+              18.229,
+              42.603
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "HR806",
       "matched_by": "code"
     },
     "HR803": {
@@ -9613,8 +9613,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-11T06:16:19.003386Z",
-  "feed_updated": "2026-10-11T06:05:35.395880Z",
+  "generated_at": "2026-10-11T06:40:47.953069Z",
+  "feed_updated": "2026-10-11T06:35:27.133918Z",
   "warning_count": 96,
   "active_count": 34,
   "upcoming_count": 62,
@@ -10457,10 +10457,10 @@
       "country_code": "greece"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR802",
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR802",
       "status": "active",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
       "onset": "2026-10-10T22:01:01Z",
       "expires": "2026-10-11T21:59:59Z",
       "event": "Yellow wind warning",
@@ -10480,17 +10480,17 @@
       "emma_id": "HR802",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9b001ec0-1796-46e3-86c8-6339e53926b0",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f1730259-535c-49e0-b1ed-480ec5b1eb58",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR805",
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR805",
       "status": "active",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
       "onset": "2026-10-10T22:01:01Z",
       "expires": "2026-10-11T21:59:59Z",
       "event": "Yellow wind warning",
@@ -10510,17 +10510,17 @@
       "emma_id": "HR805",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f62f7876-0dc0-468e-a331-a574189fa827",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/5e16f103-68c9-4715-9af6-31f7f3f36fa0",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR804",
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR804",
       "status": "active",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
       "onset": "2026-10-10T22:01:01Z",
       "expires": "2026-10-11T19:00:00Z",
       "event": "Yellow wind warning",
@@ -10540,17 +10540,17 @@
       "emma_id": "HR804",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/8d24480f-345c-4ef7-a528-bf4eca1c5385",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f40f26b7-a2a0-433b-972b-c54d42041807",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR803",
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR803",
       "status": "active",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
       "onset": "2026-10-10T22:01:01Z",
       "expires": "2026-10-11T21:59:59Z",
       "event": "Yellow wind warning",
@@ -10570,17 +10570,17 @@
       "emma_id": "HR803",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f9de004e-6b3e-4510-b3ba-a372ab94a286",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/315504ab-9bfb-4a11-bd52-ef32c65348c3",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR801",
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR801",
       "status": "active",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
       "onset": "2026-10-10T22:01:01Z",
       "expires": "2026-10-11T16:00:00Z",
       "event": "Yellow wind warning",
@@ -10600,7 +10600,7 @@
       "emma_id": "HR801",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f4413088-c497-47a8-981d-9c9b62d848e7",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/77042d43-c669-4398-aff9-7981a7bbd964",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
@@ -15073,6 +15073,36 @@
       "country_code": "israel"
     },
     {
+      "id": "2.49.0.0.191.0.HR.261011080956_0_yellow_HR806",
+      "status": "upcoming",
+      "sent": "2026-10-11T06:09:56Z",
+      "effective": "2026-10-11T06:09:56Z",
+      "onset": "2026-10-11T08:00:00Z",
+      "expires": "2026-10-11T21:59:59Z",
+      "event": "Yellow wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "South Dalmatia region",
+      "emma_id": "HR806",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/27bb4394-c8f6-44dd-b5a6-f5fde2e28e67",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Croazia",
+      "country_code": "croatia"
+    },
+    {
       "id": "2.49.0.0.376.0.261010154914.59136",
       "status": "upcoming",
       "sent": "2026-10-10T12:49:14Z",
@@ -17007,36 +17037,6 @@
       "country_code": "greece"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010075813_0_yellow_HR806",
-      "status": "upcoming",
-      "sent": "2026-10-10T05:58:13Z",
-      "effective": "2026-10-10T05:58:13Z",
-      "onset": "2026-10-11T16:00:00Z",
-      "expires": "2026-10-11T21:59:59Z",
-      "event": "Yellow wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "South Dalmatia region",
-      "emma_id": "HR806",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/ec1041e0-0e5d-4ca9-a6be-8dd84646fe88",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261010115100.010000004",
       "status": "upcoming",
       "sent": "2026-10-10T11:51:00Z",
@@ -17187,10 +17187,10 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR802",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR802",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17199,7 +17199,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17210,17 +17210,17 @@
       "emma_id": "HR802",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e288fa99-50de-4d7a-bbf0-708030b445c9",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/a4a474a1-1d03-42af-a60e-a81a255665b8",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR805",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR805",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17229,7 +17229,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17240,17 +17240,17 @@
       "emma_id": "HR805",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/7068db6c-b32a-4602-9739-40ce70f39214",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/90b6ad37-9b81-4935-b8fe-ed32e88da81b",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR804",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR804",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17259,7 +17259,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17270,17 +17270,17 @@
       "emma_id": "HR804",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/7f55fd6e-d33b-4d62-83a4-0d59f0b60df1",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/b4f52336-ff1e-491e-9565-d699a2d118e4",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR806",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR806",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17289,7 +17289,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17300,17 +17300,17 @@
       "emma_id": "HR806",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/7a69bff5-bbc3-479a-bc4a-780bf06df028",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1050f7c6-4cb1-4a37-871c-983d5f3471b0",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR803",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR803",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17319,7 +17319,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17330,17 +17330,17 @@
       "emma_id": "HR803",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9caed49b-0148-4955-bb07-ebe8da0719e9",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f18c89c5-fc56-4e0a-bc21-a28af1b564b0",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261010080010_0_yellow_HR801",
+      "id": "2.49.0.0.191.0.HR.261011081419_0_yellow_HR801",
       "status": "upcoming",
-      "sent": "2026-10-10T06:00:10Z",
-      "effective": "2026-10-10T06:00:10Z",
+      "sent": "2026-10-11T06:14:19Z",
+      "effective": "2026-10-11T06:14:19Z",
       "onset": "2026-10-11T22:01:01Z",
       "expires": "2026-10-12T21:59:59Z",
       "event": "Yellow wind warning",
@@ -17349,7 +17349,7 @@
       "instruction": "",
       "severity": "Moderate",
       "urgency": "Future",
-      "certainty": "Possible",
+      "certainty": "Likely",
       "awareness_level": "",
       "awareness_type": "",
       "level": 2,
@@ -17360,7 +17360,7 @@
       "emma_id": "HR801",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e0fb7354-b93a-4631-a2ac-2590dcff64fc",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e2eaa53a-5cb0-4f43-912c-52995dcc9fbf",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
