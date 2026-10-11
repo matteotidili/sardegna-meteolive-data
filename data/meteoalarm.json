@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:46.561355Z",
+      "checked_at": "2026-10-11T20:59:46.247124Z",
       "feed_updated": "2026-10-11T20:35:08.620356Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:46.413046Z",
+      "checked_at": "2026-10-11T20:59:45.935249Z",
       "feed_updated": "2026-10-11T20:35:02.558555Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:46.264856Z",
+      "checked_at": "2026-10-11T20:59:45.775315Z",
       "feed_updated": "2026-10-11T20:35:48.070336Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:47.317809Z",
+      "checked_at": "2026-10-11T20:59:46.998040Z",
       "feed_updated": "2026-10-11T20:35:48.301774Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:47.743021Z",
+      "checked_at": "2026-10-11T20:59:47.514498Z",
       "feed_updated": "2026-10-11T20:35:11.829485Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:47.480941Z",
+      "checked_at": "2026-10-11T20:59:47.620226Z",
       "feed_updated": "2026-10-11T20:35:28.866883Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:48.306714Z",
+      "checked_at": "2026-10-11T20:59:48.172111Z",
       "feed_updated": "2026-10-11T20:35:26.454178Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:48.609303Z",
+      "checked_at": "2026-10-11T20:59:49.016257Z",
       "feed_updated": "2026-10-11T20:35:28.980418Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:48.308782Z",
+      "checked_at": "2026-10-11T20:59:48.533612Z",
       "feed_updated": "2026-10-11T20:35:20.373147Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-11T20:47:48.931871Z",
+      "checked_at": "2026-10-11T20:59:49.083894Z",
       "feed_updated": "2026-10-11T20:35:45.691617Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-11T20:47:49.876300Z",
+      "checked_at": "2026-10-11T20:59:50.100815Z",
       "feed_updated": "2026-10-11T20:35:09.737371Z"
     }
   ],
@@ -11053,10 +11053,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-11T20:47:51.996839Z",
+  "generated_at": "2026-10-11T20:59:52.398841Z",
   "feed_updated": "2026-10-11T20:35:48.301774Z",
-  "warning_count": 89,
-  "active_count": 25,
+  "warning_count": 88,
+  "active_count": 24,
   "upcoming_count": 64,
   "max_level": 3,
   "active_max_level": 3,
@@ -11751,36 +11751,6 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261010123400.002000007",
-      "status": "active",
-      "sent": "2026-10-10T12:34:00Z",
-      "effective": "2026-10-10T12:34:00Z",
-      "onset": "2026-10-11T03:00:00Z",
-      "expires": "2026-10-11T20:59:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Central Makedonia",
-      "emma_id": "GR007",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/b0f99e60-6c4b-4c9c-8fc0-a5abaef252c5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
     },
     {
       "id": "2.49.0.0.300.0.GR.261010115100.010000007",
