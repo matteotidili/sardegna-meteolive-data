@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:31.786161Z",
+      "checked_at": "2026-10-11T23:59:04.459176Z",
       "feed_updated": "2026-10-11T23:35:53.702861Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:31.535391Z",
+      "checked_at": "2026-10-11T23:59:04.144321Z",
       "feed_updated": "2026-10-11T23:35:26.271406Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:31.537478Z",
+      "checked_at": "2026-10-11T23:59:04.121921Z",
       "feed_updated": "2026-10-11T23:35:45.961235Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:32.165553Z",
+      "checked_at": "2026-10-11T23:59:05.117989Z",
       "feed_updated": "2026-10-11T23:36:00.057556Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:32.635429Z",
+      "checked_at": "2026-10-11T23:59:05.622293Z",
       "feed_updated": "2026-10-11T23:35:57.346747Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:32.563119Z",
+      "checked_at": "2026-10-11T23:59:05.602293Z",
       "feed_updated": "2026-10-11T23:35:19.019993Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:32.817532Z",
+      "checked_at": "2026-10-11T23:59:05.962981Z",
       "feed_updated": "2026-10-11T23:35:14.487584Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:33.441094Z",
+      "checked_at": "2026-10-11T23:59:07.123234Z",
       "feed_updated": "2026-10-11T23:35:41.402125Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:33.422224Z",
+      "checked_at": "2026-10-11T23:59:06.619211Z",
       "feed_updated": "2026-10-11T23:35:13.237205Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-11T23:47:33.392094Z",
+      "checked_at": "2026-10-11T23:59:06.858766Z",
       "feed_updated": "2026-10-11T23:35:17.666845Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-11T23:47:34.900489Z",
+      "checked_at": "2026-10-11T23:59:07.926554Z",
       "feed_updated": "2026-10-11T23:35:34.993480Z"
     }
   ],
@@ -10775,45 +10775,15 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-11T23:47:38.272545Z",
+  "generated_at": "2026-10-11T23:59:10.220113Z",
   "feed_updated": "2026-10-11T23:36:00.057556Z",
-  "warning_count": 83,
-  "active_count": 29,
+  "warning_count": 81,
+  "active_count": 27,
   "upcoming_count": 54,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
   "warnings": [
-    {
-      "id": "2.49.0.0.380.3.IT.261011105941.026",
-      "status": "active",
-      "sent": "2026-10-11T08:59:41Z",
-      "effective": "2026-10-11T08:00:00Z",
-      "onset": "2026-10-11T08:00:00Z",
-      "expires": "2026-10-11T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Sardegna",
-      "emma_id": "IT019",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/abd3725b-e6e0-4dba-8243-65abd59e0811",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
     {
       "id": "2.49.0.0.300.0.GR.261011132400.010000007",
       "status": "active",
@@ -11413,36 +11383,6 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261011105941.025",
-      "status": "active",
-      "sent": "2026-10-11T08:59:41Z",
-      "effective": "2026-10-11T17:00:00Z",
-      "onset": "2026-10-11T17:00:00Z",
-      "expires": "2026-10-11T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Emilia e Romagna",
-      "emma_id": "IT008",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/3bdd55da-395e-4d37-84ab-22c9823c70e1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.380.3.IT.261011105941.024",
