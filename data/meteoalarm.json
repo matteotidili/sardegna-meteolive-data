@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:57.872974Z",
+      "checked_at": "2026-10-12T10:59:59.280372Z",
       "feed_updated": "2026-10-12T10:35:26.235335Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:57.487963Z",
+      "checked_at": "2026-10-12T10:59:58.979791Z",
       "feed_updated": "2026-10-12T10:35:13.313592Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:57.470706Z",
+      "checked_at": "2026-10-12T10:59:58.966391Z",
       "feed_updated": "2026-10-12T10:35:12.536703Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:58.436414Z",
+      "checked_at": "2026-10-12T10:59:59.770488Z",
       "feed_updated": "2026-10-12T10:35:29.127367Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:58.817598Z",
+      "checked_at": "2026-10-12T11:00:00.190692Z",
       "feed_updated": "2026-10-12T10:35:27.100040Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:59.029143Z",
+      "checked_at": "2026-10-12T11:00:00.003035Z",
       "feed_updated": "2026-10-12T10:35:12.009035Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:59.339025Z",
+      "checked_at": "2026-10-12T11:00:00.407691Z",
       "feed_updated": "2026-10-12T10:35:22.459840Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:59.838025Z",
+      "checked_at": "2026-10-12T11:00:01.255235Z",
       "feed_updated": "2026-10-12T10:35:22.697028Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:59.567931Z",
+      "checked_at": "2026-10-12T11:00:00.727418Z",
       "feed_updated": "2026-10-12T10:35:28.586574Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-12T10:41:59.877988Z",
+      "checked_at": "2026-10-12T11:00:00.958160Z",
       "feed_updated": "2026-10-12T10:35:18.579525Z"
     },
     {
       "country": "Israele",
-      "status": "ok",
-      "checked_at": "2026-10-12T10:42:00.986112Z",
-      "feed_updated": "2026-10-12T10:35:19.497338Z"
+      "status": "partial",
+      "checked_at": "2026-10-12T11:00:01.979330Z",
+      "feed_updated": "2026-10-12T10:50:29.078542Z"
     }
   ],
   "uncovered": [
@@ -9956,10 +9956,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-12T10:42:02.857182Z",
-  "feed_updated": "2026-10-12T10:35:29.127367Z",
-  "warning_count": 89,
-  "active_count": 49,
+  "generated_at": "2026-10-12T11:00:03.686368Z",
+  "feed_updated": "2026-10-12T10:50:29.078542Z",
+  "warning_count": 88,
+  "active_count": 48,
   "upcoming_count": 40,
   "max_level": 3,
   "active_max_level": 3,
@@ -12228,36 +12228,6 @@
       "sender_name": "",
       "country": "Israele",
       "country_code": "israel"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261012070133_0_005_yellow_HR028",
-      "status": "active",
-      "sent": "2026-10-12T05:01:33Z",
-      "effective": "2026-10-12T05:01:33Z",
-      "onset": "2026-10-12T08:00:00Z",
-      "expires": "2026-10-12T10:59:59Z",
-      "event": "Yellow wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Istarska",
-      "emma_id": "HR028",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e551893e-848f-413d-a5c2-020fd10d3c3f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
     },
     {
       "id": "2.49.0.0.376.0.261012055148.59185",
@@ -15392,5 +15362,11 @@
       "country_code": "greece"
     }
   ],
-  "errors": []
+  "errors": [
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d0df79ce-69d8-48c3-bfd5-4bf8e7ee10fe: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d0df79ce-69d8-48c3-bfd5-4bf8e7ee10fe: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d0df79ce-69d8-48c3-bfd5-4bf8e7ee10fe: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d0df79ce-69d8-48c3-bfd5-4bf8e7ee10fe: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d0df79ce-69d8-48c3-bfd5-4bf8e7ee10fe: ValueError"
+  ]
 }
