@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:26.526115Z",
-      "feed_updated": "2026-10-12T09:05:38.016672Z"
+      "checked_at": "2026-10-12T09:42:09.790914Z",
+      "feed_updated": "2026-10-12T09:35:27.889318Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:26.199735Z",
-      "feed_updated": "2026-10-12T09:05:20.346877Z"
+      "checked_at": "2026-10-12T09:42:09.359883Z",
+      "feed_updated": "2026-10-12T09:38:47.151449Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:26.203538Z",
-      "feed_updated": "2026-10-12T09:05:11.663432Z"
+      "checked_at": "2026-10-12T09:42:09.334432Z",
+      "feed_updated": "2026-10-12T09:35:03.898110Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:26.914502Z",
-      "feed_updated": "2026-10-12T09:05:28.046240Z"
+      "checked_at": "2026-10-12T09:42:10.436974Z",
+      "feed_updated": "2026-10-12T09:35:36.403661Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:27.230921Z",
-      "feed_updated": "2026-10-12T09:05:23.774873Z"
+      "checked_at": "2026-10-12T09:42:10.878214Z",
+      "feed_updated": "2026-10-12T09:35:30.933675Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:27.429525Z",
-      "feed_updated": "2026-10-12T09:05:18.598733Z"
+      "checked_at": "2026-10-12T09:42:10.815636Z",
+      "feed_updated": "2026-10-12T09:35:15.550579Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:27.538967Z",
-      "feed_updated": "2026-10-12T09:05:33.382029Z"
+      "checked_at": "2026-10-12T09:42:11.538914Z",
+      "feed_updated": "2026-10-12T09:35:22.431491Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:28.087148Z",
-      "feed_updated": "2026-10-12T09:05:31.935188Z"
+      "checked_at": "2026-10-12T09:42:12.458551Z",
+      "feed_updated": "2026-10-12T09:35:21.710008Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:28.109417Z",
-      "feed_updated": "2026-10-12T09:05:30.366708Z"
+      "checked_at": "2026-10-12T09:42:12.021906Z",
+      "feed_updated": "2026-10-12T09:35:19.383638Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:28.108631Z",
-      "feed_updated": "2026-10-12T09:05:22.497909Z"
+      "checked_at": "2026-10-12T09:42:12.021317Z",
+      "feed_updated": "2026-10-12T09:35:18.545098Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-12T09:17:29.171413Z",
-      "feed_updated": "2026-10-12T09:05:29.148158Z"
+      "checked_at": "2026-10-12T09:42:13.354225Z",
+      "feed_updated": "2026-10-12T09:35:18.935287Z"
     }
   ],
   "uncovered": [
@@ -9956,8 +9956,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-12T09:17:30.698837Z",
-  "feed_updated": "2026-10-12T09:05:38.016672Z",
+  "generated_at": "2026-10-12T09:42:15.158128Z",
+  "feed_updated": "2026-10-12T09:38:47.151449Z",
   "warning_count": 91,
   "active_count": 51,
   "upcoming_count": 40,
@@ -14342,10 +14342,10 @@
       "country_code": "israel"
     },
     {
-      "id": "2.49.0.0.724.0.ES.261011090810.645403PRP1121709690",
+      "id": "2.49.0.0.724.0.ES.261012091808.645403PRP1121796688",
       "status": "upcoming",
-      "sent": "2026-10-11T09:08:10Z",
-      "effective": "2026-10-11T09:04:46Z",
+      "sent": "2026-10-12T09:18:08Z",
+      "effective": "2026-10-12T09:16:05Z",
       "onset": "2026-10-12T12:00:00Z",
       "expires": "2026-10-12T16:59:59Z",
       "event": "Moderate rain warning",
@@ -14365,17 +14365,17 @@
       "emma_id": "ES116",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/abc95227-0cf2-4402-b009-afaac8eb3dca",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/25f78d53-261d-47a5-a704-9c08a2c96e6e",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.724.0.ES.261011090810.645404PRP1121709690",
+      "id": "2.49.0.0.724.0.ES.261012091808.645404PRP1121796688",
       "status": "upcoming",
-      "sent": "2026-10-11T09:08:10Z",
-      "effective": "2026-10-11T09:04:46Z",
+      "sent": "2026-10-12T09:18:08Z",
+      "effective": "2026-10-12T09:16:05Z",
       "onset": "2026-10-12T12:00:00Z",
       "expires": "2026-10-12T16:59:59Z",
       "event": "Moderate rain warning",
@@ -14395,7 +14395,7 @@
       "emma_id": "ES117",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/d673f7d8-4191-4659-b496-5cf86901b61b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/1a7791da-b0af-42a0-8d2f-a090486f68f3",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
