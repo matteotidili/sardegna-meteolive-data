@@ -1,0 +1,59 @@
+name: Aggiorna vettori AROME 10m
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_arome_wind_vectors.py'
+      - '.github/workflows/update-arome-wind-vectors.yml'
+      - 'data/arome/forecast.json'
+  workflow_dispatch:
+  schedule:
+    - cron: '42 */3 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: arome-wind-vectors
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Installa decodifica GRIB2
+        run: python3 -m pip install --disable-pip-version-check numpy eccodes
+      - name: Genera vettori 10m 51 scadenze
+        run: python3 scripts/update_arome_wind_vectors.py
+      - name: Valida la griglia binaria e le scadenze
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,struct
+          m=json.loads(Path('data/arome/wind_vectors.json').read_text('utf-8'))
+          f=json.loads(Path('data/arome/forecast.json').read_text('utf-8'))
+          assert m['run_time']==f['run_time']
+          assert len(m['frames'])==51
+          assert m['grid']['encoding']=='interleaved_signed_int16_little_endian'
+          for h in range(1,52):
+              path=Path(f'data/arome/wind_vectors/h{h:02d}.bin')
+              assert path.stat().st_size==281*101*4
+              raw=path.read_bytes()
+              assert any(v!=-32768 for (v,) in struct.iter_unpack('<h',raw))
+          print('Vettori AROME convalidati',m['run_time'],'51 frame',flush=True)
+          PY
+      - name: Pubblica vettori e metadati, se aggiornati
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/arome/wind_vectors.json data/arome/wind_vectors/
+          if git diff --cached --quiet; then echo "Corsa invariata"; exit 0; fi
+          git commit -m "Aggiorna vettori 10 m AROME H+51"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
