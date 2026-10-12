@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:04.190484Z",
+      "checked_at": "2026-10-12T05:00:10.264879Z",
       "feed_updated": "2026-10-12T04:35:35.444938Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:03.826502Z",
+      "checked_at": "2026-10-12T05:00:10.042096Z",
       "feed_updated": "2026-10-12T04:35:26.751926Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:03.779034Z",
+      "checked_at": "2026-10-12T05:00:09.983976Z",
       "feed_updated": "2026-10-12T04:35:08.013996Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:05.314166Z",
+      "checked_at": "2026-10-12T05:00:10.785102Z",
       "feed_updated": "2026-10-12T04:35:44.396441Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:05.776748Z",
+      "checked_at": "2026-10-12T05:00:11.170614Z",
       "feed_updated": "2026-10-12T04:35:43.069898Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:05.444096Z",
+      "checked_at": "2026-10-12T05:00:11.190040Z",
       "feed_updated": "2026-10-12T04:35:25.023074Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:06.064704Z",
+      "checked_at": "2026-10-12T05:00:11.887409Z",
       "feed_updated": "2026-10-12T04:35:29.652285Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:06.539347Z",
+      "checked_at": "2026-10-12T05:00:12.356972Z",
       "feed_updated": "2026-10-12T04:35:31.989510Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:06.740305Z",
+      "checked_at": "2026-10-12T05:00:11.899659Z",
       "feed_updated": "2026-10-12T04:35:18.972724Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:06.754024Z",
+      "checked_at": "2026-10-12T05:00:12.585552Z",
       "feed_updated": "2026-10-12T04:35:23.674997Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-12T04:42:07.999830Z",
+      "checked_at": "2026-10-12T05:00:13.339063Z",
       "feed_updated": "2026-10-12T04:35:27.974685Z"
     }
   ],
@@ -10775,10 +10775,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-12T04:42:10.106535Z",
+  "generated_at": "2026-10-12T05:00:15.042452Z",
   "feed_updated": "2026-10-12T04:35:44.396441Z",
-  "warning_count": 87,
-  "active_count": 36,
+  "warning_count": 85,
+  "active_count": 34,
   "upcoming_count": 51,
   "max_level": 3,
   "active_max_level": 3,
@@ -11533,66 +11533,6 @@
       "sender_name": "",
       "country": "Bosnia ed Erzegovina",
       "country_code": "bosnia-herzegovina"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261011122927_3_001_yellow_HR028",
-      "status": "active",
-      "sent": "2026-10-11T10:29:27Z",
-      "effective": "2026-10-11T10:29:27Z",
-      "onset": "2026-10-11T22:00:00Z",
-      "expires": "2026-10-12T04:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Istarska",
-      "emma_id": "HR028",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/4957bdb8-5713-4600-a9f1-2c95e0e8855e",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261011122927_3_000_yellow_HR018",
-      "status": "active",
-      "sent": "2026-10-11T10:29:27Z",
-      "effective": "2026-10-11T10:29:27Z",
-      "onset": "2026-10-11T22:00:00Z",
-      "expires": "2026-10-12T04:59:59Z",
-      "event": "Yellow thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Primorsko-goranska",
-      "emma_id": "HR018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/dee9f350-81cb-4968-a24b-70594f978993",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
     },
     {
       "id": "2.49.0.0.70.1.BA.261010105445.67031976",
