@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:38.450855Z",
-      "feed_updated": "2026-10-13T20:35:32.870179Z"
+      "checked_at": "2026-10-13T21:11:07.770198Z",
+      "feed_updated": "2026-10-13T21:05:21.316868Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:38.102334Z",
-      "feed_updated": "2026-10-13T20:35:07.341679Z"
+      "checked_at": "2026-10-13T21:11:07.436175Z",
+      "feed_updated": "2026-10-13T21:05:07.648572Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:38.069505Z",
-      "feed_updated": "2026-10-13T20:35:19.089356Z"
+      "checked_at": "2026-10-13T21:11:07.437068Z",
+      "feed_updated": "2026-10-13T21:05:09.410436Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:38.913356Z",
-      "feed_updated": "2026-10-13T20:35:36.237026Z"
+      "checked_at": "2026-10-13T21:11:09.184988Z",
+      "feed_updated": "2026-10-13T21:05:25.397243Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:39.578329Z",
-      "feed_updated": "2026-10-13T20:35:33.967085Z"
+      "checked_at": "2026-10-13T21:11:09.594224Z",
+      "feed_updated": "2026-10-13T21:05:22.288178Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:39.455721Z",
-      "feed_updated": "2026-10-13T20:35:40.301442Z"
+      "checked_at": "2026-10-13T21:11:09.187080Z",
+      "feed_updated": "2026-10-13T21:05:29.763242Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:39.728441Z",
-      "feed_updated": "2026-10-13T20:35:20.518672Z"
+      "checked_at": "2026-10-13T21:11:10.139934Z",
+      "feed_updated": "2026-10-13T21:05:14.625301Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:40.942521Z",
-      "feed_updated": "2026-10-13T20:35:17.652089Z"
+      "checked_at": "2026-10-13T21:11:10.650912Z",
+      "feed_updated": "2026-10-13T21:05:09.751688Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:40.410803Z",
-      "feed_updated": "2026-10-13T20:35:35.701064Z"
+      "checked_at": "2026-10-13T21:11:10.256918Z",
+      "feed_updated": "2026-10-13T21:05:24.404673Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:40.411504Z",
-      "feed_updated": "2026-10-13T20:35:04.385990Z"
+      "checked_at": "2026-10-13T21:11:10.619926Z",
+      "feed_updated": "2026-10-13T21:05:38.954447Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-13T20:44:41.565808Z",
-      "feed_updated": "2026-10-13T20:35:15.318497Z"
+      "checked_at": "2026-10-13T21:11:11.580677Z",
+      "feed_updated": "2026-10-13T21:05:03.058095Z"
     }
   ],
   "uncovered": [
@@ -10442,566 +10442,6 @@
       "source_code": "GR010",
       "matched_by": "code"
     },
-    "GR006": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              22.154,
-              40.202
-            ],
-            [
-              22.131,
-              40.187
-            ],
-            [
-              21.921,
-              39.857
-            ],
-            [
-              21.891,
-              39.851
-            ],
-            [
-              21.31,
-              39.865
-            ],
-            [
-              21.157,
-              39.861
-            ],
-            [
-              21.101,
-              39.882
-            ],
-            [
-              21.023,
-              40.001
-            ],
-            [
-              20.983,
-              40.098
-            ],
-            [
-              20.976,
-              40.15
-            ],
-            [
-              20.987,
-              40.21
-            ],
-            [
-              20.87,
-              40.346
-            ],
-            [
-              20.842,
-              40.363
-            ],
-            [
-              20.801,
-              40.36
-            ],
-            [
-              20.831,
-              40.393
-            ],
-            [
-              21.049,
-              40.569
-            ],
-            [
-              21.061,
-              40.654
-            ],
-            [
-              21.055,
-              40.696
-            ],
-            [
-              20.984,
-              40.847
-            ],
-            [
-              21.01,
-              40.856
-            ],
-            [
-              21.777,
-              40.931
-            ],
-            [
-              21.738,
-              40.881
-            ],
-            [
-              21.729,
-              40.823
-            ],
-            [
-              21.742,
-              40.784
-            ],
-            [
-              21.916,
-              40.518
-            ],
-            [
-              22.084,
-              40.395
-            ],
-            [
-              22.167,
-              40.307
-            ],
-            [
-              22.182,
-              40.275
-            ],
-            [
-              22.154,
-              40.202
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR006",
-      "matched_by": "code"
-    },
-    "GR008": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              21.279,
-              39.862
-            ],
-            [
-              21.149,
-              39.701
-            ],
-            [
-              21.129,
-              39.664
-            ],
-            [
-              21.195,
-              39.48
-            ],
-            [
-              21.289,
-              39.371
-            ],
-            [
-              21.358,
-              39.359
-            ],
-            [
-              21.388,
-              39.336
-            ],
-            [
-              21.416,
-              39.306
-            ],
-            [
-              21.411,
-              39.275
-            ],
-            [
-              21.366,
-              39.176
-            ],
-            [
-              21.112,
-              39.051
-            ],
-            [
-              20.779,
-              38.997
-            ],
-            [
-              20.706,
-              39.001
-            ],
-            [
-              20.305,
-              39.31
-            ],
-            [
-              20.275,
-              39.342
-            ],
-            [
-              20.22,
-              39.436
-            ],
-            [
-              20.247,
-              39.457
-            ],
-            [
-              20.258,
-              39.504
-            ],
-            [
-              20.185,
-              39.638
-            ],
-            [
-              20.22,
-              39.652
-            ],
-            [
-              20.4,
-              39.812
-            ],
-            [
-              20.406,
-              39.876
-            ],
-            [
-              20.535,
-              40.096
-            ],
-            [
-              20.77,
-              40.342
-            ],
-            [
-              20.801,
-              40.36
-            ],
-            [
-              20.842,
-              40.363
-            ],
-            [
-              20.87,
-              40.346
-            ],
-            [
-              20.987,
-              40.21
-            ],
-            [
-              20.976,
-              40.15
-            ],
-            [
-              20.983,
-              40.098
-            ],
-            [
-              21.023,
-              40.001
-            ],
-            [
-              21.101,
-              39.882
-            ],
-            [
-              21.157,
-              39.861
-            ],
-            [
-              21.279,
-              39.862
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR008",
-      "matched_by": "code"
-    },
-    "GR009": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              22.374,
-              38.146
-            ],
-            [
-              22.374,
-              38.077
-            ],
-            [
-              22.365,
-              38.035
-            ],
-            [
-              22.28,
-              37.872
-            ],
-            [
-              22.255,
-              37.84
-            ],
-            [
-              22.146,
-              37.803
-            ],
-            [
-              22.021,
-              37.791
-            ],
-            [
-              21.912,
-              37.833
-            ],
-            [
-              21.891,
-              37.855
-            ],
-            [
-              21.858,
-              37.85
-            ],
-            [
-              21.807,
-              37.807
-            ],
-            [
-              21.795,
-              37.685
-            ],
-            [
-              21.797,
-              37.62
-            ],
-            [
-              21.814,
-              37.578
-            ],
-            [
-              22.011,
-              37.297
-            ],
-            [
-              22.174,
-              37.15
-            ],
-            [
-              22.248,
-              37.156
-            ],
-            [
-              22.275,
-              37.129
-            ],
-            [
-              22.348,
-              36.984
-            ],
-            [
-              22.392,
-              36.821
-            ],
-            [
-              22.39,
-              36.789
-            ],
-            [
-              22.339,
-              36.723
-            ],
-            [
-              22.289,
-              36.817
-            ],
-            [
-              22.153,
-              37.008
-            ],
-            [
-              22.118,
-              37.023
-            ],
-            [
-              22.051,
-              37.026
-            ],
-            [
-              21.988,
-              37.012
-            ],
-            [
-              21.936,
-              36.988
-            ],
-            [
-              21.924,
-              36.964
-            ],
-            [
-              21.926,
-              36.847
-            ],
-            [
-              21.934,
-              36.816
-            ],
-            [
-              21.928,
-              36.774
-            ],
-            [
-              21.884,
-              36.729
-            ],
-            [
-              21.85,
-              36.738
-            ],
-            [
-              21.698,
-              36.832
-            ],
-            [
-              21.571,
-              37.066
-            ],
-            [
-              21.187,
-              37.907
-            ],
-            [
-              21.184,
-              37.933
-            ],
-            [
-              21.373,
-              38.12
-            ],
-            [
-              21.855,
-              38.339
-            ],
-            [
-              21.947,
-              38.331
-            ],
-            [
-              22.008,
-              38.314
-            ],
-            [
-              22.374,
-              38.146
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR009",
-      "matched_by": "code"
-    },
-    "GR002": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              21.929,
-              39.063
-            ],
-            [
-              21.868,
-              39.014
-            ],
-            [
-              21.855,
-              38.984
-            ],
-            [
-              21.853,
-              38.93
-            ],
-            [
-              21.891,
-              38.856
-            ],
-            [
-              21.969,
-              38.758
-            ],
-            [
-              21.993,
-              38.693
-            ],
-            [
-              22.01,
-              38.572
-            ],
-            [
-              21.995,
-              38.504
-            ],
-            [
-              21.869,
-              38.377
-            ],
-            [
-              21.536,
-              38.308
-            ],
-            [
-              21.501,
-              38.307
-            ],
-            [
-              21.163,
-              38.389
-            ],
-            [
-              21.126,
-              38.406
-            ],
-            [
-              21.0,
-              38.646
-            ],
-            [
-              20.992,
-              38.679
-            ],
-            [
-              21.152,
-              38.92
-            ],
-            [
-              21.16,
-              38.98
-            ],
-            [
-              21.112,
-              39.051
-            ],
-            [
-              21.366,
-              39.176
-            ],
-            [
-              21.929,
-              39.063
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR002",
-      "matched_by": "code"
-    },
     "CY001": {
       "geometry": {
         "type": "Polygon",
@@ -11148,83 +10588,23 @@
       "matched_by": "code"
     }
   },
-  "region_count": 35,
+  "region_count": 31,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-13T20:44:44.039615Z",
-  "feed_updated": "2026-10-13T20:35:40.301442Z",
-  "warning_count": 111,
-  "active_count": 54,
-  "upcoming_count": 57,
+  "generated_at": "2026-10-13T21:11:14.373494Z",
+  "feed_updated": "2026-10-13T21:05:38.954447Z",
+  "warning_count": 80,
+  "active_count": 46,
+  "upcoming_count": 34,
   "max_level": 4,
   "active_max_level": 4,
   "upcoming_max_level": 4,
   "warnings": [
     {
-      "id": "2.49.0.0.300.0.GR.261013111500.002000003",
-      "status": "active",
-      "sent": "2026-10-13T11:15:00Z",
-      "effective": "2026-10-13T11:15:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Red Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Extreme",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 4,
-      "level_name": "rosso",
-      "type_code": null,
-      "type_name": "Red Warning",
-      "area_desc": "East Sterea &amp; Evvoia",
-      "emma_id": "GR003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/b5c6ae5b-6027-4ce0-a7d0-d48f541535d1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261013111200.020000003",
-      "status": "active",
-      "sent": "2026-10-13T11:12:00Z",
-      "effective": "2026-10-13T11:12:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Extreme Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Extreme",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 4,
-      "level_name": "rosso",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "East Sterea &amp; Evvoia",
-      "emma_id": "GR003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/cb638322-1181-4154-88d7-519817c743e1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261013123300.001000003",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:33:00Z",
       "effective": "2026-10-13T12:33:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -11254,7 +10634,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123100.010000003",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:31:00Z",
       "effective": "2026-10-13T12:31:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -11307,186 +10687,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/86710e17-e567-44e3-883f-94a69bcc680f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012123300.010000010",
-      "status": "active",
-      "sent": "2026-10-12T12:33:00Z",
-      "effective": "2026-10-12T12:33:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "Ionion Islands",
-      "emma_id": "GR010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/d48a4aa8-f633-44b7-9574-4b26721f94c0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012122200.001000010",
-      "status": "active",
-      "sent": "2026-10-12T12:22:00Z",
-      "effective": "2026-10-12T12:22:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "Ionion Islands",
-      "emma_id": "GR010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/d8f368da-349c-451b-9443-891db46c6938",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012123300.010000009",
-      "status": "active",
-      "sent": "2026-10-12T12:33:00Z",
-      "effective": "2026-10-12T12:33:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "West Peloponnisos",
-      "emma_id": "GR009",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/65d163af-ecb6-4153-b3de-87be569a1d7c",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012122200.001000009",
-      "status": "active",
-      "sent": "2026-10-12T12:22:00Z",
-      "effective": "2026-10-12T12:22:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "West Peloponnisos",
-      "emma_id": "GR009",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/639ca34b-9932-4ffe-9a8a-f8a3755c3323",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012123300.010000002",
-      "status": "active",
-      "sent": "2026-10-12T12:33:00Z",
-      "effective": "2026-10-12T12:33:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "West Sterea",
-      "emma_id": "GR002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/4c9880ad-b24d-447e-acb8-099ed346a7bf",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012122200.001000002",
-      "status": "active",
-      "sent": "2026-10-12T12:22:00Z",
-      "effective": "2026-10-12T12:22:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "West Sterea",
-      "emma_id": "GR002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/5590d04d-f2b8-483c-a468-e5204794ed15",
       "source_web": "",
       "sender_name": "",
       "country": "Grecia",
@@ -11703,398 +10903,8 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261012124000.001000007",
-      "status": "active",
-      "sent": "2026-10-12T12:40:00Z",
-      "effective": "2026-10-12T12:40:00Z",
-      "onset": "2026-10-13T09:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Central Makedonia",
-      "emma_id": "GR007",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/c364ce44-71c6-4753-99a9-18b6e9005f4d",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012123700.010000007",
-      "status": "active",
-      "sent": "2026-10-12T12:37:00Z",
-      "effective": "2026-10-12T12:37:00Z",
-      "onset": "2026-10-13T09:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Central Makedonia",
-      "emma_id": "GR007",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/87f4db98-3545-47a2-9346-0c9bb7d4f840",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012130900.010000011",
-      "status": "active",
-      "sent": "2026-10-12T13:09:00Z",
-      "effective": "2026-10-12T13:09:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Attiki",
-      "emma_id": "GR011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/dd460a14-ca0e-4fc5-9c8a-7f99c234c677",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012125400.001000011",
-      "status": "active",
-      "sent": "2026-10-12T12:54:00Z",
-      "effective": "2026-10-12T12:54:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "Attiki",
-      "emma_id": "GR011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/8dcbdb59-f799-42da-95e3-6e45ef993d95",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012130900.010000015",
-      "status": "active",
-      "sent": "2026-10-12T13:09:00Z",
-      "effective": "2026-10-12T13:09:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "East Peloponnisos",
-      "emma_id": "GR015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/40c34f4a-e33f-4ad8-a6c7-df2540ca2809",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012125400.001000015",
-      "status": "active",
-      "sent": "2026-10-12T12:54:00Z",
-      "effective": "2026-10-12T12:54:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "East Peloponnisos",
-      "emma_id": "GR015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/4fcb9c6c-255c-4984-adad-0bf819ec1cc1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012125200.010000001",
-      "status": "active",
-      "sent": "2026-10-12T12:52:00Z",
-      "effective": "2026-10-12T12:52:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Thessalia",
-      "emma_id": "GR001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/d3db2262-8cc8-4639-89e2-68153ac3edac",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012124200.001000001",
-      "status": "active",
-      "sent": "2026-10-12T12:42:00Z",
-      "effective": "2026-10-12T12:42:00Z",
-      "onset": "2026-10-13T13:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Thessalia",
-      "emma_id": "GR001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/76f9200c-6b38-4e16-9695-e1d38cb1d3f4",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012130900.010000016",
-      "status": "active",
-      "sent": "2026-10-12T13:09:00Z",
-      "effective": "2026-10-12T13:09:00Z",
-      "onset": "2026-10-13T16:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "Kriti",
-      "emma_id": "GR016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/7eea3c78-ab70-48d1-904a-b48d4b527230",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012125400.001000016",
-      "status": "active",
-      "sent": "2026-10-12T12:54:00Z",
-      "effective": "2026-10-12T12:54:00Z",
-      "onset": "2026-10-13T16:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Orange Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Orange Warning",
-      "area_desc": "Kriti",
-      "emma_id": "GR016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/df953160-adf3-48f3-af5d-555172c54def",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261013113500.010000012",
-      "status": "active",
-      "sent": "2026-10-13T11:35:00Z",
-      "effective": "2026-10-13T11:35:00Z",
-      "onset": "2026-10-13T16:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Kyklades",
-      "emma_id": "GR012",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/2600b49c-7324-42a0-929d-45b70bd21a2c",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012132500.010000013",
-      "status": "active",
-      "sent": "2026-10-12T13:25:00Z",
-      "effective": "2026-10-12T13:25:00Z",
-      "onset": "2026-10-13T18:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Dodekanisa Islands",
-      "emma_id": "GR013",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/1e29ccbc-1601-4459-8587-f53eac4d2d71",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012132300.001000013",
-      "status": "active",
-      "sent": "2026-10-12T13:23:00Z",
-      "effective": "2026-10-12T13:23:00Z",
-      "onset": "2026-10-13T18:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Severe Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Dodekanisa Islands",
-      "emma_id": "GR013",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/23a96334-3c0c-451c-84a0-01a526c6c0ef",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261013123800.001000011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:38:00Z",
       "effective": "2026-10-13T12:38:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12124,7 +10934,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123400.010000011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:34:00Z",
       "effective": "2026-10-13T12:34:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12154,7 +10964,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123800.001000007",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:38:00Z",
       "effective": "2026-10-13T12:38:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12184,7 +10994,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123400.010000007",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:34:00Z",
       "effective": "2026-10-13T12:34:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12214,7 +11024,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013133800.001000013",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:38:00Z",
       "effective": "2026-10-13T13:38:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12244,7 +11054,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013133700.010000013",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:37:00Z",
       "effective": "2026-10-13T13:37:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12274,7 +11084,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013132800.001000015",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:28:00Z",
       "effective": "2026-10-13T13:28:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12304,7 +11114,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013132500.010000015",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:25:00Z",
       "effective": "2026-10-13T13:25:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12334,7 +11144,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013134200.002000016",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:42:00Z",
       "effective": "2026-10-13T13:42:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12364,7 +11174,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013134000.020000016",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:40:00Z",
       "effective": "2026-10-13T13:40:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12394,7 +11204,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013132800.001000012",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:28:00Z",
       "effective": "2026-10-13T13:28:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12424,7 +11234,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013132500.010000012",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:25:00Z",
       "effective": "2026-10-13T13:25:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12454,7 +11264,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123800.001000001",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:38:00Z",
       "effective": "2026-10-13T12:38:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12484,7 +11294,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013123400.010000001",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T12:34:00Z",
       "effective": "2026-10-13T12:34:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12514,7 +11324,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013115100.200000001",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T11:51:00Z",
       "effective": "2026-10-13T11:51:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -12871,36 +11681,6 @@
       "sender_name": "",
       "country": "Cipro",
       "country_code": "cyprus"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012132900.001000008",
-      "status": "active",
-      "sent": "2026-10-12T13:29:00Z",
-      "effective": "2026-10-12T13:29:00Z",
-      "onset": "2026-10-12T21:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Epirus",
-      "emma_id": "GR008",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/8552c0cd-78f8-4fa5-a8e9-0575d856e501",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
     },
     {
       "id": "2.49.0.0.70.1.BA.261011094734.37107761",
@@ -13293,36 +12073,6 @@
       "country_code": "montenegro"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261012134500.001000006",
-      "status": "active",
-      "sent": "2026-10-12T13:45:00Z",
-      "effective": "2026-10-12T13:45:00Z",
-      "onset": "2026-10-13T06:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "West Makedonia",
-      "emma_id": "GR006",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/8c7725af-cf3d-49b1-8f55-9c64381e5c20",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261013101808.016",
       "status": "active",
       "sent": "2026-10-13T08:18:08Z",
@@ -13413,248 +12163,8 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261012134500.001000005",
-      "status": "active",
-      "sent": "2026-10-12T13:45:00Z",
-      "effective": "2026-10-12T13:45:00Z",
-      "onset": "2026-10-13T09:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "East Makedonia",
-      "emma_id": "GR005",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/8b9ecd4e-7c34-491c-91dd-41576306bc66",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012134500.001000004",
-      "status": "active",
-      "sent": "2026-10-12T13:45:00Z",
-      "effective": "2026-10-12T13:45:00Z",
-      "onset": "2026-10-13T10:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Thraki",
-      "emma_id": "GR004",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/86a0d935-1270-4a7a-ab5d-18a3b10c2ef9",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012134500.001000012",
-      "status": "active",
-      "sent": "2026-10-12T13:45:00Z",
-      "effective": "2026-10-12T13:45:00Z",
-      "onset": "2026-10-13T11:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "Kyklades",
-      "emma_id": "GR012",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/b3412df8-396d-4071-8375-c1ef193f8688",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012132200.010000014",
-      "status": "active",
-      "sent": "2026-10-12T13:22:00Z",
-      "effective": "2026-10-12T13:22:00Z",
-      "onset": "2026-10-13T12:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "North East Aegean Islands",
-      "emma_id": "GR014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/4c61a82a-95ef-48ce-b57d-7b2794ffb922",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012132000.001000014",
-      "status": "active",
-      "sent": "2026-10-12T13:20:00Z",
-      "effective": "2026-10-12T13:20:00Z",
-      "onset": "2026-10-13T12:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "North East Aegean Islands",
-      "emma_id": "GR014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/c61a6faa-a25c-43c7-be5b-1ff3ae5fcbcf",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012121000.100000010",
-      "status": "active",
-      "sent": "2026-10-12T12:10:00Z",
-      "effective": "2026-10-12T12:10:00Z",
-      "onset": "2026-10-13T18:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Ionion Islands",
-      "emma_id": "GR010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/201afa84-38ca-4bf1-a44f-20a1a33d8995",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012121800.100000014",
-      "status": "active",
-      "sent": "2026-10-12T12:18:00Z",
-      "effective": "2026-10-12T12:18:00Z",
-      "onset": "2026-10-13T18:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Moderate Wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "North East Aegean Islands",
-      "emma_id": "GR014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/49e1a6a3-8788-43b2-b56a-5aef5e81262c",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261012121500.200000001",
-      "status": "active",
-      "sent": "2026-10-12T12:15:00Z",
-      "effective": "2026-10-12T12:15:00Z",
-      "onset": "2026-10-13T18:00:00Z",
-      "expires": "2026-10-13T21:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "Thessalia",
-      "emma_id": "GR001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/3fe9407b-3e28-45cc-8339-6ac6bc4f51f0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261013135200.001000005",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:52:00Z",
       "effective": "2026-10-13T13:52:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -13684,7 +12194,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135100.010000005",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:51:00Z",
       "effective": "2026-10-13T13:51:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -13714,7 +12224,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135500.001000014",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:55:00Z",
       "effective": "2026-10-13T13:55:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -13744,7 +12254,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135400.010000014",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:54:00Z",
       "effective": "2026-10-13T13:54:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -13774,7 +12284,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135200.001000004",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:52:00Z",
       "effective": "2026-10-13T13:52:00Z",
       "onset": "2026-10-13T21:00:00Z",
@@ -13804,7 +12314,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135100.010000004",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T13:51:00Z",
       "effective": "2026-10-13T13:51:00Z",
       "onset": "2026-10-13T21:00:00Z",
