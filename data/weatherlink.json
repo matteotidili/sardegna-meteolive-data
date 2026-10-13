@@ -1,7 +1,10 @@
 {
-  "generated_at": null,
-  "local_day": null,
-  "source": "Davis WeatherLink v2 (in attesa accesso autorizzato)",
+  "generated_at": "2026-10-13T15:32:39Z",
+  "local_day": "2026-10-13",
+  "source": "Davis WeatherLink v2 (stazioni pubbliche autorizzate)",
   "station_count": 0,
+  "authorized_sardinia_stations": 0,
+  "excluded_likely_duplicates": 0,
+  "errors": 0,
   "stations": []
 }
