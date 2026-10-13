@@ -15,6 +15,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 BASE = "https://api.weatherlink.com/v2"
 ROOT = Path(__file__).resolve().parent.parent
@@ -192,7 +193,7 @@ def main():
     generated_at = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
     document = {
         "generated_at": generated_at,
-        "local_day": datetime.now().astimezone().date().isoformat(),
+        "local_day": datetime.now(ZoneInfo("Europe/Rome")).date().isoformat(),
         "source": "Davis WeatherLink v2 (stazioni pubbliche autorizzate)",
         "station_count": len(fresh),
         "authorized_sardinia_stations": len(eligible),
