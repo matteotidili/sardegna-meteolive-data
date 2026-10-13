@@ -19,6 +19,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+EXCLUDED_WU_STATIONS = {"ISERRA56"}  # PWS Serramanna non affidabile
 OUT = Path("data/wunderground_stations.json")
 BASE = "https://api.weather.com/v3/location/near"
 
@@ -191,7 +192,7 @@ def main():
             for dx in (-micro_step, 0.0, micro_step):
                 query_point(lat + dy, lon + dx)
 
-    stations = sorted(found.values(), key=lambda x: (x["name"].casefold(), x["station_id"]))
+    stations = sorted((s for s in found.values() if s.get("station_id") not in EXCLUDED_WU_STATIONS), key=lambda x: (x["name"].casefold(), x["station_id"]))
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "source": "Weather Underground / The Weather Company PWS",
