@@ -24,6 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+EXCLUDED_WU_STATIONS = {"ISERRA56"}  # Serramanna: sensore con temperatura errata
 SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
@@ -59,7 +60,7 @@ def round1(v):
 def station_ids(inventory):
     # Proviamo sempre tutte le stazioni dell'inventario corrente.
     # Una PWS che non ha risposto a un vecchio test può tornare online in seguito.
-    return inventory.get("stations") or []
+    return [s for s in (inventory.get("stations") or []) if s.get("station_id") not in EXCLUDED_WU_STATIONS]
 
 def should_skip_recent_run():
     if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
