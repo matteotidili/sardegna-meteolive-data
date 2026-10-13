@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:37.504818Z",
-      "feed_updated": "2026-10-13T07:05:26.331239Z"
+      "checked_at": "2026-10-13T07:43:59.712104Z",
+      "feed_updated": "2026-10-13T07:35:49.946670Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:37.213700Z",
-      "feed_updated": "2026-10-13T07:10:12.011647Z"
+      "checked_at": "2026-10-13T07:43:59.227492Z",
+      "feed_updated": "2026-10-13T07:35:25.046879Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:37.186410Z",
-      "feed_updated": "2026-10-13T07:05:11.409329Z"
+      "checked_at": "2026-10-13T07:43:59.218940Z",
+      "feed_updated": "2026-10-13T07:35:04.863843Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:37.857270Z",
-      "feed_updated": "2026-10-13T07:05:30.255931Z"
+      "checked_at": "2026-10-13T07:44:00.253059Z",
+      "feed_updated": "2026-10-13T07:35:56.150174Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:38.269534Z",
-      "feed_updated": "2026-10-13T07:18:58.998568Z"
+      "checked_at": "2026-10-13T07:44:00.679870Z",
+      "feed_updated": "2026-10-13T07:40:39.190499Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:38.426734Z",
-      "feed_updated": "2026-10-13T07:05:37.173934Z"
+      "checked_at": "2026-10-13T07:44:00.952716Z",
+      "feed_updated": "2026-10-13T07:35:16.106479Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:38.429801Z",
-      "feed_updated": "2026-10-13T07:05:16.421363Z"
+      "checked_at": "2026-10-13T07:44:01.206764Z",
+      "feed_updated": "2026-10-13T07:35:38.835644Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:39.520234Z",
-      "feed_updated": "2026-10-13T07:05:12.493029Z"
+      "checked_at": "2026-10-13T07:44:02.057079Z",
+      "feed_updated": "2026-10-13T07:35:38.028301Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:39.096615Z",
-      "feed_updated": "2026-10-13T07:05:29.595092Z"
+      "checked_at": "2026-10-13T07:44:01.584669Z",
+      "feed_updated": "2026-10-13T07:35:55.146270Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:39.098794Z",
-      "feed_updated": "2026-10-13T07:05:36.862103Z"
+      "checked_at": "2026-10-13T07:44:01.838787Z",
+      "feed_updated": "2026-10-13T07:35:14.833858Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-13T07:20:39.934690Z",
-      "feed_updated": "2026-10-13T07:05:07.362270Z"
+      "checked_at": "2026-10-13T07:44:02.729403Z",
+      "feed_updated": "2026-10-13T07:35:30.075412Z"
     }
   ],
   "uncovered": [
@@ -11766,8 +11766,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-13T07:20:41.860608Z",
-  "feed_updated": "2026-10-13T07:18:58.998568Z",
+  "generated_at": "2026-10-13T07:44:05.257986Z",
+  "feed_updated": "2026-10-13T07:40:39.190499Z",
   "warning_count": 96,
   "active_count": 40,
   "upcoming_count": 56,
@@ -13366,12 +13366,12 @@
       "country_code": "greece"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_004_yellow_HR017",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_004_yellow_HR017",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13389,19 +13389,19 @@
       "emma_id": "HR017",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/4ad569a1-20d6-4e51-8662-d6c21c2102e3",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1241bba6-12ef-49dd-8f01-23f2c8ec8f4a",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_006_yellow_HR022",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_006_yellow_HR022",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13419,19 +13419,19 @@
       "emma_id": "HR022",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/4b174de0-275e-4bdd-abb9-893c941182a3",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e4ff74da-d8db-4aa7-a38b-c7a475ef43aa",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_007_yellow_HR031",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_007_yellow_HR031",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13449,19 +13449,19 @@
       "emma_id": "HR031",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/530e6b18-9733-479f-a325-591fdad08c20",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/3303d07f-445e-44b3-8c82-bf654a57ae52",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_003_yellow_HR014",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_003_yellow_HR014",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13479,19 +13479,19 @@
       "emma_id": "HR014",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/24adf4c1-60d0-4ad2-89b7-a18b11a3ec39",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/e995a2d9-99ee-4889-ad38-9096469d5dea",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_001_yellow_HR012",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_001_yellow_HR012",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13509,19 +13509,19 @@
       "emma_id": "HR012",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/24576e27-48bf-48e3-83bc-1dbd356393e3",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1cd43a44-c45c-4ffa-bffd-d75abe2b29bc",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_005_yellow_HR019",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_005_yellow_HR019",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13539,19 +13539,19 @@
       "emma_id": "HR019",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/933a1bd6-246f-48c5-bef7-e398c63739be",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/bf007161-1be3-4c37-a8f5-7483d21beb89",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_002_yellow_HR013",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_002_yellow_HR013",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13569,19 +13569,19 @@
       "emma_id": "HR013",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/fa5a9425-1b2b-4778-b195-b0a688a1e682",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/1c9c6726-2bba-4ba9-9a69-af170d5309b4",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261013084048_4_000_yellow_HR011",
+      "id": "2.49.0.0.191.0.HR.261013093458_4_000_yellow_HR011",
       "status": "active",
-      "sent": "2026-10-13T06:40:48Z",
-      "effective": "2026-10-13T06:40:48Z",
-      "onset": "2026-10-13T06:40:45Z",
-      "expires": "2026-10-13T09:59:59Z",
+      "sent": "2026-10-13T07:34:58Z",
+      "effective": "2026-10-13T07:34:58Z",
+      "onset": "2026-10-13T07:34:54Z",
+      "expires": "2026-10-13T08:59:59Z",
       "event": "Yellow fog warning",
       "headline": "",
       "description": "",
@@ -13599,7 +13599,7 @@
       "emma_id": "HR011",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/fe1bde53-417b-418e-ae51-18fec63aab51",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/439489f5-de6b-46bd-adf8-15733fb3cfbc",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
