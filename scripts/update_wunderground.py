@@ -119,9 +119,10 @@ def process_station(st, key, now, today_local):
         last_dt, last = parsed[-1]
         lm = last.get("metric") or {}
 
+        # Nessun dato del giorno locale: non usare gli estremi di ieri
+        # come Tmin/Tmax di oggi. La lettura corrente viene verificata
+        # separatamente per freschezza sul frontend.
         today_obs = [(dt, o) for dt, o in parsed if dt.astimezone(ROME).date() == today_local]
-        if not today_obs:
-            today_obs = [(last_dt, last)]
 
         tmins, tmaxs, gusts = [], [], []
         for _, o in today_obs:
@@ -133,7 +134,7 @@ def process_station(st, key, now, today_local):
             if num(m.get("windgustHigh")):
                 gusts.append(float(m["windgustHigh"]))
 
-        rain_today = lm.get("precipTotal")
+        rain_today = lm.get("precipTotal") if today_obs else None
         pressure = None
         pmin, pmax = lm.get("pressureMin"), lm.get("pressureMax")
         if num(pmin) and num(pmax):
@@ -157,7 +158,7 @@ def process_station(st, key, now, today_local):
             "rh": round1(last.get("humidityAvg")),
             "wind_kmh": round1(lm.get("windspeedAvg")),
             "wind_dir": round(float(last["winddirAvg"])) if num(last.get("winddirAvg")) else None,
-            "gust_kmh": round(max(gusts), 1) if gusts else round1(lm.get("windgustHigh")),
+            "gust_kmh": round(max(gusts), 1) if gusts else (round1(lm.get("windgustHigh")) if today_obs else None),
             "rain_rate": round1(lm.get("precipRate")),
             "rain_today": round1(rain_today),
             "dewpoint": round1(lm.get("dewptAvg")),
