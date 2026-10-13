@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:26.318134Z",
-      "feed_updated": "2026-10-13T15:05:32.001249Z"
+      "checked_at": "2026-10-13T15:50:55.438279Z",
+      "feed_updated": "2026-10-13T15:35:34.456098Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:25.996912Z",
-      "feed_updated": "2026-10-13T15:05:22.064932Z"
+      "checked_at": "2026-10-13T15:50:55.074919Z",
+      "feed_updated": "2026-10-13T15:42:41.589737Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:25.995515Z",
-      "feed_updated": "2026-10-13T15:05:31.780660Z"
+      "checked_at": "2026-10-13T15:50:55.068303Z",
+      "feed_updated": "2026-10-13T15:35:25.884446Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:26.981428Z",
-      "feed_updated": "2026-10-13T15:05:30.952342Z"
+      "checked_at": "2026-10-13T15:50:56.038559Z",
+      "feed_updated": "2026-10-13T15:35:41.613267Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:27.480728Z",
-      "feed_updated": "2026-10-13T15:05:39.869261Z"
+      "checked_at": "2026-10-13T15:50:56.597485Z",
+      "feed_updated": "2026-10-13T15:35:37.677019Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:27.139458Z",
-      "feed_updated": "2026-10-13T15:05:19.879195Z"
+      "checked_at": "2026-10-13T15:50:56.254939Z",
+      "feed_updated": "2026-10-13T15:35:19.330248Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:27.974759Z",
-      "feed_updated": "2026-10-13T15:05:27.163946Z"
+      "checked_at": "2026-10-13T15:50:57.353182Z",
+      "feed_updated": "2026-10-13T15:35:30.010510Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:29.241182Z",
-      "feed_updated": "2026-10-13T15:05:29.309079Z"
+      "checked_at": "2026-10-13T15:50:58.044068Z",
+      "feed_updated": "2026-10-13T15:36:29.001850Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:28.199197Z",
-      "feed_updated": "2026-10-13T15:05:30.211792Z"
+      "checked_at": "2026-10-13T15:50:57.248051Z",
+      "feed_updated": "2026-10-13T15:35:41.085521Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:28.639065Z",
-      "feed_updated": "2026-10-13T15:05:10.392030Z"
+      "checked_at": "2026-10-13T15:50:58.145362Z",
+      "feed_updated": "2026-10-13T15:35:01.547821Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-13T15:29:29.317782Z",
-      "feed_updated": "2026-10-13T15:05:27.854803Z"
+      "checked_at": "2026-10-13T15:50:58.626205Z",
+      "feed_updated": "2026-10-13T15:35:23.393589Z"
     }
   ],
   "uncovered": [
@@ -11153,11 +11153,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-13T15:29:31.375565Z",
-  "feed_updated": "2026-10-13T15:05:39.869261Z",
-  "warning_count": 122,
+  "generated_at": "2026-10-13T15:51:00.907154Z",
+  "feed_updated": "2026-10-13T15:42:41.589737Z",
+  "warning_count": 123,
   "active_count": 58,
-  "upcoming_count": 64,
+  "upcoming_count": 65,
   "max_level": 4,
   "active_max_level": 4,
   "upcoming_max_level": 4,
@@ -11277,6 +11277,36 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/3f69b824-7f09-417b-a300-2b0a4573d536",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Grecia",
+      "country_code": "greece"
+    },
+    {
+      "id": "2.49.0.0.300.0.GR.261013152800.100000014",
+      "status": "upcoming",
+      "sent": "2026-10-13T15:28:00Z",
+      "effective": "2026-10-13T15:28:00Z",
+      "onset": "2026-10-14T02:00:00Z",
+      "expires": "2026-10-14T07:00:00Z",
+      "event": "Extreme Wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Extreme",
+      "urgency": "Expected",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 4,
+      "level_name": "rosso",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "North East Aegean Islands",
+      "emma_id": "GR014",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/86710e17-e567-44e3-883f-94a69bcc680f",
       "source_web": "",
       "sender_name": "",
       "country": "Grecia",
