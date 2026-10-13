@@ -168,8 +168,17 @@ def main():
         print("WeatherLink non configurato: nessuna pubblicazione, dati esistenti invariati.")
         return
     stations = weatherlink_get("/stations", key, secret).get("stations") or []
-    eligible = [s for s in stations if s.get("private") is False and
-                s.get("active") is not False and in_sardinia(s)]
+    island = [s for s in stations if in_sardinia(s)]
+    public = [s for s in island if s.get("private") is False]
+    eligible = [s for s in public if s.get("active") is not False]
+    # Solo conteggi aggregati: nessun dato personale delle stazioni private nei log.
+    print("WeatherLink diagnostica accessi: "
+          f"totali_api={len(stations)}, "
+          f"in_sardegna={len(island)}, "
+          f"pubbliche_sardegna={len(public)}, "
+          f"private_sardegna={sum(s.get('private') is True for s in island)}, "
+          f"visibilita_non_definita={sum(s.get('private') is None for s in island)}, "
+          f"pubbliche_attive={len(eligible)}")
     seen = existing_stations()
     fresh, skipped_duplicates, errors = [], 0, 0
     now = int(time.time())
