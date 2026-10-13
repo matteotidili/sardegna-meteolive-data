@@ -5,67 +5,67 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:05.152871Z",
+      "checked_at": "2026-10-13T05:05:24.151539Z",
       "feed_updated": "2026-10-13T04:35:12.749915Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:04.508628Z",
+      "checked_at": "2026-10-13T05:05:23.861355Z",
       "feed_updated": "2026-10-13T04:35:10.780401Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:04.498347Z",
-      "feed_updated": "2026-10-13T04:35:05.884528Z"
+      "checked_at": "2026-10-13T05:05:23.858719Z",
+      "feed_updated": "2026-10-13T05:05:08.195548Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:06.627406Z",
+      "checked_at": "2026-10-13T05:05:24.730395Z",
       "feed_updated": "2026-10-13T04:35:27.564034Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:07.272586Z",
+      "checked_at": "2026-10-13T05:05:25.221768Z",
       "feed_updated": "2026-10-13T04:35:15.213871Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:06.648997Z",
+      "checked_at": "2026-10-13T05:05:25.593550Z",
       "feed_updated": "2026-10-13T04:35:06.988546Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:09.758503Z",
-      "feed_updated": "2026-10-13T04:48:06.582604Z"
+      "checked_at": "2026-10-13T05:05:25.590218Z",
+      "feed_updated": "2026-10-13T04:54:15.735279Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:10.626841Z",
+      "checked_at": "2026-10-13T05:05:26.584454Z",
       "feed_updated": "2026-10-13T04:35:40.231361Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:09.767365Z",
+      "checked_at": "2026-10-13T05:05:26.193455Z",
       "feed_updated": "2026-10-13T04:35:27.457133Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:10.401495Z",
-      "feed_updated": "2026-10-13T04:35:06.768892Z"
+      "checked_at": "2026-10-13T05:05:26.341376Z",
+      "feed_updated": "2026-10-13T05:05:07.402222Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-13T04:51:10.849039Z",
+      "checked_at": "2026-10-13T05:05:26.916533Z",
       "feed_updated": "2026-10-13T04:35:17.393418Z"
     }
   ],
@@ -11766,11 +11766,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-13T04:51:13.493232Z",
-  "feed_updated": "2026-10-13T04:48:06.582604Z",
-  "warning_count": 98,
-  "active_count": 36,
-  "upcoming_count": 62,
+  "generated_at": "2026-10-13T05:05:30.007769Z",
+  "feed_updated": "2026-10-13T05:05:08.195548Z",
+  "warning_count": 101,
+  "active_count": 38,
+  "upcoming_count": 63,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -12077,7 +12077,7 @@
     },
     {
       "id": "2.49.0.1.499.0.1791866771307",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T04:46:11Z",
       "effective": "2026-10-13T05:00:00Z",
       "onset": "2026-10-13T05:00:00Z",
@@ -12107,7 +12107,7 @@
     },
     {
       "id": "2.49.0.1.499.0.1791866771307",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T04:46:11Z",
       "effective": "2026-10-13T05:00:00Z",
       "onset": "2026-10-13T05:00:00Z",
@@ -12554,6 +12554,66 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791866947068",
+      "status": "upcoming",
+      "sent": "2026-10-13T04:49:07Z",
+      "effective": "2026-10-13T22:00:00Z",
+      "onset": "2026-10-13T22:00:00Z",
+      "expires": "2026-10-14T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Adriatic coast",
+      "emma_id": "ME002",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4cfcf160-1e3d-4d61-b417-df88860e2241",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791866947068",
+      "status": "upcoming",
+      "sent": "2026-10-13T04:49:07Z",
+      "effective": "2026-10-13T22:00:00Z",
+      "onset": "2026-10-13T22:00:00Z",
+      "expires": "2026-10-14T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Central",
+      "emma_id": "ME003",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/4cfcf160-1e3d-4d61-b417-df88860e2241",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.300.0.GR.261013041000.100000007",
@@ -15590,6 +15650,36 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
+    },
+    {
+      "id": "2.49.0.1.499.0.1791866902485",
+      "status": "upcoming",
+      "sent": "2026-10-13T04:48:22Z",
+      "effective": "2026-10-13T22:00:00Z",
+      "onset": "2026-10-13T22:00:00Z",
+      "expires": "2026-10-14T21:59:00Z",
+      "event": "Wind",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Possible",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Continental and Mountains",
+      "emma_id": "ME001",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/f695c9b2-9d90-4451-9241-4d4b08f2f353",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Montenegro",
+      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.300.0.GR.261013041000.100000005",
