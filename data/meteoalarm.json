@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:28.519636Z",
-      "feed_updated": "2026-10-14T06:35:24.617426Z"
+      "checked_at": "2026-10-14T07:24:20.801776Z",
+      "feed_updated": "2026-10-14T07:05:32.942422Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:28.244678Z",
-      "feed_updated": "2026-10-14T06:35:14.701322Z"
+      "checked_at": "2026-10-14T07:24:20.613137Z",
+      "feed_updated": "2026-10-14T07:05:21.202162Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:28.234160Z",
-      "feed_updated": "2026-10-14T06:35:01.550913Z"
+      "checked_at": "2026-10-14T07:24:20.598222Z",
+      "feed_updated": "2026-10-14T07:05:08.722270Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:28.808575Z",
-      "feed_updated": "2026-10-14T06:35:37.071455Z"
+      "checked_at": "2026-10-14T07:24:21.120027Z",
+      "feed_updated": "2026-10-14T07:05:22.288003Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:29.602133Z",
-      "feed_updated": "2026-10-14T06:38:12.500085Z"
+      "checked_at": "2026-10-14T07:24:21.434491Z",
+      "feed_updated": "2026-10-14T07:12:36.411826Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:29.316567Z",
-      "feed_updated": "2026-10-14T06:35:29.739252Z"
+      "checked_at": "2026-10-14T07:24:21.436554Z",
+      "feed_updated": "2026-10-14T07:05:01.384748Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:29.672454Z",
-      "feed_updated": "2026-10-14T06:35:36.985760Z"
+      "checked_at": "2026-10-14T07:24:21.742586Z",
+      "feed_updated": "2026-10-14T07:05:36.704648Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:30.746512Z",
-      "feed_updated": "2026-10-14T06:35:36.085066Z"
+      "checked_at": "2026-10-14T07:24:22.294942Z",
+      "feed_updated": "2026-10-14T07:05:34.352168Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:30.458009Z",
-      "feed_updated": "2026-10-14T06:35:38.836009Z"
+      "checked_at": "2026-10-14T07:24:22.145725Z",
+      "feed_updated": "2026-10-14T07:05:39.236033Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:30.473545Z",
-      "feed_updated": "2026-10-14T06:35:05.181553Z"
+      "checked_at": "2026-10-14T07:24:22.422519Z",
+      "feed_updated": "2026-10-14T07:05:09.253069Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-14T06:44:31.318044Z",
-      "feed_updated": "2026-10-14T06:35:15.394394Z"
+      "checked_at": "2026-10-14T07:24:22.884698Z",
+      "feed_updated": "2026-10-14T07:05:31.473536Z"
     }
   ],
   "uncovered": [
@@ -10229,10 +10229,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-14T06:44:33.746244Z",
-  "feed_updated": "2026-10-14T06:38:12.500085Z",
-  "warning_count": 73,
-  "active_count": 47,
+  "generated_at": "2026-10-14T07:24:24.444980Z",
+  "feed_updated": "2026-10-14T07:12:36.411826Z",
+  "warning_count": 72,
+  "active_count": 46,
   "upcoming_count": 26,
   "max_level": 4,
   "active_max_level": 4,
@@ -10293,36 +10293,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/3f69b824-7f09-417b-a300-2b0a4573d536",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261013152800.100000014",
-      "status": "active",
-      "sent": "2026-10-13T15:28:00Z",
-      "effective": "2026-10-13T15:28:00Z",
-      "onset": "2026-10-14T02:00:00Z",
-      "expires": "2026-10-14T07:00:00Z",
-      "event": "Extreme Wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Extreme",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 4,
-      "level_name": "rosso",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "North East Aegean Islands",
-      "emma_id": "GR014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/86710e17-e567-44e3-883f-94a69bcc680f",
       "source_web": "",
       "sender_name": "",
       "country": "Grecia",
@@ -10899,6 +10869,36 @@
       "country_code": "greece"
     },
     {
+      "id": "2.49.0.0.196.0.CY.261014094617.thunder.000",
+      "status": "upcoming",
+      "sent": "2026-10-14T06:46:17Z",
+      "effective": "2026-10-14T06:46:17Z",
+      "onset": "2026-10-14T12:00:00Z",
+      "expires": "2026-10-15T01:59:59Z",
+      "event": "Thunderstorm Orange",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Cyprus",
+      "emma_id": "CY001",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-cyprus/bf1d829b-33b2-425a-9e80-6a258cf3f8e6",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Cipro",
+      "country_code": "cyprus"
+    },
+    {
       "id": "2.49.0.0.300.0.GR.261013123800.001000003",
       "status": "upcoming",
       "sent": "2026-10-13T12:38:00Z",
@@ -10957,36 +10957,6 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.196.0.CY.261013155302.thunder.000",
-      "status": "upcoming",
-      "sent": "2026-10-13T12:53:02Z",
-      "effective": "2026-10-13T12:53:02Z",
-      "onset": "2026-10-14T16:00:00Z",
-      "expires": "2026-10-15T01:59:59Z",
-      "event": "Thunderstorm Orange",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Cyprus",
-      "emma_id": "CY001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-cyprus/1d316a03-0b9b-40e1-b33c-75aada40e6b1",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Cipro",
-      "country_code": "cyprus"
     },
     {
       "id": "2.49.0.0.380.3.IT.261013101808.016",
