@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.113208Z",
-      "feed_updated": "2026-10-14T07:35:23.341553Z"
+      "checked_at": "2026-10-14T08:32:01.353513Z",
+      "feed_updated": "2026-10-14T08:29:15.336345Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.083041Z",
-      "feed_updated": "2026-10-14T07:35:34.809207Z"
+      "checked_at": "2026-10-14T08:32:01.162362Z",
+      "feed_updated": "2026-10-14T08:05:23.875063Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.061875Z",
-      "feed_updated": "2026-10-14T07:35:09.449826Z"
+      "checked_at": "2026-10-14T08:32:01.117110Z",
+      "feed_updated": "2026-10-14T08:06:57.117596Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.597429Z",
-      "feed_updated": "2026-10-14T07:35:18.715583Z"
+      "checked_at": "2026-10-14T08:32:01.809338Z",
+      "feed_updated": "2026-10-14T08:05:29.381375Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.910512Z",
-      "feed_updated": "2026-10-14T07:35:25.443622Z"
+      "checked_at": "2026-10-14T08:32:02.163610Z",
+      "feed_updated": "2026-10-14T08:05:35.717108Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:01.697139Z",
-      "feed_updated": "2026-10-14T07:35:01.662020Z"
+      "checked_at": "2026-10-14T08:32:02.169352Z",
+      "feed_updated": "2026-10-14T08:05:02.640136Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:02.382432Z",
-      "feed_updated": "2026-10-14T07:35:18.411881Z"
+      "checked_at": "2026-10-14T08:32:02.626005Z",
+      "feed_updated": "2026-10-14T08:05:29.185254Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:03.319567Z",
-      "feed_updated": "2026-10-14T07:35:17.569260Z"
+      "checked_at": "2026-10-14T08:32:03.481502Z",
+      "feed_updated": "2026-10-14T08:05:28.061046Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:03.352942Z",
-      "feed_updated": "2026-10-14T07:35:28.455879Z"
+      "checked_at": "2026-10-14T08:32:02.823776Z",
+      "feed_updated": "2026-10-14T08:05:38.103519Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:04.431582Z",
-      "feed_updated": "2026-10-14T07:35:09.771094Z"
+      "checked_at": "2026-10-14T08:32:03.306306Z",
+      "feed_updated": "2026-10-14T08:05:12.836438Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-14T08:00:06.540538Z",
-      "feed_updated": "2026-10-14T07:35:16.046794Z"
+      "checked_at": "2026-10-14T08:32:03.827823Z",
+      "feed_updated": "2026-10-14T08:05:25.130240Z"
     }
   ],
   "uncovered": [
@@ -2027,187 +2027,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT016",
-      "matched_by": "code"
-    },
-    "IT014": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              15.139,
-              41.928
-            ],
-            [
-              15.078,
-              41.947
-            ],
-            [
-              15.006,
-              42.008
-            ],
-            [
-              14.875,
-              42.03
-            ],
-            [
-              14.783,
-              42.072
-            ],
-            [
-              14.777,
-              42.028
-            ],
-            [
-              14.692,
-              41.968
-            ],
-            [
-              14.625,
-              41.885
-            ],
-            [
-              14.479,
-              41.755
-            ],
-            [
-              14.432,
-              41.848
-            ],
-            [
-              14.282,
-              41.911
-            ],
-            [
-              14.149,
-              41.828
-            ],
-            [
-              14.198,
-              41.758
-            ],
-            [
-              14.12,
-              41.742
-            ],
-            [
-              14.115,
-              41.707
-            ],
-            [
-              14.085,
-              41.742
-            ],
-            [
-              14.018,
-              41.684
-            ],
-            [
-              13.978,
-              41.696
-            ],
-            [
-              13.942,
-              41.687
-            ],
-            [
-              13.997,
-              41.641
-            ],
-            [
-              14.015,
-              41.545
-            ],
-            [
-              13.98,
-              41.465
-            ],
-            [
-              14.045,
-              41.399
-            ],
-            [
-              14.118,
-              41.388
-            ],
-            [
-              14.078,
-              41.451
-            ],
-            [
-              14.123,
-              41.507
-            ],
-            [
-              14.463,
-              41.425
-            ],
-            [
-              14.509,
-              41.381
-            ],
-            [
-              14.613,
-              41.367
-            ],
-            [
-              14.685,
-              41.412
-            ],
-            [
-              14.738,
-              41.408
-            ],
-            [
-              14.786,
-              41.451
-            ],
-            [
-              14.855,
-              41.424
-            ],
-            [
-              15.009,
-              41.485
-            ],
-            [
-              14.935,
-              41.533
-            ],
-            [
-              14.953,
-              41.646
-            ],
-            [
-              15.02,
-              41.624
-            ],
-            [
-              15.063,
-              41.658
-            ],
-            [
-              15.155,
-              41.707
-            ],
-            [
-              15.102,
-              41.742
-            ],
-            [
-              15.112,
-              41.826
-            ],
-            [
-              15.139,
-              41.928
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT014",
       "matched_by": "code"
     },
     "ES852": {
@@ -10224,15 +10043,15 @@
       "matched_by": "code"
     }
   },
-  "region_count": 29,
+  "region_count": 28,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-14T08:00:08.350784Z",
-  "feed_updated": "2026-10-14T07:35:34.809207Z",
-  "warning_count": 70,
-  "active_count": 44,
+  "generated_at": "2026-10-14T08:32:06.354976Z",
+  "feed_updated": "2026-10-14T08:29:15.336345Z",
+  "warning_count": 69,
+  "active_count": 43,
   "upcoming_count": 26,
   "max_level": 4,
   "active_max_level": 4,
@@ -10297,66 +10116,6 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.019",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-14T17:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Basilicata",
-      "emma_id": "IT017",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e5efc502-ac09-4898-87cc-e038ac9891b0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.018",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-14T17:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/3efd240e-3f6b-4764-bc15-db6f0ef9caa2",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.300.0.GR.261013133800.001000013",
@@ -10749,11 +10508,41 @@
       "country_code": "greece"
     },
     {
-      "id": "2.49.0.0.380.3.IT.261013101808.021",
+      "id": "2.49.0.0.380.3.IT.261014102327.016",
       "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-14T00:00:00Z",
-      "onset": "2026-10-14T00:00:00Z",
+      "sent": "2026-10-14T08:23:27Z",
+      "effective": "2026-10-14T08:00:00Z",
+      "onset": "2026-10-14T08:00:00Z",
+      "expires": "2026-10-14T17:59:00Z",
+      "event": "Orange Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Basilicata",
+      "emma_id": "IT017",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/dd978278-59a7-405f-b8ed-6214b9823317",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.380.3.IT.261014102327.017",
+      "status": "active",
+      "sent": "2026-10-14T08:23:27Z",
+      "effective": "2026-10-14T08:00:00Z",
+      "onset": "2026-10-14T08:00:00Z",
       "expires": "2026-10-14T17:59:00Z",
       "event": "Orange Wind Warning",
       "headline": "",
@@ -10772,7 +10561,37 @@
       "emma_id": "IT001",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/4c727351-067f-433d-b27c-2a1da6d27944",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/49ef5216-acc2-4a48-84ee-8cf56df9fcc4",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.380.3.IT.261014102327.015",
+      "status": "active",
+      "sent": "2026-10-14T08:23:27Z",
+      "effective": "2026-10-14T08:00:00Z",
+      "onset": "2026-10-14T08:00:00Z",
+      "expires": "2026-10-14T17:59:00Z",
+      "event": "Orange Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Severe",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 3,
+      "level_name": "arancione",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Puglia",
+      "emma_id": "IT015",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/6307e5fa-2101-4fff-98e9-6d9102bd5452",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -10897,96 +10716,6 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.016",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-14T17:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Campania",
-      "emma_id": "IT016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/d980b7ee-53de-4b85-bf98-76e326f039fd",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.015",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-14T17:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Molise",
-      "emma_id": "IT014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/18526528-d5b2-4009-96e8-45726ed83532",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.017",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-14T17:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Sicilia",
-      "emma_id": "IT018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/77060885-4069-43e8-836c-6fa998f91204",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.300.0.GR.261013135200.001000005",
@@ -11677,6 +11406,66 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.380.3.IT.261014102327.013",
+      "status": "active",
+      "sent": "2026-10-14T08:23:27Z",
+      "effective": "2026-10-14T08:00:00Z",
+      "onset": "2026-10-14T08:00:00Z",
+      "expires": "2026-10-14T17:59:00Z",
+      "event": "Yellow Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Campania",
+      "emma_id": "IT016",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e3cd47bb-f265-4157-9332-306f5c21f521",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.380.3.IT.261014102327.014",
+      "status": "active",
+      "sent": "2026-10-14T08:23:27Z",
+      "effective": "2026-10-14T08:00:00Z",
+      "onset": "2026-10-14T08:00:00Z",
+      "expires": "2026-10-14T17:59:00Z",
+      "event": "Yellow Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Sicilia",
+      "emma_id": "IT018",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/21d43fd5-727a-4f6a-949a-b0749fbb080e",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.376.0.261013154307.59203",
