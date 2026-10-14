@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:32.238840Z",
+      "checked_at": "2026-10-14T00:05:44.924240Z",
       "feed_updated": "2026-10-13T23:35:56.515227Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:32.113701Z",
+      "checked_at": "2026-10-14T00:05:44.724010Z",
       "feed_updated": "2026-10-13T23:35:31.666991Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:31.864261Z",
+      "checked_at": "2026-10-14T00:05:44.664285Z",
       "feed_updated": "2026-10-13T23:35:57.802154Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:32.683370Z",
+      "checked_at": "2026-10-14T00:05:45.516863Z",
       "feed_updated": "2026-10-13T23:35:01.998896Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:34.306862Z",
+      "checked_at": "2026-10-14T00:05:45.885397Z",
       "feed_updated": "2026-10-13T23:35:57.673442Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:33.794089Z",
+      "checked_at": "2026-10-14T00:05:45.511743Z",
       "feed_updated": "2026-10-13T23:35:05.091213Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:33.986002Z",
+      "checked_at": "2026-10-14T00:05:46.335484Z",
       "feed_updated": "2026-10-13T23:35:44.374738Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:35.334974Z",
+      "checked_at": "2026-10-14T00:05:46.701146Z",
       "feed_updated": "2026-10-13T23:35:55.691102Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:34.806453Z",
+      "checked_at": "2026-10-14T00:05:46.537468Z",
       "feed_updated": "2026-10-13T23:35:59.027595Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:34.797179Z",
+      "checked_at": "2026-10-14T00:05:46.866316Z",
       "feed_updated": "2026-10-13T23:35:44.064996Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-13T23:46:36.487187Z",
-      "feed_updated": "2026-10-13T23:35:37.570574Z"
+      "checked_at": "2026-10-14T00:05:47.296297Z",
+      "feed_updated": "2026-10-14T00:05:25.258353Z"
     }
   ],
   "uncovered": [
@@ -10535,11 +10535,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-13T23:46:38.815439Z",
-  "feed_updated": "2026-10-13T23:35:59.027595Z",
-  "warning_count": 74,
+  "generated_at": "2026-10-14T00:05:49.386064Z",
+  "feed_updated": "2026-10-14T00:05:25.258353Z",
+  "warning_count": 73,
   "active_count": 48,
-  "upcoming_count": 26,
+  "upcoming_count": 25,
   "max_level": 4,
   "active_max_level": 4,
   "upcoming_max_level": 4,
@@ -10659,36 +10659,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e5efc502-ac09-4898-87cc-e038ac9891b0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261013101808.020",
-      "status": "active",
-      "sent": "2026-10-13T08:18:08Z",
-      "effective": "2026-10-13T08:00:00Z",
-      "onset": "2026-10-13T08:00:00Z",
-      "expires": "2026-10-13T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c6e58f93-e298-4d2f-9140-35991555b40c",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -11356,7 +11326,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261013101808.021",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-13T08:18:08Z",
       "effective": "2026-10-14T00:00:00Z",
       "onset": "2026-10-14T00:00:00Z",
