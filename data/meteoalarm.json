@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:03.406767Z",
-      "feed_updated": "2026-10-16T13:35:40.535594Z"
+      "checked_at": "2026-10-16T14:17:49.431581Z",
+      "feed_updated": "2026-10-16T14:05:25.187190Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:04.251855Z",
-      "feed_updated": "2026-10-16T13:35:46.833573Z"
+      "checked_at": "2026-10-16T14:17:50.181587Z",
+      "feed_updated": "2026-10-16T14:05:33.086070Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:03.252870Z",
-      "feed_updated": "2026-10-16T13:35:07.586607Z"
+      "checked_at": "2026-10-16T14:17:49.324980Z",
+      "feed_updated": "2026-10-16T14:06:06.307032Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:03.892845Z",
-      "feed_updated": "2026-10-16T13:35:17.439032Z"
+      "checked_at": "2026-10-16T14:17:50.009244Z",
+      "feed_updated": "2026-10-16T14:05:12.639887Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:04.328095Z",
-      "feed_updated": "2026-10-16T13:35:49.482206Z"
+      "checked_at": "2026-10-16T14:17:50.208301Z",
+      "feed_updated": "2026-10-16T14:05:31.717226Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:04.585175Z",
-      "feed_updated": "2026-10-16T13:35:05.091096Z"
+      "checked_at": "2026-10-16T14:17:50.800865Z",
+      "feed_updated": "2026-10-16T14:05:05.865205Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:04.917968Z",
-      "feed_updated": "2026-10-16T13:35:24.216067Z"
+      "checked_at": "2026-10-16T14:17:50.802594Z",
+      "feed_updated": "2026-10-16T14:05:15.366884Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:05.226575Z",
-      "feed_updated": "2026-10-16T13:35:23.905076Z"
+      "checked_at": "2026-10-16T14:17:51.007244Z",
+      "feed_updated": "2026-10-16T14:05:15.602158Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:05.273157Z",
-      "feed_updated": "2026-10-16T13:35:10.322140Z"
+      "checked_at": "2026-10-16T14:17:51.319457Z",
+      "feed_updated": "2026-10-16T14:05:07.342911Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:05.739155Z",
-      "feed_updated": "2026-10-16T13:35:10.103874Z"
+      "checked_at": "2026-10-16T14:17:51.322933Z",
+      "feed_updated": "2026-10-16T14:05:10.916750Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-16T13:49:06.344824Z",
-      "feed_updated": "2026-10-16T13:35:18.039110Z"
+      "checked_at": "2026-10-16T14:17:52.136029Z",
+      "feed_updated": "2026-10-16T14:05:11.802899Z"
     }
   ],
   "uncovered": [
@@ -18524,6 +18524,272 @@
       "source_code": "ES155",
       "matched_by": "code"
     },
+    "FR301": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              3.208,
+              50.741
+            ],
+            [
+              3.275,
+              50.557
+            ],
+            [
+              3.293,
+              50.526
+            ],
+            [
+              3.327,
+              50.51
+            ],
+            [
+              3.722,
+              50.354
+            ],
+            [
+              3.915,
+              50.33
+            ],
+            [
+              4.024,
+              50.35
+            ],
+            [
+              4.203,
+              50.275
+            ],
+            [
+              4.219,
+              50.247
+            ],
+            [
+              4.2,
+              50.143
+            ],
+            [
+              4.146,
+              49.985
+            ],
+            [
+              3.168,
+              50.014
+            ],
+            [
+              3.095,
+              50.059
+            ],
+            [
+              3.077,
+              50.399
+            ],
+            [
+              3.068,
+              50.443
+            ],
+            [
+              2.957,
+              50.516
+            ],
+            [
+              2.719,
+              50.629
+            ],
+            [
+              2.654,
+              50.623
+            ],
+            [
+              2.442,
+              50.658
+            ],
+            [
+              2.247,
+              50.795
+            ],
+            [
+              2.195,
+              50.857
+            ],
+            [
+              2.115,
+              50.996
+            ],
+            [
+              2.142,
+              51.011
+            ],
+            [
+              2.536,
+              51.091
+            ],
+            [
+              2.552,
+              51.069
+            ],
+            [
+              2.604,
+              50.881
+            ],
+            [
+              2.625,
+              50.831
+            ],
+            [
+              2.644,
+              50.807
+            ],
+            [
+              2.775,
+              50.735
+            ],
+            [
+              2.822,
+              50.715
+            ],
+            [
+              2.913,
+              50.694
+            ],
+            [
+              3.208,
+              50.741
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "FR070",
+      "matched_by": "name"
+    },
+    "FR302": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.115,
+              50.996
+            ],
+            [
+              2.195,
+              50.857
+            ],
+            [
+              2.247,
+              50.795
+            ],
+            [
+              2.442,
+              50.658
+            ],
+            [
+              2.654,
+              50.623
+            ],
+            [
+              2.719,
+              50.629
+            ],
+            [
+              2.957,
+              50.516
+            ],
+            [
+              3.068,
+              50.443
+            ],
+            [
+              3.077,
+              50.399
+            ],
+            [
+              3.095,
+              50.059
+            ],
+            [
+              3.062,
+              50.062
+            ],
+            [
+              2.868,
+              50.045
+            ],
+            [
+              2.736,
+              50.052
+            ],
+            [
+              2.515,
+              50.129
+            ],
+            [
+              2.488,
+              50.147
+            ],
+            [
+              2.457,
+              50.218
+            ],
+            [
+              2.427,
+              50.229
+            ],
+            [
+              1.932,
+              50.333
+            ],
+            [
+              1.594,
+              50.384
+            ],
+            [
+              1.554,
+              50.382
+            ],
+            [
+              1.575,
+              50.505
+            ],
+            [
+              1.586,
+              50.731
+            ],
+            [
+              1.579,
+              50.863
+            ],
+            [
+              1.608,
+              50.883
+            ],
+            [
+              1.769,
+              50.951
+            ],
+            [
+              1.952,
+              50.989
+            ],
+            [
+              2.077,
+              51.001
+            ],
+            [
+              2.115,
+              50.996
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "FR069",
+      "matched_by": "name"
+    },
     "HR805": {
       "geometry": {
         "type": "Polygon",
@@ -25087,16 +25353,16 @@
       "matched_by": "code"
     }
   },
-  "region_count": 102,
+  "region_count": 104,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-16T13:49:07.996830Z",
-  "feed_updated": "2026-10-16T13:35:49.482206Z",
-  "warning_count": 226,
+  "generated_at": "2026-10-16T14:17:53.789526Z",
+  "feed_updated": "2026-10-16T14:06:06.307032Z",
+  "warning_count": 228,
   "active_count": 46,
-  "upcoming_count": 180,
+  "upcoming_count": 182,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -27406,6 +27672,66 @@
       "sender_name": "",
       "country": "Spagna",
       "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261016160013.643023",
+      "status": "upcoming",
+      "sent": "2026-10-16T14:00:13Z",
+      "effective": "2026-10-16T22:00:00Z",
+      "onset": "2026-10-16T22:00:00Z",
+      "expires": "2026-10-17T22:00:00Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Nord",
+      "emma_id": "FR301",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/8f606629-d54c-4319-95e9-4c7ca3042559",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261016160013.643023",
+      "status": "upcoming",
+      "sent": "2026-10-16T14:00:13Z",
+      "effective": "2026-10-16T22:00:00Z",
+      "onset": "2026-10-16T22:00:00Z",
+      "expires": "2026-10-17T22:00:00Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Pas-de-Calais",
+      "emma_id": "FR302",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/8f606629-d54c-4319-95e9-4c7ca3042559",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
     },
     {
       "id": "2.49.0.0.191.0.HR.261016080801_0_yellow_HR805",
