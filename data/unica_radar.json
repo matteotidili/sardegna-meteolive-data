@@ -7,5 +7,6 @@
   "observed_at": null,
   "updated_at": null,
   "attribution": "© Università degli Studi di Cagliari · UniCA Radar",
-  "description": "Attivare soltanto con raster trasparente e georeferenziazione verificata; la pagina PHP pubblica non è un servizio WMS/XYZ."
+  "description": "Attivare soltanto con raster trasparente e georeferenziazione verificata; la pagina PHP pubblica non è un servizio WMS/XYZ.",
+  "transparent": false
 }
