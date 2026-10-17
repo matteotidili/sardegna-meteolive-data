@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:11.376304Z",
-      "feed_updated": "2026-10-17T05:35:09.573748Z"
+      "checked_at": "2026-10-17T06:09:44.937550Z",
+      "feed_updated": "2026-10-17T06:05:15.761161Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:12.405645Z",
-      "feed_updated": "2026-10-17T05:35:19.543765Z"
+      "checked_at": "2026-10-17T06:09:46.079678Z",
+      "feed_updated": "2026-10-17T06:05:28.314898Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:11.239834Z",
-      "feed_updated": "2026-10-17T05:35:25.065911Z"
+      "checked_at": "2026-10-17T06:09:44.825772Z",
+      "feed_updated": "2026-10-17T06:05:30.326788Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:12.071091Z",
-      "feed_updated": "2026-10-17T05:35:02.973504Z"
+      "checked_at": "2026-10-17T06:09:45.591215Z",
+      "feed_updated": "2026-10-17T06:05:03.330415Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:12.197557Z",
-      "feed_updated": "2026-10-17T05:35:27.860193Z"
+      "checked_at": "2026-10-17T06:09:45.730175Z",
+      "feed_updated": "2026-10-17T06:07:45.699863Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:12.829816Z",
-      "feed_updated": "2026-10-17T05:35:02.531720Z"
+      "checked_at": "2026-10-17T06:09:46.235732Z",
+      "feed_updated": "2026-10-17T06:05:03.131191Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:12.833174Z",
-      "feed_updated": "2026-10-17T05:35:05.055115Z"
+      "checked_at": "2026-10-17T06:09:46.234316Z",
+      "feed_updated": "2026-10-17T06:05:09.954175Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:13.334522Z",
-      "feed_updated": "2026-10-17T05:35:16.716568Z"
+      "checked_at": "2026-10-17T06:09:47.184843Z",
+      "feed_updated": "2026-10-17T06:05:12.041178Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:13.471544Z",
-      "feed_updated": "2026-10-17T05:35:08.815495Z"
+      "checked_at": "2026-10-17T06:09:46.895339Z",
+      "feed_updated": "2026-10-17T06:05:15.644779Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:13.490327Z",
-      "feed_updated": "2026-10-17T05:35:37.170126Z"
+      "checked_at": "2026-10-17T06:09:46.904520Z",
+      "feed_updated": "2026-10-17T06:05:22.657724Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-17T05:49:14.502505Z",
-      "feed_updated": "2026-10-17T05:35:37.842912Z"
+      "checked_at": "2026-10-17T06:09:47.714009Z",
+      "feed_updated": "2026-10-17T06:05:07.853921Z"
     }
   ],
   "uncovered": [
@@ -25819,269 +25819,18 @@
       "precision": "region",
       "source_code": "GR013",
       "matched_by": "code"
-    },
-    "GR003": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                24.571,
-                38.806
-              ],
-              [
-                24.555,
-                38.777
-              ],
-              [
-                24.463,
-                38.857
-              ],
-              [
-                24.44,
-                38.888
-              ],
-              [
-                24.457,
-                38.959
-              ],
-              [
-                24.483,
-                38.979
-              ],
-              [
-                24.507,
-                38.972
-              ],
-              [
-                24.576,
-                38.93
-              ],
-              [
-                24.571,
-                38.806
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                23.442,
-                38.866
-              ],
-              [
-                23.457,
-                38.846
-              ],
-              [
-                23.581,
-                38.774
-              ],
-              [
-                23.85,
-                38.675
-              ],
-              [
-                24.261,
-                38.206
-              ],
-              [
-                24.291,
-                38.186
-              ],
-              [
-                24.351,
-                38.156
-              ],
-              [
-                24.456,
-                38.141
-              ],
-              [
-                24.564,
-                38.14
-              ],
-              [
-                24.581,
-                38.095
-              ],
-              [
-                24.582,
-                38.056
-              ],
-              [
-                24.572,
-                38.015
-              ],
-              [
-                24.549,
-                37.983
-              ],
-              [
-                24.521,
-                37.959
-              ],
-              [
-                24.486,
-                37.95
-              ],
-              [
-                24.378,
-                37.966
-              ],
-              [
-                24.196,
-                38.175
-              ],
-              [
-                23.959,
-                38.394
-              ],
-              [
-                23.211,
-                38.824
-              ],
-              [
-                23.128,
-                38.851
-              ],
-              [
-                22.966,
-                38.845
-              ],
-              [
-                22.956,
-                38.901
-              ],
-              [
-                23.122,
-                39.001
-              ],
-              [
-                23.254,
-                39.033
-              ],
-              [
-                23.314,
-                39.038
-              ],
-              [
-                23.417,
-                38.927
-              ],
-              [
-                23.442,
-                38.866
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                22.969,
-                38.978
-              ],
-              [
-                22.842,
-                38.885
-              ],
-              [
-                23.401,
-                38.506
-              ],
-              [
-                23.674,
-                38.338
-              ],
-              [
-                23.146,
-                38.181
-              ],
-              [
-                22.952,
-                38.201
-              ],
-              [
-                22.399,
-                38.444
-              ],
-              [
-                22.004,
-                38.407
-              ],
-              [
-                21.869,
-                38.377
-              ],
-              [
-                21.995,
-                38.504
-              ],
-              [
-                22.01,
-                38.572
-              ],
-              [
-                21.993,
-                38.693
-              ],
-              [
-                21.969,
-                38.758
-              ],
-              [
-                21.891,
-                38.856
-              ],
-              [
-                21.853,
-                38.93
-              ],
-              [
-                21.855,
-                38.984
-              ],
-              [
-                21.868,
-                39.014
-              ],
-              [
-                21.929,
-                39.063
-              ],
-              [
-                22.032,
-                39.033
-              ],
-              [
-                22.895,
-                38.975
-              ],
-              [
-                22.969,
-                38.978
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR003",
-      "matched_by": "code"
     }
   },
-  "region_count": 125,
+  "region_count": 124,
   "region_geometry_errors": [],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-17T05:49:14.531447Z",
-  "feed_updated": "2026-10-17T05:35:37.842912Z",
-  "warning_count": 324,
-  "active_count": 45,
-  "upcoming_count": 279,
-  "max_level": 2,
-  "active_max_level": 2,
+  "generated_at": "2026-10-17T06:09:47.744197Z",
+  "feed_updated": "2026-10-17T06:07:45.699863Z",
+  "warning_count": 322,
+  "active_count": 51,
+  "upcoming_count": 271,
+  "max_level": 3,
+  "active_max_level": 3,
   "upcoming_max_level": 4,
   "warnings": [
     {
@@ -26116,7 +25865,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016170011.733005PRP1172270011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T17:00:11Z",
       "effective": "2026-10-16T16:57:09Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -26146,7 +25895,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016170011.733005PRP2172270011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T17:00:11Z",
       "effective": "2026-10-16T16:57:09Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -26176,7 +25925,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016093209.733004PRP1172243129",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:32:09Z",
       "effective": "2026-10-16T09:28:45Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -26715,36 +26464,6 @@
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261016112900.003000003",
-      "status": "active",
-      "sent": "2026-10-16T11:29:00Z",
-      "effective": "2026-10-16T11:29:00Z",
-      "onset": "2026-10-16T17:00:00Z",
-      "expires": "2026-10-17T06:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "East Sterea &amp; Evvoia",
-      "emma_id": "GR003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/3f87319c-20d1-4ff8-a8c8-f42a57e31f43",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261016101734.033",
       "status": "active",
       "sent": "2026-10-16T08:17:35Z",
@@ -26833,36 +26552,6 @@
       "sender_name": "",
       "country": "Italia",
       "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261016114600.003000012",
-      "status": "active",
-      "sent": "2026-10-16T11:46:00Z",
-      "effective": "2026-10-16T11:46:00Z",
-      "onset": "2026-10-16T19:00:00Z",
-      "expires": "2026-10-17T06:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Kyklades",
-      "emma_id": "GR012",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/1f18e365-5ee6-4982-9300-0bde2fc38873",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
     },
     {
       "id": "2.49.0.0.376.0.261016214435.59246",
@@ -28452,7 +28141,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016093209.733005TOTO172243129",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:32:09Z",
       "effective": "2026-10-16T09:28:45Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -28482,7 +28171,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016092409.770303TOTO172242649",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:24:09Z",
       "effective": "2026-10-16T09:21:55Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -28512,7 +28201,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016092409.770303PRP1172242649",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:24:09Z",
       "effective": "2026-10-16T09:21:55Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -28542,7 +28231,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016092409.770303PRP2172242649",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:24:09Z",
       "effective": "2026-10-16T09:21:55Z",
       "onset": "2026-10-17T06:00:00Z",
@@ -28572,7 +28261,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261016093209.733004TOTO172243129",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-16T09:32:09Z",
       "effective": "2026-10-16T09:28:45Z",
       "onset": "2026-10-17T06:00:00Z",
