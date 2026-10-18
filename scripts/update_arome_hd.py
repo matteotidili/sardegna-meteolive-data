@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from eccodes import codes_get, codes_get_values, codes_grib_new_from_file, codes_release
-from arome_parameters import Renderer, unpack
+from arome_parameters import Renderer, unpack, STOPS
 
 BASE = "https://meteofrance-pnt.s3.rbx.io.cloud.ovh.net"
 OUT = Path("data/arome")
@@ -163,6 +163,13 @@ def run():
                 and len(existing.get("frames",[]))==len(LEADS)
                 and existing.get("domain")=="EURW1S100-WesternMediterranean-H51"
                 and len(existing.get("parameters",{}))>=20
+                # Se cambia la palette degli accumuli, rigenerare il ciclo H+51
+                # anche quando i GRIB appartengono alla stessa corsa già pubblicata.
+                # Confrontiamo le soglie effettive con quelle dei raster, non il solo run_time.
+                and existing.get("parameters",{}).get("rain_acc",{}).get("scale")=="precip_total"
+                and existing.get("parameters",{}).get("rain_acc",{}).get("stops")==[
+                    [value,list(color)] for value,color in STOPS["precip_total"]
+                ]
                 and (OUT/"products"/"t2m"/"h51.webp").is_file()
                 and (OUT/"products"/"sim_ir"/"h51.webp").is_file()):
                 print("Ciclo invariato: nessuna modifica",flush=True)
