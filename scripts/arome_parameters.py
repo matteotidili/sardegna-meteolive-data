@@ -27,7 +27,7 @@ PARAMETERS = {
     "cloud_mid": {"label":"Nuvolosità media", "unit":"%", "group":"Nuvolosità", "scale":"cloud"},
     "cloud_high": {"label":"Nuvolosità alta", "unit":"%", "group":"Nuvolosità", "scale":"cloud"},
     "sim_refl": {"label":"Riflettività radar SIMULATA dal modello", "unit":"dBZ (indicativa)", "group":"Instabilità", "scale":"reflectivity"},
-    "rain_acc": {"label":"Precipitazioni cumulate dall'inizio corsa", "unit":"mm", "group":"Precipitazioni", "scale":"precip"},
+    "rain_acc": {"label":"Precipitazioni cumulate dall'inizio corsa", "unit":"mm", "group":"Precipitazioni", "scale":"precip_total"},
     "snow_acc": {"label":"Neve cumulata (equivalente in acqua)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
     "graupel_acc": {"label":"Graupel cumulato (equivalente in acqua)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
     "frozen_acc": {"label":"Neve + graupel cumulati (acqua equivalente)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
@@ -46,6 +46,15 @@ STOPS = {
  "cloud":[(0,(121,137,151)),(20,(110,154,195)),(50,(77,137,198)),(75,(199,197,222)),(100,(247,247,255))],
  "reflectivity":[(0,(83,130,185)),(10,(46,191,194)),(20,(76,208,86)),(35,(239,216,52)),(45,(245,115,42)),(55,(221,53,81)),(70,(170,61,195))],
  "precip":[(0.1,(30,190,245)),(0.5,(31,130,245)),(1,(0,190,210)),(2,(0,185,100)),(5,(240,220,25)),(10,(252,148,35)),(20,(240,49,43)),(40,(178,25,166)),(80,(255,110,244))],
+ # Solo gli accumuli totali H+1..H+51: non comprimere >80 mm in un unico colore.
+ # Progressione fino a 500 mm, soglie esplicite e costanti per confrontare i frame.
+ "precip_total":[
+   (0.1,(30,190,245)),(0.5,(31,130,245)),(1,(0,190,210)),
+   (2,(0,185,100)),(5,(240,220,25)),(10,(252,148,35)),
+   (20,(240,49,43)),(40,(178,25,166)),(80,(255,110,244)),
+   (120,(156,62,220)),(180,(103,45,157)),(250,(142,48,102)),
+   (350,(222,187,204)),(500,(255,255,255))
+ ],
  "ir":[(-85,(235,55,49)),(-65,(254,174,48)),(-45,(245,231,110)),(-30,(157,215,227)),(-10,(81,133,191)),(5,(79,86,135)),(35,(72,81,86))]
 }
 PHASE_RGB={1:(30,170,231),2:(245,245,255),3:(235,120,42),4:(197,74,174)}
@@ -114,7 +123,7 @@ def palette_image(value, key):
     rgba=np.empty((*v.shape,4),dtype=np.uint8)
     rgba[...,:3]=palette[idx]
     minimum={"heat":25,"wind":2,"gust":4,"cape":25,"cloud":10,
-       "reflectivity":5,"precip":.1}.get(key,None)
+       "reflectivity":5,"precip":.1,"precip_total":.1}.get(key,None)
     if minimum is None:mask=valid
     else:mask=valid&(v>=minimum)
     rgba[...,3]=np.where(mask,210,0).astype(np.uint8)
