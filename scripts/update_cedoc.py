@@ -27,7 +27,8 @@ NOW = dt.datetime.now(dt.timezone.utc)
 MAX_AGE = dt.timedelta(hours=3)
 TIME_RE = r"(\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2})"
 DAILY_RE = re.compile(r"Pioggia\s+cumulata\s+oggi\s*:?\s*([\d.,]+)\s*mm", re.I)
-SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(\d+)", re.I)
+SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(20207|20406)(?:/|\\b)", re.I)
+STATION_OBS_RE = re.compile(r"Rilevamento\s+precipitazioni\s*:?\s*" + TIME_RE, re.I)
 LAT_RE = re.compile(r"Latitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 LON_RE = re.compile(r"Longitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 SITE_RE = re.compile(r"Situazione\s+aggiornata\s+al\s*:?\s*" + TIME_RE, re.I)
@@ -86,7 +87,7 @@ def discover_pluviometer(item):
         # I link ai sensori possono trovarsi in href o negli handler HTML.
         raw_html = str(soup).replace("\\/", "/")
         candidates = list(SENSOR_RE.finditer(raw_html))
-        selected = next((m for m in candidates if m.group(1)==code and m.group(3)=="20207"), None)
+        selected = next((m for m in candidates if m.group(1)==code and m.group(3) in {"20207","20406"}), None)
         if not selected:
             return None
         return {"station_id":code, "name":fallback, "sensor_path":"/sensore/" + "/".join(selected.groups())}
@@ -125,7 +126,18 @@ def one_station(item):
     session = requests.Session()
     try:
         sensor_path = item["sensor_path"]
-        if not re.fullmatch(r"/sensore/\d+/\d+/20207", sensor_path):
+        if not re.fullmatch(r"/sensore/\d+/\d+/(?:20207|20406)", sensor_path):
+            return None
+        # L'orario osservato è quello della stazione, non quello del sito
+        # riepilogativo: evita di pubblicare totali 'oggi' senza prova di freschezza.
+        station_page = fetch(session, "/stazione/" + code)
+        last_match = STATION_OBS_RE.search(plain(station_page))
+        if not last_match:
+            return None
+        when = parse_time(last_match.group(1))
+        if NOW-when>MAX_AGE or when-NOW>dt.timedelta(minutes=6):
+            return None
+        if when.astimezone(TZ).date()!=NOW.astimezone(TZ).date():
             return None
         sensor = fetch(session, sensor_path)
         body = plain(sensor)
@@ -135,7 +147,7 @@ def one_station(item):
         )
         match = DAILY_RE.search(daily_part.group(1)) if daily_part else None
         lat, lon = LAT_RE.search(body), LON_RE.search(body)
-        if not (match and lat and lon and re.search(r"Tipo\s*:?\s*Pluviometro", body, re.I)):
+        if not (match and lat and lon and re.search(r"Tipo\s*:?\s*(?:Pluviometro|Pioggia\s+Cumulata)", body, re.I)):
             return None
         amount = float(match.group(1).replace(",", "."))
         y, x = float(lat.group(1)), float(lon.group(1))
@@ -145,7 +157,10 @@ def one_station(item):
         name = heading.get_text(" ", strip=True) if heading else fallback
         return {
             "station_id": code, "name": name[:110], "lat":y, "lon":x,
-            "rain_today": round(amount, 1), "source_url": BASE + sensor_path
+            "rain_today": round(amount, 1),
+            "last": when.isoformat().replace("+00:00", "Z"),
+            "observed_day": when.astimezone(TZ).date().isoformat(),
+            "source_url": BASE + sensor_path
         }
     except (requests.RequestException, ValueError, TypeError, OverflowError):
         return None
@@ -170,36 +185,28 @@ def main():
         "station_count": 0,
     }
     try:
-        soup = fetch(session, "/temporeale")
-        m = SITE_RE.search(plain(soup))
-        if not m:
-            raise ValueError("Timestamp generale CEDOC assente")
-        site_time = parse_time(m.group(1))
-        state["source_time"] = site_time.isoformat().replace("+00:00", "Z")
-        state["local_day"] = site_time.astimezone(TZ).date().isoformat()
-        age = NOW - site_time
-        if age < -dt.timedelta(minutes=6) or age > MAX_AGE:
-            state["status"] = "stale"
-            state["warning"] = "Fonte CEDOC non aggiornata da oltre 3 ore: dati giornalieri nascosti."
-        elif state["local_day"] != NOW.astimezone(TZ).date().isoformat():
-            state["status"] = "stale"
-            state["warning"] = "Data CEDOC non coincidente con il giorno locale corrente."
+        # Il riepilogo può avere una cache diversa dalle schede dei singoli
+        # pluviometri: è utile per metadati, non è una prova di freschezza globale.
+        try:
+            overview = fetch(session, "/temporeale")
+            match = SITE_RE.search(plain(overview))
+            if match:
+                state["overview_time"] = parse_time(match.group(1)).isoformat().replace("+00:00", "Z")
+        except (requests.RequestException, ValueError):
+            pass
+        catalog = sensor_catalog(session)
+        state["catalog_count"] = len(catalog)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+            stations = list(filter(None, pool.map(one_station, catalog)))
+        if len(stations) < 15:
+            state["status"] = "unavailable"
+            state["warning"] = "CEDOC: meno di 15 pluviometri con lettura giornaliera recente e orario verificato (" + str(len(stations)) + ")."
         else:
-            catalog = sensor_catalog(session)
-            state["catalog_count"] = len(catalog)
-            # Interrogazione moderata: max 3 richieste simultanee.
-            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-                stations = list(filter(None, pool.map(one_station, catalog)))
-            if len(stations) < 15:
-                state["warning"] = "Lettura delle schede giornaliere incompleta: " + str(len(stations)) + " sensori."
-            else:
-                for station in stations:
-                    # È l'ora di aggiornamento della rete, NON l'ultimo evento di pioggia.
-                    station["last"] = state["source_time"]
-                    station["observed_day"] = state["local_day"]
-                state["stations"] = sorted(stations, key=lambda station: station["station_id"])
-                state["station_count"] = len(stations)
-                state["status"] = "ok"
+            state["local_day"] = NOW.astimezone(TZ).date().isoformat()
+            state["source_time"] = max(station["last"] for station in stations)
+            state["stations"] = sorted(stations, key=lambda station: station["station_id"])
+            state["station_count"] = len(stations)
+            state["status"] = "ok"
     except Exception as exc:
         state["warning"] = "CEDOC non raggiungibile o formato modificato: " + str(exc)[:180]
     finally:
