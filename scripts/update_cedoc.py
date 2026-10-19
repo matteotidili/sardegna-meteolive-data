@@ -29,6 +29,7 @@ TIME_RE = r"(\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2})"
 DAILY_RE = re.compile(r"Pioggia\s+cumulata\s+oggi\s*:?\s*([\d.,]+)\s*mm", re.I)
 SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(20207|20406)(?!\d)", re.I)
 STATION_OBS_RE = re.compile(r"Rilevamento\s+precipitazioni\s*:?\s*" + TIME_RE, re.I)
+STATION_48_RE = re.compile(r"Rilevamento\s+precipitazioni\s*:?\s*" + TIME_RE + r"\s+([\d.,]+)\s*mm\s+nelle\s+ultime\s+48\s*h", re.I)
 LAT_RE = re.compile(r"Latitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 LON_RE = re.compile(r"Longitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 SITE_RE = re.compile(r"Situazione\s+aggiornata\s+al\s*:?\s*" + TIME_RE, re.I)
@@ -131,10 +132,19 @@ def one_station(item):
         # L'orario osservato è quello della stazione, non quello del sito
         # riepilogativo: evita di pubblicare totali 'oggi' senza prova di freschezza.
         station_page = fetch(session, "/stazione/" + code)
-        last_match = STATION_OBS_RE.search(plain(station_page))
+        station_body = plain(station_page)
+        rain_48_match = STATION_48_RE.search(station_body)
+        last_match = STATION_OBS_RE.search(station_body)
         if not last_match:
             return None
         when = parse_time(last_match.group(1))
+        rain_48h = None
+        if rain_48_match:
+            historic_at = parse_time(rain_48_match.group(1))
+            historic_mm = float(rain_48_match.group(2).replace(",", "."))
+            if (abs((when-historic_at).total_seconds())<=300 and
+                    0<=historic_mm<=1800):
+                rain_48h = round(historic_mm, 1)
         if NOW-when>MAX_AGE or when-NOW>dt.timedelta(minutes=6):
             return None
         if when.astimezone(TZ).date()!=NOW.astimezone(TZ).date():
@@ -157,7 +167,8 @@ def one_station(item):
         name = heading.get_text(" ", strip=True) if heading else fallback
         return {
             "station_id": code, "name": name[:110], "lat":y, "lon":x,
-            "rain_today": round(amount, 1),
+            "rain_today": round(amount, 1), "rain_48h": rain_48h,
+            "rain_48h_source": "cedoc_direct" if rain_48h is not None else None,
             "last": when.isoformat().replace("+00:00", "Z"),
             "observed_day": when.astimezone(TZ).date().isoformat(),
             "source_url": BASE + sensor_path
