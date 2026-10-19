@@ -27,7 +27,7 @@ NOW = dt.datetime.now(dt.timezone.utc)
 MAX_AGE = dt.timedelta(hours=3)
 TIME_RE = r"(\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2})"
 DAILY_RE = re.compile(r"Pioggia\s+cumulata\s+oggi\s*:?\s*([\d.,]+)\s*mm", re.I)
-SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(20207|20406)(?:/|\\b)", re.I)
+SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(20207|20406)(?!\d)", re.I)
 STATION_OBS_RE = re.compile(r"Rilevamento\s+precipitazioni\s*:?\s*" + TIME_RE, re.I)
 LAT_RE = re.compile(r"Latitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 LON_RE = re.compile(r"Longitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
