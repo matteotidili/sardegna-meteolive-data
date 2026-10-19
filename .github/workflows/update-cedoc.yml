@@ -54,17 +54,45 @@ jobs:
               assert not data['stations'], 'A stale or unavailable dataset must never show rain values'
           print('CEDOC', data['status'], data['station_count'], 'stazioni con dato recente')
           PY
-      - name: Pubblica stato e misure
+      - name: Pubblica stato e misure senza conflitti con gli altri updater
         run: |
+          set -e
           git config user.name 'sardegna-meteolive-data-bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add data/cedoc.json
-          if [ -f data/cedoc_sensors.json ]; then git add data/cedoc_sensors.json; fi
-          git diff --cached --quiet && exit 0
-          git commit -m 'Aggiorna pluviometri CEDOC accumuli giornalieri'
+          cp data/cedoc.json "$RUNNER_TEMP/cedoc-pending.json"
+          if [ -f data/cedoc_sensors.json ]; then
+            cp data/cedoc_sensors.json "$RUNNER_TEMP/cedoc-sensors-pending.json"
+          fi
           for attempt in 1 2 3 4 5; do
+            # Non effettuare rebase su file appena generati: lo stesso JSON
+            # può essere stato pubblicato da un altro workflow nel frattempo.
             git fetch origin main
-            git rebase origin/main
+            git reset --hard origin/main
+            # Un run più vecchio non può sovrascrivere osservazioni nuove.
+            if ! python - "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json <<'PY'
+          import json, sys
+          from pathlib import Path
+          candidate=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+          existing_path=Path(sys.argv[2])
+          if existing_path.exists():
+              existing=json.loads(existing_path.read_text(encoding='utf-8'))
+              candidate_time=candidate.get('source_time')
+              existing_time=existing.get('source_time')
+              if candidate_time and existing_time and existing_time > candidate_time:
+                  print('CEDOC: dataset pubblicato più recente, salto aggiornamento obsoleto')
+                  sys.exit(1)
+          PY
+            then
+              exit 0
+            fi
+            cp "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json
+            if [ -f "$RUNNER_TEMP/cedoc-sensors-pending.json" ]; then
+              cp "$RUNNER_TEMP/cedoc-sensors-pending.json" data/cedoc_sensors.json
+            fi
+            git add data/cedoc.json
+            if [ -f data/cedoc_sensors.json ]; then git add data/cedoc_sensors.json; fi
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Aggiorna CEDOC pluviometri giornalieri'
             if git push origin HEAD:main; then exit 0; fi
             sleep "$attempt"
           done
