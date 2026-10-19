@@ -8,14 +8,14 @@ on:
       - 'scripts/update_cedoc.py'
       - '.github/workflows/update-cedoc.yml'
   schedule:
-    # Una richiesta moderata alla directory pubblica e ai punti, circa ogni ora.
-    - cron: '18 * * * *'
+    # Una raccolta ogni 30 minuti, dopo i consueti aggiornamenti del portale.
+    - cron: '12,42 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: cedoc-rainfall-hourly
+  group: cedoc-rainfall-half-hourly
   cancel-in-progress: false
 
 jobs:
@@ -39,14 +39,15 @@ jobs:
           import json, datetime as dt
           from pathlib import Path
           data=json.loads(Path('data/cedoc.json').read_text(encoding='utf-8'))
-          assert data['accumulation_hours']==48
+          assert data['parameter']=='rain_today' and data['refresh_minutes']==30
           assert data['status'] in {'ok','unavailable','stale'}
           assert data['station_count']==len(data['stations'])
           for s in data['stations']:
               assert 38.6<=s['lat']<=41.5 and 7.5<=s['lon']<=10.4
-              assert 0<=s['rain_48h']<=1800
-              assert s['source_url'].startswith('https://www.sardegnacedoc.it/idrografico/stazione/')
+              assert 0<=s['rain_today']<=1800
+              assert s['source_url'].startswith('https://www.sardegnacedoc.it/idrografico/sensore/')
               assert dt.datetime.fromisoformat(s['last'].replace('Z','+00:00')).tzinfo
+              assert s['observed_day']==data['local_day']
           if data['status']!='ok':
               assert not data['stations'], 'A stale or unavailable dataset must never show rain values'
           print('CEDOC', data['status'], data['station_count'], 'stazioni con dato recente')
@@ -57,7 +58,7 @@ jobs:
           git config user.email 'actions@users.noreply.github.com'
           git add data/cedoc.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Aggiorna monitoraggio CEDOC accumuli 48h'
+          git commit -m 'Aggiorna pluviometri CEDOC accumuli giornalieri'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase origin/main
