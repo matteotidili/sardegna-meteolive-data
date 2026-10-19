@@ -84,7 +84,7 @@ def discover_pluviometer(item):
     try:
         soup = fetch(session, "/stazione/" + code)
         # I link ai sensori possono trovarsi in href o negli handler HTML.
-        raw_html = str(soup).replace("\\\\/", "/")
+        raw_html = str(soup).replace("\\/", "/")
         candidates = list(SENSOR_RE.finditer(raw_html))
         selected = next((m for m in candidates if m.group(1)==code and m.group(3)=="20207"), None)
         if not selected:
