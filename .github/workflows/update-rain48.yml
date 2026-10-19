@@ -1,0 +1,59 @@
+name: Calcola accumuli pluviometrici 48 ore da tutte le reti
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_rain48.py'
+      - '.github/workflows/update-rain48.yml'
+  schedule:
+    # 15 minuti: intervallo campioni e non frequenza promessa delle fonti.
+    - cron: '1,16,31,46 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rain48-counter-history
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Aggiorna storia e stime 48h, senza dati inventati
+        run: |
+          set -e
+          git config user.name 'sardegna-meteolive-data-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          python -m py_compile scripts/update_rain48.py
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/update_rain48.py
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/rain_48h.json').read_text(encoding='utf-8'))
+          assert d['window_hours']==48
+          assert len(d['stations'])==d['station_count']
+          for s in d['stations']:
+              assert s['network'] in ('dpcn-sardegna','wunderground','weatherlink')
+              assert s['method']=='estimated_from_daily_counters'
+              assert 0<=s['rain_48h']<=1800
+          PY
+            git add data/rain_history.json data/rain_48h.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m 'Archivio misure e stime mobili delle ultime 48 ore'
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
