@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: cedoc-rainfall-half-hourly
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   cedoc:
