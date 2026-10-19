@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Monitor pubblico CEDOC: pluviometria 48h georeferenziata.
+"""Monitor pubblico CEDOC: accumuli pluviometrici giornalieri georeferenziati.
 
 Usa esclusivamente le pagine pubbliche del sito della Regione Sardegna.
 Nessun valore viene presentato come attuale senza timestamp verificato.
-Non interpreta l'accumulo 48h come pioggia giornaliera.
+Il dato viene letto esclusivamente da «Pioggia cumulata oggi» delle schede sensore.
 """
 from __future__ import annotations
 import concurrent.futures
@@ -23,13 +23,10 @@ BASE = ROOT + "/idrografico"
 OUT = Path("data/cedoc.json")
 TZ = ZoneInfo("Europe/Rome")
 NOW = dt.datetime.now(dt.timezone.utc)
-MAX_AGE = dt.timedelta(hours=4)
+MAX_AGE = dt.timedelta(hours=3)
 TIME_RE = r"(\d{2}-\d{2}-\d{4}\s+\d{2}:\d{2})"
-RAIN_RE = re.compile(
-    r"Rilevamento\s+precipitazioni\s*:?\s*"
-    + TIME_RE + r"\s+([\d.,]+)\s*mm\s+nelle\s+ultime\s+48\s*h",
-    re.I,
-)
+DAILY_RE = re.compile(r"Pioggia\s+cumulata\s+oggi\s*:?\s*([\d.,]+)\s*mm", re.I)
+SENSOR_RE = re.compile(r"(?:/idrografico)?/sensore/(\d+)/(\d+)/(\d+)", re.I)
 LAT_RE = re.compile(r"Latitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 LON_RE = re.compile(r"Longitudine\s*\(WGS84\)\s*:?\s*(\d{1,2}\.\d+)", re.I)
 SITE_RE = re.compile(r"Situazione\s+aggiornata\s+al\s*:?\s*" + TIME_RE, re.I)
@@ -85,26 +82,34 @@ def one_station(item):
     session = requests.Session()
     try:
         soup = fetch(session, "/stazione/" + code)
-        heading = soup.find("h2")
-        name = heading.get_text(" ", strip=True) if heading else fallback
-        body = plain(soup)
-        match = RAIN_RE.search(body)
-        lat = LAT_RE.search(body)
-        lon = LON_RE.search(body)
-        if not (match and lat and lon):
+        # Le schede stazione riportano 48h. Per il giornaliero occorre
+        # seguire il collegamento al singolo sensore di tipo Pluviometro.
+        raw_html = str(soup).replace("\\/", "/")
+        candidates = list(SENSOR_RE.finditer(raw_html))
+        selected = next((m for m in candidates if m.group(1)==code and m.group(3)=="20207"), None)
+        if not selected:
             return None
-        when = parse_time(match.group(1))
-        age = NOW - when
-        if age < -dt.timedelta(minutes=6) or age > MAX_AGE:
+        sensor_path = "/sensore/" + "/".join(selected.groups())
+        sensor = fetch(session, sensor_path)
+        body = plain(sensor)
+        daily_part = re.search(
+            r"Precipitazioni\s+cumulate\s+giornaliere\b(.*?)(?=Precipitazioni\s+cumulate\s+aggregate|Precipitazioni\s+cumulate\s+continue|$)",
+            body, re.I | re.S,
+        )
+        match = DAILY_RE.search(daily_part.group(1)) if daily_part else None
+        lat, lon = LAT_RE.search(body), LON_RE.search(body)
+        if not (match and lat and lon and re.search(r"Tipo\s*:?\s*Pluviometro", body, re.I)):
             return None
-        amount = float(match.group(2).replace(",", "."))
+        amount = float(match.group(1).replace(",", "."))
         y, x = float(lat.group(1)), float(lon.group(1))
         if not (38.6 <= y <= 41.5 and 7.5 <= x <= 10.4 and 0 <= amount <= 1800):
             return None
+        heading = sensor.find("h2")
+        name = heading.get_text(" ", strip=True) if heading else fallback
         return {
             "station_id": code, "name": name[:110], "lat":y, "lon":x,
-            "rain_48h": round(amount, 1), "last": when.isoformat().replace("+00:00", "Z"),
-            "source_url": BASE + "/stazione/" + code
+            "rain_today": round(amount, 1),
+            "source_url": BASE + sensor_path
         }
     except (requests.RequestException, ValueError, TypeError, OverflowError):
         return None
@@ -117,10 +122,11 @@ def main():
         "generated_at": NOW.isoformat().replace("+00:00", "Z"),
         "source": "Sardegna CEDOC / ADIS – Regione Autonoma della Sardegna",
         "source_url": BASE + "/temporeale",
-        "parameter": "rain_48h",
+        "parameter": "rain_today",
         "unit": "mm",
-        "accumulation_hours": 48,
-        "max_observation_age_hours": 4,
+        "accumulation": "giornaliero (Europe/Rome)",
+        "refresh_minutes": 30,
+        "max_observation_age_hours": 3,
         "status": "unavailable",
         "warning": "Dati automatici non validati ARPAS; verificare sempre l'ora delle misure.",
         "stations": [],
@@ -133,21 +139,30 @@ def main():
             raise ValueError("Timestamp generale CEDOC assente")
         site_time = parse_time(m.group(1))
         state["source_time"] = site_time.isoformat().replace("+00:00", "Z")
+        state["local_day"] = site_time.astimezone(TZ).date().isoformat()
         age = NOW - site_time
         if age < -dt.timedelta(minutes=6) or age > MAX_AGE:
             state["status"] = "stale"
-            state["warning"] = "Fonte CEDOC non aggiornata da oltre 4 ore: misure temporaneamente nascoste."
+            state["warning"] = "Fonte CEDOC non aggiornata da oltre 3 ore: dati giornalieri nascosti."
+        elif state["local_day"] != NOW.astimezone(TZ).date().isoformat():
+            state["status"] = "stale"
+            state["warning"] = "Data CEDOC non coincidente con il giorno locale corrente."
         else:
             catalog = get_catalog(session)
             state["catalog_count"] = len(catalog)
             # Interrogazione moderata: max 3 richieste simultanee.
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
                 stations = list(filter(None, pool.map(one_station, catalog.items())))
-            state["stations"] = sorted(stations, key=lambda s: s["station_id"])
-            state["station_count"] = len(stations)
-            state["status"] = "ok" if stations else "unavailable"
-            if not stations:
-                state["warning"] = "Nessun pluviometro con dato 48h recente verificato."
+            if len(stations) < 15:
+                state["warning"] = "Lettura delle schede giornaliere incompleta: " + str(len(stations)) + " sensori."
+            else:
+                for station in stations:
+                    # È l'ora di aggiornamento della rete, NON l'ultimo evento di pioggia.
+                    station["last"] = state["source_time"]
+                    station["observed_day"] = state["local_day"]
+                state["stations"] = sorted(stations, key=lambda station: station["station_id"])
+                state["station_count"] = len(stations)
+                state["status"] = "ok"
     except Exception as exc:
         state["warning"] = "CEDOC non raggiungibile o formato modificato: " + str(exc)[:180]
     finally:
