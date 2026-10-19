@@ -52,7 +52,14 @@ def get_catalog(session):
     stations = {}
     for page in range(1, 25):
         route = "/stazioni" if page == 1 else f"/stazioni/page/{page}"
-        soup = fetch(session, route)
+        try:
+            soup = fetch(session, route)
+        except requests.HTTPError as exc:
+            # Le ultime pagine della directory possono restituire 404:
+            # dopo una directory consistente si tratta di fine elenco.
+            if page > 1 and len(stations) >= 30 and exc.response is not None and exc.response.status_code == 404:
+                break
+            raise
         found = 0
         for a in soup.find_all("a", href=True):
             m = STATION_RE.search(a["href"])
@@ -78,7 +85,7 @@ def one_station(item):
     session = requests.Session()
     try:
         soup = fetch(session, "/stazione/" + code)
-        heading = soup.find(["h1", "h2"])
+        heading = soup.find("h2")
         name = heading.get_text(" ", strip=True) if heading else fallback
         body = plain(soup)
         match = RAIN_RE.search(body)
