@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 ROOT = "https://www.sardegnacedoc.it"
 BASE = ROOT + "/idrografico"
 OUT = Path("data/cedoc.json")
+CATALOG = Path("data/cedoc_sensors.json")
 TZ = ZoneInfo("Europe/Rome")
 NOW = dt.datetime.now(dt.timezone.utc)
 MAX_AGE = dt.timedelta(hours=3)
@@ -77,19 +78,55 @@ def get_catalog(session):
         raise ValueError(f"CEDOC: directory incompleta ({len(stations)} stazioni)")
     return stations
 
-def one_station(item):
+def discover_pluviometer(item):
     code, fallback = item
     session = requests.Session()
     try:
         soup = fetch(session, "/stazione/" + code)
-        # Le schede stazione riportano 48h. Per il giornaliero occorre
-        # seguire il collegamento al singolo sensore di tipo Pluviometro.
-        raw_html = str(soup).replace("\\/", "/")
+        # I link ai sensori possono trovarsi in href o negli handler HTML.
+        raw_html = str(soup).replace("\\\\/", "/")
         candidates = list(SENSOR_RE.finditer(raw_html))
         selected = next((m for m in candidates if m.group(1)==code and m.group(3)=="20207"), None)
         if not selected:
             return None
-        sensor_path = "/sensore/" + "/".join(selected.groups())
+        return {"station_id":code, "name":fallback, "sensor_path":"/sensore/" + "/".join(selected.groups())}
+    except (requests.RequestException, ValueError, TypeError):
+        return None
+    finally:
+        session.close()
+
+
+def sensor_catalog(session):
+    if CATALOG.exists():
+        try:
+            old = json.loads(CATALOG.read_text(encoding="utf-8"))
+            created = dt.datetime.fromisoformat(old["generated_at"].replace("Z", "+00:00"))
+            entries = old["stations"]
+            if NOW - created < dt.timedelta(days=7) and len(entries) >= 15:
+                return entries
+        except (ValueError, KeyError, TypeError):
+            pass
+    index = get_catalog(session)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+        result = list(filter(None, pool.map(discover_pluviometer, index.items())))
+    if len(result) < 15:
+        raise ValueError("Directory sensori CEDOC incompleta: " + str(len(result)) + " identificati.")
+    CATALOG.parent.mkdir(parents=True, exist_ok=True)
+    CATALOG.write_text(json.dumps({
+        "generated_at":NOW.isoformat().replace("+00:00", "Z"),
+        "source_url":BASE+"/stazioni",
+        "stations":sorted(result, key=lambda item:item["station_id"])
+    }, ensure_ascii=False, separators=(",", ":"))+"\n", encoding="utf-8")
+    return result
+
+
+def one_station(item):
+    code, fallback = item["station_id"], item["name"]
+    session = requests.Session()
+    try:
+        sensor_path = item["sensor_path"]
+        if not re.fullmatch(r"/sensore/\d+/\d+/20207", sensor_path):
+            return None
         sensor = fetch(session, sensor_path)
         body = plain(sensor)
         daily_part = re.search(
@@ -108,13 +145,13 @@ def one_station(item):
         name = heading.get_text(" ", strip=True) if heading else fallback
         return {
             "station_id": code, "name": name[:110], "lat":y, "lon":x,
-            "rain_today": round(amount, 1),
-            "source_url": BASE + sensor_path
+            "rain_today": round(amount, 1), "source_url": BASE + sensor_path
         }
     except (requests.RequestException, ValueError, TypeError, OverflowError):
         return None
     finally:
         session.close()
+
 
 def main():
     session = requests.Session()
@@ -148,11 +185,11 @@ def main():
             state["status"] = "stale"
             state["warning"] = "Data CEDOC non coincidente con il giorno locale corrente."
         else:
-            catalog = get_catalog(session)
+            catalog = sensor_catalog(session)
             state["catalog_count"] = len(catalog)
             # Interrogazione moderata: max 3 richieste simultanee.
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-                stations = list(filter(None, pool.map(one_station, catalog.items())))
+                stations = list(filter(None, pool.map(one_station, catalog)))
             if len(stations) < 15:
                 state["warning"] = "Lettura delle schede giornaliere incompleta: " + str(len(stations)) + " sensori."
             else:
