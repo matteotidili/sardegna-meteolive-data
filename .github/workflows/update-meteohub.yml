@@ -2,6 +2,13 @@ name: Aggiorna dati MeteoHub
 
 on:
   workflow_dispatch:
+  # Pianificazione DPCN dedicata, sfalsata di 2 minuti rispetto a quella
+  # generale (update-observations.yml, minuti 4/9/14/...). I trigger
+  # schedule sono best-effort: due calendari riducono i buchi di esecuzione.
+  # update_meteohub.py mantiene un intervallo minimo di 9 minuti
+  # tra richieste MeteoHub, rispettando il limite orario dell'API.
+  schedule:
+    - cron: '1,6,11,16,21,26,31,36,41,46,51,56 * * * *'
   push:
     branches: [main]
     paths:
