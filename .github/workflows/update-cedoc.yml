@@ -8,8 +8,9 @@ on:
       - 'scripts/update_cedoc.py'
       - '.github/workflows/update-cedoc.yml'
   schedule:
-    # Una raccolta ogni 30 minuti, dopo i consueti aggiornamenti del portale.
-    - cron: '12,42 * * * *'
+    # Controllo ogni 15 minuti: una stazione resta comunque vincolata
+    # all'ora reale delle misure pubblicate dalla rete CEDOC.
+    - cron: '3,18,33,48 * * * *'
 
 permissions:
   contents: write
@@ -41,7 +42,7 @@ jobs:
           import json, datetime as dt
           from pathlib import Path
           data=json.loads(Path('data/cedoc.json').read_text(encoding='utf-8'))
-          assert data['parameter']=='rain_today' and data['refresh_minutes']==30
+          assert data['parameter']=='rain_today' and data['refresh_minutes']==15
           assert data['status'] in {'ok','unavailable','stale'}
           assert data['station_count']==len(data['stations'])
           for s in data['stations']:
