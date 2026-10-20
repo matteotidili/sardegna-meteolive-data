@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:26.384628Z",
-      "feed_updated": "2026-10-20T13:05:39.082626Z"
+      "checked_at": "2026-10-20T14:06:51.123813Z",
+      "feed_updated": "2026-10-20T14:05:25.921344Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:26.493197Z",
-      "feed_updated": "2026-10-20T13:05:47.314110Z"
+      "checked_at": "2026-10-20T14:06:51.358112Z",
+      "feed_updated": "2026-10-20T13:35:14.346288Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:26.165442Z",
-      "feed_updated": "2026-10-20T13:05:50.533119Z"
+      "checked_at": "2026-10-20T14:06:50.819876Z",
+      "feed_updated": "2026-10-20T13:35:17.684437Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:26.931018Z",
-      "feed_updated": "2026-10-20T13:05:01.501660Z"
+      "checked_at": "2026-10-20T14:06:51.818765Z",
+      "feed_updated": "2026-10-20T14:05:01.804165Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:27.762971Z",
-      "feed_updated": "2026-10-20T13:26:46.716526Z"
+      "checked_at": "2026-10-20T14:06:52.219112Z",
+      "feed_updated": "2026-10-20T13:35:11.258530Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:27.384047Z",
-      "feed_updated": "2026-10-20T13:05:33.883590Z"
+      "checked_at": "2026-10-20T14:06:52.280832Z",
+      "feed_updated": "2026-10-20T14:05:19.009205Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:27.678971Z",
-      "feed_updated": "2026-10-20T13:05:04.489968Z"
+      "checked_at": "2026-10-20T14:06:52.629443Z",
+      "feed_updated": "2026-10-20T13:35:02.536803Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:28.034987Z",
-      "feed_updated": "2026-10-20T13:24:55.655169Z"
+      "checked_at": "2026-10-20T14:06:52.865382Z",
+      "feed_updated": "2026-10-20T14:05:05.113800Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:28.463937Z",
-      "feed_updated": "2026-10-20T13:05:04.990583Z"
+      "checked_at": "2026-10-20T14:06:52.875053Z",
+      "feed_updated": "2026-10-20T14:05:05.910064Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:28.444249Z",
-      "feed_updated": "2026-10-20T13:05:01.730617Z"
+      "checked_at": "2026-10-20T14:06:53.320276Z",
+      "feed_updated": "2026-10-20T14:05:01.616463Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-20T13:27:28.552467Z",
-      "feed_updated": "2026-10-20T13:10:56.509808Z"
+      "checked_at": "2026-10-20T14:06:53.280404Z",
+      "feed_updated": "2026-10-20T14:05:09.623329Z"
     }
   ],
   "uncovered": [
@@ -19086,11 +19086,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-20T13:27:30.056479Z",
-  "feed_updated": "2026-10-20T13:26:46.716526Z",
+  "generated_at": "2026-10-20T14:06:55.458843Z",
+  "feed_updated": "2026-10-20T14:05:25.921344Z",
   "warning_count": 316,
-  "active_count": 82,
-  "upcoming_count": 234,
+  "active_count": 84,
+  "upcoming_count": 232,
   "max_level": 4,
   "active_max_level": 4,
   "upcoming_max_level": 4,
@@ -23537,7 +23537,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261019163010.691703COCO202227410",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-19T16:30:10Z",
       "effective": "2026-10-19T16:26:29Z",
       "onset": "2026-10-20T14:00:00Z",
@@ -23567,7 +23567,7 @@
     },
     {
       "id": "2.49.0.0.191.0.HR.261020083816_0_yellow_HR801",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-20T06:38:16Z",
       "effective": "2026-10-20T06:38:16Z",
       "onset": "2026-10-20T14:00:00Z",
