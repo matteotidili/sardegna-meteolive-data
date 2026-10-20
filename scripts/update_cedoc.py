@@ -12,6 +12,7 @@ import json
 import os
 import re
 import time
+import urllib.parse
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -38,13 +39,26 @@ STATION_RE = re.compile(r"/idrografico/stazione/(\d+)(?:/?(?:\?|$))")
 def parse_time(value):
     return dt.datetime.strptime(value.strip(), "%d-%m-%Y %H:%M").replace(tzinfo=TZ).astimezone(dt.timezone.utc)
 
+def parse_time_iso(value):
+    return dt.datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(dt.timezone.utc)
+
 def plain(soup):
     for tag in soup.select("script,style,noscript"):
         tag.decompose()
     return soup.get_text(" ", strip=True)
 
 def fetch(session, path):
-    response = session.get(BASE + path, timeout=(8, 17), headers={"User-Agent":"SardegnaMeteoLive/1.0 (public rain-data monitor; contact via GitHub matteotidili)"})
+    # Il portale espone pagine con diversi livelli di cache: per osservazioni
+    # temporali richiediamo risposte nuove, non copie servite da CDN/browser.
+    params={"_sml_refresh":NOW.strftime("%Y%m%d%H%M")} if path.startswith(("/stazione/", "/sensore/", "/temporeale")) else None
+    response = session.get(
+        BASE + path, params=params, timeout=(8, 17),
+        headers={
+            "User-Agent":"SardegnaMeteoLive/1.0 (public rain-data monitor; contact via GitHub matteotidili)",
+            "Cache-Control":"no-cache, no-store, max-age=0",
+            "Pragma":"no-cache",
+        },
+    )
     response.raise_for_status()
     return BeautifulSoup(response.content, "html.parser")
 
@@ -124,6 +138,7 @@ def sensor_catalog(session):
 
 def one_station(item):
     code, fallback = item["station_id"], item["name"]
+    previous = item.get("previous") or {}
     session = requests.Session()
     try:
         sensor_path = item["sensor_path"]
@@ -149,6 +164,17 @@ def one_station(item):
             return None
         if when.astimezone(TZ).date()!=NOW.astimezone(TZ).date():
             return None
+        # Quando il pluviometro riporta ancora esattamente la stessa misura
+        # recente, riutilizziamo il valore già letto: meno richieste sul CEDOC.
+        # Per osservazioni ferme oltre 55 minuti interroghiamo comunque
+        # la scheda sensore, anche se l'ora in stazione non si è mossa.
+        stamp=when.isoformat().replace("+00:00", "Z")
+        if (previous.get("last")==stamp and
+            previous.get("observed_day")==when.astimezone(TZ).date().isoformat() and
+            isinstance(previous.get("rain_today"),(int,float)) and
+            (NOW-when)<=dt.timedelta(minutes=55) and
+            isinstance(previous.get("rain_48h"),(int,float))):
+            return previous
         sensor = fetch(session, sensor_path)
         body = plain(sensor)
         daily_part = re.search(
@@ -188,7 +214,7 @@ def main():
         "parameter": "rain_today",
         "unit": "mm",
         "accumulation": "giornaliero (Europe/Rome)",
-        "refresh_minutes": 30,
+        "refresh_minutes": 15,
         "max_observation_age_hours": 3,
         "status": "unavailable",
         "warning": "Dati automatici non validati ARPAS; verificare sempre l'ora delle misure.",
@@ -207,7 +233,13 @@ def main():
             pass
         catalog = sensor_catalog(session)
         state["catalog_count"] = len(catalog)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+        try:
+            previous_json=json.loads(OUT.read_text(encoding="utf-8"))
+            old_stations={str(st.get("station_id")):st for st in previous_json.get("stations",[]) if isinstance(st,dict)}
+        except (OSError, ValueError, TypeError):
+            old_stations={}
+        catalog=[{**item,"previous":old_stations.get(str(item["station_id"]),{})} for item in catalog]
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
             stations = list(filter(None, pool.map(one_station, catalog)))
         if len(stations) < 15:
             state["status"] = "unavailable"
@@ -215,6 +247,11 @@ def main():
         else:
             state["local_day"] = NOW.astimezone(TZ).date().isoformat()
             state["source_time"] = max(station["last"] for station in stations)
+            state["freshness"] = {
+                "under_60_minutes":sum(1 for x in stations if NOW-parse_time_iso(x["last"])<=dt.timedelta(minutes=60)),
+                "under_90_minutes":sum(1 for x in stations if NOW-parse_time_iso(x["last"])<=dt.timedelta(minutes=90)),
+                "over_90_minutes":sum(1 for x in stations if NOW-parse_time_iso(x["last"])>dt.timedelta(minutes=90)),
+            }
             state["stations"] = sorted(stations, key=lambda station: station["station_id"])
             state["station_count"] = len(stations)
             state["status"] = "ok"
