@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:17.833900Z",
-      "feed_updated": "2026-10-23T09:35:24.594725Z"
+      "checked_at": "2026-10-23T10:17:57.021927Z",
+      "feed_updated": "2026-10-23T10:06:23.526386Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:17.728468Z",
-      "feed_updated": "2026-10-23T09:42:27.178708Z"
+      "checked_at": "2026-10-23T10:17:57.028245Z",
+      "feed_updated": "2026-10-23T10:06:32.880061Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:18.082940Z",
-      "feed_updated": "2026-10-23T09:35:21.250205Z"
+      "checked_at": "2026-10-23T10:17:57.239421Z",
+      "feed_updated": "2026-10-23T10:06:34.345147Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:18.638607Z",
-      "feed_updated": "2026-10-23T09:35:29.781402Z"
+      "checked_at": "2026-10-23T10:17:58.044344Z",
+      "feed_updated": "2026-10-23T10:05:01.996367Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:18.852189Z",
-      "feed_updated": "2026-10-23T09:35:27.632767Z"
+      "checked_at": "2026-10-23T10:17:58.306985Z",
+      "feed_updated": "2026-10-23T10:06:28.936629Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:18.607603Z",
-      "feed_updated": "2026-10-23T09:35:14.958258Z"
+      "checked_at": "2026-10-23T10:17:57.915161Z",
+      "feed_updated": "2026-10-23T10:06:19.535257Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:19.395197Z",
-      "feed_updated": "2026-10-23T09:35:11.161637Z"
+      "checked_at": "2026-10-23T10:17:58.689446Z",
+      "feed_updated": "2026-10-23T10:05:04.670818Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:19.490124Z",
-      "feed_updated": "2026-10-23T09:35:05.741391Z"
+      "checked_at": "2026-10-23T10:17:58.813038Z",
+      "feed_updated": "2026-10-23T10:06:08.290513Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:19.284742Z",
-      "feed_updated": "2026-10-23T09:35:11.791555Z"
+      "checked_at": "2026-10-23T10:17:58.831501Z",
+      "feed_updated": "2026-10-23T10:05:07.049547Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:19.838881Z",
-      "feed_updated": "2026-10-23T09:35:11.125878Z"
+      "checked_at": "2026-10-23T10:17:59.209318Z",
+      "feed_updated": "2026-10-23T10:05:04.549544Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-23T09:49:20.400187Z",
-      "feed_updated": "2026-10-23T09:35:41.671513Z"
+      "checked_at": "2026-10-23T10:18:00.151040Z",
+      "feed_updated": "2026-10-23T10:05:18.272456Z"
     }
   ],
   "uncovered": [
@@ -18143,6 +18143,139 @@
       "source_code": "HR802",
       "matched_by": "code"
     },
+    "BA003": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.413,
+              44.887
+            ],
+            [
+              18.398,
+              44.865
+            ],
+            [
+              18.275,
+              44.791
+            ],
+            [
+              18.256,
+              44.766
+            ],
+            [
+              18.4,
+              44.594
+            ],
+            [
+              18.137,
+              44.579
+            ],
+            [
+              18.105,
+              44.584
+            ],
+            [
+              18.05,
+              44.659
+            ],
+            [
+              18.026,
+              44.676
+            ],
+            [
+              17.932,
+              44.667
+            ],
+            [
+              17.931,
+              44.485
+            ],
+            [
+              17.624,
+              44.34
+            ],
+            [
+              17.588,
+              44.345
+            ],
+            [
+              17.395,
+              44.463
+            ],
+            [
+              17.37,
+              44.46
+            ],
+            [
+              17.221,
+              44.397
+            ],
+            [
+              17.199,
+              44.375
+            ],
+            [
+              17.295,
+              44.208
+            ],
+            [
+              17.306,
+              44.173
+            ],
+            [
+              17.182,
+              44.067
+            ],
+            [
+              17.151,
+              44.054
+            ],
+            [
+              16.489,
+              44.481
+            ],
+            [
+              16.471,
+              44.505
+            ],
+            [
+              16.504,
+              44.515
+            ],
+            [
+              16.891,
+              44.528
+            ],
+            [
+              16.887,
+              44.565
+            ],
+            [
+              16.792,
+              44.789
+            ],
+            [
+              17.399,
+              44.901
+            ],
+            [
+              18.156,
+              44.883
+            ],
+            [
+              18.413,
+              44.887
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "BA003",
+      "matched_by": "code"
+    },
     "BA006": {
       "geometry": {
         "type": "Polygon",
@@ -18311,135 +18444,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "BA008",
-      "matched_by": "code"
-    },
-    "BA004": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.022,
-              44.563
-            ],
-            [
-              18.774,
-              44.344
-            ],
-            [
-              18.774,
-              44.306
-            ],
-            [
-              18.808,
-              44.233
-            ],
-            [
-              18.818,
-              44.187
-            ],
-            [
-              18.647,
-              44.09
-            ],
-            [
-              18.618,
-              44.087
-            ],
-            [
-              17.306,
-              44.173
-            ],
-            [
-              17.295,
-              44.208
-            ],
-            [
-              17.199,
-              44.375
-            ],
-            [
-              17.221,
-              44.397
-            ],
-            [
-              17.37,
-              44.46
-            ],
-            [
-              17.395,
-              44.463
-            ],
-            [
-              17.588,
-              44.345
-            ],
-            [
-              17.624,
-              44.34
-            ],
-            [
-              17.931,
-              44.485
-            ],
-            [
-              17.932,
-              44.667
-            ],
-            [
-              18.026,
-              44.676
-            ],
-            [
-              18.05,
-              44.659
-            ],
-            [
-              18.105,
-              44.584
-            ],
-            [
-              18.137,
-              44.579
-            ],
-            [
-              18.4,
-              44.594
-            ],
-            [
-              18.256,
-              44.766
-            ],
-            [
-              18.275,
-              44.791
-            ],
-            [
-              18.398,
-              44.865
-            ],
-            [
-              18.413,
-              44.887
-            ],
-            [
-              18.45,
-              44.884
-            ],
-            [
-              18.825,
-              44.572
-            ],
-            [
-              19.022,
-              44.563
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "BA004",
       "matched_by": "code"
     },
     "ME003": {
@@ -19710,11 +19714,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-23T09:49:22.408992Z",
-  "feed_updated": "2026-10-23T09:42:27.178708Z",
-  "warning_count": 262,
-  "active_count": 190,
-  "upcoming_count": 72,
+  "generated_at": "2026-10-23T10:18:01.894967Z",
+  "feed_updated": "2026-10-23T10:06:34.345147Z",
+  "warning_count": 254,
+  "active_count": 185,
+  "upcoming_count": 69,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 2,
@@ -21216,66 +21220,6 @@
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.70.0.BA.261021083212.13911025",
-      "status": "active",
-      "sent": "2026-10-21T06:32:12Z",
-      "effective": "2026-10-21T06:32:12Z",
-      "onset": "2026-10-22T22:00:00Z",
-      "expires": "2026-10-23T10:00:59Z",
-      "event": "Fog Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Sarajevo",
-      "emma_id": "BA006",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/343ba9fc-45e2-4eb4-8206-7b8fe23bd49e",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Bosnia ed Erzegovina",
-      "country_code": "bosnia-herzegovina"
-    },
-    {
-      "id": "2.49.0.0.70.0.BA.261021083212.86279112",
-      "status": "active",
-      "sent": "2026-10-21T06:32:12Z",
-      "effective": "2026-10-21T06:32:12Z",
-      "onset": "2026-10-22T22:00:00Z",
-      "expires": "2026-10-23T10:00:59Z",
-      "event": "Fog Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Tuzla",
-      "emma_id": "BA004",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/ad11785f-e0fe-4a47-bbf1-9f3661750b45",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Bosnia ed Erzegovina",
-      "country_code": "bosnia-herzegovina"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261022113500.010000005",
       "status": "active",
       "sent": "2026-10-22T11:35:00Z",
@@ -21668,250 +21612,6 @@
       "country_code": "israel"
     },
     {
-      "id": "2.49.0.0.376.0.261023081122.59313",
-      "status": "active",
-      "sent": "2026-10-23T05:11:22Z",
-      "effective": "2026-10-23T05:11:22Z",
-      "onset": "2026-10-23T06:00:00Z",
-      "expires": "2026-10-23T10:00:00Z",
-      "event": "WIND",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Judea Mountains",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              35.0179028,
-              31.67346288
-            ],
-            [
-              35.02162425,
-              31.69341524
-            ],
-            [
-              35.01232596,
-              31.73288858
-            ],
-            [
-              35.00988244,
-              31.74256891
-            ],
-            [
-              35.00815704,
-              31.74839787
-            ],
-            [
-              35.02691614,
-              31.80396386
-            ],
-            [
-              35.03015626,
-              31.81356136
-            ],
-            [
-              35.03109433,
-              31.81888141
-            ],
-            [
-              35.03168591,
-              31.81927431
-            ],
-            [
-              35.04597684,
-              31.82876582
-            ],
-            [
-              35.05244315,
-              31.84902186
-            ],
-            [
-              35.1074339,
-              31.82682472
-            ],
-            [
-              35.16769146,
-              31.80250163
-            ],
-            [
-              35.20260779,
-              31.80278058
-            ],
-            [
-              35.22656528,
-              31.78953046
-            ],
-            [
-              35.22222379,
-              31.77477831
-            ],
-            [
-              35.2341328,
-              31.74654002
-            ],
-            [
-              35.15822058,
-              31.74397046
-            ],
-            [
-              35.14088195,
-              31.72945971
-            ],
-            [
-              35.11847092,
-              31.7319488
-            ],
-            [
-              35.06846482,
-              31.71512599
-            ],
-            [
-              35.03902573,
-              31.68869013
-            ],
-            [
-              35.02051133,
-              31.67534334
-            ],
-            [
-              35.0179028,
-              31.67346288
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/6a838a2a-1d12-4a87-8889-d159864f77ad",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
-    },
-    {
-      "id": "2.49.0.0.376.0.261023081122.59313",
-      "status": "active",
-      "sent": "2026-10-23T05:11:22Z",
-      "effective": "2026-10-23T05:11:22Z",
-      "onset": "2026-10-23T06:00:00Z",
-      "expires": "2026-10-23T10:00:00Z",
-      "event": "WIND",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "North Eastern Samaria",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              35.44375193,
-              32.41053837
-            ],
-            [
-              35.44092256,
-              32.41031165
-            ],
-            [
-              35.42568225,
-              32.43541713
-            ],
-            [
-              35.43198561,
-              32.45412821
-            ],
-            [
-              35.39794955,
-              32.50631327
-            ],
-            [
-              35.36353497,
-              32.51884455
-            ],
-            [
-              35.34768722,
-              32.51678878
-            ],
-            [
-              35.34892577,
-              32.51828328
-            ],
-            [
-              35.34651657,
-              32.52391645
-            ],
-            [
-              35.33606378,
-              32.53575316
-            ],
-            [
-              35.36275605,
-              32.5448528
-            ],
-            [
-              35.42030859,
-              32.51781004
-            ],
-            [
-              35.43268913,
-              32.47342129
-            ],
-            [
-              35.43468442,
-              32.46976167
-            ],
-            [
-              35.44061657,
-              32.45503695
-            ],
-            [
-              35.43976022,
-              32.43378764
-            ],
-            [
-              35.4393932,
-              32.41775064
-            ],
-            [
-              35.43935742,
-              32.41618688
-            ],
-            [
-              35.44375193,
-              32.41053837
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/6a838a2a-1d12-4a87-8889-d159864f77ad",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
-    },
-    {
       "id": "2.49.0.0.376.0.261023082428.59314",
       "status": "active",
       "sent": "2026-10-23T05:24:28Z",
@@ -22192,102 +21892,6 @@
       "country_code": "israel"
     },
     {
-      "id": "2.49.0.0.376.0.261022154405.59299",
-      "status": "active",
-      "sent": "2026-10-22T12:44:05Z",
-      "effective": "2026-10-22T12:44:05Z",
-      "onset": "2026-10-23T07:00:00Z",
-      "expires": "2026-10-23T10:00:00Z",
-      "event": "FORESTFIRE",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "FORESTFIRE",
-      "area_desc": "Carmel  Coast",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              34.95640803,
-              32.63156054
-            ],
-            [
-              34.94633127,
-              32.59188328
-            ],
-            [
-              34.92430556,
-              32.57791667
-            ],
-            [
-              34.91193093,
-              32.56735427
-            ],
-            [
-              34.90990433,
-              32.5667996
-            ],
-            [
-              34.90731078,
-              32.5668912
-            ],
-            [
-              34.91034977,
-              32.57716885
-            ],
-            [
-              34.92575638,
-              32.68414496
-            ],
-            [
-              34.92821211,
-              32.70119638
-            ],
-            [
-              34.94726736,
-              32.73709171
-            ],
-            [
-              34.95420449,
-              32.81187675
-            ],
-            [
-              34.95468558,
-              32.81162647
-            ],
-            [
-              34.97308756,
-              32.79433572
-            ],
-            [
-              34.97865029,
-              32.7609593
-            ],
-            [
-              34.95640803,
-              32.63156054
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/e26f9485-2178-4e9d-81fe-3c639ac70711",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
-    },
-    {
       "id": "2.49.0.0.376.0.261022160541.59300",
       "status": "active",
       "sent": "2026-10-22T13:05:41Z",
@@ -22398,122 +22002,6 @@
       },
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/04b14dfe-70d1-4546-9189-263aa7342d98",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
-    },
-    {
-      "id": "2.49.0.0.376.0.261022154405.59299",
-      "status": "active",
-      "sent": "2026-10-22T12:44:05Z",
-      "effective": "2026-10-22T12:44:05Z",
-      "onset": "2026-10-23T07:00:00Z",
-      "expires": "2026-10-23T10:00:00Z",
-      "event": "FORESTFIRE",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "FORESTFIRE",
-      "area_desc": "Carmel Mt.",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              34.96966588,
-              32.83135866
-            ],
-            [
-              34.97953122,
-              32.82360732
-            ],
-            [
-              35.00142226,
-              32.80885466
-            ],
-            [
-              35.02902401,
-              32.78696362
-            ],
-            [
-              35.06233646,
-              32.75460295
-            ],
-            [
-              35.09612481,
-              32.71795925
-            ],
-            [
-              35.09994576,
-              32.69460897
-            ],
-            [
-              35.10040784,
-              32.69178518
-            ],
-            [
-              35.11111011,
-              32.65688647
-            ],
-            [
-              35.10968456,
-              32.65611742
-            ],
-            [
-              35.07802975,
-              32.63904048
-            ],
-            [
-              35.03403839,
-              32.63213988
-            ],
-            [
-              34.95640803,
-              32.63156054
-            ],
-            [
-              34.97865029,
-              32.7609593
-            ],
-            [
-              34.97308756,
-              32.79433572
-            ],
-            [
-              34.95468558,
-              32.81162647
-            ],
-            [
-              34.95420449,
-              32.81187675
-            ],
-            [
-              34.95549363,
-              32.82577412
-            ],
-            [
-              34.96925838,
-              32.83176348
-            ],
-            [
-              34.96966588,
-              32.83135866
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/e26f9485-2178-4e9d-81fe-3c639ac70711",
       "source_web": "",
       "sender_name": "",
       "country": "Israele",
@@ -22698,190 +22186,6 @@
       },
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/04b14dfe-70d1-4546-9189-263aa7342d98",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
-    },
-    {
-      "id": "2.49.0.0.376.0.261022154405.59299",
-      "status": "active",
-      "sent": "2026-10-22T12:44:05Z",
-      "effective": "2026-10-22T12:44:05Z",
-      "onset": "2026-10-23T07:00:00Z",
-      "expires": "2026-10-23T10:00:00Z",
-      "event": "FORESTFIRE",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "FORESTFIRE",
-      "area_desc": "Plain of Manasseh",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              35.21521187,
-              32.5434164
-            ],
-            [
-              35.19006276,
-              32.52356524
-            ],
-            [
-              35.121272,
-              32.4807331
-            ],
-            [
-              35.12080318,
-              32.48152235
-            ],
-            [
-              35.11270203,
-              32.49208338
-            ],
-            [
-              35.10582471,
-              32.50104897
-            ],
-            [
-              35.10172215,
-              32.50506237
-            ],
-            [
-              35.09412582,
-              32.50994834
-            ],
-            [
-              35.09412495,
-              32.5099489
-            ],
-            [
-              35.09264327,
-              32.51090192
-            ],
-            [
-              35.08486111,
-              32.51236111
-            ],
-            [
-              35.04492715,
-              32.53689357
-            ],
-            [
-              35.03319444,
-              32.53541667
-            ],
-            [
-              34.98819444,
-              32.51708333
-            ],
-            [
-              34.97486111,
-              32.51541667
-            ],
-            [
-              34.94289586,
-              32.51671574
-            ],
-            [
-              34.91152778,
-              32.52902778
-            ],
-            [
-              34.90121514,
-              32.53480186
-            ],
-            [
-              34.89822756,
-              32.53573688
-            ],
-            [
-              34.90175258,
-              32.54809375
-            ],
-            [
-              34.90731078,
-              32.5668912
-            ],
-            [
-              34.90990433,
-              32.5667996
-            ],
-            [
-              34.91193093,
-              32.56735427
-            ],
-            [
-              34.92430556,
-              32.57791667
-            ],
-            [
-              34.94633127,
-              32.59188328
-            ],
-            [
-              34.95640803,
-              32.63156054
-            ],
-            [
-              35.03403839,
-              32.63213988
-            ],
-            [
-              35.07802975,
-              32.63904048
-            ],
-            [
-              35.10968456,
-              32.65611742
-            ],
-            [
-              35.11373282,
-              32.64752721
-            ],
-            [
-              35.15799079,
-              32.59993799
-            ],
-            [
-              35.18144181,
-              32.59806191
-            ],
-            [
-              35.19192445,
-              32.57830276
-            ],
-            [
-              35.20028783,
-              32.56631876
-            ],
-            [
-              35.20039962,
-              32.56344617
-            ],
-            [
-              35.21498615,
-              32.54472014
-            ],
-            [
-              35.21521187,
-              32.5434164
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/e26f9485-2178-4e9d-81fe-3c639ac70711",
       "source_web": "",
       "sender_name": "",
       "country": "Israele",
@@ -35328,68 +34632,8 @@
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.191.0.HR.261023110759_4_001_yellow_HR031",
-      "status": "active",
-      "sent": "2026-10-23T09:07:59Z",
-      "effective": "2026-10-23T09:07:59Z",
-      "onset": "2026-10-23T09:07:54Z",
-      "expires": "2026-10-23T09:59:59Z",
-      "event": "Yellow fog warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Grad Zagreb",
-      "emma_id": "HR031",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f8ff6257-ab80-4d97-8195-977560e71d61",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261023110759_4_000_yellow_HR011",
-      "status": "active",
-      "sent": "2026-10-23T09:07:59Z",
-      "effective": "2026-10-23T09:07:59Z",
-      "onset": "2026-10-23T09:07:54Z",
-      "expires": "2026-10-23T09:59:59Z",
-      "event": "Yellow fog warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Zagrebačka",
-      "emma_id": "HR011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/f3af6408-db87-479d-bb10-5691f65c4027",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
       "id": "2.49.0.0.724.0.ES.261023091808.691703COCO240847088",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T09:18:08Z",
       "effective": "2026-10-23T09:16:09Z",
       "onset": "2026-10-23T10:00:00Z",
@@ -35419,7 +34663,7 @@
     },
     {
       "id": "2.49.0.0.376.0.261023061959.59311",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T03:19:59Z",
       "effective": "2026-10-23T03:19:59Z",
       "onset": "2026-10-23T10:00:00Z",
@@ -35563,7 +34807,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261023091808.694304VIRM240447088",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T09:18:08Z",
       "effective": "2026-10-23T09:16:09Z",
       "onset": "2026-10-23T10:00:00Z",
@@ -35593,7 +34837,7 @@
     },
     {
       "id": "2.49.0.0.724.0.ES.261023091808.694305VIRM240447088",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T09:18:08Z",
       "effective": "2026-10-23T09:16:09Z",
       "onset": "2026-10-23T10:00:00Z",
@@ -38686,6 +37930,36 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.70.1.BA.261023115457.99738534",
+      "status": "upcoming",
+      "sent": "2026-10-23T09:54:57Z",
+      "effective": "2026-10-23T09:54:57Z",
+      "onset": "2026-10-24T08:00:00Z",
+      "expires": "2026-10-24T21:59:59Z",
+      "event": "Rain Yellow Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Banja Luka",
+      "emma_id": "BA003",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-bosnia-herzegovina/b8ba789f-802c-4296-95ea-50c35aed2a39",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Bosnia ed Erzegovina",
+      "country_code": "bosnia-herzegovina"
     },
     {
       "id": "2.49.0.0.705.0.SI.261023092359.8010101",
