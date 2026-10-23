@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:03.122274Z",
-      "feed_updated": "2026-10-23T12:35:30.044615Z"
+      "checked_at": "2026-10-23T13:30:47.850464Z",
+      "feed_updated": "2026-10-23T13:05:36.072253Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:02.836945Z",
-      "feed_updated": "2026-10-23T12:35:36.277935Z"
+      "checked_at": "2026-10-23T13:30:47.761479Z",
+      "feed_updated": "2026-10-23T13:05:45.959042Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:03.212311Z",
-      "feed_updated": "2026-10-23T12:35:37.877021Z"
+      "checked_at": "2026-10-23T13:30:48.069391Z",
+      "feed_updated": "2026-10-23T13:05:46.363101Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:04.533959Z",
-      "feed_updated": "2026-10-23T12:35:02.032802Z"
+      "checked_at": "2026-10-23T13:30:48.595365Z",
+      "feed_updated": "2026-10-23T13:05:02.716712Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:05.011834Z",
-      "feed_updated": "2026-10-23T12:35:33.477131Z"
+      "checked_at": "2026-10-23T13:30:48.805348Z",
+      "feed_updated": "2026-10-23T13:05:42.860133Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:04.366713Z",
-      "feed_updated": "2026-10-23T12:35:26.109890Z"
+      "checked_at": "2026-10-23T13:30:48.700533Z",
+      "feed_updated": "2026-10-23T13:05:32.030604Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:05.259409Z",
-      "feed_updated": "2026-10-23T12:35:03.272360Z"
+      "checked_at": "2026-10-23T13:30:49.225411Z",
+      "feed_updated": "2026-10-23T13:05:04.994560Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:05.391941Z",
-      "feed_updated": "2026-10-23T12:35:18.521993Z"
+      "checked_at": "2026-10-23T13:30:49.617051Z",
+      "feed_updated": "2026-10-23T13:05:24.241461Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:06.253668Z",
-      "feed_updated": "2026-10-23T12:35:05.920081Z"
+      "checked_at": "2026-10-23T13:30:49.410028Z",
+      "feed_updated": "2026-10-23T13:05:13.256589Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:06.246996Z",
-      "feed_updated": "2026-10-23T12:35:02.642306Z"
+      "checked_at": "2026-10-23T13:30:50.116296Z",
+      "feed_updated": "2026-10-23T13:05:04.554788Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-23T12:55:06.698135Z",
-      "feed_updated": "2026-10-23T12:50:20.389026Z"
+      "checked_at": "2026-10-23T13:30:50.544150Z",
+      "feed_updated": "2026-10-23T13:05:18.657801Z"
     }
   ],
   "uncovered": [
@@ -19280,10 +19280,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-23T12:55:08.676205Z",
-  "feed_updated": "2026-10-23T12:50:20.389026Z",
-  "warning_count": 232,
-  "active_count": 161,
+  "generated_at": "2026-10-23T13:30:52.775281Z",
+  "feed_updated": "2026-10-23T13:05:46.363101Z",
+  "warning_count": 231,
+  "active_count": 160,
   "upcoming_count": 71,
   "max_level": 3,
   "active_max_level": 3,
@@ -29202,150 +29202,6 @@
       "sender_name": "",
       "country": "Spagna",
       "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.376.0.261023061959.59311",
-      "status": "active",
-      "sent": "2026-10-23T03:19:59Z",
-      "effective": "2026-10-23T03:19:59Z",
-      "onset": "2026-10-23T10:00:00Z",
-      "expires": "2026-10-23T13:00:00Z",
-      "event": "EXTREME HIGH TEMP",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "EXTREME HIGH TEMP",
-      "area_desc": "Judean foothills - North",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              34.96198391,
-              31.82760068
-            ],
-            [
-              34.9390038,
-              31.84811864
-            ],
-            [
-              34.90584937,
-              31.86142873
-            ],
-            [
-              34.8811424,
-              31.88136718
-            ],
-            [
-              34.87557277,
-              31.88617725
-            ],
-            [
-              34.87535286,
-              31.88619242
-            ],
-            [
-              34.86118533,
-              31.90073277
-            ],
-            [
-              34.84649137,
-              31.91581342
-            ],
-            [
-              34.85216724,
-              31.92725083
-            ],
-            [
-              34.85456699,
-              31.93089401
-            ],
-            [
-              34.85628077,
-              31.93420109
-            ],
-            [
-              34.86093892,
-              31.93954311
-            ],
-            [
-              34.9129341,
-              31.99935099
-            ],
-            [
-              34.9577253,
-              32.05119245
-            ],
-            [
-              34.96340892,
-              32.05794663
-            ],
-            [
-              34.96433229,
-              32.0603625
-            ],
-            [
-              34.96540166,
-              32.06457237
-            ],
-            [
-              34.99166525,
-              32.06475056
-            ],
-            [
-              35.00316459,
-              32.02960963
-            ],
-            [
-              34.99225186,
-              31.97742457
-            ],
-            [
-              34.97144244,
-              31.95940013
-            ],
-            [
-              34.99776598,
-              31.92704196
-            ],
-            [
-              35.01558859,
-              31.92111964
-            ],
-            [
-              35.02579205,
-              31.90133566
-            ],
-            [
-              35.02415305,
-              31.87717433
-            ],
-            [
-              34.95666096,
-              31.85829157
-            ],
-            [
-              34.96198391,
-              31.82760068
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/a2b56bf5-977c-4faf-adab-e0115d0bea43",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Israele",
-      "country_code": "israel"
     },
     {
       "id": "2.49.0.0.724.0.ES.261023091808.694304VIRM240447088",
