@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-23T15:58:59.794816Z",
-      "feed_updated": "2026-10-23T15:36:05.945993Z"
+      "checked_at": "2026-10-23T16:31:14.776698Z",
+      "feed_updated": "2026-10-23T16:05:26.693681Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-23T15:58:59.773745Z",
-      "feed_updated": "2026-10-23T15:36:09.931251Z"
+      "checked_at": "2026-10-23T16:31:14.662042Z",
+      "feed_updated": "2026-10-23T16:23:17.833016Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:00.108915Z",
-      "feed_updated": "2026-10-23T15:36:16.410797Z"
+      "checked_at": "2026-10-23T16:31:14.981984Z",
+      "feed_updated": "2026-10-23T16:06:59.752256Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:00.817478Z",
-      "feed_updated": "2026-10-23T15:35:01.989387Z"
+      "checked_at": "2026-10-23T16:31:17.340374Z",
+      "feed_updated": "2026-10-23T16:05:01.761619Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:01.131700Z",
-      "feed_updated": "2026-10-23T15:36:10.907808Z"
+      "checked_at": "2026-10-23T16:31:17.597777Z",
+      "feed_updated": "2026-10-23T16:05:30.397647Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:01.141818Z",
-      "feed_updated": "2026-10-23T15:35:59.346565Z"
+      "checked_at": "2026-10-23T16:31:17.249539Z",
+      "feed_updated": "2026-10-23T16:05:24.229010Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:01.694475Z",
-      "feed_updated": "2026-10-23T15:35:03.371693Z"
+      "checked_at": "2026-10-23T16:31:17.924361Z",
+      "feed_updated": "2026-10-23T16:05:03.662304Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:02.011486Z",
-      "feed_updated": "2026-10-23T15:35:41.909213Z"
+      "checked_at": "2026-10-23T16:31:17.927383Z",
+      "feed_updated": "2026-10-23T16:05:17.958332Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:01.748143Z",
-      "feed_updated": "2026-10-23T15:35:06.851054Z"
+      "checked_at": "2026-10-23T16:31:18.262785Z",
+      "feed_updated": "2026-10-23T16:05:05.202138Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:02.300842Z",
-      "feed_updated": "2026-10-23T15:35:03.559968Z"
+      "checked_at": "2026-10-23T16:31:18.432434Z",
+      "feed_updated": "2026-10-23T16:05:03.774040Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-23T15:59:03.074155Z",
-      "feed_updated": "2026-10-23T15:35:42.296244Z"
+      "checked_at": "2026-10-23T16:31:18.806730Z",
+      "feed_updated": "2026-10-23T16:05:15.911617Z"
     }
   ],
   "uncovered": [
@@ -10329,99 +10329,6 @@
       "source_code": "FR081",
       "matched_by": "name"
     },
-    "FR533": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -0.096,
-              47.059
-            ],
-            [
-              -0.038,
-              46.987
-            ],
-            [
-              -0.028,
-              46.96
-            ],
-            [
-              0.024,
-              46.616
-            ],
-            [
-              -0.036,
-              46.501
-            ],
-            [
-              -0.023,
-              46.417
-            ],
-            [
-              0.04,
-              46.318
-            ],
-            [
-              0.213,
-              46.089
-            ],
-            [
-              -0.101,
-              45.96
-            ],
-            [
-              -0.749,
-              46.295
-            ],
-            [
-              -0.587,
-              46.352
-            ],
-            [
-              -0.571,
-              46.385
-            ],
-            [
-              -0.575,
-              46.423
-            ],
-            [
-              -0.619,
-              46.625
-            ],
-            [
-              -0.654,
-              46.688
-            ],
-            [
-              -0.744,
-              46.833
-            ],
-            [
-              -0.889,
-              46.966
-            ],
-            [
-              -0.44,
-              47.025
-            ],
-            [
-              -0.141,
-              47.06
-            ],
-            [
-              -0.096,
-              47.059
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR094",
-      "matched_by": "name"
-    },
     "FR513": {
       "geometry": {
         "type": "Polygon",
@@ -10862,323 +10769,6 @@
       "source_code": "FR082",
       "matched_by": "name"
     },
-    "FR524": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                -3.089,
-                47.283
-              ],
-              [
-                -3.205,
-                47.291
-              ],
-              [
-                -3.243,
-                47.308
-              ],
-              [
-                -3.258,
-                47.345
-              ],
-              [
-                -3.255,
-                47.379
-              ],
-              [
-                -3.226,
-                47.381
-              ],
-              [
-                -3.177,
-                47.363
-              ],
-              [
-                -3.151,
-                47.343
-              ],
-              [
-                -3.075,
-                47.309
-              ],
-              [
-                -3.089,
-                47.283
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -2.305,
-                48.126
-              ],
-              [
-                -2.279,
-                48.092
-              ],
-              [
-                -2.096,
-                47.648
-              ],
-              [
-                -2.079,
-                47.625
-              ],
-              [
-                -2.454,
-                47.455
-              ],
-              [
-                -2.489,
-                47.483
-              ],
-              [
-                -2.514,
-                47.517
-              ],
-              [
-                -2.557,
-                47.534
-              ],
-              [
-                -3.29,
-                47.686
-              ],
-              [
-                -3.539,
-                47.761
-              ],
-              [
-                -3.563,
-                47.775
-              ],
-              [
-                -3.471,
-                47.95
-              ],
-              [
-                -3.509,
-                47.966
-              ],
-              [
-                -3.619,
-                47.989
-              ],
-              [
-                -3.665,
-                48.022
-              ],
-              [
-                -3.723,
-                48.092
-              ],
-              [
-                -3.715,
-                48.128
-              ],
-              [
-                -3.643,
-                48.16
-              ],
-              [
-                -3.555,
-                48.184
-              ],
-              [
-                -3.323,
-                48.156
-              ],
-              [
-                -2.655,
-                48.041
-              ],
-              [
-                -2.305,
-                48.126
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR048",
-      "matched_by": "name"
-    },
-    "FR512": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -0.397,
-              47.774
-            ],
-            [
-              0.184,
-              47.618
-            ],
-            [
-              0.224,
-              47.597
-            ],
-            [
-              0.048,
-              47.165
-            ],
-            [
-              -0.07,
-              47.087
-            ],
-            [
-              -0.096,
-              47.059
-            ],
-            [
-              -0.141,
-              47.06
-            ],
-            [
-              -0.44,
-              47.025
-            ],
-            [
-              -0.889,
-              46.966
-            ],
-            [
-              -1.141,
-              47.029
-            ],
-            [
-              -1.151,
-              47.057
-            ],
-            [
-              -1.181,
-              47.252
-            ],
-            [
-              -1.127,
-              47.576
-            ],
-            [
-              -1.251,
-              47.783
-            ],
-            [
-              -1.225,
-              47.811
-            ],
-            [
-              -0.437,
-              47.77
-            ],
-            [
-              -0.397,
-              47.774
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR092",
-      "matched_by": "name"
-    },
-    "FR511": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -1.141,
-              47.029
-            ],
-            [
-              -1.542,
-              46.863
-            ],
-            [
-              -1.705,
-              46.883
-            ],
-            [
-              -1.879,
-              46.958
-            ],
-            [
-              -1.989,
-              47.028
-            ],
-            [
-              -2.01,
-              47.065
-            ],
-            [
-              -2.18,
-              47.266
-            ],
-            [
-              -2.326,
-              47.271
-            ],
-            [
-              -2.449,
-              47.262
-            ],
-            [
-              -2.518,
-              47.283
-            ],
-            [
-              -2.542,
-              47.301
-            ],
-            [
-              -2.522,
-              47.368
-            ],
-            [
-              -2.454,
-              47.455
-            ],
-            [
-              -2.079,
-              47.625
-            ],
-            [
-              -1.251,
-              47.783
-            ],
-            [
-              -1.127,
-              47.576
-            ],
-            [
-              -1.181,
-              47.252
-            ],
-            [
-              -1.151,
-              47.057
-            ],
-            [
-              -1.141,
-              47.029
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR049",
-      "matched_by": "name"
-    },
     "FR723": {
       "geometry": {
         "type": "Polygon",
@@ -11375,180 +10965,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "FR059",
-      "matched_by": "name"
-    },
-    "FR531": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              0.817,
-              46.125
-            ],
-            [
-              0.642,
-              45.733
-            ],
-            [
-              0.638,
-              45.699
-            ],
-            [
-              0.61,
-              45.681
-            ],
-            [
-              0.256,
-              45.296
-            ],
-            [
-              0.231,
-              45.277
-            ],
-            [
-              0.142,
-              45.226
-            ],
-            [
-              -0.003,
-              45.201
-            ],
-            [
-              -0.032,
-              45.224
-            ],
-            [
-              -0.12,
-              45.26
-            ],
-            [
-              -0.207,
-              45.309
-            ],
-            [
-              -0.286,
-              45.374
-            ],
-            [
-              -0.411,
-              45.692
-            ],
-            [
-              -0.419,
-              45.734
-            ],
-            [
-              -0.41,
-              45.774
-            ],
-            [
-              -0.101,
-              45.96
-            ],
-            [
-              0.213,
-              46.089
-            ],
-            [
-              0.817,
-              46.125
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR016",
-      "matched_by": "name"
-    },
-    "FR534": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              0.875,
-              46.744
-            ],
-            [
-              1.167,
-              46.416
-            ],
-            [
-              1.182,
-              46.385
-            ],
-            [
-              0.817,
-              46.125
-            ],
-            [
-              0.213,
-              46.089
-            ],
-            [
-              0.04,
-              46.318
-            ],
-            [
-              -0.023,
-              46.417
-            ],
-            [
-              -0.036,
-              46.501
-            ],
-            [
-              0.024,
-              46.616
-            ],
-            [
-              -0.028,
-              46.96
-            ],
-            [
-              -0.038,
-              46.987
-            ],
-            [
-              -0.096,
-              47.059
-            ],
-            [
-              -0.07,
-              47.087
-            ],
-            [
-              0.048,
-              47.165
-            ],
-            [
-              0.293,
-              47.026
-            ],
-            [
-              0.597,
-              47.005
-            ],
-            [
-              0.632,
-              46.995
-            ],
-            [
-              0.7,
-              46.941
-            ],
-            [
-              0.875,
-              46.744
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR045",
       "matched_by": "name"
     },
     "FR413": {
@@ -12141,79 +11557,6 @@
       "source_code": "FR080",
       "matched_by": "name"
     },
-    "FR632": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.283,
-              46.408
-            ],
-            [
-              2.529,
-              46.169
-            ],
-            [
-              2.568,
-              46.142
-            ],
-            [
-              2.554,
-              46.113
-            ],
-            [
-              2.479,
-              45.755
-            ],
-            [
-              2.467,
-              45.729
-            ],
-            [
-              1.881,
-              45.692
-            ],
-            [
-              1.872,
-              45.721
-            ],
-            [
-              1.751,
-              45.87
-            ],
-            [
-              1.567,
-              45.996
-            ],
-            [
-              1.443,
-              46.25
-            ],
-            [
-              1.41,
-              46.353
-            ],
-            [
-              2.134,
-              46.42
-            ],
-            [
-              2.241,
-              46.416
-            ],
-            [
-              2.283,
-              46.408
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR041",
-      "matched_by": "name"
-    },
     "FR721": {
       "geometry": {
         "type": "Polygon",
@@ -12414,254 +11757,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "FR084",
-      "matched_by": "name"
-    },
-    "FR633": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              1.41,
-              46.353
-            ],
-            [
-              1.443,
-              46.25
-            ],
-            [
-              1.567,
-              45.996
-            ],
-            [
-              1.751,
-              45.87
-            ],
-            [
-              1.872,
-              45.721
-            ],
-            [
-              1.881,
-              45.692
-            ],
-            [
-              1.285,
-              45.466
-            ],
-            [
-              1.248,
-              45.458
-            ],
-            [
-              0.638,
-              45.699
-            ],
-            [
-              0.642,
-              45.733
-            ],
-            [
-              0.817,
-              46.125
-            ],
-            [
-              1.182,
-              46.385
-            ],
-            [
-              1.41,
-              46.353
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR019",
-      "matched_by": "name"
-    },
-    "FR515": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                -2.305,
-                46.703
-              ],
-              [
-                -2.339,
-                46.689
-              ],
-              [
-                -2.371,
-                46.7
-              ],
-              [
-                -2.396,
-                46.72
-              ],
-              [
-                -2.371,
-                46.732
-              ],
-              [
-                -2.329,
-                46.723
-              ],
-              [
-                -2.305,
-                46.703
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -2.141,
-                46.905
-              ],
-              [
-                -2.046,
-                46.991
-              ],
-              [
-                -1.989,
-                47.028
-              ],
-              [
-                -1.879,
-                46.958
-              ],
-              [
-                -1.745,
-                46.898
-              ],
-              [
-                -1.705,
-                46.883
-              ],
-              [
-                -1.58,
-                46.865
-              ],
-              [
-                -1.542,
-                46.863
-              ],
-              [
-                -1.141,
-                47.029
-              ],
-              [
-                -0.889,
-                46.966
-              ],
-              [
-                -0.744,
-                46.833
-              ],
-              [
-                -0.619,
-                46.625
-              ],
-              [
-                -0.571,
-                46.385
-              ],
-              [
-                -0.587,
-                46.352
-              ],
-              [
-                -0.749,
-                46.295
-              ],
-              [
-                -1.115,
-                46.306
-              ],
-              [
-                -1.221,
-                46.281
-              ],
-              [
-                -1.668,
-                46.438
-              ],
-              [
-                -1.8,
-                46.495
-              ],
-              [
-                -2.127,
-                46.806
-              ],
-              [
-                -2.144,
-                46.83
-              ],
-              [
-                -2.149,
-                46.866
-              ],
-              [
-                -2.141,
-                46.905
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -2.141,
-                46.905
-              ],
-              [
-                -2.17,
-                46.918
-              ],
-              [
-                -2.192,
-                46.947
-              ],
-              [
-                -2.288,
-                46.985
-              ],
-              [
-                -2.297,
-                47.027
-              ],
-              [
-                -2.266,
-                47.029
-              ],
-              [
-                -2.232,
-                47.019
-              ],
-              [
-                -2.211,
-                47.004
-              ],
-              [
-                -2.155,
-                46.944
-              ],
-              [
-                -2.141,
-                46.905
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR044",
       "matched_by": "name"
     },
     "FR263": {
@@ -12953,225 +12048,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "FR093",
-      "matched_by": "name"
-    },
-    "FR532": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                -1.204,
-                45.821
-              ],
-              [
-                -1.229,
-                45.808
-              ],
-              [
-                -1.267,
-                45.875
-              ],
-              [
-                -1.378,
-                45.947
-              ],
-              [
-                -1.394,
-                45.982
-              ],
-              [
-                -1.4,
-                46.021
-              ],
-              [
-                -1.361,
-                46.027
-              ],
-              [
-                -1.298,
-                45.996
-              ],
-              [
-                -1.244,
-                45.955
-              ],
-              [
-                -1.197,
-                45.897
-              ],
-              [
-                -1.191,
-                45.857
-              ],
-              [
-                -1.204,
-                45.821
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -1.272,
-                46.165
-              ],
-              [
-                -1.288,
-                46.144
-              ],
-              [
-                -1.323,
-                46.146
-              ],
-              [
-                -1.453,
-                46.198
-              ],
-              [
-                -1.524,
-                46.205
-              ],
-              [
-                -1.482,
-                46.247
-              ],
-              [
-                -1.299,
-                46.189
-              ],
-              [
-                -1.272,
-                46.165
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                -0.003,
-                45.201
-              ],
-              [
-                -0.049,
-                45.105
-              ],
-              [
-                -0.172,
-                45.095
-              ],
-              [
-                -0.238,
-                45.115
-              ],
-              [
-                -0.389,
-                45.177
-              ],
-              [
-                -0.409,
-                45.247
-              ],
-              [
-                -0.428,
-                45.277
-              ],
-              [
-                -0.58,
-                45.332
-              ],
-              [
-                -0.689,
-                45.329
-              ],
-              [
-                -0.713,
-                45.32
-              ],
-              [
-                -0.741,
-                45.396
-              ],
-              [
-                -0.79,
-                45.466
-              ],
-              [
-                -0.847,
-                45.506
-              ],
-              [
-                -1.03,
-                45.609
-              ],
-              [
-                -1.146,
-                45.664
-              ],
-              [
-                -1.154,
-                45.705
-              ],
-              [
-                -1.134,
-                46.254
-              ],
-              [
-                -1.13,
-                46.28
-              ],
-              [
-                -1.115,
-                46.306
-              ],
-              [
-                -0.749,
-                46.295
-              ],
-              [
-                -0.101,
-                45.96
-              ],
-              [
-                -0.41,
-                45.774
-              ],
-              [
-                -0.419,
-                45.734
-              ],
-              [
-                -0.397,
-                45.652
-              ],
-              [
-                -0.286,
-                45.374
-              ],
-              [
-                -0.207,
-                45.309
-              ],
-              [
-                -0.12,
-                45.26
-              ],
-              [
-                -0.032,
-                45.224
-              ],
-              [
-                -0.003,
-                45.201
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "FR015",
       "matched_by": "name"
     },
     "FR211": {
@@ -18985,16 +17861,16 @@
       "matched_by": "code"
     }
   },
-  "region_count": 108,
+  "region_count": 98,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-23T15:59:04.922733Z",
-  "feed_updated": "2026-10-23T15:36:16.410797Z",
-  "warning_count": 224,
-  "active_count": 139,
-  "upcoming_count": 85,
+  "generated_at": "2026-10-23T16:31:20.716156Z",
+  "feed_updated": "2026-10-23T16:23:17.833016Z",
+  "warning_count": 207,
+  "active_count": 123,
+  "upcoming_count": 84,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 2,
@@ -19234,36 +18110,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/1b9b10ee-eddb-4e9b-bd5a-f823a785c548",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261023063609.711504COCO231637369",
-      "status": "active",
-      "sent": "2026-10-23T06:36:09Z",
-      "effective": "2026-10-23T06:33:08Z",
-      "onset": "2026-10-23T06:00:00Z",
-      "expires": "2026-10-23T15:59:59Z",
-      "event": "Severe coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Severe coastalevent warning",
-      "area_desc": "Costa - Suroeste de A Coruña",
-      "emma_id": "ES848",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/d45fc2cd-f3f1-4ec5-9d86-4d4c7e4ea9fd",
       "source_web": "",
       "sender_name": "",
       "country": "Spagna",
@@ -19746,161 +18592,11 @@
       "country_code": "israel"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
+      "id": "2.49.0.0.250.0.FR.20261023180116.623031",
       "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Aisne",
-      "emma_id": "FR221",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Calvados",
-      "emma_id": "FR251",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Côtes d'Armor",
-      "emma_id": "FR521",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Ille-et-Vilaine",
-      "emma_id": "FR523",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Manche",
-      "emma_id": "FR252",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:16Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Severe wind warning",
       "headline": "",
@@ -19919,48 +18615,18 @@
       "emma_id": "FR301",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7bb364da-0172-457b-9825-2692d54dcb17",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
+      "id": "2.49.0.0.250.0.FR.20261023180116.623031",
       "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Oise",
-      "emma_id": "FR222",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:16Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Severe wind warning",
       "headline": "",
@@ -19979,48 +18645,18 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7bb364da-0172-457b-9825-2692d54dcb17",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
+      "id": "2.49.0.0.250.0.FR.20261023180116.623031",
       "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Severe wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Seine-Maritime",
-      "emma_id": "FR232",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161440.202031",
-      "status": "active",
-      "sent": "2026-10-23T14:14:40Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:16Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Severe wind warning",
       "headline": "",
@@ -20039,7 +18675,7 @@
       "emma_id": "FR223",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/15d441e7-100e-490f-a6dd-4a713de0b1f7",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7bb364da-0172-457b-9825-2692d54dcb17",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
@@ -23424,11 +22060,41 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.724.0.ES.261023063609.711504COCO232237369",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T06:36:09Z",
+      "effective": "2026-10-23T06:33:08Z",
+      "onset": "2026-10-23T16:00:00Z",
+      "expires": "2026-10-23T21:59:59Z",
+      "event": "Moderate coastalevent warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Moderate coastalevent warning",
+      "area_desc": "Costa - Suroeste de A Coruña",
+      "emma_id": "ES848",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/e7903a16-f9f3-441e-8363-281200e7821a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
+      "status": "active",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -23447,18 +22113,18 @@
       "emma_id": "FR711",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23477,18 +22143,48 @@
       "emma_id": "FR711",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Aisne",
+      "emma_id": "FR221",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
+      "status": "active",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23507,18 +22203,18 @@
       "emma_id": "FR721",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23537,18 +22233,18 @@
       "emma_id": "FR211",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23567,18 +22263,18 @@
       "emma_id": "FR212",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23597,18 +22293,18 @@
       "emma_id": "FR421",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -23627,18 +22323,48 @@
       "emma_id": "FR251",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Calvados",
+      "emma_id": "FR251",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
+      "status": "active",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -23735,18 +22461,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23765,182 +22491,18 @@
       "emma_id": "FR722",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Charente",
-      "emma_id": "FR531",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Charente-Maritime",
-      "emma_id": "FR532",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
-      "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Charente-Maritime",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -1.8743,
-              46.2639
-            ],
-            [
-              -1.4865,
-              46.1034
-            ],
-            [
-              -1.5376,
-              45.6973
-            ],
-            [
-              -1.4127,
-              45.5678
-            ],
-            [
-              -1.1527,
-              45.5765
-            ],
-            [
-              -1.2695,
-              45.6629
-            ],
-            [
-              -1.287,
-              45.7724
-            ],
-            [
-              -1.1803,
-              45.8199
-            ],
-            [
-              -1.1814,
-              45.8683
-            ],
-            [
-              -1.1132,
-              45.9049
-            ],
-            [
-              -1.1398,
-              46.0021
-            ],
-            [
-              -1.1387,
-              46.078
-            ],
-            [
-              -1.2479,
-              46.1356
-            ],
-            [
-              -1.2504,
-              46.2083
-            ],
-            [
-              -1.3919,
-              46.279
-            ],
-            [
-              -1.5416,
-              46.2886
-            ],
-            [
-              -1.8743,
-              46.2639
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -23959,48 +22521,18 @@
       "emma_id": "FR241",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Creuse",
-      "emma_id": "FR632",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24019,18 +22551,18 @@
       "emma_id": "FR261",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -24049,18 +22581,48 @@
       "emma_id": "FR521",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Côtes d'Armor",
+      "emma_id": "FR521",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
+      "status": "active",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -24173,48 +22735,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Deux-Sèvres",
-      "emma_id": "FR533",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24233,18 +22765,18 @@
       "emma_id": "FR431",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24263,18 +22795,18 @@
       "emma_id": "FR104",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161450.715022",
+      "id": "2.49.0.0.250.0.FR.20261023180126.272022",
       "status": "active",
-      "sent": "2026-10-23T14:14:50Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:26Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate rain-flood warning",
       "headline": "",
@@ -24293,18 +22825,18 @@
       "emma_id": "FR231",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/4f3293c6-fc6b-4c06-923b-41529b58b719",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/356b8eca-25c1-4d0c-9ead-6b03a357e8e1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24323,18 +22855,18 @@
       "emma_id": "FR231",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24353,18 +22885,18 @@
       "emma_id": "FR242",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -24383,48 +22915,18 @@
       "emma_id": "FR522",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Finistère",
-      "emma_id": "FR522",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
-      "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -24569,82 +23071,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Gironde",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -1.456,
-              45.467
-            ],
-            [
-              -1.4127,
-              45.5678
-            ],
-            [
-              -1.1527,
-              45.5765
-            ],
-            [
-              -1.1961,
-              45.4745
-            ],
-            [
-              -1.3205,
-              44.4724
-            ],
-            [
-              -1.5784,
-              44.4633
-            ],
-            [
-              -1.456,
-              45.467
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24663,18 +23101,18 @@
       "emma_id": "FR422",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24693,18 +23131,18 @@
       "emma_id": "FR723",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24723,18 +23161,18 @@
       "emma_id": "FR214",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -24753,18 +23191,18 @@
       "emma_id": "FR718",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24783,18 +23221,18 @@
       "emma_id": "FR718",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24813,48 +23251,18 @@
       "emma_id": "FR433",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Haute-Vienne",
-      "emma_id": "FR633",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -24873,18 +23281,18 @@
       "emma_id": "FR105",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -24903,18 +23311,48 @@
       "emma_id": "FR523",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Ille-et-Vilaine",
+      "emma_id": "FR523",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
+      "status": "active",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -24979,18 +23417,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25009,18 +23447,18 @@
       "emma_id": "FR243",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25039,18 +23477,18 @@
       "emma_id": "FR244",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25069,18 +23507,18 @@
       "emma_id": "FR714",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -25099,18 +23537,18 @@
       "emma_id": "FR432",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25129,18 +23567,18 @@
       "emma_id": "FR432",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -25205,18 +23643,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25235,18 +23673,18 @@
       "emma_id": "FR245",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25265,128 +23703,18 @@
       "emma_id": "FR715",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Loire-Atlantique",
-      "emma_id": "FR511",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
-      "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Loire-Atlantique",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -2.8703,
-              47.2543
-            ],
-            [
-              -2.805,
-              47.1545
-            ],
-            [
-              -2.6425,
-              47.0787
-            ],
-            [
-              -2.069,
-              47.0401
-            ],
-            [
-              -2.2998,
-              47.1207
-            ],
-            [
-              -2.2688,
-              47.1843
-            ],
-            [
-              -2.576,
-              47.265
-            ],
-            [
-              -2.5994,
-              47.3728
-            ],
-            [
-              -2.5769,
-              47.4322
-            ],
-            [
-              -2.6743,
-              47.4101
-            ],
-            [
-              -2.8703,
-              47.2543
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25405,48 +23733,18 @@
       "emma_id": "FR246",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Maine-et-Loire",
-      "emma_id": "FR512",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
-      "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -25465,18 +23763,48 @@
       "emma_id": "FR252",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Manche",
+      "emma_id": "FR252",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
+      "status": "active",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -25621,18 +23949,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25651,18 +23979,18 @@
       "emma_id": "FR213",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25681,18 +24009,18 @@
       "emma_id": "FR513",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25711,18 +24039,18 @@
       "emma_id": "FR411",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25741,156 +24069,18 @@
       "emma_id": "FR412",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Morbihan",
-      "emma_id": "FR524",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
-      "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Morbihan",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -3.5521,
-              47.7227
-            ],
-            [
-              -3.4624,
-              47.67
-            ],
-            [
-              -3.3705,
-              47.6695
-            ],
-            [
-              -3.2059,
-              47.5805
-            ],
-            [
-              -3.1692,
-              47.4609
-            ],
-            [
-              -3.0441,
-              47.4304
-            ],
-            [
-              -2.9995,
-              47.4586
-            ],
-            [
-              -3.0329,
-              47.5143
-            ],
-            [
-              -2.8145,
-              47.4476
-            ],
-            [
-              -2.6097,
-              47.4655
-            ],
-            [
-              -2.5769,
-              47.4322
-            ],
-            [
-              -2.6744,
-              47.4101
-            ],
-            [
-              -2.8703,
-              47.2543
-            ],
-            [
-              -3.1302,
-              47.2342
-            ],
-            [
-              -3.3698,
-              47.3249
-            ],
-            [
-              -3.426,
-              47.4708
-            ],
-            [
-              -3.6521,
-              47.5462
-            ],
-            [
-              -3.5521,
-              47.7227
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25909,18 +24099,18 @@
       "emma_id": "FR413",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -25939,18 +24129,18 @@
       "emma_id": "FR262",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161450.715022",
+      "id": "2.49.0.0.250.0.FR.20261023180126.272022",
       "status": "active",
-      "sent": "2026-10-23T14:14:50Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:26Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate rain-flood warning",
       "headline": "",
@@ -25969,18 +24159,48 @@
       "emma_id": "FR222",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/4f3293c6-fc6b-4c06-923b-41529b58b719",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/356b8eca-25c1-4d0c-9ead-6b03a357e8e1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Oise",
+      "emma_id": "FR222",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
+      "status": "active",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -25999,18 +24219,18 @@
       "emma_id": "FR253",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26029,18 +24249,18 @@
       "emma_id": "FR253",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26059,18 +24279,18 @@
       "emma_id": "FR101",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.1.FR.20261023161458.499024",
+      "id": "2.49.0.0.250.1.FR.20261023180133.530024",
       "status": "active",
-      "sent": "2026-10-23T14:14:58Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:33Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate flooding warning",
       "headline": "",
@@ -26089,18 +24309,18 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/3d2dbbf8-8133-4689-91dd-29b0ae3b9cd3",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ccdbfe82-b665-4de5-9320-2ea6d23912a3",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161450.715022",
+      "id": "2.49.0.0.250.0.FR.20261023180126.272022",
       "status": "active",
-      "sent": "2026-10-23T14:14:50Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:26Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate rain-flood warning",
       "headline": "",
@@ -26119,18 +24339,18 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/4f3293c6-fc6b-4c06-923b-41529b58b719",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/356b8eca-25c1-4d0c-9ead-6b03a357e8e1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -26207,18 +24427,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26237,18 +24457,18 @@
       "emma_id": "FR724",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -26301,18 +24521,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26331,18 +24551,18 @@
       "emma_id": "FR716",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26361,18 +24581,18 @@
       "emma_id": "FR514",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -26391,18 +24611,18 @@
       "emma_id": "FR717",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26421,18 +24641,18 @@
       "emma_id": "FR717",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26451,18 +24671,18 @@
       "emma_id": "FR263",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161453.844023",
+      "id": "2.49.0.0.250.0.FR.20261023180130.426023",
       "status": "active",
-      "sent": "2026-10-23T14:14:53Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:30Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate thunderstorm warning",
       "headline": "",
@@ -26481,18 +24701,18 @@
       "emma_id": "FR232",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ada8f78c-d4cf-4d83-b37e-270c87e5664b",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f14f63ee-8cee-4f12-8488-4df69aa44da1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161450.715022",
+      "id": "2.49.0.0.250.0.FR.20261023180126.272022",
       "status": "active",
-      "sent": "2026-10-23T14:14:50Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:26Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate rain-flood warning",
       "headline": "",
@@ -26511,18 +24731,48 @@
       "emma_id": "FR232",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/4f3293c6-fc6b-4c06-923b-41529b58b719",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/356b8eca-25c1-4d0c-9ead-6b03a357e8e1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
+      "expires": "2026-10-23T22:00:00Z",
+      "event": "Moderate wind warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Seine-Maritime",
+      "emma_id": "FR232",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
+      "status": "active",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -26619,18 +24869,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26649,18 +24899,18 @@
       "emma_id": "FR106",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26679,18 +24929,18 @@
       "emma_id": "FR102",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161450.715022",
+      "id": "2.49.0.0.250.0.FR.20261023180126.272022",
       "status": "active",
-      "sent": "2026-10-23T14:14:50Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:26Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate rain-flood warning",
       "headline": "",
@@ -26709,18 +24959,18 @@
       "emma_id": "FR223",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/4f3293c6-fc6b-4c06-923b-41529b58b719",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/356b8eca-25c1-4d0c-9ead-6b03a357e8e1",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
+      "id": "2.49.0.0.250.0.FR.20261023180138.244029",
       "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:38Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -26777,18 +25027,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e5118bf5-a709-4650-add9-5939476802f7",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26807,18 +25057,18 @@
       "emma_id": "FR434",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26837,18 +25087,18 @@
       "emma_id": "FR108",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -26867,170 +25117,18 @@
       "emma_id": "FR107",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Vendée",
-      "emma_id": "FR515",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161502.842029",
-      "status": "active",
-      "sent": "2026-10-23T14:15:02Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Vendée",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -2.4721,
-              46.9904
-            ],
-            [
-              -2.4746,
-              46.7287
-            ],
-            [
-              -2.2479,
-              46.575
-            ],
-            [
-              -2.092,
-              46.3909
-            ],
-            [
-              -1.8743,
-              46.264
-            ],
-            [
-              -1.5416,
-              46.2886
-            ],
-            [
-              -1.3919,
-              46.279
-            ],
-            [
-              -1.8344,
-              46.4551
-            ],
-            [
-              -1.9901,
-              46.6647
-            ],
-            [
-              -2.1825,
-              46.809
-            ],
-            [
-              -2.1667,
-              46.8971
-            ],
-            [
-              -2.069,
-              47.0401
-            ],
-            [
-              -2.6414,
-              47.078
-            ],
-            [
-              -2.4721,
-              46.9904
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2be206e7-68fb-4c22-8a3d-fa2aaa1cbb9f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
-      "expires": "2026-10-23T22:00:00Z",
-      "event": "Moderate wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Vienne",
-      "emma_id": "FR534",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
-      "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -27049,18 +25147,18 @@
       "emma_id": "FR414",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -27079,18 +25177,18 @@
       "emma_id": "FR264",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161445.011021",
+      "id": "2.49.0.0.250.0.FR.20261023180121.058021",
       "status": "active",
-      "sent": "2026-10-23T14:14:45Z",
-      "effective": "2026-10-23T14:00:00Z",
-      "onset": "2026-10-23T14:14:31Z",
+      "sent": "2026-10-23T16:01:21Z",
+      "effective": "2026-10-23T16:00:00Z",
+      "onset": "2026-10-23T16:01:08Z",
       "expires": "2026-10-23T22:00:00Z",
       "event": "Moderate wind warning",
       "headline": "",
@@ -27109,41 +25207,11 @@
       "emma_id": "FR103",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a60cfc68-9b54-4578-b028-1e15878c0d40",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/134abf25-20ed-4831-a2ff-abc17408d54a",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.261023063609.711504COCO232237369",
-      "status": "upcoming",
-      "sent": "2026-10-23T06:36:09Z",
-      "effective": "2026-10-23T06:33:08Z",
-      "onset": "2026-10-23T16:00:00Z",
-      "expires": "2026-10-23T21:59:59Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Costa - Suroeste de A Coruña",
-      "emma_id": "ES848",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/e7903a16-f9f3-441e-8363-281200e7821a",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.705.0.SI.261023142717.8010301",
@@ -27990,9 +26058,9 @@
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28013,16 +26081,16 @@
       "emma_id": "FR221",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28043,7 +26111,7 @@
       "emma_id": "FR251",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
@@ -28140,9 +26208,9 @@
       "country_code": "spain"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28163,16 +26231,16 @@
       "emma_id": "FR521",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28193,16 +26261,16 @@
       "emma_id": "FR104",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28223,16 +26291,16 @@
       "emma_id": "FR231",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28253,16 +26321,16 @@
       "emma_id": "FR522",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28283,16 +26351,16 @@
       "emma_id": "FR832",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28313,16 +26381,16 @@
       "emma_id": "FR105",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28343,16 +26411,16 @@
       "emma_id": "FR252",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28373,7 +26441,7 @@
       "emma_id": "FR252",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
@@ -28410,9 +26478,9 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28433,16 +26501,16 @@
       "emma_id": "FR301",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28463,16 +26531,16 @@
       "emma_id": "FR301",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28493,16 +26561,16 @@
       "emma_id": "FR222",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28523,16 +26591,16 @@
       "emma_id": "FR101",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.1.FR.20261023161514.437024",
+      "id": "2.49.0.0.250.1.FR.20261023180149.843024",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:14Z",
+      "sent": "2026-10-23T16:01:49Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28553,16 +26621,16 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/ad62518c-3793-45a3-bdc5-81e0e5e15a25",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/2dc52621-53b8-4962-bb20-8538f8589d33",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28583,16 +26651,16 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28613,16 +26681,16 @@
       "emma_id": "FR302",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161517.347029",
+      "id": "2.49.0.0.250.0.FR.20261023180154.188029",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:17Z",
+      "sent": "2026-10-23T16:01:54Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28701,7 +26769,7 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/10a8e7d7-62b7-408f-87c3-7aad71290d39",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/51393e8b-127c-4096-9bcc-f075768790fe",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
@@ -28768,9 +26836,9 @@
       "country_code": "bosnia-herzegovina"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28791,16 +26859,16 @@
       "emma_id": "FR232",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28821,16 +26889,16 @@
       "emma_id": "FR232",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161517.347029",
+      "id": "2.49.0.0.250.0.FR.20261023180154.188029",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:17Z",
+      "sent": "2026-10-23T16:01:54Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28929,16 +26997,16 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/10a8e7d7-62b7-408f-87c3-7aad71290d39",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/51393e8b-127c-4096-9bcc-f075768790fe",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28959,16 +27027,16 @@
       "emma_id": "FR106",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -28989,16 +27057,16 @@
       "emma_id": "FR102",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29019,16 +27087,16 @@
       "emma_id": "FR223",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161506.100021",
+      "id": "2.49.0.0.250.0.FR.20261023180141.481021",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:06Z",
+      "sent": "2026-10-23T16:01:41Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29049,16 +27117,16 @@
       "emma_id": "FR223",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/e989f222-84ff-4db7-807e-aeabae3f6eff",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/b6ff272a-ad67-47e8-a2cd-c675ce1d504c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161517.347029",
+      "id": "2.49.0.0.250.0.FR.20261023180154.188029",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:17Z",
+      "sent": "2026-10-23T16:01:54Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29117,16 +27185,16 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/10a8e7d7-62b7-408f-87c3-7aad71290d39",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/51393e8b-127c-4096-9bcc-f075768790fe",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29147,16 +27215,16 @@
       "emma_id": "FR108",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29177,16 +27245,16 @@
       "emma_id": "FR107",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261023161510.619022",
+      "id": "2.49.0.0.250.0.FR.20261023180146.343022",
       "status": "upcoming",
-      "sent": "2026-10-23T14:15:10Z",
+      "sent": "2026-10-23T16:01:46Z",
       "effective": "2026-10-23T22:00:00Z",
       "onset": "2026-10-23T22:00:00Z",
       "expires": "2026-10-24T22:00:00Z",
@@ -29207,7 +27275,7 @@
       "emma_id": "FR103",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/11c78462-7405-4205-bfde-d985cb9b33e2",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/25e0000b-125a-4b5e-b26c-c3dfd24dc92c",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
