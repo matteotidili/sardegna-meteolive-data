@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:06.835302Z",
-      "feed_updated": "2026-10-24T21:06:44.290351Z"
+      "checked_at": "2026-10-24T21:59:32.548090Z",
+      "feed_updated": "2026-10-24T21:35:57.119583Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:07.056158Z",
-      "feed_updated": "2026-10-24T21:06:57.372730Z"
+      "checked_at": "2026-10-24T21:59:32.683388Z",
+      "feed_updated": "2026-10-24T21:36:12.675997Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:07.607619Z",
-      "feed_updated": "2026-10-24T21:07:07.868696Z"
+      "checked_at": "2026-10-24T21:59:33.144475Z",
+      "feed_updated": "2026-10-24T21:36:18.807643Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:07.944085Z",
-      "feed_updated": "2026-10-24T21:05:05.871994Z"
+      "checked_at": "2026-10-24T21:59:33.468711Z",
+      "feed_updated": "2026-10-24T21:35:06.198371Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:08.451301Z",
-      "feed_updated": "2026-10-24T21:06:53.260292Z"
+      "checked_at": "2026-10-24T21:59:33.839893Z",
+      "feed_updated": "2026-10-24T21:36:07.992757Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:08.730115Z",
-      "feed_updated": "2026-10-24T21:06:41.726791Z"
+      "checked_at": "2026-10-24T21:59:34.121681Z",
+      "feed_updated": "2026-10-24T21:35:49.674629Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:08.572527Z",
-      "feed_updated": "2026-10-24T21:05:06.858772Z"
+      "checked_at": "2026-10-24T21:59:34.006757Z",
+      "feed_updated": "2026-10-24T21:35:06.696976Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:09.336890Z",
-      "feed_updated": "2026-10-24T21:06:21.602821Z"
+      "checked_at": "2026-10-24T21:59:34.771951Z",
+      "feed_updated": "2026-10-24T21:35:41.584656Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:09.307253Z",
-      "feed_updated": "2026-10-24T21:05:01.384248Z"
+      "checked_at": "2026-10-24T21:59:34.514377Z",
+      "feed_updated": "2026-10-24T21:35:01.723607Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:09.326685Z",
-      "feed_updated": "2026-10-24T21:06:36.796233Z"
+      "checked_at": "2026-10-24T21:59:34.813508Z",
+      "feed_updated": "2026-10-24T21:35:51.650940Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-24T21:35:10.541824Z",
-      "feed_updated": "2026-10-24T21:06:18.730138Z"
+      "checked_at": "2026-10-24T21:59:35.721338Z",
+      "feed_updated": "2026-10-24T21:35:38.923086Z"
     }
   ],
   "uncovered": [
@@ -13421,131 +13421,6 @@
       "source_code": "ME002",
       "matched_by": "code"
     },
-    "ME003": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.653,
-              42.638
-            ],
-            [
-              19.649,
-              42.611
-            ],
-            [
-              19.436,
-              42.373
-            ],
-            [
-              19.36,
-              42.262
-            ],
-            [
-              19.335,
-              42.24
-            ],
-            [
-              19.19,
-              42.264
-            ],
-            [
-              19.12,
-              42.311
-            ],
-            [
-              19.088,
-              42.32
-            ],
-            [
-              19.066,
-              42.298
-            ],
-            [
-              19.0,
-              42.271
-            ],
-            [
-              18.912,
-              42.321
-            ],
-            [
-              18.822,
-              42.344
-            ],
-            [
-              18.77,
-              42.496
-            ],
-            [
-              18.741,
-              42.507
-            ],
-            [
-              18.685,
-              42.58
-            ],
-            [
-              18.667,
-              42.62
-            ],
-            [
-              18.701,
-              42.646
-            ],
-            [
-              18.716,
-              42.675
-            ],
-            [
-              18.742,
-              42.7
-            ],
-            [
-              18.941,
-              42.619
-            ],
-            [
-              19.059,
-              42.695
-            ],
-            [
-              19.148,
-              42.695
-            ],
-            [
-              19.285,
-              42.667
-            ],
-            [
-              19.417,
-              42.663
-            ],
-            [
-              19.451,
-              42.667
-            ],
-            [
-              19.523,
-              42.724
-            ],
-            [
-              19.557,
-              42.711
-            ],
-            [
-              19.653,
-              42.638
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "ME003",
-      "matched_by": "code"
-    },
     "GR001": {
       "geometry": {
         "type": "MultiPolygon",
@@ -15533,15 +15408,15 @@
       "matched_by": "code"
     }
   },
-  "region_count": 90,
+  "region_count": 89,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-24T21:35:12.649431Z",
-  "feed_updated": "2026-10-24T21:07:07.868696Z",
-  "warning_count": 183,
-  "active_count": 54,
+  "generated_at": "2026-10-24T21:59:37.604318Z",
+  "feed_updated": "2026-10-24T21:36:18.807643Z",
+  "warning_count": 181,
+  "active_count": 52,
   "upcoming_count": 129,
   "max_level": 3,
   "active_max_level": 3,
@@ -16896,66 +16771,6 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.1.499.0.1792741661763",
-      "status": "active",
-      "sent": "2026-10-23T07:47:41Z",
-      "effective": "2026-10-24T17:00:00Z",
-      "onset": "2026-10-24T17:00:00Z",
-      "expires": "2026-10-24T21:59:00Z",
-      "event": "Thunderstorm",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Adriatic coast",
-      "emma_id": "ME002",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/42ba16cc-cc28-40af-ab32-83dfed6b27f5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
-    },
-    {
-      "id": "2.49.0.1.499.0.1792741661763",
-      "status": "active",
-      "sent": "2026-10-23T07:47:41Z",
-      "effective": "2026-10-24T17:00:00Z",
-      "onset": "2026-10-24T17:00:00Z",
-      "expires": "2026-10-24T21:59:00Z",
-      "event": "Thunderstorm",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Possible",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Central",
-      "emma_id": "ME003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-montenegro/42ba16cc-cc28-40af-ab32-83dfed6b27f5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Montenegro",
-      "country_code": "montenegro"
     },
     {
       "id": "2.49.0.0.380.3.IT.261024101502.018",
