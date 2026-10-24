@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:37.461612Z",
-      "feed_updated": "2026-10-23T23:36:18.156865Z"
+      "checked_at": "2026-10-24T00:10:23.207656Z",
+      "feed_updated": "2026-10-24T00:05:43.034549Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:37.703206Z",
-      "feed_updated": "2026-10-23T23:36:26.697835Z"
+      "checked_at": "2026-10-24T00:10:23.346737Z",
+      "feed_updated": "2026-10-24T00:07:35.427691Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:37.818832Z",
-      "feed_updated": "2026-10-23T23:36:28.744044Z"
+      "checked_at": "2026-10-24T00:10:24.111807Z",
+      "feed_updated": "2026-10-24T00:05:48.173246Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:38.411699Z",
-      "feed_updated": "2026-10-23T23:35:06.397389Z"
+      "checked_at": "2026-10-24T00:10:24.518039Z",
+      "feed_updated": "2026-10-24T00:05:02.208244Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:38.851125Z",
-      "feed_updated": "2026-10-23T23:36:24.852616Z"
+      "checked_at": "2026-10-24T00:10:24.967686Z",
+      "feed_updated": "2026-10-24T00:05:50.706097Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:38.604033Z",
-      "feed_updated": "2026-10-23T23:36:02.767323Z"
+      "checked_at": "2026-10-24T00:10:25.242867Z",
+      "feed_updated": "2026-10-24T00:05:35.552031Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:39.617818Z",
-      "feed_updated": "2026-10-23T23:35:07.073371Z"
+      "checked_at": "2026-10-24T00:10:25.462451Z",
+      "feed_updated": "2026-10-24T00:05:03.062440Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:39.750429Z",
-      "feed_updated": "2026-10-23T23:35:49.284708Z"
+      "checked_at": "2026-10-24T00:10:25.794764Z",
+      "feed_updated": "2026-10-24T00:05:28.771488Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:39.599427Z",
-      "feed_updated": "2026-10-23T23:35:39.033684Z"
+      "checked_at": "2026-10-24T00:10:25.746290Z",
+      "feed_updated": "2026-10-24T00:05:17.305970Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-23T23:52:40.316846Z",
-      "feed_updated": "2026-10-23T23:35:07.441202Z"
+      "checked_at": "2026-10-24T00:10:26.252168Z",
+      "feed_updated": "2026-10-24T00:05:51.980508Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-23T23:52:40.714338Z",
-      "feed_updated": "2026-10-23T23:35:49.679040Z"
+      "checked_at": "2026-10-24T00:10:26.971488Z",
+      "feed_updated": "2026-10-24T00:05:34.189451Z"
     }
   ],
   "uncovered": [
@@ -3634,383 +3634,6 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT005",
-      "matched_by": "code"
-    },
-    "IT004": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              7.865,
-              45.917
-            ],
-            [
-              7.822,
-              45.927
-            ],
-            [
-              7.8,
-              45.918
-            ],
-            [
-              7.748,
-              45.941
-            ],
-            [
-              7.734,
-              45.924
-            ],
-            [
-              7.719,
-              45.924
-            ],
-            [
-              7.708,
-              45.933
-            ],
-            [
-              7.708,
-              45.951
-            ],
-            [
-              7.68,
-              45.958
-            ],
-            [
-              7.672,
-              45.971
-            ],
-            [
-              7.585,
-              45.97
-            ],
-            [
-              7.571,
-              45.989
-            ],
-            [
-              7.546,
-              45.98
-            ],
-            [
-              7.546,
-              45.961
-            ],
-            [
-              7.54,
-              45.956
-            ],
-            [
-              7.499,
-              45.961
-            ],
-            [
-              7.481,
-              45.955
-            ],
-            [
-              7.472,
-              45.948
-            ],
-            [
-              7.474,
-              45.935
-            ],
-            [
-              7.445,
-              45.931
-            ],
-            [
-              7.396,
-              45.897
-            ],
-            [
-              7.294,
-              45.922
-            ],
-            [
-              7.28,
-              45.902
-            ],
-            [
-              7.258,
-              45.889
-            ],
-            [
-              7.222,
-              45.892
-            ],
-            [
-              7.201,
-              45.876
-            ],
-            [
-              7.195,
-              45.859
-            ],
-            [
-              7.177,
-              45.862
-            ],
-            [
-              7.156,
-              45.88
-            ],
-            [
-              7.12,
-              45.86
-            ],
-            [
-              7.101,
-              45.859
-            ],
-            [
-              7.061,
-              45.914
-            ],
-            [
-              7.041,
-              45.923
-            ],
-            [
-              7.014,
-              45.912
-            ],
-            [
-              7.004,
-              45.898
-            ],
-            [
-              7.008,
-              45.887
-            ],
-            [
-              6.991,
-              45.869
-            ],
-            [
-              6.912,
-              45.842
-            ],
-            [
-              6.878,
-              45.85
-            ],
-            [
-              6.864,
-              45.834
-            ],
-            [
-              6.842,
-              45.842
-            ],
-            [
-              6.818,
-              45.836
-            ],
-            [
-              6.804,
-              45.818
-            ],
-            [
-              6.81,
-              45.801
-            ],
-            [
-              6.802,
-              45.775
-            ],
-            [
-              6.807,
-              45.747
-            ],
-            [
-              6.816,
-              45.74
-            ],
-            [
-              6.809,
-              45.726
-            ],
-            [
-              6.852,
-              45.687
-            ],
-            [
-              6.902,
-              45.68
-            ],
-            [
-              6.905,
-              45.663
-            ],
-            [
-              6.918,
-              45.653
-            ],
-            [
-              6.931,
-              45.647
-            ],
-            [
-              6.968,
-              45.655
-            ],
-            [
-              7.001,
-              45.638
-            ],
-            [
-              6.985,
-              45.623
-            ],
-            [
-              6.979,
-              45.586
-            ],
-            [
-              6.995,
-              45.575
-            ],
-            [
-              6.993,
-              45.53
-            ],
-            [
-              7.004,
-              45.517
-            ],
-            [
-              7.001,
-              45.504
-            ],
-            [
-              7.057,
-              45.491
-            ],
-            [
-              7.046,
-              45.482
-            ],
-            [
-              7.048,
-              45.473
-            ],
-            [
-              7.109,
-              45.467
-            ],
-            [
-              7.138,
-              45.515
-            ],
-            [
-              7.146,
-              45.478
-            ],
-            [
-              7.181,
-              45.483
-            ],
-            [
-              7.217,
-              45.471
-            ],
-            [
-              7.295,
-              45.516
-            ],
-            [
-              7.375,
-              45.516
-            ],
-            [
-              7.481,
-              45.581
-            ],
-            [
-              7.57,
-              45.589
-            ],
-            [
-              7.611,
-              45.564
-            ],
-            [
-              7.638,
-              45.574
-            ],
-            [
-              7.676,
-              45.555
-            ],
-            [
-              7.735,
-              45.555
-            ],
-            [
-              7.831,
-              45.596
-            ],
-            [
-              7.9,
-              45.587
-            ],
-            [
-              7.907,
-              45.623
-            ],
-            [
-              7.937,
-              45.639
-            ],
-            [
-              7.905,
-              45.69
-            ],
-            [
-              7.936,
-              45.724
-            ],
-            [
-              7.887,
-              45.758
-            ],
-            [
-              7.864,
-              45.792
-            ],
-            [
-              7.865,
-              45.82
-            ],
-            [
-              7.874,
-              45.827
-            ],
-            [
-              7.865,
-              45.84
-            ],
-            [
-              7.875,
-              45.861
-            ],
-            [
-              7.866,
-              45.878
-            ],
-            [
-              7.865,
-              45.917
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT004",
       "matched_by": "code"
     },
     "ES181": {
@@ -12913,49 +12536,49 @@
       "matched_by": "code"
     }
   },
-  "region_count": 56,
+  "region_count": 55,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-23T23:52:42.742379Z",
-  "feed_updated": "2026-10-23T23:36:28.744044Z",
-  "warning_count": 96,
-  "active_count": 62,
-  "upcoming_count": 34,
-  "max_level": 2,
-  "active_max_level": 2,
+  "generated_at": "2026-10-24T00:10:29.463250Z",
+  "feed_updated": "2026-10-24T00:07:35.427691Z",
+  "warning_count": 94,
+  "active_count": 64,
+  "upcoming_count": 30,
+  "max_level": 3,
+  "active_max_level": 3,
   "upcoming_max_level": 2,
   "warnings": [
     {
-      "id": "2.49.0.0.380.3.IT.261023102757.028",
+      "id": "2.49.0.0.724.0.ES.261024000209.690804PRP1240300129",
       "status": "active",
-      "sent": "2026-10-23T08:27:57Z",
-      "effective": "2026-10-23T08:00:00Z",
-      "onset": "2026-10-23T08:00:00Z",
-      "expires": "2026-10-23T23:59:00Z",
-      "event": "Yellow Wind Warning",
+      "sent": "2026-10-24T00:02:09Z",
+      "effective": "2026-10-23T23:58:40Z",
+      "onset": "2026-10-23T23:00:00Z",
+      "expires": "2026-10-24T02:59:59Z",
+      "event": "Severe rain warning",
       "headline": "",
       "description": "",
       "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "certainty": "Observed",
       "awareness_level": "",
       "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
+      "level": 3,
+      "level_name": "arancione",
       "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Sardegna",
-      "emma_id": "IT019",
+      "type_name": "Pioggia",
+      "area_desc": "Litoral de Barcelona",
+      "emma_id": "ES181",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e5dbcd1c-8994-4965-9884-94972525b9c0",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/5d7bd056-29d8-4134-9663-47e839627b16",
       "source_web": "",
       "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
+      "country": "Spagna",
+      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.724.0.ES.261023091808.691703COCO240847088",
@@ -13616,66 +13239,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c02d7d4b-2692-4c01-af20-937f19d19b9b",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261023102757.017",
-      "status": "active",
-      "sent": "2026-10-23T08:27:57Z",
-      "effective": "2026-10-23T18:00:00Z",
-      "onset": "2026-10-23T18:00:00Z",
-      "expires": "2026-10-23T23:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Piemonte",
-      "emma_id": "IT005",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/d7380b24-d128-473d-86ac-3ad660229bc5",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261023102757.016",
-      "status": "active",
-      "sent": "2026-10-23T08:27:57Z",
-      "effective": "2026-10-23T18:00:00Z",
-      "onset": "2026-10-23T18:00:00Z",
-      "expires": "2026-10-23T23:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Valle d'Aosta",
-      "emma_id": "IT004",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e3cb0e96-da4a-40fe-8a68-49f2f149f84c",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -15592,36 +15155,6 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.724.0.ES.261023232209.690804PRP1240597729",
-      "status": "active",
-      "sent": "2026-10-23T23:22:09Z",
-      "effective": "2026-10-23T23:20:16Z",
-      "onset": "2026-10-23T23:00:00Z",
-      "expires": "2026-10-24T04:59:59Z",
-      "event": "Moderate rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Observed",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Litoral de Barcelona",
-      "emma_id": "ES181",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/15321e38-e697-4fff-99fb-11b322ddad36",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Spagna",
-      "country_code": "spain"
-    },
-    {
       "id": "2.49.0.0.724.0.ES.261023232209.691704PRP1240597729",
       "status": "active",
       "sent": "2026-10-23T23:22:09Z",
@@ -16591,7 +16124,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261023110600.000100013",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T11:06:00Z",
       "effective": "2026-10-23T11:06:00Z",
       "onset": "2026-10-24T00:00:00Z",
@@ -16621,7 +16154,7 @@
     },
     {
       "id": "2.49.0.0.191.0.HR.261023124252_3_001_yellow_HR019",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T10:42:52Z",
       "effective": "2026-10-23T10:42:52Z",
       "onset": "2026-10-24T00:00:00Z",
@@ -16651,7 +16184,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261023110600.000100014",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T11:06:00Z",
       "effective": "2026-10-23T11:06:00Z",
       "onset": "2026-10-24T00:00:00Z",
@@ -16681,7 +16214,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261023102757.018",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T08:27:57Z",
       "effective": "2026-10-24T00:00:00Z",
       "onset": "2026-10-24T00:00:00Z",
@@ -16711,7 +16244,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261023102757.029",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-23T08:27:57Z",
       "effective": "2026-10-24T00:00:00Z",
       "onset": "2026-10-24T00:00:00Z",
@@ -16768,6 +16301,36 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.261024000209.690804PRP1240500129",
+      "status": "upcoming",
+      "sent": "2026-10-24T00:02:09Z",
+      "effective": "2026-10-23T23:58:40Z",
+      "onset": "2026-10-24T03:00:00Z",
+      "expires": "2026-10-24T04:59:59Z",
+      "event": "Moderate rain warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Pioggia",
+      "area_desc": "Litoral de Barcelona",
+      "emma_id": "ES181",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-spain/2d380d77-e9ce-4509-8788-a1a8625294ef",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Spagna",
+      "country_code": "spain"
     },
     {
       "id": "2.49.0.0.191.0.HR.261023170118_0_yellow_HR804",
