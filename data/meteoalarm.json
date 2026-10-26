@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:12.468545Z",
-      "feed_updated": "2026-10-26T17:35:55.322498Z"
+      "checked_at": "2026-10-26T18:22:57.465359Z",
+      "feed_updated": "2026-10-26T18:05:54.282233Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:12.347548Z",
-      "feed_updated": "2026-10-26T17:36:32.892166Z"
+      "checked_at": "2026-10-26T18:22:57.368321Z",
+      "feed_updated": "2026-10-26T18:06:13.473213Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:12.609438Z",
-      "feed_updated": "2026-10-26T17:36:38.005250Z"
+      "checked_at": "2026-10-26T18:22:57.596963Z",
+      "feed_updated": "2026-10-26T18:06:18.499116Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:13.085420Z",
-      "feed_updated": "2026-10-26T17:35:05.791294Z"
+      "checked_at": "2026-10-26T18:22:58.026976Z",
+      "feed_updated": "2026-10-26T18:05:11.270291Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:13.569682Z",
-      "feed_updated": "2026-10-26T17:36:30.852433Z"
+      "checked_at": "2026-10-26T18:22:58.330720Z",
+      "feed_updated": "2026-10-26T18:06:08.385760Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:13.356480Z",
-      "feed_updated": "2026-10-26T17:35:45.537123Z"
+      "checked_at": "2026-10-26T18:22:58.380431Z",
+      "feed_updated": "2026-10-26T18:05:41.853521Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:13.823977Z",
-      "feed_updated": "2026-10-26T17:35:13.571186Z"
+      "checked_at": "2026-10-26T18:22:58.621473Z",
+      "feed_updated": "2026-10-26T18:05:16.090750Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:14.574652Z",
-      "feed_updated": "2026-10-26T17:35:34.784586Z"
+      "checked_at": "2026-10-26T18:22:59.279193Z",
+      "feed_updated": "2026-10-26T18:05:04.053589Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:14.332793Z",
-      "feed_updated": "2026-10-26T17:35:44.482712Z"
+      "checked_at": "2026-10-26T18:22:58.861497Z",
+      "feed_updated": "2026-10-26T18:05:39.582474Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-26T17:51:14.763212Z",
-      "feed_updated": "2026-10-26T17:35:05.997666Z"
+      "checked_at": "2026-10-26T18:22:59.322390Z",
+      "feed_updated": "2026-10-26T18:05:11.780539Z"
     },
     {
       "country": "Israele",
-      "status": "ok",
-      "checked_at": "2026-10-26T17:51:15.614432Z",
-      "feed_updated": "2026-10-26T17:35:32.570070Z"
+      "status": "partial",
+      "checked_at": "2026-10-26T18:23:00.288595Z",
+      "feed_updated": "2026-10-26T18:15:12.981379Z"
     }
   ],
   "uncovered": [
@@ -11861,11 +11861,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-26T17:51:17.779623Z",
-  "feed_updated": "2026-10-26T17:36:38.005250Z",
-  "warning_count": 68,
-  "active_count": 32,
-  "upcoming_count": 36,
+  "generated_at": "2026-10-26T18:23:03.367941Z",
+  "feed_updated": "2026-10-26T18:15:12.981379Z",
+  "warning_count": 66,
+  "active_count": 36,
+  "upcoming_count": 30,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -12112,7 +12112,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261025133000.001000011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-25T13:30:00Z",
       "effective": "2026-10-25T13:30:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -12142,7 +12142,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261025131700.010000011",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-25T13:17:00Z",
       "effective": "2026-10-25T13:17:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -13011,66 +13011,6 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261025142100.001000011",
-      "status": "active",
-      "sent": "2026-10-25T14:21:00Z",
-      "effective": "2026-10-25T14:21:00Z",
-      "onset": "2026-10-26T12:00:00Z",
-      "expires": "2026-10-26T18:00:00Z",
-      "event": "Moderate Rain warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Attiki",
-      "emma_id": "GR011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/23b76f1e-4dc2-4ada-bc71-44f5b5e43c47",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261025141800.010000011",
-      "status": "active",
-      "sent": "2026-10-25T14:18:00Z",
-      "effective": "2026-10-25T14:18:00Z",
-      "onset": "2026-10-26T12:00:00Z",
-      "expires": "2026-10-26T18:00:00Z",
-      "event": "Moderate Thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Attiki",
-      "emma_id": "GR011",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/cb6f67bc-61c2-4eaf-b1e5-615420aaef55",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261026133311_0_008_yellow_HR029",
       "status": "active",
       "sent": "2026-10-26T12:33:11Z",
@@ -13250,7 +13190,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261026103757.016",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-26T09:37:57Z",
       "effective": "2026-10-26T18:00:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -13280,7 +13220,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261026103757.012",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-26T09:37:57Z",
       "effective": "2026-10-26T18:00:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -13310,7 +13250,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261026103757.010",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-26T09:37:57Z",
       "effective": "2026-10-26T18:00:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -13340,7 +13280,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261026103757.014",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-26T09:37:57Z",
       "effective": "2026-10-26T18:00:00Z",
       "onset": "2026-10-26T18:00:00Z",
@@ -14357,5 +14297,16 @@
       "country_code": "italy"
     }
   ],
-  "errors": []
+  "errors": [
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/033a23e8-70b3-41fc-b038-bb26ee0cdf6d: ValueError"
+  ]
 }
