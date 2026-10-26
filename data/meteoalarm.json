@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:26.738391Z",
-      "feed_updated": "2026-10-26T09:43:47.931942Z"
+      "checked_at": "2026-10-26T10:24:42.922968Z",
+      "feed_updated": "2026-10-26T10:05:44.969718Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:26.635138Z",
-      "feed_updated": "2026-10-26T09:44:37.725351Z"
+      "checked_at": "2026-10-26T10:24:42.834036Z",
+      "feed_updated": "2026-10-26T10:05:56.075737Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:26.845920Z",
-      "feed_updated": "2026-10-26T09:35:54.955748Z"
+      "checked_at": "2026-10-26T10:24:43.029725Z",
+      "feed_updated": "2026-10-26T10:08:58.198207Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:27.160594Z",
-      "feed_updated": "2026-10-26T09:35:10.009110Z"
+      "checked_at": "2026-10-26T10:24:43.463296Z",
+      "feed_updated": "2026-10-26T10:05:16.651345Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:27.476116Z",
-      "feed_updated": "2026-10-26T09:36:10.995350Z"
+      "checked_at": "2026-10-26T10:24:43.769969Z",
+      "feed_updated": "2026-10-26T10:05:54.692295Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:27.591704Z",
-      "feed_updated": "2026-10-26T09:35:46.507790Z"
+      "checked_at": "2026-10-26T10:24:43.462726Z",
+      "feed_updated": "2026-10-26T10:05:43.996298Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:27.690104Z",
-      "feed_updated": "2026-10-26T09:35:14.118412Z"
+      "checked_at": "2026-10-26T10:24:44.072684Z",
+      "feed_updated": "2026-10-26T10:05:15.920320Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:28.320297Z",
-      "feed_updated": "2026-10-26T09:35:31.858480Z"
+      "checked_at": "2026-10-26T10:24:44.383619Z",
+      "feed_updated": "2026-10-26T10:05:30.653809Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:28.010696Z",
-      "feed_updated": "2026-10-26T09:35:43.017664Z"
+      "checked_at": "2026-10-26T10:24:44.185002Z",
+      "feed_updated": "2026-10-26T10:05:42.515861Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:28.387180Z",
-      "feed_updated": "2026-10-26T09:35:20.982317Z"
+      "checked_at": "2026-10-26T10:24:44.707410Z",
+      "feed_updated": "2026-10-26T10:05:29.921158Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-26T09:47:28.854736Z",
-      "feed_updated": "2026-10-26T09:35:33.243341Z"
+      "checked_at": "2026-10-26T10:24:45.116631Z",
+      "feed_updated": "2026-10-26T10:05:32.852611Z"
     }
   ],
   "uncovered": [
@@ -11861,10 +11861,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-26T09:47:30.747605Z",
-  "feed_updated": "2026-10-26T09:44:37.725351Z",
-  "warning_count": 64,
-  "active_count": 41,
+  "generated_at": "2026-10-26T10:24:46.425045Z",
+  "feed_updated": "2026-10-26T10:08:58.198207Z",
+  "warning_count": 62,
+  "active_count": 39,
   "upcoming_count": 23,
   "max_level": 3,
   "active_max_level": 3,
@@ -12853,66 +12853,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/6c2bd738-6f0f-407d-97b8-60dc6ff8f7c8",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261026095744_0_001_yellow_HR019",
-      "status": "active",
-      "sent": "2026-10-26T08:57:44Z",
-      "effective": "2026-10-26T08:57:44Z",
-      "onset": "2026-10-26T08:57:40Z",
-      "expires": "2026-10-26T09:59:59Z",
-      "event": "Yellow wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Ličko-senjska",
-      "emma_id": "HR019",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9404e710-5f5f-4de6-be4f-391f6fb69ae9",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Croazia",
-      "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.191.0.HR.261026095744_0_000_yellow_HR018",
-      "status": "active",
-      "sent": "2026-10-26T08:57:44Z",
-      "effective": "2026-10-26T08:57:44Z",
-      "onset": "2026-10-26T08:57:40Z",
-      "expires": "2026-10-26T09:59:59Z",
-      "event": "Yellow wind warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Immediate",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Primorsko-goranska",
-      "emma_id": "HR018",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-croatia/9e263cd5-1a19-41e5-ab95-8a1164e46c39",
       "source_web": "",
       "sender_name": "",
       "country": "Croazia",
