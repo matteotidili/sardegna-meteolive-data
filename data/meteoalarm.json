@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:13.604414Z",
-      "feed_updated": "2026-10-27T13:35:50.002780Z"
+      "checked_at": "2026-10-27T14:48:38.718995Z",
+      "feed_updated": "2026-10-27T14:35:53.525640Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:13.478679Z",
-      "feed_updated": "2026-10-27T13:36:20.242719Z"
+      "checked_at": "2026-10-27T14:48:38.623555Z",
+      "feed_updated": "2026-10-27T14:36:02.299437Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:13.607910Z",
-      "feed_updated": "2026-10-27T13:36:32.022775Z"
+      "checked_at": "2026-10-27T14:48:38.707339Z",
+      "feed_updated": "2026-10-27T14:41:35.262612Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:14.042288Z",
-      "feed_updated": "2026-10-27T13:35:24.784600Z"
+      "checked_at": "2026-10-27T14:48:39.323114Z",
+      "feed_updated": "2026-10-27T14:35:17.861849Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:14.968441Z",
-      "feed_updated": "2026-10-27T13:36:17.147376Z"
+      "checked_at": "2026-10-27T14:48:39.638268Z",
+      "feed_updated": "2026-10-27T14:35:57.645133Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:14.515571Z",
-      "feed_updated": "2026-10-27T13:35:44.652592Z"
+      "checked_at": "2026-10-27T14:48:39.322264Z",
+      "feed_updated": "2026-10-27T14:35:45.423727Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:14.946200Z",
-      "feed_updated": "2026-10-27T13:35:43.981246Z"
+      "checked_at": "2026-10-27T14:48:39.841502Z",
+      "feed_updated": "2026-10-27T14:35:02.662317Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:15.809938Z",
-      "feed_updated": "2026-10-27T13:35:41.715585Z"
+      "checked_at": "2026-10-27T14:48:40.243347Z",
+      "feed_updated": "2026-10-27T14:35:37.820368Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:15.693303Z",
-      "feed_updated": "2026-10-27T13:35:44.748207Z"
+      "checked_at": "2026-10-27T14:48:40.431122Z",
+      "feed_updated": "2026-10-27T14:35:07.415455Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-27T14:03:15.675580Z",
-      "feed_updated": "2026-10-27T13:51:07.003306Z"
+      "checked_at": "2026-10-27T14:48:40.440428Z",
+      "feed_updated": "2026-10-27T14:35:33.925866Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-27T14:03:18.030751Z",
-      "feed_updated": "2026-10-27T13:35:38.027912Z"
+      "checked_at": "2026-10-27T14:48:41.891112Z",
+      "feed_updated": "2026-10-27T14:35:38.398951Z"
     }
   ],
   "uncovered": [
@@ -9647,10 +9647,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-27T14:03:19.976118Z",
-  "feed_updated": "2026-10-27T13:51:07.003306Z",
-  "warning_count": 62,
-  "active_count": 25,
+  "generated_at": "2026-10-27T14:48:43.453980Z",
+  "feed_updated": "2026-10-27T14:41:35.262612Z",
+  "warning_count": 61,
+  "active_count": 24,
   "upcoming_count": 37,
   "max_level": 3,
   "active_max_level": 3,
@@ -11769,11 +11769,71 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261027060018.461029",
+      "id": "2.49.0.0.380.3.IT.261027092316.022",
       "status": "active",
-      "sent": "2026-10-27T05:00:18Z",
-      "effective": "2026-10-27T05:00:00Z",
-      "onset": "2026-10-27T05:00:08Z",
+      "sent": "2026-10-27T08:23:16Z",
+      "effective": "2026-10-27T11:00:00Z",
+      "onset": "2026-10-27T11:00:00Z",
+      "expires": "2026-10-29T00:59:00Z",
+      "event": "Yellow Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Calabria",
+      "emma_id": "IT001",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/b4c1c38c-9672-469c-9f6e-2e1d3d278959",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.380.3.IT.261027092316.021",
+      "status": "active",
+      "sent": "2026-10-27T08:23:16Z",
+      "effective": "2026-10-27T11:00:00Z",
+      "onset": "2026-10-27T11:00:00Z",
+      "expires": "2026-10-29T00:59:00Z",
+      "event": "Yellow Wind Warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Vento",
+      "area_desc": "Puglia",
+      "emma_id": "IT015",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/5bbbf48f-86c9-4980-a5cd-23092c25a6c2",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Italia",
+      "country_code": "italy"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261027153629.297029",
+      "status": "active",
+      "sent": "2026-10-27T14:36:29Z",
+      "effective": "2026-10-27T15:00:00Z",
+      "onset": "2026-10-27T14:36:19Z",
       "expires": "2026-10-27T23:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -11918,18 +11978,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a39de843-069b-407a-8468-a39c2b6c61b0",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7197d292-544a-4154-856c-a5a965093729",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261027060018.461029",
+      "id": "2.49.0.0.250.0.FR.20261027153629.297029",
       "status": "active",
-      "sent": "2026-10-27T05:00:18Z",
-      "effective": "2026-10-27T05:00:00Z",
-      "onset": "2026-10-27T05:00:08Z",
+      "sent": "2026-10-27T14:36:29Z",
+      "effective": "2026-10-27T15:00:00Z",
+      "onset": "2026-10-27T14:36:19Z",
       "expires": "2026-10-27T23:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -12074,18 +12134,18 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a39de843-069b-407a-8468-a39c2b6c61b0",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7197d292-544a-4154-856c-a5a965093729",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261027060018.461029",
+      "id": "2.49.0.0.250.0.FR.20261027153629.297029",
       "status": "active",
-      "sent": "2026-10-27T05:00:18Z",
-      "effective": "2026-10-27T05:00:00Z",
-      "onset": "2026-10-27T05:00:08Z",
+      "sent": "2026-10-27T14:36:29Z",
+      "effective": "2026-10-27T15:00:00Z",
+      "onset": "2026-10-27T14:36:19Z",
       "expires": "2026-10-27T23:00:00Z",
       "event": "Moderate coastalevent warning",
       "headline": "",
@@ -12182,159 +12242,11 @@
         ]
       },
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a39de843-069b-407a-8468-a39c2b6c61b0",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/7197d292-544a-4154-856c-a5a965093729",
       "source_web": "",
       "sender_name": "",
       "country": "Francia",
       "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.250.0.FR.20261027060018.461029",
-      "status": "active",
-      "sent": "2026-10-27T05:00:18Z",
-      "effective": "2026-10-27T05:00:00Z",
-      "onset": "2026-10-27T05:00:08Z",
-      "expires": "2026-10-27T23:00:00Z",
-      "event": "Moderate coastalevent warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Moderate coastalevent warning",
-      "area_desc": "Pas-de-Calais",
-      "emma_id": "",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              1.4893,
-              51.0984
-            ],
-            [
-              1.6758,
-              51.1657
-            ],
-            [
-              1.9628,
-              51.2176
-            ],
-            [
-              2.0838,
-              51.0382
-            ],
-            [
-              1.8024,
-              50.9884
-            ],
-            [
-              1.6711,
-              50.9429
-            ],
-            [
-              1.5447,
-              50.8829
-            ],
-            [
-              1.5331,
-              50.5497
-            ],
-            [
-              1.5151,
-              50.3915
-            ],
-            [
-              1.253,
-              50.4892
-            ],
-            [
-              1.2734,
-              50.619
-            ],
-            [
-              1.2892,
-              50.986
-            ],
-            [
-              1.4893,
-              51.0984
-            ]
-          ]
-        ]
-      },
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/a39de843-069b-407a-8468-a39c2b6c61b0",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261027092316.022",
-      "status": "active",
-      "sent": "2026-10-27T08:23:16Z",
-      "effective": "2026-10-27T11:00:00Z",
-      "onset": "2026-10-27T11:00:00Z",
-      "expires": "2026-10-29T00:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/b4c1c38c-9672-469c-9f6e-2e1d3d278959",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261027092316.021",
-      "status": "active",
-      "sent": "2026-10-27T08:23:16Z",
-      "effective": "2026-10-27T11:00:00Z",
-      "onset": "2026-10-27T11:00:00Z",
-      "expires": "2026-10-29T00:59:00Z",
-      "event": "Yellow Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/5bbbf48f-86c9-4980-a5cd-23092c25a6c2",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.191.0.HR.261027141753_0_006_yellow_HR029",
