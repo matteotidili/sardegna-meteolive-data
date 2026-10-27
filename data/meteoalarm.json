@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:45.069918Z",
-      "feed_updated": "2026-10-27T05:35:52.790278Z"
+      "checked_at": "2026-10-27T06:34:44.858225Z",
+      "feed_updated": "2026-10-27T06:05:54.195574Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:44.990187Z",
-      "feed_updated": "2026-10-27T05:35:35.994094Z"
+      "checked_at": "2026-10-27T06:34:44.706781Z",
+      "feed_updated": "2026-10-27T06:05:30.539936Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:45.093445Z",
-      "feed_updated": "2026-10-27T05:36:27.022258Z"
+      "checked_at": "2026-10-27T06:34:44.865372Z",
+      "feed_updated": "2026-10-27T06:06:03.810128Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:45.679701Z",
-      "feed_updated": "2026-10-27T05:35:41.602909Z"
+      "checked_at": "2026-10-27T06:34:45.691725Z",
+      "feed_updated": "2026-10-27T06:05:41.880802Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:45.986454Z",
-      "feed_updated": "2026-10-27T05:52:17.449691Z"
+      "checked_at": "2026-10-27T06:34:46.193229Z",
+      "feed_updated": "2026-10-27T06:09:26.318482Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:45.683337Z",
-      "feed_updated": "2026-10-27T05:35:41.505745Z"
+      "checked_at": "2026-10-27T06:34:45.691179Z",
+      "feed_updated": "2026-10-27T06:05:41.765723Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:46.362252Z",
-      "feed_updated": "2026-10-27T05:35:03.877027Z"
+      "checked_at": "2026-10-27T06:34:46.504927Z",
+      "feed_updated": "2026-10-27T06:05:03.817426Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:46.668956Z",
-      "feed_updated": "2026-10-27T05:35:29.589887Z"
+      "checked_at": "2026-10-27T06:34:46.970852Z",
+      "feed_updated": "2026-10-27T06:05:35.754490Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:46.502716Z",
-      "feed_updated": "2026-10-27T05:35:44.179695Z"
+      "checked_at": "2026-10-27T06:34:47.055343Z",
+      "feed_updated": "2026-10-27T06:05:39.474115Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-27T05:58:46.977476Z",
-      "feed_updated": "2026-10-27T05:35:35.495657Z"
+      "checked_at": "2026-10-27T06:34:47.144114Z",
+      "feed_updated": "2026-10-27T06:05:39.883284Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-27T05:58:47.638163Z",
-      "feed_updated": "2026-10-27T05:35:31.060031Z"
+      "checked_at": "2026-10-27T06:34:48.288648Z",
+      "feed_updated": "2026-10-27T06:05:36.317744Z"
     }
   ],
   "uncovered": [
@@ -9643,10 +9643,10 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-27T05:58:49.717214Z",
-  "feed_updated": "2026-10-27T05:52:17.449691Z",
-  "warning_count": 57,
-  "active_count": 28,
+  "generated_at": "2026-10-27T06:34:50.715575Z",
+  "feed_updated": "2026-10-27T06:09:26.318482Z",
+  "warning_count": 53,
+  "active_count": 24,
   "upcoming_count": 29,
   "max_level": 3,
   "active_max_level": 3,
@@ -12077,126 +12077,6 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261026103757.016",
-      "status": "active",
-      "sent": "2026-10-26T09:37:57Z",
-      "effective": "2026-10-26T18:00:00Z",
-      "onset": "2026-10-26T18:00:00Z",
-      "expires": "2026-10-27T05:59:00Z",
-      "event": "Yellow Fog Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Emilia e Romagna",
-      "emma_id": "IT008",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/07e8c68e-c546-483e-8394-2855fdf82436",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261026103757.012",
-      "status": "active",
-      "sent": "2026-10-26T09:37:57Z",
-      "effective": "2026-10-26T18:00:00Z",
-      "onset": "2026-10-26T18:00:00Z",
-      "expires": "2026-10-27T05:59:00Z",
-      "event": "Yellow Fog Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Lombardia",
-      "emma_id": "IT003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/88461070-6b8d-496d-a697-0094bf9cc860",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261026103757.010",
-      "status": "active",
-      "sent": "2026-10-26T09:37:57Z",
-      "effective": "2026-10-26T18:00:00Z",
-      "onset": "2026-10-26T18:00:00Z",
-      "expires": "2026-10-27T05:59:00Z",
-      "event": "Yellow Fog Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Piemonte",
-      "emma_id": "IT005",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/5368c0d3-4fd3-48e7-b5ae-2e5ccd2f6676",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261026103757.014",
-      "status": "active",
-      "sent": "2026-10-26T09:37:57Z",
-      "effective": "2026-10-26T18:00:00Z",
-      "onset": "2026-10-26T18:00:00Z",
-      "expires": "2026-10-27T05:59:00Z",
-      "event": "Yellow Fog Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Nebbia",
-      "area_desc": "Veneto",
-      "emma_id": "IT006",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/7b7bc6fb-61ee-458a-927f-1b55145398af",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
     },
     {
       "id": "2.49.0.0.70.1.BA.261025125138.96357286",
