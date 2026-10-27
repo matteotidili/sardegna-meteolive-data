@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:36.096523Z",
-      "feed_updated": "2026-10-27T16:05:58.813098Z"
+      "checked_at": "2026-10-27T17:08:50.792892Z",
+      "feed_updated": "2026-10-27T17:05:29.598959Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:35.972878Z",
-      "feed_updated": "2026-10-27T16:06:24.470609Z"
+      "checked_at": "2026-10-27T17:08:50.658278Z",
+      "feed_updated": "2026-10-27T17:05:36.125752Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:36.104529Z",
-      "feed_updated": "2026-10-27T16:06:32.231830Z"
+      "checked_at": "2026-10-27T17:08:50.810753Z",
+      "feed_updated": "2026-10-27T17:05:42.240960Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:36.671297Z",
-      "feed_updated": "2026-10-27T16:05:18.999662Z"
+      "checked_at": "2026-10-27T17:08:51.380807Z",
+      "feed_updated": "2026-10-27T17:05:10.984555Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:37.040866Z",
-      "feed_updated": "2026-10-27T16:06:23.365482Z"
+      "checked_at": "2026-10-27T17:08:51.804834Z",
+      "feed_updated": "2026-10-27T17:05:34.845216Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:36.651841Z",
-      "feed_updated": "2026-10-27T16:05:41.440848Z"
+      "checked_at": "2026-10-27T17:08:51.389894Z",
+      "feed_updated": "2026-10-27T17:05:27.065391Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:37.300953Z",
-      "feed_updated": "2026-10-27T16:05:30.524345Z"
+      "checked_at": "2026-10-27T17:08:52.133452Z",
+      "feed_updated": "2026-10-27T17:05:20.487934Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:37.801796Z",
-      "feed_updated": "2026-10-27T16:05:35.529740Z"
+      "checked_at": "2026-10-27T17:08:52.708848Z",
+      "feed_updated": "2026-10-27T17:05:11.322185Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:37.819485Z",
-      "feed_updated": "2026-10-27T16:05:07.461737Z"
+      "checked_at": "2026-10-27T17:08:52.897330Z",
+      "feed_updated": "2026-10-27T17:05:05.455499Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-27T16:19:37.833415Z",
-      "feed_updated": "2026-10-27T16:05:42.569327Z"
+      "checked_at": "2026-10-27T17:08:52.873899Z",
+      "feed_updated": "2026-10-27T17:05:16.466008Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-27T16:19:40.084904Z",
-      "feed_updated": "2026-10-27T16:05:30.960006Z"
+      "checked_at": "2026-10-27T17:08:55.020473Z",
+      "feed_updated": "2026-10-27T17:05:21.446148Z"
     }
   ],
   "uncovered": [
@@ -9647,11 +9647,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-27T16:19:41.773976Z",
-  "feed_updated": "2026-10-27T16:06:32.231830Z",
+  "generated_at": "2026-10-27T17:08:56.710329Z",
+  "feed_updated": "2026-10-27T17:05:42.240960Z",
   "warning_count": 61,
-  "active_count": 28,
-  "upcoming_count": 33,
+  "active_count": 29,
+  "upcoming_count": 32,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 4,
@@ -12370,7 +12370,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261027121400.003000002",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-27T12:14:00Z",
       "effective": "2026-10-27T12:14:00Z",
       "onset": "2026-10-27T17:00:00Z",
@@ -13000,13 +13000,13 @@
     }
   ],
   "errors": [
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/c4c42cf0-9737-49ff-bdfb-958cdc2dc8e0: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/d5818150-090d-44ac-9378-edb000a88da0: ValueError"
