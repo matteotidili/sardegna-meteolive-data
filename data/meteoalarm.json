@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:49.582181Z",
-      "feed_updated": "2026-10-27T00:05:46.957863Z"
+      "checked_at": "2026-10-27T00:56:36.048618Z",
+      "feed_updated": "2026-10-27T00:35:59.112078Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:49.301668Z",
-      "feed_updated": "2026-10-27T00:05:16.875787Z"
+      "checked_at": "2026-10-27T00:56:35.794364Z",
+      "feed_updated": "2026-10-27T00:35:19.450189Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:49.436102Z",
-      "feed_updated": "2026-10-27T00:05:58.492847Z"
+      "checked_at": "2026-10-27T00:56:35.917535Z",
+      "feed_updated": "2026-10-27T00:36:38.685998Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:50.344017Z",
-      "feed_updated": "2026-10-27T00:05:03.074052Z"
+      "checked_at": "2026-10-27T00:56:36.648772Z",
+      "feed_updated": "2026-10-27T00:36:37.456552Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:50.775596Z",
-      "feed_updated": "2026-10-27T00:05:52.873152Z"
+      "checked_at": "2026-10-27T00:56:37.070508Z",
+      "feed_updated": "2026-10-27T00:36:35.049621Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:50.338483Z",
-      "feed_updated": "2026-10-27T00:05:38.650652Z"
+      "checked_at": "2026-10-27T00:56:36.680549Z",
+      "feed_updated": "2026-10-27T00:35:47.629184Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:51.067174Z",
-      "feed_updated": "2026-10-27T00:05:07.724881Z"
+      "checked_at": "2026-10-27T00:56:37.522719Z",
+      "feed_updated": "2026-10-27T00:35:13.186376Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:51.511686Z",
-      "feed_updated": "2026-10-27T00:05:30.540270Z"
+      "checked_at": "2026-10-27T00:56:37.916951Z",
+      "feed_updated": "2026-10-27T00:35:38.431003Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:51.372892Z",
-      "feed_updated": "2026-10-27T00:05:13.451545Z"
+      "checked_at": "2026-10-27T00:56:37.817174Z",
+      "feed_updated": "2026-10-27T00:36:38.068871Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-27T00:11:52.010929Z",
-      "feed_updated": "2026-10-27T00:05:20.048312Z"
+      "checked_at": "2026-10-27T00:56:38.263180Z",
+      "feed_updated": "2026-10-27T00:35:42.988604Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-27T00:11:52.975087Z",
-      "feed_updated": "2026-10-27T00:05:20.480672Z"
+      "checked_at": "2026-10-27T00:56:39.353221Z",
+      "feed_updated": "2026-10-27T00:35:40.008660Z"
     }
   ],
   "uncovered": [
@@ -9790,8 +9790,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-27T00:11:55.846501Z",
-  "feed_updated": "2026-10-27T00:05:58.492847Z",
+  "generated_at": "2026-10-27T00:56:41.146376Z",
+  "feed_updated": "2026-10-27T00:36:38.685998Z",
   "warning_count": 48,
   "active_count": 28,
   "upcoming_count": 20,
@@ -11629,7 +11629,7 @@
     }
   ],
   "errors": [
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/ed6aa18f-e708-4cf7-a3d7-877967b66d37: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/713d1992-eb75-4d08-ad26-7fb836355f7a: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/ed6aa18f-e708-4cf7-a3d7-877967b66d37: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/ed6aa18f-e708-4cf7-a3d7-877967b66d37: ValueError",
     "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/ed6aa18f-e708-4cf7-a3d7-877967b66d37: ValueError",
