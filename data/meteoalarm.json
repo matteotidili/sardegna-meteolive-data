@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-27T11:51:59.206744Z",
-      "feed_updated": "2026-10-27T11:36:30.557140Z"
+      "checked_at": "2026-10-27T12:22:47.484915Z",
+      "feed_updated": "2026-10-27T12:05:51.142535Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-27T11:51:59.089120Z",
-      "feed_updated": "2026-10-27T11:36:20.170644Z"
+      "checked_at": "2026-10-27T12:22:47.386261Z",
+      "feed_updated": "2026-10-27T12:11:56.335682Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-27T11:51:59.194077Z",
-      "feed_updated": "2026-10-27T11:36:27.315284Z"
+      "checked_at": "2026-10-27T12:22:47.504499Z",
+      "feed_updated": "2026-10-27T12:06:40.170119Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-27T11:51:59.914832Z",
-      "feed_updated": "2026-10-27T11:35:02.352365Z"
+      "checked_at": "2026-10-27T12:22:48.042945Z",
+      "feed_updated": "2026-10-27T12:05:22.845642Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-27T11:52:00.287122Z",
-      "feed_updated": "2026-10-27T11:36:19.165477Z"
+      "checked_at": "2026-10-27T12:22:48.417833Z",
+      "feed_updated": "2026-10-27T12:06:28.417508Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-27T11:51:59.917489Z",
-      "feed_updated": "2026-10-27T11:35:39.053964Z"
+      "checked_at": "2026-10-27T12:22:48.042084Z",
+      "feed_updated": "2026-10-27T12:05:44.476007Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-27T11:52:00.752457Z",
-      "feed_updated": "2026-10-27T11:35:36.552095Z"
+      "checked_at": "2026-10-27T12:22:48.581926Z",
+      "feed_updated": "2026-10-27T12:05:45.597319Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-27T11:52:01.234062Z",
-      "feed_updated": "2026-10-27T11:35:35.324544Z"
+      "checked_at": "2026-10-27T12:22:48.963331Z",
+      "feed_updated": "2026-10-27T12:19:58.373630Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-27T11:52:00.992090Z",
-      "feed_updated": "2026-10-27T11:35:51.727938Z"
+      "checked_at": "2026-10-27T12:22:49.134779Z",
+      "feed_updated": "2026-10-27T12:05:48.643309Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-27T11:52:01.371474Z",
-      "feed_updated": "2026-10-27T11:35:37.900461Z"
+      "checked_at": "2026-10-27T12:22:49.135916Z",
+      "feed_updated": "2026-10-27T12:05:45.800966Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-27T11:52:02.787870Z",
-      "feed_updated": "2026-10-27T11:35:33.000910Z"
+      "checked_at": "2026-10-27T12:22:51.095319Z",
+      "feed_updated": "2026-10-27T12:05:38.002653Z"
     }
   ],
   "uncovered": [
@@ -6905,6 +6905,103 @@
       "source_code": "BA010",
       "matched_by": "code"
     },
+    "GR002": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.929,
+              39.063
+            ],
+            [
+              21.868,
+              39.014
+            ],
+            [
+              21.855,
+              38.984
+            ],
+            [
+              21.853,
+              38.93
+            ],
+            [
+              21.891,
+              38.856
+            ],
+            [
+              21.969,
+              38.758
+            ],
+            [
+              21.993,
+              38.693
+            ],
+            [
+              22.01,
+              38.572
+            ],
+            [
+              21.995,
+              38.504
+            ],
+            [
+              21.869,
+              38.377
+            ],
+            [
+              21.536,
+              38.308
+            ],
+            [
+              21.501,
+              38.307
+            ],
+            [
+              21.163,
+              38.389
+            ],
+            [
+              21.126,
+              38.406
+            ],
+            [
+              21.0,
+              38.646
+            ],
+            [
+              20.992,
+              38.679
+            ],
+            [
+              21.152,
+              38.92
+            ],
+            [
+              21.16,
+              38.98
+            ],
+            [
+              21.112,
+              39.051
+            ],
+            [
+              21.366,
+              39.176
+            ],
+            [
+              21.929,
+              39.063
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "GR002",
+      "matched_by": "code"
+    },
     "GR003": {
       "geometry": {
         "type": "MultiPolygon",
@@ -8046,103 +8143,6 @@
       "source_code": "GR013",
       "matched_by": "code"
     },
-    "GR002": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              21.929,
-              39.063
-            ],
-            [
-              21.868,
-              39.014
-            ],
-            [
-              21.855,
-              38.984
-            ],
-            [
-              21.853,
-              38.93
-            ],
-            [
-              21.891,
-              38.856
-            ],
-            [
-              21.969,
-              38.758
-            ],
-            [
-              21.993,
-              38.693
-            ],
-            [
-              22.01,
-              38.572
-            ],
-            [
-              21.995,
-              38.504
-            ],
-            [
-              21.869,
-              38.377
-            ],
-            [
-              21.536,
-              38.308
-            ],
-            [
-              21.501,
-              38.307
-            ],
-            [
-              21.163,
-              38.389
-            ],
-            [
-              21.126,
-              38.406
-            ],
-            [
-              21.0,
-              38.646
-            ],
-            [
-              20.992,
-              38.679
-            ],
-            [
-              21.152,
-              38.92
-            ],
-            [
-              21.16,
-              38.98
-            ],
-            [
-              21.112,
-              39.051
-            ],
-            [
-              21.366,
-              39.176
-            ],
-            [
-              21.929,
-              39.063
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR002",
-      "matched_by": "code"
-    },
     "GR014": {
       "geometry": {
         "type": "MultiPolygon",
@@ -8536,8 +8536,8 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-27T11:52:04.311169Z",
-  "feed_updated": "2026-10-27T11:36:30.557140Z",
+  "generated_at": "2026-10-27T12:22:52.763213Z",
+  "feed_updated": "2026-10-27T12:19:58.373630Z",
   "warning_count": 49,
   "active_count": 23,
   "upcoming_count": 26,
@@ -10986,10 +10986,10 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261026122900.001000002",
+      "id": "2.49.0.0.300.0.GR.261027121400.003000002",
       "status": "upcoming",
-      "sent": "2026-10-26T12:29:00Z",
-      "effective": "2026-10-26T12:29:00Z",
+      "sent": "2026-10-27T12:14:00Z",
+      "effective": "2026-10-27T12:14:00Z",
       "onset": "2026-10-27T17:00:00Z",
       "expires": "2026-10-27T22:00:00Z",
       "event": "Moderate Rain warning",
@@ -11009,7 +11009,7 @@
       "emma_id": "GR002",
       "geometry": null,
       "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/89c11e91-072b-433f-b1a4-7c21e6c5fb3f",
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/9d3b9605-2d9b-4dfd-8ca6-7845a00e6b1b",
       "source_web": "",
       "sender_name": "",
       "country": "Grecia",
@@ -11587,15 +11587,15 @@
     }
   ],
   "errors": [
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError",
-    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/eb819842-04cd-4e34-9cce-e75fc015cf7d: ValueError"
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError",
+    "https://feeds.meteoalarm.org/api/v1/warnings/feeds-israel/07c562c2-cac1-482a-8823-3cb0b51383a6: ValueError"
   ]
 }
