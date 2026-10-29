@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:35.649886Z",
-      "feed_updated": "2026-10-29T14:05:41.241449Z"
+      "checked_at": "2026-10-29T15:12:27.629071Z",
+      "feed_updated": "2026-10-29T15:05:27.435744Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:35.532146Z",
-      "feed_updated": "2026-10-29T14:05:27.055566Z"
+      "checked_at": "2026-10-29T15:12:27.515306Z",
+      "feed_updated": "2026-10-29T15:05:21.853047Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:35.537411Z",
-      "feed_updated": "2026-10-29T14:06:56.803876Z"
+      "checked_at": "2026-10-29T15:12:27.517091Z",
+      "feed_updated": "2026-10-29T15:05:37.478637Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:36.220014Z",
-      "feed_updated": "2026-10-29T14:05:13.757928Z"
+      "checked_at": "2026-10-29T15:12:28.380864Z",
+      "feed_updated": "2026-10-29T15:05:12.648476Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:36.474713Z",
-      "feed_updated": "2026-10-29T14:05:08.372447Z"
+      "checked_at": "2026-10-29T15:12:28.639222Z",
+      "feed_updated": "2026-10-29T15:05:11.150467Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:36.233355Z",
-      "feed_updated": "2026-10-29T14:05:06.156516Z"
+      "checked_at": "2026-10-29T15:12:28.370930Z",
+      "feed_updated": "2026-10-29T15:05:22.402992Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:37.502119Z",
-      "feed_updated": "2026-10-29T14:05:06.372150Z"
+      "checked_at": "2026-10-29T15:12:29.263034Z",
+      "feed_updated": "2026-10-29T15:05:06.707465Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:37.659632Z",
-      "feed_updated": "2026-10-29T14:05:24.539261Z"
+      "checked_at": "2026-10-29T15:12:29.556208Z",
+      "feed_updated": "2026-10-29T15:05:19.299052Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:37.344733Z",
-      "feed_updated": "2026-10-29T14:05:25.578280Z"
+      "checked_at": "2026-10-29T15:12:29.489735Z",
+      "feed_updated": "2026-10-29T15:05:19.702385Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-29T14:17:38.001098Z",
-      "feed_updated": "2026-10-29T14:05:35.646706Z"
+      "checked_at": "2026-10-29T15:12:29.980323Z",
+      "feed_updated": "2026-10-29T15:05:12.327980Z"
     },
     {
       "country": "Israele",
       "status": "partial",
-      "checked_at": "2026-10-29T14:17:38.964273Z",
-      "feed_updated": "2026-10-29T14:05:19.549528Z"
+      "checked_at": "2026-10-29T15:12:30.768346Z",
+      "feed_updated": "2026-10-29T15:05:17.769765Z"
     }
   ],
   "uncovered": [
@@ -2902,6 +2902,95 @@
       "precision": "region",
       "source_code": "ES113",
       "matched_by": "code"
+    },
+    "FR831": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.389,
+              41.868
+            ],
+            [
+              9.389,
+              41.827
+            ],
+            [
+              9.32,
+              41.546
+            ],
+            [
+              9.263,
+              41.419
+            ],
+            [
+              9.226,
+              41.372
+            ],
+            [
+              9.19,
+              41.366
+            ],
+            [
+              9.154,
+              41.38
+            ],
+            [
+              8.821,
+              41.545
+            ],
+            [
+              8.79,
+              41.566
+            ],
+            [
+              8.716,
+              41.738
+            ],
+            [
+              8.578,
+              42.137
+            ],
+            [
+              8.559,
+              42.226
+            ],
+            [
+              8.558,
+              42.365
+            ],
+            [
+              8.594,
+              42.373
+            ],
+            [
+              8.675,
+              42.359
+            ],
+            [
+              8.78,
+              42.329
+            ],
+            [
+              8.897,
+              42.28
+            ],
+            [
+              9.065,
+              42.163
+            ],
+            [
+              9.389,
+              41.868
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "FR090",
+      "matched_by": "name"
     },
     "HR803": {
       "geometry": {
@@ -9369,690 +9458,18 @@
       "precision": "region",
       "source_code": "GR014",
       "matched_by": "code"
-    },
-    "GR013": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                26.916,
-                35.351
-              ],
-              [
-                26.889,
-                35.337
-              ],
-              [
-                26.855,
-                35.349
-              ],
-              [
-                26.872,
-                35.382
-              ],
-              [
-                26.899,
-                35.405
-              ],
-              [
-                26.935,
-                35.413
-              ],
-              [
-                27.001,
-                35.413
-              ],
-              [
-                26.981,
-                35.384
-              ],
-              [
-                26.916,
-                35.351
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.238,
-                35.486
-              ],
-              [
-                27.199,
-                35.474
-              ],
-              [
-                27.122,
-                35.485
-              ],
-              [
-                27.071,
-                35.597
-              ],
-              [
-                27.169,
-                35.78
-              ],
-              [
-                27.21,
-                35.822
-              ],
-              [
-                27.202,
-                35.857
-              ],
-              [
-                27.238,
-                35.894
-              ],
-              [
-                27.247,
-                35.832
-              ],
-              [
-                27.24,
-                35.788
-              ],
-              [
-                27.215,
-                35.708
-              ],
-              [
-                27.163,
-                35.615
-              ],
-              [
-                27.175,
-                35.584
-              ],
-              [
-                27.222,
-                35.523
-              ],
-              [
-                27.238,
-                35.486
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.587,
-                36.202
-              ],
-              [
-                27.551,
-                36.199
-              ],
-              [
-                27.515,
-                36.207
-              ],
-              [
-                27.545,
-                36.229
-              ],
-              [
-                27.583,
-                36.233
-              ],
-              [
-                27.615,
-                36.22
-              ],
-              [
-                27.587,
-                36.202
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.806,
-                35.887
-              ],
-              [
-                27.77,
-                35.884
-              ],
-              [
-                27.738,
-                35.904
-              ],
-              [
-                27.719,
-                35.936
-              ],
-              [
-                27.764,
-                36.154
-              ],
-              [
-                27.779,
-                36.193
-              ],
-              [
-                27.831,
-                36.269
-              ],
-              [
-                27.892,
-                36.316
-              ],
-              [
-                27.93,
-                36.334
-              ],
-              [
-                28.203,
-                36.435
-              ],
-              [
-                28.239,
-                36.436
-              ],
-              [
-                28.244,
-                36.384
-              ],
-              [
-                28.201,
-                36.291
-              ],
-              [
-                28.125,
-                36.168
-              ],
-              [
-                28.035,
-                36.072
-              ],
-              [
-                27.806,
-                35.887
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.422,
-                36.379
-              ],
-              [
-                27.393,
-                36.373
-              ],
-              [
-                27.303,
-                36.412
-              ],
-              [
-                27.308,
-                36.462
-              ],
-              [
-                27.412,
-                36.423
-              ],
-              [
-                27.441,
-                36.404
-              ],
-              [
-                27.422,
-                36.379
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.365,
-                36.509
-              ],
-              [
-                26.325,
-                36.506
-              ],
-              [
-                26.289,
-                36.519
-              ],
-              [
-                26.275,
-                36.548
-              ],
-              [
-                26.269,
-                36.585
-              ],
-              [
-                26.31,
-                36.593
-              ],
-              [
-                26.377,
-                36.59
-              ],
-              [
-                26.416,
-                36.58
-              ],
-              [
-                26.396,
-                36.556
-              ],
-              [
-                26.369,
-                36.542
-              ],
-              [
-                26.365,
-                36.509
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.884,
-                36.566
-              ],
-              [
-                27.868,
-                36.536
-              ],
-              [
-                27.831,
-                36.537
-              ],
-              [
-                27.805,
-                36.561
-              ],
-              [
-                27.796,
-                36.595
-              ],
-              [
-                27.834,
-                36.602
-              ],
-              [
-                27.876,
-                36.599
-              ],
-              [
-                27.884,
-                36.566
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.212,
-                36.576
-              ],
-              [
-                27.181,
-                36.551
-              ],
-              [
-                27.141,
-                36.561
-              ],
-              [
-                27.145,
-                36.608
-              ],
-              [
-                27.171,
-                36.613
-              ],
-              [
-                27.198,
-                36.607
-              ],
-              [
-                27.212,
-                36.576
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.979,
-                36.738
-              ],
-              [
-                26.957,
-                36.687
-              ],
-              [
-                26.924,
-                36.706
-              ],
-              [
-                26.924,
-                36.752
-              ],
-              [
-                26.956,
-                36.775
-              ],
-              [
-                27.087,
-                36.848
-              ],
-              [
-                27.156,
-                36.878
-              ],
-              [
-                27.244,
-                36.889
-              ],
-              [
-                27.267,
-                36.832
-              ],
-              [
-                27.038,
-                36.763
-              ],
-              [
-                26.979,
-                36.738
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                27.009,
-                36.929
-              ],
-              [
-                26.978,
-                36.921
-              ],
-              [
-                26.925,
-                36.941
-              ],
-              [
-                26.967,
-                37.017
-              ],
-              [
-                26.946,
-                37.049
-              ],
-              [
-                26.972,
-                37.052
-              ],
-              [
-                27.051,
-                36.994
-              ],
-              [
-                27.04,
-                36.94
-              ],
-              [
-                27.009,
-                36.929
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.885,
-                37.096
-              ],
-              [
-                26.847,
-                37.096
-              ],
-              [
-                26.818,
-                37.125
-              ],
-              [
-                26.793,
-                37.157
-              ],
-              [
-                26.806,
-                37.189
-              ],
-              [
-                26.84,
-                37.186
-              ],
-              [
-                26.867,
-                37.16
-              ],
-              [
-                26.882,
-                37.134
-              ],
-              [
-                26.885,
-                37.096
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.563,
-                37.297
-              ],
-              [
-                26.569,
-                37.266
-              ],
-              [
-                26.539,
-                37.276
-              ],
-              [
-                26.532,
-                37.326
-              ],
-              [
-                26.545,
-                37.367
-              ],
-              [
-                26.587,
-                37.355
-              ],
-              [
-                26.558,
-                37.333
-              ],
-              [
-                26.563,
-                37.297
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR013",
-      "matched_by": "code"
-    },
-    "CY001": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              33.031,
-              34.653
-            ],
-            [
-              32.725,
-              34.64
-            ],
-            [
-              32.622,
-              34.666
-            ],
-            [
-              32.447,
-              34.739
-            ],
-            [
-              32.414,
-              34.764
-            ],
-            [
-              32.335,
-              34.909
-            ],
-            [
-              32.302,
-              35.015
-            ],
-            [
-              32.315,
-              35.052
-            ],
-            [
-              32.334,
-              35.075
-            ],
-            [
-              32.558,
-              35.176
-            ],
-            [
-              32.946,
-              35.338
-            ],
-            [
-              33.095,
-              35.356
-            ],
-            [
-              33.434,
-              35.337
-            ],
-            [
-              33.656,
-              35.364
-            ],
-            [
-              33.943,
-              35.441
-            ],
-            [
-              33.991,
-              35.458
-            ],
-            [
-              34.202,
-              35.57
-            ],
-            [
-              34.442,
-              35.658
-            ],
-            [
-              34.528,
-              35.685
-            ],
-            [
-              34.569,
-              35.69
-            ],
-            [
-              34.566,
-              35.65
-            ],
-            [
-              34.534,
-              35.629
-            ],
-            [
-              33.983,
-              35.333
-            ],
-            [
-              33.966,
-              35.312
-            ],
-            [
-              33.903,
-              35.193
-            ],
-            [
-              33.917,
-              35.161
-            ],
-            [
-              33.995,
-              35.075
-            ],
-            [
-              34.022,
-              35.002
-            ],
-            [
-              34.019,
-              34.976
-            ],
-            [
-              33.618,
-              34.817
-            ],
-            [
-              33.381,
-              34.733
-            ],
-            [
-              33.28,
-              34.705
-            ],
-            [
-              33.031,
-              34.653
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "CY001",
-      "matched_by": "code"
     }
   },
-  "region_count": 24,
+  "region_count": 23,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-29T14:17:40.831579Z",
-  "feed_updated": "2026-10-29T14:06:56.803876Z",
-  "warning_count": 47,
-  "active_count": 24,
-  "upcoming_count": 23,
+  "generated_at": "2026-10-29T15:12:32.706536Z",
+  "feed_updated": "2026-10-29T15:05:37.478637Z",
+  "warning_count": 45,
+  "active_count": 21,
+  "upcoming_count": 24,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -10834,36 +10251,6 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261028122600.001000013",
-      "status": "active",
-      "sent": "2026-10-28T12:26:00Z",
-      "effective": "2026-10-28T12:26:00Z",
-      "onset": "2026-10-29T00:00:00Z",
-      "expires": "2026-10-29T15:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "Dodekanisa Islands",
-      "emma_id": "GR013",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/25de1b69-8d1a-409c-a96d-c5a5bceab59b",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.300.0.GR.261028130400.100000003",
       "status": "active",
       "sent": "2026-10-28T13:04:00Z",
@@ -10888,36 +10275,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/be0c761a-f454-49ee-a2b4-5f3a35529f5f",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261028122600.001000003",
-      "status": "active",
-      "sent": "2026-10-28T12:26:00Z",
-      "effective": "2026-10-28T12:26:00Z",
-      "onset": "2026-10-29T00:00:00Z",
-      "expires": "2026-10-29T15:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "East Sterea &amp; Evvoia",
-      "emma_id": "GR003",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/4c9140f1-627a-43c9-a245-f6d1764f7525",
       "source_web": "",
       "sender_name": "",
       "country": "Grecia",
@@ -10952,36 +10309,6 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
-    },
-    {
-      "id": "2.49.0.0.196.0.CY.261028180540.thunder.000",
-      "status": "active",
-      "sent": "2026-10-28T16:05:40Z",
-      "effective": "2026-10-28T16:05:40Z",
-      "onset": "2026-10-29T07:00:00Z",
-      "expires": "2026-10-29T14:59:59Z",
-      "event": "Thunderstorm Yellow",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Cyprus",
-      "emma_id": "CY001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-cyprus/cb12bd03-3cb2-4b2b-936b-cb07fbf33308",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Cipro",
-      "country_code": "cyprus"
     },
     {
       "id": "2.49.0.0.376.0.261029095202.59478",
@@ -11638,6 +10965,36 @@
       "sender_name": "",
       "country": "Montenegro",
       "country_code": "montenegro"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261029160027.158023",
+      "status": "upcoming",
+      "sent": "2026-10-29T15:00:27Z",
+      "effective": "2026-10-29T23:00:00Z",
+      "onset": "2026-10-29T23:00:00Z",
+      "expires": "2026-10-30T23:00:00Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Corse-du-Sud",
+      "emma_id": "FR831",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/78b1b07f-f4c9-4e7c-b4b8-0f21468f3936",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
     },
     {
       "id": "2.49.0.0.191.0.HR.261029064321_0_yellow_HR802",
