@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:53.205175Z",
-      "feed_updated": "2026-10-29T21:05:58.854249Z"
+      "checked_at": "2026-10-29T21:59:26.058230Z",
+      "feed_updated": "2026-10-29T21:35:26.657325Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:53.087278Z",
-      "feed_updated": "2026-10-29T21:05:33.670852Z"
+      "checked_at": "2026-10-29T21:59:25.940639Z",
+      "feed_updated": "2026-10-29T21:35:22.520611Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:53.079024Z",
-      "feed_updated": "2026-10-29T21:05:07.104921Z"
+      "checked_at": "2026-10-29T21:59:25.933073Z",
+      "feed_updated": "2026-10-29T21:35:10.069611Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:53.986306Z",
-      "feed_updated": "2026-10-29T21:05:16.904672Z"
+      "checked_at": "2026-10-29T21:59:26.554633Z",
+      "feed_updated": "2026-10-29T21:35:13.042832Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:54.245324Z",
-      "feed_updated": "2026-10-29T21:05:08.732579Z"
+      "checked_at": "2026-10-29T21:59:26.818991Z",
+      "feed_updated": "2026-10-29T21:35:11.088041Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:53.974045Z",
-      "feed_updated": "2026-10-29T21:05:06.824414Z"
+      "checked_at": "2026-10-29T21:59:26.642986Z",
+      "feed_updated": "2026-10-29T21:35:09.537722Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:54.770663Z",
-      "feed_updated": "2026-10-29T21:05:07.822336Z"
+      "checked_at": "2026-10-29T21:59:27.295976Z",
+      "feed_updated": "2026-10-29T21:35:09.334428Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:54.939384Z",
-      "feed_updated": "2026-10-29T21:05:18.497411Z"
+      "checked_at": "2026-10-29T21:59:27.501161Z",
+      "feed_updated": "2026-10-29T21:35:20.562249Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:54.896730Z",
-      "feed_updated": "2026-10-29T21:06:02.113403Z"
+      "checked_at": "2026-10-29T21:59:27.393025Z",
+      "feed_updated": "2026-10-29T21:35:29.152677Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:55.435948Z",
-      "feed_updated": "2026-10-29T21:05:18.155396Z"
+      "checked_at": "2026-10-29T21:59:27.870210Z",
+      "feed_updated": "2026-10-29T21:35:13.611455Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-29T21:17:55.958201Z",
-      "feed_updated": "2026-10-29T21:05:19.440624Z"
+      "checked_at": "2026-10-29T21:59:28.815942Z",
+      "feed_updated": "2026-10-29T21:35:14.514952Z"
     }
   ],
   "uncovered": [
@@ -9071,404 +9071,17 @@
       "precision": "region",
       "source_code": "GR010",
       "matched_by": "code"
-    },
-    "GR014": {
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                26.516,
-                37.562
-              ],
-              [
-                26.494,
-                37.538
-              ],
-              [
-                26.478,
-                37.567
-              ],
-              [
-                26.482,
-                37.607
-              ],
-              [
-                26.52,
-                37.609
-              ],
-              [
-                26.516,
-                37.562
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.065,
-                37.519
-              ],
-              [
-                26.027,
-                37.513
-              ],
-              [
-                25.981,
-                37.517
-              ],
-              [
-                25.984,
-                37.547
-              ],
-              [
-                26.049,
-                37.615
-              ],
-              [
-                26.091,
-                37.636
-              ],
-              [
-                26.198,
-                37.631
-              ],
-              [
-                26.288,
-                37.612
-              ],
-              [
-                26.235,
-                37.578
-              ],
-              [
-                26.065,
-                37.519
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.885,
-                37.646
-              ],
-              [
-                26.85,
-                37.637
-              ],
-              [
-                26.807,
-                37.639
-              ],
-              [
-                26.606,
-                37.676
-              ],
-              [
-                26.581,
-                37.688
-              ],
-              [
-                26.572,
-                37.728
-              ],
-              [
-                26.599,
-                37.761
-              ],
-              [
-                26.67,
-                37.792
-              ],
-              [
-                26.871,
-                37.781
-              ],
-              [
-                26.94,
-                37.764
-              ],
-              [
-                26.964,
-                37.742
-              ],
-              [
-                26.976,
-                37.705
-              ],
-              [
-                26.885,
-                37.646
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.077,
-                38.562
-              ],
-              [
-                26.106,
-                38.546
-              ],
-              [
-                26.141,
-                38.552
-              ],
-              [
-                26.151,
-                38.5
-              ],
-              [
-                26.139,
-                38.326
-              ],
-              [
-                26.123,
-                38.28
-              ],
-              [
-                26.089,
-                38.225
-              ],
-              [
-                26.042,
-                38.176
-              ],
-              [
-                26.005,
-                38.155
-              ],
-              [
-                25.872,
-                38.236
-              ],
-              [
-                25.859,
-                38.282
-              ],
-              [
-                25.834,
-                38.51
-              ],
-              [
-                25.835,
-                38.556
-              ],
-              [
-                25.86,
-                38.582
-              ],
-              [
-                25.989,
-                38.604
-              ],
-              [
-                26.077,
-                38.562
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                25.607,
-                38.554
-              ],
-              [
-                25.591,
-                38.532
-              ],
-              [
-                25.561,
-                38.541
-              ],
-              [
-                25.543,
-                38.604
-              ],
-              [
-                25.568,
-                38.609
-              ],
-              [
-                25.599,
-                38.603
-              ],
-              [
-                25.617,
-                38.584
-              ],
-              [
-                25.607,
-                38.554
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                26.436,
-                38.966
-              ],
-              [
-                26.343,
-                38.975
-              ],
-              [
-                26.134,
-                39.038
-              ],
-              [
-                25.886,
-                39.144
-              ],
-              [
-                25.852,
-                39.169
-              ],
-              [
-                25.837,
-                39.195
-              ],
-              [
-                25.87,
-                39.247
-              ],
-              [
-                25.928,
-                39.285
-              ],
-              [
-                26.188,
-                39.379
-              ],
-              [
-                26.303,
-                39.374
-              ],
-              [
-                26.403,
-                39.326
-              ],
-              [
-                26.466,
-                39.225
-              ],
-              [
-                26.544,
-                39.137
-              ],
-              [
-                26.605,
-                39.05
-              ],
-              [
-                26.601,
-                39.01
-              ],
-              [
-                26.568,
-                38.992
-              ],
-              [
-                26.494,
-                38.969
-              ],
-              [
-                26.436,
-                38.966
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                25.022,
-                39.495
-              ],
-              [
-                24.979,
-                39.478
-              ],
-              [
-                24.972,
-                39.516
-              ],
-              [
-                24.993,
-                39.549
-              ],
-              [
-                25.027,
-                39.552
-              ],
-              [
-                25.05,
-                39.522
-              ],
-              [
-                25.022,
-                39.495
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                25.197,
-                39.803
-              ],
-              [
-                25.168,
-                39.798
-              ],
-              [
-                25.051,
-                39.838
-              ],
-              [
-                25.041,
-                39.878
-              ],
-              [
-                25.038,
-                39.989
-              ],
-              [
-                25.434,
-                40.031
-              ],
-              [
-                25.433,
-                39.981
-              ],
-              [
-                25.197,
-                39.803
-              ]
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "GR014",
-      "matched_by": "code"
     }
   },
-  "region_count": 23,
+  "region_count": 22,
   "region_geometry_errors": [
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-29T21:17:57.732537Z",
-  "feed_updated": "2026-10-29T21:06:02.113403Z",
-  "warning_count": 41,
-  "active_count": 17,
+  "generated_at": "2026-10-29T21:59:30.651525Z",
+  "feed_updated": "2026-10-29T21:35:29.152677Z",
+  "warning_count": 39,
+  "active_count": 15,
   "upcoming_count": 24,
   "max_level": 3,
   "active_max_level": 3,
@@ -10251,36 +9864,6 @@
       "country_code": "croatia"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261028122700.001000014",
-      "status": "active",
-      "sent": "2026-10-28T12:27:00Z",
-      "effective": "2026-10-28T12:27:00Z",
-      "onset": "2026-10-29T00:00:00Z",
-      "expires": "2026-10-29T21:59:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "North East Aegean Islands",
-      "emma_id": "GR014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/64d56307-7431-42e5-8d7c-368978d71267",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261029124712_0_001_yellow_HR019",
       "status": "active",
       "sent": "2026-10-29T11:47:12Z",
@@ -10369,36 +9952,6 @@
       "sender_name": "",
       "country": "Croazia",
       "country_code": "croatia"
-    },
-    {
-      "id": "2.49.0.0.300.0.GR.261028123300.001000016",
-      "status": "active",
-      "sent": "2026-10-28T12:33:00Z",
-      "effective": "2026-10-28T12:33:00Z",
-      "onset": "2026-10-29T12:00:00Z",
-      "expires": "2026-10-29T21:59:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "Kriti",
-      "emma_id": "GR016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/c55603b8-6c5c-4b41-a1ae-3525a8d3f171",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
     },
     {
       "id": "2.49.0.1.499.0.1793256873120",
