@@ -28,7 +28,7 @@ jobs:
           WU_API_KEY: ${{ secrets.WU_API_KEY }}
         run: python scripts/discover_wu_southeast.py
 
-       - name: Pubblica inventario e osservazioni
+      - name: Pubblica inventario WU
         run: |
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
