@@ -30,8 +30,11 @@ TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 # Margine per la durata del job: il cron resta ogni 5 minuti.
-MIN_RUN_INTERVAL_MIN = 4
-MAX_WORKERS = 6
+# Una chiave singola non può sostenere 333 richieste per ciclo a 5 minuti.
+# Acquisizione a blocchi con rotazione e mantenimento dei dati precedenti.
+MIN_RUN_INTERVAL_MIN = 15
+MAX_STATIONS_PER_RUN = 24
+MAX_WORKERS = 3
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
@@ -206,16 +209,34 @@ def main():
     now = datetime.now(UTC)
     today_local = now.astimezone(ROME).date()
 
+    previous = {}
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
+    except (OSError, ValueError):
+        pass
+    if not isinstance(previous, dict):
+        previous = {}
+    old_rows = {
+        str(row["station_id"]): row
+        for row in (previous.get("stations") or [])
+        if isinstance(row, dict) and row.get("station_id")
+    }
+    # Nessun reset dell'inventario a ogni run: la rotazione riprende
+    # dall'ultimo blocco completato con successo.
+    cursor = int(previous.get("next_cursor", 0) or 0)
+    batch = [stations[(cursor + i) % len(stations)]
+             for i in range(min(MAX_STATIONS_PER_RUN, len(stations)))] if stations else []
     out_rows = []
     errors = []
     quota_stop = False
     completed = 0
 
-    print(f"Aggiornamento WU: {len(stations)} stazioni con {MAX_WORKERS} richieste concorrenti")
+    print(f"Aggiornamento WU: blocco {cursor % max(1, len(stations))}, "
+          f"{len(batch)}/{len(stations)} stazioni, {MAX_WORKERS} richieste concorrenti", flush=True)
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = {
             pool.submit(process_station, st, key, now, today_local): st
-            for st in stations
+            for st in batch
             if st.get("station_id")
         }
         for future in as_completed(futures):
@@ -251,33 +272,42 @@ def main():
                 print(f"Processate {completed}/{len(futures)} stazioni")
 
     # Non sostituiamo un dataset buono con uno tronco in caso di quota/autenticazione.
-    minimum_ok = max(1, int(len(stations) * 0.70))
+    minimum_ok = max(1, int(len(batch) * 0.60))
     if quota_stop or len(out_rows) < minimum_ok:
         raise RuntimeError(
-            f"Aggiornamento WU non pubblicato: {len(out_rows)}/{len(stations)} risposte; "
+            f"Aggiornamento WU non pubblicato: {len(out_rows)}/{len(batch)} risposte; "
             f"quota_stop={quota_stop}; errori={len(errors)}"
         )
 
-    out_rows.sort(key=lambda x: (x["name"].casefold(), x["station_id"]))
+    for row in out_rows:
+        old_rows[row["station_id"]] = row
+    ids = {str(st.get("station_id")) for st in stations if st.get("station_id")}
+    # Non perdere stazioni già censite al primo errore isolato.
+    merged = [row for sid, row in old_rows.items() if sid in ids]
+    merged.sort(key=lambda x: (x["name"].casefold(), x["station_id"]))
     result = {
         "generated_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
         "local_day": str(today_local),
         "source": "Weather Underground / The Weather Company PWS",
-        "station_count": len(out_rows),
+        "station_count": len(merged),
         "requested_stations": len(stations),
+        "batch_requested": len(batch),
+        "batch_updated": len(out_rows),
+        "next_cursor": (cursor + len(batch)) % max(1, len(stations)),
         "errors": len(errors),
         "variable_counts": {
-            "temperature": sum(1 for x in out_rows if x["available"]["temp"]),
-            "humidity": sum(1 for x in out_rows if x["available"]["rh"]),
-            "wind": sum(1 for x in out_rows if x["available"]["wind"]),
-            "gust": sum(1 for x in out_rows if x["available"]["gust"]),
-            "rain": sum(1 for x in out_rows if x["available"]["rain"]),
+            "temperature": sum(1 for x in merged if x["available"]["temp"]),
+            "humidity": sum(1 for x in merged if x["available"]["rh"]),
+            "wind": sum(1 for x in merged if x["available"]["wind"]),
+            "gust": sum(1 for x in merged if x["available"]["gust"]),
+            "rain": sum(1 for x in merged if x["available"]["rain"]),
         },
-        "stations": out_rows,
+        "stations": merged,
         "error_details": errors[:50],
     }
     OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"Pubblicate {len(out_rows)} stazioni WU; {len(errors)} errori")
+    print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel blocco; "
+          f"{len(errors)} errori", flush=True)
 
 if __name__ == "__main__":
     main()
