@@ -25,16 +25,13 @@ class WUResilienceTests(unittest.TestCase):
         self.catalog = root / "inventory.json"
         self.data = root / "observations.json"
         self.state = root / "health.json"
-        for target, name in [
+        for target, name, filepath in [
             (health, "STATE_FILE", self.state),
             (discovery, "OUT", self.catalog),
             (updater, "SRC", self.catalog),
             (updater, "OUT", self.data),
         ]:
-            patcher = mock.patch.object(target, name, {
-                "STATE_FILE": self.state, "OUT": (self.catalog if target is discovery else self.data),
-                "SRC": self.catalog,
-            }[name])
+            patcher = mock.patch.object(target, name, filepath)
             patcher.start()
             self.addCleanup(patcher.stop)
         keypatch = mock.patch.dict(os.environ, {"WU_API_KEY": "test-key"}, clear=False)
