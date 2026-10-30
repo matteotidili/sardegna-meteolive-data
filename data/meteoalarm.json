@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:05.812709Z",
-      "feed_updated": "2026-10-30T04:05:38.139715Z"
+      "checked_at": "2026-10-30T05:12:21.485888Z",
+      "feed_updated": "2026-10-30T05:05:20.717171Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:05.583728Z",
-      "feed_updated": "2026-10-30T04:05:23.565621Z"
+      "checked_at": "2026-10-30T05:12:21.315729Z",
+      "feed_updated": "2026-10-30T05:05:14.120289Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:05.566250Z",
-      "feed_updated": "2026-10-30T04:12:55.692254Z"
+      "checked_at": "2026-10-30T05:12:21.320163Z",
+      "feed_updated": "2026-10-30T05:05:27.241505Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:06.835768Z",
-      "feed_updated": "2026-10-30T04:05:13.259810Z"
+      "checked_at": "2026-10-30T05:12:22.290772Z",
+      "feed_updated": "2026-10-30T05:05:08.578839Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:06.972635Z",
-      "feed_updated": "2026-10-30T04:05:09.003504Z"
+      "checked_at": "2026-10-30T05:12:22.477748Z",
+      "feed_updated": "2026-10-30T05:05:07.334216Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:06.680719Z",
-      "feed_updated": "2026-10-30T04:05:07.400843Z"
+      "checked_at": "2026-10-30T05:12:22.147883Z",
+      "feed_updated": "2026-10-30T05:06:49.685600Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:07.475091Z",
-      "feed_updated": "2026-10-30T04:05:07.180885Z"
+      "checked_at": "2026-10-30T05:12:23.263116Z",
+      "feed_updated": "2026-10-30T05:05:06.824565Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:07.599893Z",
-      "feed_updated": "2026-10-30T04:05:17.364984Z"
+      "checked_at": "2026-10-30T05:12:23.451779Z",
+      "feed_updated": "2026-10-30T05:05:13.675371Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:07.638184Z",
-      "feed_updated": "2026-10-30T04:05:46.477338Z"
+      "checked_at": "2026-10-30T05:12:23.463616Z",
+      "feed_updated": "2026-10-30T05:05:16.401831Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:08.156706Z",
-      "feed_updated": "2026-10-30T04:05:30.028207Z"
+      "checked_at": "2026-10-30T05:12:24.399795Z",
+      "feed_updated": "2026-10-30T05:05:19.606126Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-30T04:26:08.717379Z",
-      "feed_updated": "2026-10-30T04:05:18.351274Z"
+      "checked_at": "2026-10-30T05:12:24.886715Z",
+      "feed_updated": "2026-10-30T05:05:09.684513Z"
     }
   ],
   "uncovered": [
@@ -11399,11 +11399,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-30T04:26:10.388248Z",
-  "feed_updated": "2026-10-30T04:12:55.692254Z",
+  "generated_at": "2026-10-30T05:12:26.954909Z",
+  "feed_updated": "2026-10-30T05:06:49.685600Z",
   "warning_count": 47,
-  "active_count": 23,
-  "upcoming_count": 24,
+  "active_count": 24,
+  "upcoming_count": 23,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 2,
@@ -12065,36 +12065,6 @@
       "country_code": "montenegro"
     },
     {
-      "id": "2.49.0.0.250.0.FR.20261029160027.158023",
-      "status": "active",
-      "sent": "2026-10-29T15:00:27Z",
-      "effective": "2026-10-29T23:00:00Z",
-      "onset": "2026-10-29T23:00:00Z",
-      "expires": "2026-10-30T23:00:00Z",
-      "event": "Moderate thunderstorm warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Corse-du-Sud",
-      "emma_id": "FR831",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/78b1b07f-f4c9-4e7c-b4b8-0f21468f3936",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Francia",
-      "country_code": "france"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261029064321_0_yellow_HR802",
       "status": "active",
       "sent": "2026-10-29T05:43:21Z",
@@ -12486,7 +12456,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261029130900.001000003",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-29T13:09:00Z",
       "effective": "2026-10-29T13:09:00Z",
       "onset": "2026-10-30T05:00:00Z",
@@ -12513,6 +12483,36 @@
       "sender_name": "",
       "country": "Grecia",
       "country_code": "greece"
+    },
+    {
+      "id": "2.49.0.0.250.0.FR.20261030060013.485023",
+      "status": "active",
+      "sent": "2026-10-30T05:00:13Z",
+      "effective": "2026-10-30T05:00:00Z",
+      "onset": "2026-10-30T05:00:07Z",
+      "expires": "2026-10-30T23:00:00Z",
+      "event": "Moderate thunderstorm warning",
+      "headline": "",
+      "description": "",
+      "instruction": "",
+      "severity": "Moderate",
+      "urgency": "Future",
+      "certainty": "Likely",
+      "awareness_level": "",
+      "awareness_type": "",
+      "level": 2,
+      "level_name": "giallo",
+      "type_code": null,
+      "type_name": "Temporali",
+      "area_desc": "Corse-du-Sud",
+      "emma_id": "FR831",
+      "geometry": null,
+      "radius_km": null,
+      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/da234555-9a45-47f1-8359-4717b7efaede",
+      "source_web": "",
+      "sender_name": "",
+      "country": "Francia",
+      "country_code": "france"
     },
     {
       "id": "2.49.0.0.705.0.SI.261029093153.8010101",
