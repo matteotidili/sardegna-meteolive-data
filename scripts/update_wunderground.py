@@ -36,6 +36,7 @@ BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 MIN_RUN_INTERVAL_MIN = 15
 # 6 richieste per ciclo (18/ora), non 333 richieste simultanee.
 # La frequenza effettiva dipende comunque dalla quota del provider.
+MIN_CATALOG_SIZE = 300
 MAX_STATIONS_PER_RUN = 6
 MAX_WORKERS = 1
 ROME = ZoneInfo("Europe/Rome")
@@ -227,7 +228,7 @@ def main():
             raise RuntimeError("Archivio WU precedente illeggibile: aggiornamento annullato") from exc
         if not isinstance(previous, dict) or not isinstance(previous.get("stations"), list):
             raise RuntimeError("Archivio WU precedente invalido: aggiornamento annullato")
-        if len(previous["stations"]) < 300:
+        if len(previous["stations"]) < MIN_CATALOG_SIZE:
             raise RuntimeError("Archivio WU sotto la soglia di sicurezza (300 PWS): aggiornamento annullato")
     old_rows = {
         str(row["station_id"]): row
