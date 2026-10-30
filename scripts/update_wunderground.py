@@ -235,6 +235,12 @@ def main():
                 errors.append(error)
             if fatal:
                 quota_stop = True
+                # Diagnostica del servizio senza esporre la chiave API.
+                status = error.get("http", "n/d") if isinstance(error, dict) else "n/d"
+                detail = str(error.get("error", "")) if isinstance(error, dict) else ""
+                detail = detail.replace(key, "[chiave oscurata]")[:180]
+                sid = (futures.get(future) or {}).get("station_id", "n/d")
+                print(f"WU bloccato: HTTP {status}; dettaglio={detail!r}; stazione={sid}", flush=True)
                 print(f"Stop anticipato per quota/autenticazione dopo {completed}/{len(futures)} risposte")
                 for pending in futures:
                     if not pending.done():
