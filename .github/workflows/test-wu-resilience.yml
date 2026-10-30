@@ -1,0 +1,28 @@
+name: Test resilienza rete Weather Underground
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/wu_api_health.py'
+      - 'scripts/update_wunderground.py'
+      - 'scripts/discover_wunderground.py'
+      - 'scripts/discover_wu_southeast.py'
+      - 'tests/test_wu_resilience.py'
+      - '.github/workflows/test-wu-resilience.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compila i moduli e controlla la sintassi
+        run: |
+          python -m py_compile scripts/wu_api_health.py scripts/update_wunderground.py scripts/discover_wunderground.py scripts/discover_wu_southeast.py
+      - name: Verifica la protezione dell'inventario senza usare l'API reale
+        run: python -m unittest discover -s tests -p 'test_wu_resilience.py' -v
