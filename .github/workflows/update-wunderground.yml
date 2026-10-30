@@ -3,6 +3,10 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
+  # Rete WU acquisita a blocchi da 24 stazioni; evita l'intero
+  # inventario di 333 richieste ogni 5 minuti.
+  schedule:
+    - cron: '13,33,53 * * * *'
   push:
     branches: [main]
     paths:
