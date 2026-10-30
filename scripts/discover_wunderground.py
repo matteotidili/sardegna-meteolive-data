@@ -115,6 +115,7 @@ def frange(start: float, stop: float, step: float):
 # Ricerca incrementale: circa una ventina di giorni per coprire tutta
 # la griglia, senza mai interrogare migliaia di punti in una sola run.
 # È possibile usare il workflow sud-est con WU_DISCOVERY_REGION=southeast.
+MIN_CATALOG_SIZE = 300
 DISCOVERY_BATCH = 12
 
 
@@ -164,7 +165,7 @@ def main():
             raise RuntimeError("Inventario WU illeggibile: scansione annullata senza cancellazioni") from exc
         if not isinstance(previous, dict) or not isinstance(previous.get("stations"), list):
             raise RuntimeError("Inventario WU invalido: scansione annullata")
-        if len(previous["stations"]) < 300:
+        if len(previous["stations"]) < MIN_CATALOG_SIZE:
             raise RuntimeError("Inventario WU sotto la soglia di sicurezza (300 PWS): scansione annullata")
     else:
         previous = {}
