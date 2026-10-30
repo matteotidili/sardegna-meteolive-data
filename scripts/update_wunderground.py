@@ -23,6 +23,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from wu_api_health import load_state, in_cooldown, record_failure, record_success, save_state
 
 EXCLUDED_WU_STATIONS = {"ISERRA56"}  # Serramanna: sensore con temperatura errata
 SRC = Path("data/wunderground_stations.json")
@@ -33,8 +34,10 @@ BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 # Una chiave singola non può sostenere 333 richieste per ciclo a 5 minuti.
 # Acquisizione a blocchi con rotazione e mantenimento dei dati precedenti.
 MIN_RUN_INTERVAL_MIN = 15
-MAX_STATIONS_PER_RUN = 24
-MAX_WORKERS = 3
+# 6 richieste per ciclo (18/ora), non 333 richieste simultanee.
+# La frequenza effettiva dipende comunque dalla quota del provider.
+MAX_STATIONS_PER_RUN = 6
+MAX_WORKERS = 1
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
@@ -196,6 +199,11 @@ def process_station(st, key, now, today_local):
 
 
 def main():
+    health = load_state()
+    if in_cooldown(health):
+        print("WU: circuit breaker attivo, nessuna richiesta API fino a "
+              f"{health.get('blocked_until')}. Archivio precedente conservato.", flush=True)
+        return
     if should_skip_recent_run():
         return
     key = os.environ.get("WU_API_KEY")
@@ -271,9 +279,20 @@ def main():
             if completed % 25 == 0:
                 print(f"Processate {completed}/{len(futures)} stazioni")
 
-    # Non sostituiamo un dataset buono con uno tronco in caso di quota/autenticazione.
+    # Le risposte 401/403/429 non devono provocare retry ogni pochi minuti.
+    # Il dataset delle stazioni rimane invariato; viene pubblicato solo il
+    # blocco temporale comune a osservazioni e discovery.
+    if quota_stop:
+        fatal_error = next((e for e in errors if e.get("http") in (401, 403, 429)), {})
+        new_state = record_failure(health, fatal_error.get("http"),
+                                   fatal_error.get("error", "WU API throttled"))
+        save_state(new_state)
+        print("WU: protezione attiva fino a "+str(new_state.get("blocked_until"))+
+              "; nessuna stazione eliminata, nessuna osservazione simulata.", flush=True)
+        return
+
     minimum_ok = max(1, int(len(batch) * 0.60))
-    if quota_stop or len(out_rows) < minimum_ok:
+    if len(out_rows) < minimum_ok:
         raise RuntimeError(
             f"Aggiornamento WU non pubblicato: {len(out_rows)}/{len(batch)} risposte; "
             f"quota_stop={quota_stop}; errori={len(errors)}"
@@ -281,9 +300,9 @@ def main():
 
     for row in out_rows:
         old_rows[row["station_id"]] = row
-    ids = {str(st.get("station_id")) for st in stations if st.get("station_id")}
-    # Non perdere stazioni già censite al primo errore isolato.
-    merged = [row for sid, row in old_rows.items() if sid in ids]
+    # Le stazioni già archiviate non vengono mai cancellate per un
+    # inventario temporaneamente incompleto o un errore della rete.
+    merged = list(old_rows.values())
     merged.sort(key=lambda x: (x["name"].casefold(), x["station_id"]))
     result = {
         "generated_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
@@ -306,6 +325,7 @@ def main():
         "error_details": errors[:50],
     }
     OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    save_state(record_success(health))
     print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel blocco; "
           f"{len(errors)} errori", flush=True)
 
