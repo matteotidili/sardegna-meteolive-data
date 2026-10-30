@@ -217,13 +217,18 @@ def main():
     now = datetime.now(UTC)
     today_local = now.astimezone(ROME).date()
 
+    # Se un archivio consolidato è danneggiato, fermarsi: non sostituire
+    # centinaia di stazioni con un singolo blocco da sei risultati.
     previous = {}
-    try:
-        previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
-    except (OSError, ValueError):
-        pass
-    if not isinstance(previous, dict):
-        previous = {}
+    if OUT.exists():
+        try:
+            previous = json.loads(OUT.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise RuntimeError("Archivio WU precedente illeggibile: aggiornamento annullato") from exc
+        if not isinstance(previous, dict) or not isinstance(previous.get("stations"), list):
+            raise RuntimeError("Archivio WU precedente invalido: aggiornamento annullato")
+        if len(previous["stations"]) < 300:
+            raise RuntimeError("Archivio WU sotto la soglia di sicurezza (300 PWS): aggiornamento annullato")
     old_rows = {
         str(row["station_id"]): row
         for row in (previous.get("stations") or [])
