@@ -160,8 +160,12 @@ def main():
     if OUT.exists():
         try:
             previous = json.loads(OUT.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            previous = {}
+        except (OSError, ValueError) as exc:
+            raise RuntimeError("Inventario WU illeggibile: scansione annullata senza cancellazioni") from exc
+        if not isinstance(previous, dict) or not isinstance(previous.get("stations"), list):
+            raise RuntimeError("Inventario WU invalido: scansione annullata")
+        if len(previous["stations"]) < 300:
+            raise RuntimeError("Inventario WU sotto la soglia di sicurezza (300 PWS): scansione annullata")
     else:
         previous = {}
 
