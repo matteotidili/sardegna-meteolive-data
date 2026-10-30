@@ -7,12 +7,8 @@ on:
   # inventario di 333 richieste ogni 5 minuti.
   schedule:
     - cron: '13,33,53 * * * *'
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/update_wunderground.py'
-      - 'data/wunderground_stations.json'
-      - '.github/workflows/update-wunderground.yml'
+  # Nessun trigger su push: le modifiche al codice non devono generare
+  # richieste extra a una API già in limitazione di quota.
 permissions:
   contents: write
 
@@ -45,13 +41,18 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/wunderground.json
+          if [ -f data/wunderground_api_health.json ]; then
+            git add data/wunderground_api_health.json
+          fi
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
           fi
           git commit -m "Aggiorna osservazioni Weather Underground"
-          if ! git push; then
+          for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase -X theirs origin/main
-            git push
-          fi
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
