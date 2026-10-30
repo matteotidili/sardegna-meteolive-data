@@ -16,6 +16,10 @@ import os
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
+from wu_api_health import (
+    load_state, in_cooldown, record_failure, record_success, save_state
+)
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -108,102 +112,144 @@ def frange(start: float, stop: float, step: float):
         yield round(x, 4)
         x += step
 
+# Ricerca incrementale: circa una ventina di giorni per coprire tutta
+# la griglia, senza mai interrogare migliaia di punti in una sola run.
+# È possibile usare il workflow sud-est con WU_DISCOVERY_REGION=southeast.
+DISCOVERY_BATCH = 12
+
+
+def discovery_points(region="all"):
+    # La griglia regionale viene alternata a una più densa nel sud-est.
+    # Le stazioni nuove vengono aggiunte, quelle vecchie mai cancellate.
+    points = []
+    for lat in frange(REGION["lat_min"], REGION["lat_max"], 0.16):
+        for lon in frange(REGION["lon_min"], REGION["lon_max"], 0.16):
+            if inside_region(lon, lat):
+                points.append((lat, lon))
+    southeast = [
+        (lat, lon)
+        for lat in frange(39.05, 39.52, 0.055)
+        for lon in frange(9.41, 9.73, 0.055)
+        if inside_region(lon, lat)
+    ]
+    if region == "southeast":
+        return southeast
+    # Inserisce dei punti SE ogni pochi punti regionali.
+    mixed = []
+    for i in range(max(len(points), len(southeast) * 4)):
+        if i < len(points):
+            mixed.append(points[i])
+        if i % 4 == 0 and i // 4 < len(southeast):
+            mixed.append(southeast[i // 4])
+    # Stesso ordine a ogni ciclo: il cursore è persistente su GitHub.
+    return list(dict.fromkeys(mixed))
+
+
 def main():
+    state = load_state()
+    if in_cooldown(state):
+        print("WU discovery sospesa per protezione quota, prossima prova dopo "
+              + str(state.get("blocked_until")), flush=True)
+        return
     key = os.environ.get("WU_API_KEY")
     if not key:
         raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
 
-    # Griglia uniforme abbastanza fitta su tutta la Sardegna.
-    # In questo modo intercettiamo anche piccoli cluster costieri/rurali che non
-    # saturano l'endpoint e che una griglia regionale troppo larga può saltare.
-    base_step = 0.07
-    latitudes = list(frange(REGION["lat_min"], REGION["lat_max"], base_step))
-    longitudes = list(frange(REGION["lon_min"], REGION["lon_max"], base_step))
-
-    # Manteniamo le stazioni già note: una discovery successiva deve aggiungere,
-    # non perdere PWS solo perché l'endpoint "near" non le restituisce quel giorno.
-    found = dict(KNOWN_PWS)
+    region = os.environ.get("WU_DISCOVERY_REGION", "all")
+    budget = min(DISCOVERY_BATCH, max(1, int(os.environ.get("WU_DISCOVERY_BATCH", DISCOVERY_BATCH))))
     if OUT.exists():
         try:
             previous = json.loads(OUT.read_text(encoding="utf-8"))
-            for row in previous.get("stations") or []:
-                sid = row.get("station_id")
-                if sid and row.get("lat") is not None and row.get("lon") is not None:
-                    found[sid] = row
-        except Exception as exc:
-            print("AVVISO inventario precedente non leggibile:", exc)
+        except (OSError, ValueError):
+            previous = {}
+    else:
+        previous = {}
 
-    calls = 0
-    visited = set()
+    found = {
+        s["station_id"]: s for s in (previous.get("stations") or [])
+        if isinstance(s, dict) and s.get("station_id")
+    }
+    for sid, row in KNOWN_PWS.items():
+        found.setdefault(sid, row)
+    count_before = len(found)
+    points = discovery_points(region)
+    if not points:
+        print("WU discovery: nessun punto geografico disponibile")
+        return
+    cursor_key = "discovery_se_cursor" if region == "southeast" else "discovery_cursor"
+    cursor = int(previous.get(cursor_key, 0) or 0) % len(points)
+    attempted = 0
+    completed = 0
+    errors = 0
+    throttle = None
+    new_ids = []
+    print(f"WU discovery: {region}, {len(points)} punti, fino a {budget} richieste, "
+          f"cursore {cursor}", flush=True)
 
-    def query_point(lat, lon):
-        nonlocal calls
-        keypt = (round(lat, 4), round(lon, 4))
-        if keypt in visited or not inside_region(lon, lat):
-            return []
-        visited.add(keypt)
+    for i in range(min(budget, len(points))):
+        lat, lon = points[(cursor + i) % len(points)]
         q = urllib.parse.urlencode({
             "geocode": f"{lat:.4f},{lon:.4f}",
-            "product": "pws",
-            "format": "json",
-            "apiKey": key,
+            "product": "pws", "format": "json", "apiKey": key,
         })
+        attempted += 1
         try:
             payload = get_json(BASE + "?" + q)
-            calls += 1
-            rows = list(rows_from_location(payload))
-            for row in rows:
-                if inside_region(row["lon"], row["lat"]):
-                    found[row["station_id"]] = row
-            time.sleep(0.08)
-            return rows
+            completed += 1
+            for row in rows_from_location(payload):
+                if not inside_region(row["lon"], row["lat"]):
+                    continue
+                sid = row["station_id"]
+                if sid in EXCLUDED_WU_STATIONS:
+                    continue
+                if sid not in found:
+                    new_ids.append(sid)
+                found[sid] = row
+        except urllib.error.HTTPError as exc:
+            errors += 1
+            if exc.code in (401, 403, 429):
+                throttle = exc.code
+                state = record_failure(state, exc.code, "Quota/autenticazione WU discovery")
+                save_state(state)
+                print(f"WU discovery: HTTP {exc.code}, circuit breaker attivato fino a "
+                      + str(state.get("blocked_until")), flush=True)
+                break
+            print(f"WU discovery: errore HTTP {exc.code} sul punto {lat},{lon}", flush=True)
         except Exception as exc:
-            print(f"AVVISO punto {lat},{lon}: {exc}")
-            return []
+            errors += 1
+            print(f"WU discovery: errore transitorio al punto {lat},{lon}: "
+                  + str(exc)[:100], flush=True)
+        time.sleep(0.15)
 
-    # Passaggio dedicato sul sud-est (Villasimius-Castiadas-Costa Rei-Muravera):
-    # qui piccoli cluster di 2-5 PWS possono sfuggire alla griglia regionale perché
-    # non saturano mai il limite di 10 risultati dell'endpoint.
-    for lat in frange(39.05, 39.52, 0.025):
-        for lon in frange(9.42, 9.72, 0.025):
-            query_point(lat, lon)
-
-    saturated = []
-    for lat in latitudes:
-        for lon in longitudes:
-            rows = query_point(lat, lon)
-            if saturated_nearby(rows, lat, lon):
-                saturated.append((lat, lon))
-
-    # Raffinamento nelle celle dense: circa 2-3 km.
-    fine_step = 0.025
-    saturated_fine = []
-    for lat, lon in saturated:
-        for dy in (-fine_step, 0.0, fine_step):
-            for dx in (-fine_step, 0.0, fine_step):
-                rows = query_point(lat + dy, lon + dx)
-                if saturated_nearby(rows, lat + dy, lon + dx):
-                    saturated_fine.append((lat + dy, lon + dx))
-
-    # Ultimo passaggio nei cluster ancora saturi: circa 1 km.
-    micro_step = 0.010
-    for lat, lon in saturated_fine[:220]:
-        for dy in (-micro_step, 0.0, micro_step):
-            for dx in (-micro_step, 0.0, micro_step):
-                query_point(lat + dy, lon + dx)
-
-    stations = sorted((s for s in found.values() if s.get("station_id") not in EXCLUDED_WU_STATIONS), key=lambda x: (x["name"].casefold(), x["station_id"]))
-    out = {
+    if completed:
+        save_state(record_success(state)) if throttle is None else None
+    if attempted:
+        # È importante pubblicare anche l'avanzamento della ricerca:
+        # così al prossimo giorno si esplorano nuove aree e non le stesse.
+        previous[cursor_key] = (cursor + attempted) % len(points)
+    if not attempted and not new_ids:
+        return
+    stations = sorted(found.values(),
+        key=lambda x: ((x.get("name") or "").casefold(), x["station_id"]))
+    out = dict(previous)
+    out.update({
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "source": "Weather Underground / The Weather Company PWS",
         "region": "Sardegna",
-        "discovery_calls": calls,
         "station_count": len(stations),
+        "discovery_calls": int(previous.get("discovery_calls", 0) or 0) + completed,
+        "last_discovery_calls": completed,
+        "last_discovery_errors": errors,
+        "last_new_station_ids": new_ids,
+        "discovery_last_status": "blocked" if throttle else "ok",
         "stations": stations,
-    }
+    })
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"Trovate {len(stations)} PWS in Sardegna con {calls} query")
+    OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
+                   encoding="utf-8")
+    print(f"WU discovery: catalogo {count_before} -> {len(stations)}; "
+          f"nuove={len(new_ids)}, query={completed}, errori={errors}", flush=True)
+
 
 if __name__ == "__main__":
     main()
