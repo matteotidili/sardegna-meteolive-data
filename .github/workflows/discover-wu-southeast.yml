@@ -2,18 +2,13 @@ name: Scopri WU Sardegna sud-est
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/discover_wu_southeast.py'
-      - '.github/workflows/discover-wu-southeast.yml'
-
+  # Esecuzione solo manuale, sempre limitata a 12 query.
 permissions:
   contents: write
 
 concurrency:
-  group: discover-wunderground
-  cancel-in-progress: true
+  group: observations-wunderground
+  cancel-in-progress: false
 
 jobs:
   discover:
@@ -33,19 +28,20 @@ jobs:
           WU_API_KEY: ${{ secrets.WU_API_KEY }}
         run: python scripts/discover_wu_southeast.py
 
-      - name: Aggiorna osservazioni WU
-        env:
-          WU_API_KEY: ${{ secrets.WU_API_KEY }}
-          FORCE_UPDATE: '1'
-        run: python scripts/update_wunderground.py
-
-      - name: Pubblica inventario e osservazioni
+       - name: Pubblica inventario e osservazioni
         run: |
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/wunderground_stations.json data/wunderground.json
-          git commit -m "Aggiorna PWS Weather Underground sud-est" || exit 0
-          if ! git push; then
-            git pull --rebase
-            git push
+          git add data/wunderground_stations.json
+          if [ -f data/wunderground_api_health.json ]; then
+            git add data/wunderground_api_health.json
           fi
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Scansione mirata WU sud-est"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
