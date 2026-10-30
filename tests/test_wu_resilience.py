@@ -34,6 +34,10 @@ class WUResilienceTests(unittest.TestCase):
             patcher = mock.patch.object(target, name, filepath)
             patcher.start()
             self.addCleanup(patcher.stop)
+        for module in (discovery, updater):
+            minimum = mock.patch.object(module, "MIN_CATALOG_SIZE", 1)
+            minimum.start()
+            self.addCleanup(minimum.stop)
         keypatch = mock.patch.dict(os.environ, {"WU_API_KEY": "test-key"}, clear=False)
         keypatch.start()
         self.addCleanup(keypatch.stop)
