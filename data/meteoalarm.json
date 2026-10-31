@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:22.834119Z",
-      "feed_updated": "2026-10-30T23:35:35.190496Z"
+      "checked_at": "2026-10-31T00:21:51.341689Z",
+      "feed_updated": "2026-10-31T00:05:32.800537Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:22.741491Z",
-      "feed_updated": "2026-10-30T23:35:16.474602Z"
+      "checked_at": "2026-10-31T00:21:51.358402Z",
+      "feed_updated": "2026-10-31T00:09:11.526276Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:22.479247Z",
-      "feed_updated": "2026-10-30T23:35:10.479513Z"
+      "checked_at": "2026-10-31T00:21:50.989853Z",
+      "feed_updated": "2026-10-31T00:05:09.412266Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:23.287508Z",
-      "feed_updated": "2026-10-30T23:35:11.112003Z"
+      "checked_at": "2026-10-31T00:21:52.142331Z",
+      "feed_updated": "2026-10-31T00:05:10.991734Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:23.817850Z",
-      "feed_updated": "2026-10-30T23:35:07.073218Z"
+      "checked_at": "2026-10-31T00:21:52.369974Z",
+      "feed_updated": "2026-10-31T00:05:07.050774Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:23.564151Z",
-      "feed_updated": "2026-10-30T23:35:05.348458Z"
+      "checked_at": "2026-10-31T00:21:52.166679Z",
+      "feed_updated": "2026-10-31T00:05:04.296915Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:23.944378Z",
-      "feed_updated": "2026-10-30T23:35:06.491546Z"
+      "checked_at": "2026-10-31T00:21:52.984093Z",
+      "feed_updated": "2026-10-31T00:05:35.213069Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:24.470735Z",
-      "feed_updated": "2026-10-30T23:35:14.672351Z"
+      "checked_at": "2026-10-31T00:21:53.301578Z",
+      "feed_updated": "2026-10-31T00:05:11.889717Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:24.351243Z",
-      "feed_updated": "2026-10-30T23:35:03.584307Z"
+      "checked_at": "2026-10-31T00:21:53.199964Z",
+      "feed_updated": "2026-10-31T00:05:04.488298Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:24.434811Z",
-      "feed_updated": "2026-10-30T23:35:27.927953Z"
+      "checked_at": "2026-10-31T00:21:53.807282Z",
+      "feed_updated": "2026-10-31T00:05:16.356105Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-30T23:51:24.995931Z",
-      "feed_updated": "2026-10-30T23:35:14.064385Z"
+      "checked_at": "2026-10-31T00:21:54.033836Z",
+      "feed_updated": "2026-10-31T00:05:12.519535Z"
     }
   ],
   "uncovered": [
@@ -14941,11 +14941,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-30T23:51:26.943901Z",
-  "feed_updated": "2026-10-30T23:35:35.190496Z",
-  "warning_count": 87,
-  "active_count": 28,
-  "upcoming_count": 59,
+  "generated_at": "2026-10-31T00:21:56.259544Z",
+  "feed_updated": "2026-10-31T00:09:11.526276Z",
+  "warning_count": 85,
+  "active_count": 34,
+  "upcoming_count": 51,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -15161,36 +15161,6 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.380.3.IT.261030105458.039",
-      "status": "active",
-      "sent": "2026-10-30T09:54:58Z",
-      "effective": "2026-10-30T09:00:00Z",
-      "onset": "2026-10-30T09:00:00Z",
-      "expires": "2026-10-30T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/0cca0804-d846-45bc-a62b-717768256863",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261030105458.028",
       "status": "active",
       "sent": "2026-10-30T09:54:58Z",
@@ -15215,36 +15185,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a83f5c1c-f197-4dcc-ab56-bd1be2402840",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261030105458.035",
-      "status": "active",
-      "sent": "2026-10-30T09:54:58Z",
-      "effective": "2026-10-30T09:00:00Z",
-      "onset": "2026-10-30T09:00:00Z",
-      "expires": "2026-10-30T23:59:00Z",
-      "event": "Yellow Thunderstorm Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Temporali",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/2e8ea755-f624-4f00-8e3c-ce3f6c3bb573",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -16208,7 +16148,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261030134100.010000007",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T13:41:00Z",
       "effective": "2026-10-30T13:41:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16238,7 +16178,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261030132100.001000007",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T13:21:00Z",
       "effective": "2026-10-30T13:21:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16268,7 +16208,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261030124600.001000010",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T12:46:00Z",
       "effective": "2026-10-30T12:46:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16298,7 +16238,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261030105458.019",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T09:54:58Z",
       "effective": "2026-10-31T00:00:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16328,7 +16268,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261030105458.033",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T09:54:58Z",
       "effective": "2026-10-31T00:00:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16358,7 +16298,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261030105458.036",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T09:54:58Z",
       "effective": "2026-10-31T00:00:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16388,7 +16328,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261030105458.044",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T09:54:58Z",
       "effective": "2026-10-31T00:00:00Z",
       "onset": "2026-10-31T00:00:00Z",
@@ -16418,7 +16358,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261030105458.043",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T09:54:58Z",
       "effective": "2026-10-31T00:00:00Z",
       "onset": "2026-10-31T00:00:00Z",
