@@ -38,7 +38,9 @@ class WUResilienceTests(unittest.TestCase):
             minimum = mock.patch.object(module, "MIN_CATALOG_SIZE", 1)
             minimum.start()
             self.addCleanup(minimum.stop)
-        keypatch = mock.patch.dict(os.environ, {"WU_API_KEY": "test-key"}, clear=False)
+        # La chiave di LineaMeteo non deve essere mai usata dai collector.
+        keypatch = mock.patch.dict(os.environ, {"WU_API_KEY": "personal-keep",
+                                                 "WU_APP_API_KEY": "app-test-key"}, clear=False)
         keypatch.start()
         self.addCleanup(keypatch.stop)
 
@@ -86,6 +88,22 @@ class WUResilienceTests(unittest.TestCase):
         self.assertTrue(any(s["station_id"]=="OLD1" for s in saved["stations"]))
         self.assertTrue(health.in_cooldown(self.read(self.state)))
         self.assertEqual(saved["discovery_last_status"], "blocked")
+
+    def test_personal_key_is_not_used_without_dedicated_credential(self):
+        self.write(self.catalog, {"stations": [
+            {"station_id":"ABC", "name":"A", "lat":40, "lon":9}
+        ]})
+        existing = {"generated_at":"2026-10-29T00:00:00Z",
+                    "stations":[{"station_id":"ABC","temp":12}]}
+        self.write(self.data, existing)
+        with mock.patch.dict(os.environ, {"WU_APP_API_KEY": ""}), \
+             mock.patch.object(updater, "process_station",
+                               side_effect=AssertionError("Personal key must not be used")), \
+             mock.patch.object(discovery, "get_json",
+                               side_effect=AssertionError("Personal key must not be used")):
+            updater.main()
+            discovery.main()
+        self.assertEqual(self.read(self.data), existing)
 
     def test_updater_skips_during_cooldown_without_touching_data(self):
         existing = {"generated_at":"2026-10-29T00:00:00Z",
