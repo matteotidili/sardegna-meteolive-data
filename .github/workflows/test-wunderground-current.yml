@@ -22,7 +22,7 @@ jobs:
 
       - name: Test osservazioni correnti PWS
         env:
-          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+          WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
         run: python scripts/test_wunderground_current.py
 
       - name: Salva risultato test
