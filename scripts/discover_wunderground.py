@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Scopre le PWS Weather Underground presenti in Sardegna.
 
-Richiede il secret GitHub Actions WU_API_KEY.
+Richiede il secret GitHub Actions WU_APP_API_KEY.
 Scrive data/wunderground_stations.json.
 
 La ricerca usa l'endpoint ufficiale Location Service Near, che restituisce
@@ -152,9 +152,11 @@ def main():
         print("WU discovery sospesa per protezione quota, prossima prova dopo "
               + str(state.get("blocked_until")), flush=True)
         return
-    key = os.environ.get("WU_API_KEY")
+    key = os.environ.get("WU_APP_API_KEY")
     if not key:
-        raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
+        print("WU discovery: chiave dedicata WU_APP_API_KEY assente; " 
+              "inventario conservato e nessun accesso alla chiave personale.", flush=True)
+        return
 
     region = os.environ.get("WU_DISCOVERY_REGION", "all")
     budget = min(DISCOVERY_BATCH, max(1, int(os.environ.get("WU_DISCOVERY_BATCH", DISCOVERY_BATCH))))
