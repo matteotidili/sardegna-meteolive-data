@@ -3,7 +3,7 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
-  # Rete WU acquisita a blocchi da 24 stazioni; evita l'intero
+  # Rete WU acquisita a blocchi da 6 stazioni; evita l'intero
   # inventario di 333 richieste ogni 5 minuti.
   schedule:
     - cron: '13,33,53 * * * *'
@@ -32,7 +32,7 @@ jobs:
 
       - name: Scarica ed elabora Weather Underground
         env:
-          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+          WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
@@ -41,8 +41,8 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/wunderground.json
-          if [ -f data/wunderground_api_health.json ]; then
-            git add data/wunderground_api_health.json
+          if [ -f data/wunderground_app_api_health.json ]; then
+            git add data/wunderground_app_api_health.json
           fi
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
