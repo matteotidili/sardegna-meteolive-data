@@ -114,6 +114,28 @@ class WUResilienceTests(unittest.TestCase):
             updater.main()
         self.assertEqual(self.read(self.data), existing)
 
+    def test_offline_stations_do_not_freeze_the_next_batch(self):
+        stations = [
+            {"station_id":"ABC","name":"A","lat":40,"lon":9},
+            {"station_id":"DEF","name":"D","lat":40.1,"lon":9.1},
+        ]
+        self.write(self.catalog, {"stations":stations})
+        baseline = {"station_id":"ABC","name":"A","lat":40,"lon":9,"temp":12,
+                    "available":{"temp":True,"rh":False,"wind":False,
+                                 "gust":False,"rain":False}}
+        self.write(self.data, {"generated_at":"2026-10-29T00:00:00Z",
+                               "stations":[baseline], "next_cursor":0})
+        with mock.patch.object(updater, "should_skip_recent_run", return_value=False), \
+             mock.patch.object(updater, "process_station",
+                               return_value=(None, {"error":"station offline"}, False)):
+            updater.main()
+        result = self.read(self.data)
+        self.assertEqual(result["station_count"], 1)
+        self.assertEqual(result["next_cursor"], 0)  # 2 points, next full cycle
+        self.assertEqual(result["batch_updated"], 0)
+        self.assertEqual(result["generated_at"], "2026-10-29T00:00:00Z")
+        self.assertEqual(result["stations"][0]["temp"], 12)
+
     def test_successful_updater_keeps_unpolled_stations(self):
         self.write(self.catalog, {"stations":[
             {"station_id":"ABC","name":"A","lat":40,"lon":9},
