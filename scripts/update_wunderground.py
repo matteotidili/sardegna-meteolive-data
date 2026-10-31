@@ -302,12 +302,12 @@ def main():
               "; nessuna stazione eliminata, nessuna osservazione simulata.", flush=True)
         return
 
-    minimum_ok = max(1, int(len(batch) * 0.60))
-    if len(out_rows) < minimum_ok:
-        raise RuntimeError(
-            f"Aggiornamento WU non pubblicato: {len(out_rows)}/{len(batch)} risposte; "
-            f"quota_stop={quota_stop}; errori={len(errors)}"
-        )
+    # Una PWS offline o senza osservazioni non deve bloccare per sempre il
+    # cursore. Su errori non legati alle quote manteniamo le vecchie posizioni
+    # e passiamo al blocco seguente; un errore 401/403/429 viene già gestito sopra.
+    if not out_rows:
+        print(f"WU: blocco senza osservazioni disponibili ({len(errors)} errori); "
+              "avanzo al blocco successivo senza azzerare il catalogo.", flush=True)
 
     for row in out_rows:
         old_rows[row["station_id"]] = row
@@ -316,7 +316,11 @@ def main():
     merged = list(old_rows.values())
     merged.sort(key=lambda x: (x["name"].casefold(), x["station_id"]))
     result = {
-        "generated_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
+        # generated_at è l'ora dell'ultima acquisizione con almeno una
+        # misura; checked_at è il controllo effettuato anche senza dati.
+        "generated_at": (now.isoformat(timespec="seconds").replace("+00:00", "Z")
+                         if out_rows else previous.get("generated_at")),
+        "checked_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
         "local_day": str(today_local),
         "source": "Weather Underground / The Weather Company PWS",
         "station_count": len(merged),
@@ -336,7 +340,8 @@ def main():
         "error_details": errors[:50],
     }
     OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    save_state(record_success(health))
+    if out_rows:
+        save_state(record_success(health))
     print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel blocco; "
           f"{len(errors)} errori", flush=True)
 
