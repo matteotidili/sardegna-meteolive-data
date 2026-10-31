@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:00.974483Z",
-      "feed_updated": "2026-10-31T11:05:28.791648Z"
+      "checked_at": "2026-10-31T12:06:00.201182Z",
+      "feed_updated": "2026-10-31T11:35:20.091070Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:01.152048Z",
-      "feed_updated": "2026-10-31T11:05:26.036547Z"
+      "checked_at": "2026-10-31T12:06:00.339610Z",
+      "feed_updated": "2026-10-31T11:35:12.015941Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:00.667960Z",
-      "feed_updated": "2026-10-31T11:05:02.537630Z"
+      "checked_at": "2026-10-31T12:05:59.963013Z",
+      "feed_updated": "2026-10-31T11:35:04.246348Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:01.678067Z",
-      "feed_updated": "2026-10-31T11:05:09.651731Z"
+      "checked_at": "2026-10-31T12:06:00.623144Z",
+      "feed_updated": "2026-10-31T11:35:06.440235Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:02.253657Z",
-      "feed_updated": "2026-10-31T11:12:08.489902Z"
+      "checked_at": "2026-10-31T12:06:01.083617Z",
+      "feed_updated": "2026-10-31T11:35:03.140663Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:01.824038Z",
-      "feed_updated": "2026-10-31T11:05:10.049807Z"
+      "checked_at": "2026-10-31T12:06:01.060645Z",
+      "feed_updated": "2026-10-31T12:05:29.500230Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:02.435260Z",
-      "feed_updated": "2026-10-31T11:05:01.596576Z"
+      "checked_at": "2026-10-31T12:06:01.329623Z",
+      "feed_updated": "2026-10-31T11:35:18.029412Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:02.708044Z",
-      "feed_updated": "2026-10-31T11:05:10.475439Z"
+      "checked_at": "2026-10-31T12:06:01.819731Z",
+      "feed_updated": "2026-10-31T11:53:25.703112Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:03.471484Z",
-      "feed_updated": "2026-10-31T11:05:22.088801Z"
+      "checked_at": "2026-10-31T12:06:01.588903Z",
+      "feed_updated": "2026-10-31T11:35:20.645987Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:03.494484Z",
-      "feed_updated": "2026-10-31T11:05:23.334905Z"
+      "checked_at": "2026-10-31T12:06:01.978231Z",
+      "feed_updated": "2026-10-31T11:35:08.164874Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-10-31T11:32:03.643875Z",
-      "feed_updated": "2026-10-31T11:05:24.594867Z"
+      "checked_at": "2026-10-31T12:06:02.399743Z",
+      "feed_updated": "2026-10-31T11:35:09.694070Z"
     }
   ],
   "uncovered": [
@@ -14170,11 +14170,11 @@
     "geometrie metadata: HTTPError"
   ],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-10-31T11:32:05.459203Z",
-  "feed_updated": "2026-10-31T11:12:08.489902Z",
-  "warning_count": 89,
-  "active_count": 22,
-  "upcoming_count": 67,
+  "generated_at": "2026-10-31T12:06:04.228458Z",
+  "feed_updated": "2026-10-31T12:05:29.500230Z",
+  "warning_count": 88,
+  "active_count": 23,
+  "upcoming_count": 65,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 3,
@@ -14630,36 +14630,6 @@
       "country_code": "greece"
     },
     {
-      "id": "2.49.0.0.300.0.GR.261030124600.001000010",
-      "status": "active",
-      "sent": "2026-10-30T12:46:00Z",
-      "effective": "2026-10-30T12:46:00Z",
-      "onset": "2026-10-31T00:00:00Z",
-      "expires": "2026-10-31T12:00:00Z",
-      "event": "Yellow Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Expected",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Yellow Warning",
-      "area_desc": "Ionion Islands",
-      "emma_id": "GR010",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-greece/8ebbb151-bd99-48bb-bbbc-f69f22c56807",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Grecia",
-      "country_code": "greece"
-    },
-    {
       "id": "2.49.0.0.191.0.HR.261031072032_0_005_yellow_HR019",
       "status": "active",
       "sent": "2026-10-31T06:20:32Z",
@@ -14961,7 +14931,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261030133700.010000010",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T13:37:00Z",
       "effective": "2026-10-30T13:37:00Z",
       "onset": "2026-10-31T12:00:00Z",
@@ -14991,7 +14961,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261030125500.001000010",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-10-30T12:55:00Z",
       "effective": "2026-10-30T12:55:00Z",
       "onset": "2026-10-31T12:00:00Z",
