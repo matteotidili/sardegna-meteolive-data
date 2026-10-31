@@ -25,7 +25,7 @@ jobs:
 
       - name: Scansione WU sud-est
         env:
-          WU_API_KEY: ${{ secrets.WU_API_KEY }}
+          WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
         run: python scripts/discover_wu_southeast.py
 
       - name: Pubblica inventario WU
@@ -33,8 +33,8 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/wunderground_stations.json
-          if [ -f data/wunderground_api_health.json ]; then
-            git add data/wunderground_api_health.json
+          if [ -f data/wunderground_app_api_health.json ]; then
+            git add data/wunderground_app_api_health.json
           fi
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Scansione mirata WU sud-est"
