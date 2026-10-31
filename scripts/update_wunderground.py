@@ -39,6 +39,8 @@ MIN_RUN_INTERVAL_MIN = 15
 MIN_CATALOG_SIZE = 300
 MAX_STATIONS_PER_RUN = 6
 MAX_WORKERS = 1
+# Modificabile solo in funzione della quota contrattuale assegnata al
+# progetto. Sei query / 20 min = 432 richieste al giorno.
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
@@ -207,9 +209,11 @@ def main():
         return
     if should_skip_recent_run():
         return
-    key = os.environ.get("WU_API_KEY")
+    key = os.environ.get("WU_APP_API_KEY")
     if not key:
-        raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
+        print("WU: accesso dedicato WU_APP_API_KEY non configurato; " 
+              "chiave personale WU_API_KEY non utilizzata.", flush=True)
+        return
     if not SRC.exists():
         raise RuntimeError("Manca data/wunderground_stations.json")
 
@@ -238,8 +242,9 @@ def main():
     # Nessun reset dell'inventario a ogni run: la rotazione riprende
     # dall'ultimo blocco completato con successo.
     cursor = int(previous.get("next_cursor", 0) or 0)
+    batch_limit = max(1, min(333, int(os.environ.get("WU_BATCH_SIZE", MAX_STATIONS_PER_RUN))))
     batch = [stations[(cursor + i) % len(stations)]
-             for i in range(min(MAX_STATIONS_PER_RUN, len(stations)))] if stations else []
+             for i in range(min(batch_limit, len(stations)))] if stations else []
     out_rows = []
     errors = []
     quota_stop = False
