@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-STATE_FILE = Path("data/wunderground_api_health.json")
+STATE_FILE = Path("data/wunderground_app_api_health.json")
 UTC = timezone.utc
 BLOCK_HTTP = {401, 403, 429}
 
