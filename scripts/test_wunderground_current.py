@@ -28,9 +28,9 @@ def fetch_json(url: str):
         return json.loads(r.read().decode("utf-8"))
 
 def main():
-    key = os.environ.get("WU_API_KEY")
+    key = os.environ.get("WU_APP_API_KEY")
     if not key:
-        raise RuntimeError("Manca WU_API_KEY nei GitHub Actions Secrets")
+        raise RuntimeError("Manca la chiave dedicata WU_APP_API_KEY")
     if not SRC.exists():
         raise RuntimeError("Manca data/wunderground_stations.json")
 
@@ -43,7 +43,8 @@ def main():
     fresh = 0
     now = datetime.now(timezone.utc)
 
-    for idx, st in enumerate(stations, 1):
+    # Test prudenziale: mai interrogare tutte le PWS in modalità manuale.
+    for idx, st in enumerate(stations[:1], 1):
         sid = st.get("station_id")
         if not sid:
             continue
