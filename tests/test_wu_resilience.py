@@ -154,8 +154,8 @@ class WUResilienceTests(unittest.TestCase):
         def fake_station(st, key, now, today):
             visited.append(st["station_id"])
             return dict(old,station_id=st["station_id"],name=st["name"],temp=20),None,False
-        with mock.patch.object(updater, "should_skip_recent_run", return_value=False), \\
-             mock.patch.object(updater, "process_station", side_effect=fake_station), \\
+        with mock.patch.object(updater, "should_skip_recent_run", return_value=False), \
+             mock.patch.object(updater, "process_station", side_effect=fake_station), \
              mock.patch.dict(os.environ, {"WU_BATCH_SIZE":"1"}):
             updater.main()
         result=self.read(self.data)
