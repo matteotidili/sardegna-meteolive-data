@@ -136,6 +136,35 @@ class WUResilienceTests(unittest.TestCase):
         self.assertEqual(result["generated_at"], "2026-10-29T00:00:00Z")
         self.assertEqual(result["stations"][0]["temp"], 12)
 
+    def test_every_cycle_queries_all_stations_without_rotation(self):
+        stations = [
+            {"station_id":sid,"name":sid,"lat":40.0,"lon":9.0}
+            for sid in ("ONE", "TWO", "THREE")
+        ]
+        self.write(self.catalog, {"stations":stations})
+        old = {"station_id":"ONE","name":"ONE","lat":40.0,"lon":9.0,
+               "temp":10,"available":{"temp":True,"rh":False,
+                "wind":False,"gust":False,"rain":False}}
+        self.write(self.data, {
+            "generated_at":"2026-10-29T00:00:00Z",
+            "stations":[old],
+            "next_cursor":2,
+        })
+        visited=[]
+        def fake_station(st, key, now, today):
+            visited.append(st["station_id"])
+            return dict(old,station_id=st["station_id"],name=st["name"],temp=20),None,False
+        with mock.patch.object(updater, "should_skip_recent_run", return_value=False), \\
+             mock.patch.object(updater, "process_station", side_effect=fake_station), \\
+             mock.patch.dict(os.environ, {"WU_BATCH_SIZE":"1"}):
+            updater.main()
+        result=self.read(self.data)
+        self.assertCountEqual(visited, ["ONE","TWO","THREE"])
+        self.assertEqual(result["batch_requested"],3)
+        self.assertEqual(result["batch_updated"],3)
+        self.assertEqual(result["next_cursor"],0)
+        self.assertEqual(result["station_count"],3)
+
     def test_successful_updater_keeps_unpolled_stations(self):
         self.write(self.catalog, {"stations":[
             {"station_id":"ABC","name":"A","lat":40,"lon":9},
