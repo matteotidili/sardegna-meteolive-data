@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import time
+import threading
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -30,21 +31,29 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-# Margine per la durata del job: il cron resta ogni 5 minuti.
-# Una chiave singola non può sostenere 333 richieste per ciclo a 5 minuti.
-# Acquisizione a blocchi con rotazione e mantenimento dei dati precedenti.
-MIN_RUN_INTERVAL_MIN = 15
-# 6 richieste per ciclo (18/ora), non 333 richieste simultanee.
-# La frequenza effettiva dipende comunque dalla quota del provider.
+# Tutte le PWS dell'inventario a ogni ciclo di 30 minuti, SENZA rotazione.
+# Il servizio può interrompere l'accesso se la quota giornaliera non basta.
+MIN_RUN_INTERVAL_MIN = 25
 MIN_CATALOG_SIZE = 300
-MAX_STATIONS_PER_RUN = 6
-MAX_WORKERS = 1
-# Modificabile solo in funzione della quota contrattuale assegnata al
-# progetto. Sei query / 20 min = 432 richieste al giorno.
+MAX_WORKERS = 4
+# Minimo 2,1 s tra inizi di richieste: meno di 30 interrogazioni/minuto
+# anche quando i worker sono concorrenti. 333 PWS richiedono ~12 minuti.
+REQUEST_SPACING_SECONDS = 2.1
+_REQUEST_LOCK = threading.Lock()
+_NEXT_REQUEST_AT = 0.0
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
 def fetch_json(url: str):
+    # Limite condiviso da tutti i worker: niente picchi di 333 richieste.
+    global _NEXT_REQUEST_AT
+    with _REQUEST_LOCK:
+        current = time.monotonic()
+        slot = max(current, _NEXT_REQUEST_AT)
+        _NEXT_REQUEST_AT = slot + REQUEST_SPACING_SECONDS
+    delay = slot - current
+    if delay > 0:
+        time.sleep(delay)
     req = urllib.request.Request(url, headers={"User-Agent": "sardegna-meteolive/1.0"})
     with urllib.request.urlopen(req, timeout=35) as r:
         raw = r.read()
@@ -195,10 +204,12 @@ def process_station(st, key, now, today_local):
             body = exc.read().decode("utf-8", errors="replace")[:250]
         except Exception:
             pass
-        err = {"station_id": sid, "http": exc.code, "error": body or str(exc)}
+        err = {"station_id": sid, "http": exc.code,
+               "error": (body or str(exc)).replace(key, "[chiave oscurata]")}
         return None, err, exc.code in (401, 403, 429)
     except Exception as exc:
-        return None, {"station_id": sid, "error": str(exc)[:250]}, False
+        return None, {"station_id": sid,
+                      "error": str(exc).replace(key, "[chiave oscurata]")[:250]}, False
 
 
 def main():
@@ -222,8 +233,8 @@ def main():
     now = datetime.now(UTC)
     today_local = now.astimezone(ROME).date()
 
-    # Se un archivio consolidato è danneggiato, fermarsi: non sostituire
-    # centinaia di stazioni con un singolo blocco da sei risultati.
+    # Se un archivio consolidato è danneggiato, non sostituirlo con
+    # risultati parziali di un ciclo completo.
     previous = {}
     if OUT.exists():
         try:
@@ -239,19 +250,17 @@ def main():
         for row in (previous.get("stations") or [])
         if isinstance(row, dict) and row.get("station_id")
     }
-    # Nessun reset dell'inventario a ogni run: la rotazione riprende
-    # dall'ultimo blocco completato con successo.
-    cursor = int(previous.get("next_cursor", 0) or 0)
-    batch_limit = max(1, min(333, int(os.environ.get("WU_BATCH_SIZE", MAX_STATIONS_PER_RUN))))
-    batch = [stations[(cursor + i) % len(stations)]
-             for i in range(min(batch_limit, len(stations)))] if stations else []
+    # Ogni ciclo interroga l'intero inventario una volta.
+    # Ignoriamo next_cursor e WU_BATCH_SIZE precedenti: nessuna rotazione.
+    batch = stations
     out_rows = []
     errors = []
     quota_stop = False
     completed = 0
 
-    print(f"Aggiornamento WU: blocco {cursor % max(1, len(stations))}, "
-          f"{len(batch)}/{len(stations)} stazioni, {MAX_WORKERS} richieste concorrenti", flush=True)
+    print(f"Aggiornamento WU completo: {len(batch)}/{len(stations)} stazioni, "
+          f"ogni 30 minuti, {MAX_WORKERS} worker, "
+          f"intervallo minimo {REQUEST_SPACING_SECONDS}s tra richieste", flush=True)
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = {
             pool.submit(process_station, st, key, now, today_local): st
@@ -302,12 +311,11 @@ def main():
               "; nessuna stazione eliminata, nessuna osservazione simulata.", flush=True)
         return
 
-    # Una PWS offline o senza osservazioni non deve bloccare per sempre il
-    # cursore. Su errori non legati alle quote manteniamo le vecchie posizioni
-    # e passiamo al blocco seguente; un errore 401/403/429 viene già gestito sopra.
+    # Una PWS offline non impedisce l'aggiornamento delle altre stazioni.
+    # In caso di 401/403/429, fermiamo il ciclo e conserviamo il dataset.
     if not out_rows:
-        print(f"WU: blocco senza osservazioni disponibili ({len(errors)} errori); "
-              "avanzo al blocco successivo senza azzerare il catalogo.", flush=True)
+        print(f"WU: nessuna osservazione valida in questo ciclo ({len(errors)} errori); "
+              "l'archivio precedente viene conservato.", flush=True)
 
     for row in out_rows:
         old_rows[row["station_id"]] = row
@@ -327,7 +335,7 @@ def main():
         "requested_stations": len(stations),
         "batch_requested": len(batch),
         "batch_updated": len(out_rows),
-        "next_cursor": (cursor + len(batch)) % max(1, len(stations)),
+        "next_cursor": 0,  # compatibilità con client storici; rotazione disattivata
         "errors": len(errors),
         "variable_counts": {
             "temperature": sum(1 for x in merged if x["available"]["temp"]),
@@ -342,7 +350,7 @@ def main():
     OUT.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     if out_rows:
         save_state(record_success(health))
-    print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel blocco; "
+    print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel ciclo completo; "
           f"{len(errors)} errori", flush=True)
 
 if __name__ == "__main__":
