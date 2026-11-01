@@ -51,25 +51,46 @@ def url_for(run, lead, pack="SP2"):
     return (f"{BASE}/pnt/{stamp}/arome/001/{pack}/"
             f"arome__001__{pack}__{lead:02d}H__{stamp}.grib2")
 
-def head_ok(url):
+def head_ok(url, check_size=False):
     try:
         req=urllib.request.Request(url,method="HEAD",headers={"User-Agent":"SardegnaMeteoLive/1.0"})
         with urllib.request.urlopen(req,timeout=18) as res:
             size=int(res.headers.get("Content-Length","0"))
-            return res.status==200 and 8_000_000<size<65_000_000
+            if res.status!=200:
+                return False
+            return (8_000_000<size<65_000_000) if check_size else (size==0 or 100_000<size<65_000_000)
     except (urllib.error.HTTPError,TimeoutError,OSError,ValueError) as exc:
         print("Non pronto:",type(exc).__name__,url.rsplit("/",1)[-1],flush=True)
         return False
+
+def cycle_ready(candidate):
+    # SP2 da solo non basta: il renderer usa SP1, SP2 e SP3 per
+    # TUTTI i 21 prodotti. Il 01/11 SP2 H+51 era online mentre
+    # SP1 H+31 mancava (404), interrompendo 30 frame già elaborati.
+    # Testare anche H+31 perché alcuni pacchetti SP1 hanno buchi
+    # intermedi di pubblicazione.
+    probes=[
+        ("SP2",1,True),("SP2",31,True),("SP2",51,True),
+        ("SP1",1,False),("SP1",31,False),("SP1",51,False),
+        ("SP3",1,False),("SP3",31,False),("SP3",51,False),
+    ]
+    for pack,lead,check_size in probes:
+        if not head_ok(url_for(candidate,lead,pack),check_size):
+            print("Corsa incompleta:",iso(candidate),pack,f"H+{lead}",flush=True)
+            return False
+    return True
 
 def latest_cycle():
     now=dt.datetime.now(dt.timezone.utc)
     start=now.replace(hour=(now.hour//3)*3,minute=0,second=0,microsecond=0)
     for offset in range(0,9):
         candidate=start-dt.timedelta(hours=offset*3)
-        # Entrambe le scadenze devono esistere per produrre una sequenza completa.
-        if head_ok(url_for(candidate,1)) and head_ok(url_for(candidate,51)):
+        if cycle_ready(candidate):
             return candidate
-    raise RuntimeError("Nessun run recente AROME HD completamente pubblicato")
+    # Non si possono inventare i GRIB2 mancanti: lasciare pubblicata
+    # la precedente previsione completa e riprovare all'ora seguente.
+    print("Nessun run AROME completo in SP1/SP2/SP3: mantengo la corsa esistente",flush=True)
+    return None
 
 def get_bytes(url):
     for attempt in range(3):
@@ -155,6 +176,8 @@ def rgba_from_mm(data):
 
 def run():
     cycle=latest_cycle()
+    if cycle is None:
+        return
     print("Run disponibile:",iso(cycle),flush=True)
     if META.exists():
         try:
