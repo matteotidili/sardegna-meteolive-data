@@ -3,6 +3,12 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
+  # Consente di avviare un controllo reale quando viene aggiornata la
+  # configurazione di questo workflow; nessun trigger sui dati osservativi.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-wunderground.yml'
   # Tutte le stazioni a ogni ciclo, senza rotazione.
   # La quota stimata per 333 stazioni è 15.984 chiamate/giorno:
   # verificare i limiti del provider, con circuit breaker su 401/403/429.
