@@ -17,6 +17,7 @@ import os
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -34,6 +35,11 @@ MAX_SPLIT_DEPTH = 6
 REQUEST_TIMEOUT = 45
 RETRIES = 4
 USER_AGENT = "sardegna-meteolive/1.0 (+github.com/matteotidili/sardegna-meteolive-data)"
+
+
+class TemporaryEumetsatOutage(RuntimeError):
+    """Solo indisponibilità del WFS, non errori di autenticazione o di dati."""
+
 
 
 def iso_z(dt: datetime) -> str:
@@ -63,12 +69,20 @@ def request_json(params: dict[str, str]) -> dict:
                 raise RuntimeError("EUMETSAT WFS non ha restituito JSON: " + text[:800])
 
             return json.loads(raw)
-        except Exception as exc:  # retry anche sui conflitti temporanei del replica DB
+        except urllib.error.HTTPError as exc:
+            # Solo i 429/5xx possono essere temporanei. Non mascherare 401/403
+            # o query errate (400): richiedono una correzione esplicita.
+            if exc.code not in (429, 500, 502, 503, 504):
+                raise
             last_error = exc
-            if attempt < RETRIES:
-                time.sleep(2 * attempt)
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            last_error = exc
+        if attempt < RETRIES:
+            time.sleep(2 * attempt)
 
-    raise RuntimeError(f"Richiesta EUMETSAT fallita dopo {RETRIES} tentativi: {last_error}")
+    raise TemporaryEumetsatOutage(
+        f"EUMETSAT WFS temporaneamente indisponibile dopo {RETRIES} tentativi: {last_error}"
+    )
 
 
 def make_filter(lat0: float, lat1: float, lon0: float, lon1: float, start: datetime, end: datetime) -> str:
@@ -205,19 +219,26 @@ def main() -> None:
     collected: dict[str, dict] = {}
     frame_stats: list[dict] = []
 
-    for slot in slots:
-        # Una finestra non sovrapposta per ciascun timestamp nominale MTG.
-        end = slot + timedelta(minutes=FRAME_MINUTES) - timedelta(seconds=1)
-        features = query_box(token, slot, end, LAT_MIN, LAT_MAX, LON_MIN, LON_MAX)
-        accepted = 0
-        for raw in features:
-            feature = clean_feature(raw)
-            if not feature:
-                continue
-            fid = str(feature.get("id") or json.dumps(feature["geometry"], sort_keys=True))
-            collected[fid] = feature
-            accepted += 1
-        frame_stats.append({"time": iso_z(slot), "count": accepted})
+    try:
+        for slot in slots:
+            # Una finestra non sovrapposta per ciascun timestamp nominale MTG.
+            end = slot + timedelta(minutes=FRAME_MINUTES) - timedelta(seconds=1)
+            features = query_box(token, slot, end, LAT_MIN, LAT_MAX, LON_MIN, LON_MAX)
+            accepted = 0
+            for raw in features:
+                feature = clean_feature(raw)
+                if not feature:
+                    continue
+                fid = str(feature.get("id") or json.dumps(feature["geometry"], sort_keys=True))
+                collected[fid] = feature
+                accepted += 1
+            frame_stats.append({"time": iso_z(slot), "count": accepted})
+    except TemporaryEumetsatOutage as exc:
+        # Niente JSON parziale, niente azzeramento dei pixel FRP:
+        # il file precedente mantiene il timestamp originale.
+        print(f"FRP: {exc}. Mantengo il precedente prodotto, senza falsi dati recenti.",
+              flush=True)
+        return
 
     def feature_time(feature: dict) -> float:
         value = (feature.get("properties") or {}).get("time")
