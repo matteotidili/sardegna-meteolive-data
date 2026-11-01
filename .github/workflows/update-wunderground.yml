@@ -3,8 +3,9 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
-  # Rete WU acquisita a blocchi da 6 stazioni; evita l'intero
-  # inventario di 333 richieste ogni 5 minuti.
+  # Rete WU attiva: rotazione su tutte le 333 stazioni.
+  # 18 richieste ogni 20 minuti = max 1296/giorno, salvo test manuali.
+  # Non promettere aggiornamenti di tutte le PWS ogni 30 minuti senza quota superiore.
   schedule:
     - cron: '13,33,53 * * * *'
   # Nessun trigger su push: le modifiche al codice non devono generare
@@ -33,8 +34,9 @@ jobs:
       - name: Scarica ed elabora Weather Underground
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
-          # Quota parametrica: aumentare solo dopo conferma del fornitore.
-          WU_BATCH_SIZE: ${{ vars.WU_BATCH_SIZE || '6' }}
+          # Dimensione prudente: 18 per ciclo, quota teorica 1296/giorno.
+          # La variabile WU_BATCH_SIZE può prevalere: modificarla solo con quota autorizzata.
+          WU_BATCH_SIZE: ${{ vars.WU_BATCH_SIZE || '18' }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
