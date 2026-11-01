@@ -17,7 +17,10 @@ OUT = Path("data/stations.json")
 MIN_RUN_INTERVAL_MIN = 9
 # Durante i primi minuti del giorno i dati DPCN possono non essere ancora
 # disponibili nel nuovo intervallo di riferimento (00:00 -> adesso).
-MIDNIGHT_GRACE_MINUTES = 40
+# Fino alle 03:00 locali MeteoHub può rispondere FAILURE alle richieste
+# dal primo minuto del nuovo giorno (es. 01/11 00:50 e 01:19 locali).
+# Rinviare anziché inviare query vuote che causano email automatiche.
+MIDNIGHT_GRACE_MINUTES = 180
 
 V_TEMP="B12101"; V_RH="B13003"; V_WDIR="B11001"; V_WSPD="B11002"; V_GUST="B11041"; V_RAIN="B13011"
 DESIRED={V_TEMP,V_RH,V_WDIR,V_WSPD,V_GUST,V_RAIN}
@@ -245,9 +248,13 @@ def should_skip_midnight():
     if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
         return False
     now=datetime.now(ROME)
-    if now.hour==0 and now.minute<MIDNIGHT_GRACE_MINUTES:
-        print(f"Salto MeteoHub: le prime osservazioni del {now.date()} "
-              f"potrebbero non essere disponibili fino alle 00:{MIDNIGHT_GRACE_MINUTES:02d}.")
+    elapsed=now.hour*60+now.minute
+    if elapsed<MIDNIGHT_GRACE_MINUTES:
+        ready_hour, ready_minute=divmod(MIDNIGHT_GRACE_MINUTES,60)
+        print(f"Salto MeteoHub: nessuna estrazione nelle prime "
+              f"{MIDNIGHT_GRACE_MINUTES} min del {now.date()}. "
+              f"Prima richiesta dopo le {ready_hour:02d}:{ready_minute:02d} locali; "
+              "resta disponibile il precedente archivio DPCN.", flush=True)
         return True
     return False
 
