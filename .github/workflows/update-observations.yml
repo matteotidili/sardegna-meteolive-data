@@ -2,6 +2,14 @@ name: Aggiorna tutte le reti stazioni
 
 on:
   workflow_dispatch:
+  # Trigger complementare a evento: il cron GitHub può accumulare ritardi
+  # nelle ore di maggior traffico. Quando termina un ciclo WU, aggiorniamo
+  # anche DPCN e AM, senza interrogare di nuovo WU.
+  # I singoli updater mantengono i propri limiti di frequenza e i lock.
+  workflow_run:
+    workflows:
+      - 'Aggiorna dati Weather Underground'
+    types: [completed]
   push:
     branches: [main]
     paths:
