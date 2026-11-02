@@ -31,9 +31,12 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-# Tutte le PWS dell'inventario a ogni ciclo di 30 minuti, SENZA rotazione.
-# Il servizio può interrompere l'accesso se la quota giornaliera non basta.
+# Interroghiamo una quota dell'inventario per ciclo: l'intero catalogo
+# resta visibile, ma non consumiamo >15.000 richieste al giorno
+# su una chiave che è già stata bloccata per eccesso di traffico.
+# 28 PWS ogni 30 minuti = <=1344 richieste/giorno se il cron è regolare.
 MIN_RUN_INTERVAL_MIN = 25
+MAX_STATIONS_PER_CYCLE = 28
 MIN_CATALOG_SIZE = 300
 MAX_WORKERS = 4
 # Minimo 2,1 s tra inizi di richieste: meno di 30 interrogazioni/minuto
@@ -87,22 +90,15 @@ def should_skip_recent_run():
         return False
     try:
         prev=json.loads(OUT.read_text(encoding="utf-8"))
-        ts=prev.get("generated_at")
+        ts=prev.get("checked_at") or prev.get("generated_at")
         if not ts:
             return False
         dt=parse_utc(ts)
         if not dt:
             return False
 
-        # Se l'inventario PWS è stato rigenerato dopo l'ultimo dataset,
-        # il refresh va eseguito subito anche dentro la finestra minima tra due controlli.
-        if SRC.exists():
-            inv=json.loads(SRC.read_text(encoding="utf-8"))
-            inv_ts=parse_utc(inv.get("generated_at"))
-            if inv_ts and inv_ts > dt:
-                print("Inventario WU più recente del dataset: forzo aggiornamento")
-                return False
-
+        # Nessuna interrogazione extra quando cambia l'inventario:
+        # la discovery non deve aumentare il consumo della quota meteo.
         age=(datetime.now(UTC)-dt).total_seconds()/60
         if age < MIN_RUN_INTERVAL_MIN:
             print(f"Salto aggiornamento: ultimo aggiornamento {age:.1f} min fa")
@@ -250,16 +246,24 @@ def main():
         for row in (previous.get("stations") or [])
         if isinstance(row, dict) and row.get("station_id")
     }
-    # Ogni ciclo interroga l'intero inventario una volta.
-    # Ignoriamo next_cursor e WU_BATCH_SIZE precedenti: nessuna rotazione.
-    batch = stations
+    # Rotazione su TUTTE le stazioni, comprese quelle offline. Conserviamo
+    # il catalogo completo e le letture precedenti fino a nuovo dato reale.
+    # La dimensione del batch e' limitata anche se qualcuno configura un valore
+    # troppo alto: la protezione dalla quota non può essere disattivata per errore.
+    try:
+        configured_batch = int(os.getenv("WU_BATCH_SIZE", str(MAX_STATIONS_PER_CYCLE)))
+    except ValueError:
+        configured_batch = MAX_STATIONS_PER_CYCLE
+    limit = min(len(stations), max(1, min(configured_batch, MAX_STATIONS_PER_CYCLE)))
+    cursor = int(previous.get("next_cursor") or 0) % max(1, len(stations))
+    batch = (stations[cursor:] + stations[:cursor])[:limit]
     out_rows = []
     errors = []
     quota_stop = False
     completed = 0
 
-    print(f"Aggiornamento WU completo: {len(batch)}/{len(stations)} stazioni, "
-          f"ogni 30 minuti, {MAX_WORKERS} worker, "
+    print(f"Aggiornamento WU progressivo: {len(batch)}/{len(stations)} stazioni "
+          f"(partenza indice {cursor}), {MAX_WORKERS} worker, "
           f"intervallo minimo {REQUEST_SPACING_SECONDS}s tra richieste", flush=True)
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = {
@@ -335,7 +339,7 @@ def main():
         "requested_stations": len(stations),
         "batch_requested": len(batch),
         "batch_updated": len(out_rows),
-        "next_cursor": 0,  # compatibilità con client storici; rotazione disattivata
+        "next_cursor": (cursor + len(batch)) % max(1, len(stations)),
         "errors": len(errors),
         "variable_counts": {
             "temperature": sum(1 for x in merged if x["available"]["temp"]),
