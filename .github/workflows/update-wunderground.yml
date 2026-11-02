@@ -9,6 +9,8 @@ on:
     workflows:
       - 'Aggiorna pluviometri Sardegna CEDOC'
       - 'Aggiorna rete WeatherLink (accesso autorizzato)'
+      - 'Aggiorna vettori AROME 10m'
+      - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
     types: [completed]
   # Consente di avviare un controllo reale quando viene aggiornata la
   # configurazione di questo workflow; nessun trigger sui dati osservativi.
