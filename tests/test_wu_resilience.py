@@ -136,7 +136,7 @@ class WUResilienceTests(unittest.TestCase):
         self.assertEqual(result["generated_at"], "2026-10-29T00:00:00Z")
         self.assertEqual(result["stations"][0]["temp"], 12)
 
-    def test_rotating_batches_preserve_all_stations_and_respect_budget(self):
+    def test_every_cycle_queries_the_entire_inventory_even_with_old_cursor(self):
         stations = [
             {"station_id":sid,"name":sid,"lat":40.0,"lon":9.0}
             for sid in ("ONE", "TWO", "THREE")
@@ -148,7 +148,7 @@ class WUResilienceTests(unittest.TestCase):
         self.write(self.data, {
             "generated_at":"2026-10-29T00:00:00Z",
             "stations":[old],
-            "next_cursor":2,
+            "next_cursor":2,  # abandoned rotating batches must not affect a cycle
         })
         visited=[]
         def fake_station(st, key, now, today):
@@ -159,13 +159,36 @@ class WUResilienceTests(unittest.TestCase):
              mock.patch.dict(os.environ, {"WU_BATCH_SIZE":"1"}):
             updater.main()
         result=self.read(self.data)
-        self.assertEqual(visited, ["THREE"])
-        self.assertEqual(result["batch_requested"],1)
-        self.assertEqual(result["batch_updated"],1)
+        self.assertCountEqual(visited, ["ONE","TWO","THREE"])
+        self.assertEqual(result["batch_requested"],3)
+        self.assertEqual(result["batch_updated"],3)
         self.assertEqual(result["next_cursor"],0)
-        # The archive keeps OLD entries and is never replaced by a single batch.
-        self.assertEqual(result["station_count"],2)
-        self.assertEqual({s["station_id"] for s in result["stations"]},{"ONE","THREE"})
+        self.assertEqual(result["station_count"],3)
+        self.assertEqual({s["station_id"] for s in result["stations"]},{"ONE","TWO","THREE"})
+
+    def test_all_333_stations_queried_each_cycle(self):
+        stations = [{"station_id":f"PWS{i:03d}","name":f"Station {i}",
+                     "lat":39.0+i/1000,"lon":9.0} for i in range(333)]
+        self.write(self.catalog, {"stations":stations})
+        old = {"station_id":"PWS000","name":"Station 0","lat":39.0,"lon":9.0,
+               "temp":10,"available":{"temp":True,"rh":False,
+                "wind":False,"gust":False,"rain":False}}
+        self.write(self.data, {"generated_at":"2026-10-29T00:00:00Z",
+                               "stations":[old], "next_cursor":221})
+        seen=[]
+        def fake_station(st, key, now, today):
+            seen.append(st["station_id"])
+            return dict(old,station_id=st["station_id"],name=st["name"],
+                        lat=st["lat"],lon=st["lon"],temp=20),None,False
+        with mock.patch.object(updater, "should_skip_recent_run", return_value=False), \
+             mock.patch.object(updater, "process_station", side_effect=fake_station):
+            updater.main()
+        result=self.read(self.data)
+        self.assertEqual(len(seen),333)
+        self.assertEqual(set(seen), {st["station_id"] for st in stations})
+        self.assertEqual(result["batch_requested"],333)
+        self.assertEqual(result["batch_updated"],333)
+        self.assertEqual(result["station_count"],333)
 
     def test_successful_updater_keeps_unpolled_stations(self):
         self.write(self.catalog, {"stations":[
