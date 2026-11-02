@@ -3,6 +3,13 @@ name: Aggiorna dati Weather Underground
 
 on:
   workflow_dispatch:
+  # Due trigger indipendenti dal cron WU riducono i buchi del pianificatore.
+  # Lo script salta automaticamente gli avvii prima dei 29 minuti.
+  workflow_run:
+    workflows:
+      - 'Aggiorna pluviometri Sardegna CEDOC'
+      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
+    types: [completed]
   # Consente di avviare un controllo reale quando viene aggiornata la
   # configurazione di questo workflow; nessun trigger sui dati osservativi.
   push:
@@ -40,7 +47,7 @@ jobs:
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
           # Budget prudenziale e rotazione persistente senza perdere stazioni.
-          FORCE_UPDATE: ${{ github.event_name != 'schedule' }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
         run: python scripts/update_wunderground.py
 
       - name: Pubblica il JSON aggiornato
