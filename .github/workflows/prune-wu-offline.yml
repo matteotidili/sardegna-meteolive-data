@@ -4,6 +4,10 @@ name: Escludi stazioni WU offline da 14 giorni
 
 on:
   workflow_dispatch:
+  # Il polling WU ordinario e' di nuovo nel workflow comune;
+  # la pulizia degli offline avviene una volta al giorno, senza chiamate API.
+  schedule:
+    - cron: '17 3 * * *'
   workflow_run:
     workflows:
       - 'Aggiorna dati Weather Underground'
