@@ -15,6 +15,8 @@ on:
       - 'Aggiorna rete WeatherLink (accesso autorizzato)'
       - 'Aggiorna pluviometri Sardegna CEDOC'
       - 'Aggiorna incendi MTG FRP'
+      - 'Aggiorna vettori AROME 10m'
+      - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
       - 'Scopri stazioni Weather Underground'
     types: [completed]
   push:
@@ -62,7 +64,7 @@ jobs:
           METEOHUB_USERNAME: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_USERNAME || '' }}
           METEOHUB_PASSWORD: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_PASSWORD || '' }}
           WU_API_KEY: ${{ matrix.network == 'wunderground' && secrets.WU_API_KEY || '' }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
           NETWORK: ${{ matrix.network }}
         run: python "scripts/update_${NETWORK}.py"
 
