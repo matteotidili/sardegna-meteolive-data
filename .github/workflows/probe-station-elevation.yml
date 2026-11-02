@@ -12,31 +12,31 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - name: Interroga DTM regionale WMS e sorgente altimetrica di fallback
+      - name: Interroga DTM regionale 10m e confronto SRTM 30m
         run: |
           python - <<'PY'
           import urllib.request,urllib.parse,json
-          lat,lon=39.129,9.181
           layer='raster:DTM_10M_ALTIMETRIA_REV01_GEOS'
-          d=.001
-          p=dict(service='WMS',version='1.1.1',request='GetFeatureInfo',
-              layers=layer,query_layers=layer,styles='',srs='EPSG:4326',
-              bbox=f'{lon-d},{lat-d},{lon+d},{lat+d}',width='101',height='101',
-              x='50',y='50',info_format='application/json',feature_count='1')
-          for host in ['https://webgis.regione.sardegna.it/geoserverraster/ows',
-                       'https://webgis.regione.sardegna.it/geoserverraster/wms']:
-            for fmt in ['application/json','text/plain']:
-              p['info_format']=fmt
-              url=host+'?'+urllib.parse.urlencode(p)
-              try:
-                with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'SardegnaMeteoLive/1.0'}),timeout=13) as r:
-                  b=r.read(5000)
-                  print('REGIONE',fmt,r.status,r.headers.get('Content-Type'),repr(b[:1200]),flush=True)
-              except Exception as e: print('REGIONE ERROR',fmt,str(e)[:350],flush=True)
-          url='https://api.opentopodata.org/v1/srtm30m?locations=39.129,9.181'
-          try:
-            with urllib.request.urlopen(url,timeout=15) as r:
-              print('SRTM',r.status,repr(r.read(1500)),flush=True)
-          except Exception as e:print('SRTM ERROR',str(e)[:350],flush=True)
+          for name,lat,lon in [
+            ('Abbasanta',40.13028,8.81389),
+            ('Gergei',39.69778,9.10556),
+            ('Monte Arci',39.79,8.74),
+            ('Campidano',39.320,9.050)]:
+            d=.0002
+            p=dict(service='WMS',version='1.1.1',request='GetFeatureInfo',
+                   layers=layer,query_layers=layer,styles='',srs='EPSG:4326',
+                   bbox=f'{lon-d},{lat-d},{lon+d},{lat+d}',width='101',height='101',
+                   x='50',y='50',info_format='application/json',feature_count='1')
+            url='https://webgis.regione.sardegna.it/geoserverraster/ows?'+urllib.parse.urlencode(p)
+            try:
+              with urllib.request.urlopen(url,timeout=15) as r:
+                j=json.loads(r.read(4000))
+                print('REGIONE',name, j.get('features',[{}])[0].get('properties'),flush=True)
+            except Exception as e: print('REGIONE ERROR',name,str(e)[:220],flush=True)
+            url='https://api.opentopodata.org/v1/srtm30m?'+urllib.parse.urlencode({'locations':f'{lat},{lon}'})
+            try:
+              with urllib.request.urlopen(url,timeout=15) as r:
+                j=json.loads(r.read(2000))
+                print('SRTM',name,j.get('results',[{}])[0].get('elevation'),flush=True)
+            except Exception as e:print('SRTM ERROR',name,str(e)[:220],flush=True)
           PY
