@@ -36,8 +36,22 @@ def load_state():
         return {}
 
 
+# Probe sparse (8h, 16h, then 24h): an expired quota must not
+# black out the map for another full day without even one retry.
+# Also recalculate older 24h cooldowns written before this change.
+COOLDOWN_HOURS = (8, 16, 24)
+
+
 def in_cooldown(state, now=None):
     until = parse_stamp(state.get("blocked_until"))
+    failed_at = parse_stamp(state.get("last_failure_at"))
+    try:
+        count = int(state.get("consecutive_throttles") or 0)
+    except (ValueError, TypeError):
+        count = 0
+    if until and failed_at and count > 0 and state.get("last_http_status") in BLOCK_HTTP:
+        effective = failed_at + timedelta(hours=COOLDOWN_HOURS[min(count - 1, 2)])
+        until = min(until, effective)
     return bool(until and (now or utc_now()) < until)
 
 
@@ -45,8 +59,9 @@ def record_failure(state, status, reason=""):
     now = utc_now()
     state = dict(state)
     consecutive = min(10, int(state.get("consecutive_throttles", 0) or 0) + 1)
-    # 24, 48 e 72 ore: evita di riprovare ogni venti minuti.
-    wait_h = min(72, 24 * (2 ** (consecutive - 1)))
+    # Una sola prova dopo 8h, poi 16h e 24h se il blocco persiste.
+    # Nessuna interrogazione ripetuta durante il periodo di protezione.
+    wait_h = COOLDOWN_HOURS[min(consecutive - 1, 2)]
     state.update(
         status="cooldown",
         last_http_status=int(status or 0),
