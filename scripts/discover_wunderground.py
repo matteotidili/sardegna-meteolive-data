@@ -20,11 +20,12 @@ import urllib.error
 from wu_api_health import (
     load_state, in_cooldown, record_failure, record_success, save_state
 )
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 EXCLUDED_WU_STATIONS = {"ISERRA56"}  # PWS Serramanna non affidabile
 OUT = Path("data/wunderground_stations.json")
+RETIRED = Path("data/wunderground_offline.json")
 BASE = "https://api.weather.com/v3/location/near"
 
 # PWS confermate direttamente su Weather Underground e usate come seed.
@@ -115,7 +116,7 @@ def frange(start: float, stop: float, step: float):
 # Ricerca incrementale: circa una ventina di giorni per coprire tutta
 # la griglia, senza mai interrogare migliaia di punti in una sola run.
 # È possibile usare il workflow sud-est con WU_DISCOVERY_REGION=southeast.
-MIN_CATALOG_SIZE = 300
+MIN_CATALOG_SIZE = 200
 DISCOVERY_BATCH = 12
 
 
@@ -172,12 +173,28 @@ def main():
     else:
         previous = {}
 
+    try:
+        retired_json = json.loads(RETIRED.read_text(encoding="utf-8"))
+        retired = {str(s["station_id"]): s for s in retired_json.get("stations", [])
+                   if isinstance(s, dict) and s.get("station_id")}
+    except (OSError, ValueError, TypeError):
+        retired_json = {"stations": []}
+        retired = {}
     found = {
         s["station_id"]: s for s in (previous.get("stations") or [])
-        if isinstance(s, dict) and s.get("station_id")
+        if isinstance(s, dict) and s.get("station_id") and s["station_id"] not in retired
     }
     for sid, row in KNOWN_PWS.items():
-        found.setdefault(sid, row)
+        if sid not in retired:
+            found.setdefault(sid, row)
+    revived = []
+    def has_recent_update(row):
+        try:
+            age = datetime.now(timezone.utc) - datetime.fromtimestamp(
+                float(row.get("update_time_utc")), timezone.utc)
+            return timedelta(minutes=-5) <= age <= timedelta(hours=48)
+        except (ValueError, TypeError, OverflowError, OSError):
+            return False
     count_before = len(found)
     points = discovery_points(region)
     if not points:
@@ -209,6 +226,13 @@ def main():
                 sid = row["station_id"]
                 if sid in EXCLUDED_WU_STATIONS:
                     continue
+                if sid in retired:
+                    # Le PWS realmente tornate online possono rientrare
+                    # automaticamente, non basta ritrovare il loro ID storico.
+                    if not has_recent_update(row):
+                        continue
+                    retired.pop(sid)
+                    revived.append(sid)
                 if sid not in found:
                     new_ids.append(sid)
                 found[sid] = row
@@ -234,7 +258,7 @@ def main():
         # È importante pubblicare anche l'avanzamento della ricerca:
         # così al prossimo giorno si esplorano nuove aree e non le stesse.
         previous[cursor_key] = (cursor + attempted) % len(points)
-    if not attempted and not new_ids:
+    if not attempted and not new_ids and not revived:
         return
     stations = sorted(found.values(),
         key=lambda x: ((x.get("name") or "").casefold(), x["station_id"]))
@@ -254,6 +278,14 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
                    encoding="utf-8")
+    if revived:
+        retired_json["stations"] = sorted(retired.values(), key=lambda x: x["station_id"])
+        retired_json["station_count"] = len(retired_json["stations"])
+        retired_json["generated_at"] = datetime.now(timezone.utc).isoformat(
+            timespec="seconds").replace("+00:00", "Z")
+        RETIRED.write_text(json.dumps(retired_json, ensure_ascii=False, separators=(",", ":")) + "\n",
+                           encoding="utf-8")
+        print(f"WU discovery: riattivate {len(revived)} PWS tornate online")
     print(f"WU discovery: catalogo {count_before} -> {len(stations)}; "
           f"nuove={len(new_ids)}, query={completed}, errori={errors}", flush=True)
 
