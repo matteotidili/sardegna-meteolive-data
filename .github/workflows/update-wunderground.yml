@@ -1,5 +1,6 @@
 name: Aggiorna dati Weather Underground
-# Aggiornamento completo di tutte le stazioni WU censite ogni 30 minuti.
+# Aggiornamento completo delle stazioni WU, max una scansione ogni 29+ minuti.
+# Il workflow viene richiamato più spesso per resilienza del cron GitHub.
 
 on:
   workflow_dispatch:
@@ -22,7 +23,9 @@ on:
   # = 15984 richieste/giorno; la quota concessa dal provider deve permetterlo.
   # Il collector mantiene i controlli sui codici HTTP 401/403/429.
   schedule:
-    - cron: '13,43 * * * *'
+    # Più occasioni di attivazione contro i cron GitHub saltati; il collector
+    # fa realmente una sola acquisizione completa ogni >=29 minuti.
+    - cron: '3,13,23,33,43,53 * * * *'
   # Le modifiche al codice non generano richieste extra. Soltanto modifiche
   # al workflow, schedulazione e trigger di backup avviano il job.
 permissions:
@@ -50,9 +53,9 @@ jobs:
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
           # Nessuna rotazione: richiesta dell'intero inventario a ogni ciclo.
-          # Avvio manuale o modifica del workflow: esegui subito una scansione
-          # completa, senza attendere il controllo dei 29 minuti.
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+          # Solo avvio manuale forza la scansione. Modifiche al workflow
+          # non duplicano 304 chiamate mentre un altro ciclo è già in corso.
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
       - name: Pubblica il JSON aggiornato
