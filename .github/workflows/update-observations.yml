@@ -2,9 +2,8 @@ name: Aggiorna tutte le reti stazioni
 
 on:
   workflow_dispatch:
-  # Trigger complementare a evento: il cron GitHub può accumulare ritardi
-  # nelle ore di maggior traffico. I completamenti WU o MeteoAlarm
-  # attivano il recupero DPCN e AM senza interrogare di nuovo WU.
+  # Torniamo al polling unificato di ottobre: WU, DPCN e AM nello stesso
+  # workflow ogni 5 minuti, con trigger complementari quando GitHub ritarda.
   # I singoli updater mantengono i propri limiti di frequenza e i lock.
   workflow_run:
     workflows:
@@ -42,6 +41,8 @@ jobs:
         include:
           - network: meteohub
             file: stations
+          - network: wunderground
+            file: wunderground
           - network: am
             file: am
     # Stesso lock dei workflow manuali: niente doppie richieste alla stessa rete.
@@ -63,7 +64,8 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_USERNAME || '' }}
           METEOHUB_PASSWORD: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_PASSWORD || '' }}
-          WU_API_KEY: ${{ matrix.network == 'wunderground' && secrets.WU_API_KEY || '' }}
+          # Utilizza la nuova chiave WU che e' gia' operativa, non la vecchia personale.
+          WU_APP_API_KEY: ${{ matrix.network == 'wunderground' && secrets.WU_APP_API_KEY || '' }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
           NETWORK: ${{ matrix.network }}
         run: python "scripts/update_${NETWORK}.py"
