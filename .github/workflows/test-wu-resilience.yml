@@ -6,8 +6,10 @@ on:
       - 'scripts/wu_api_health.py'
       - 'scripts/update_wunderground.py'
       - 'scripts/discover_wunderground.py'
+      - 'scripts/prune_wunderground_offline.py'
       - 'scripts/discover_wu_southeast.py'
       - 'tests/test_wu_resilience.py'
+      - 'tests/test_wu_offline_pruning.py'
       - '.github/workflows/test-wu-resilience.yml'
   workflow_dispatch:
 permissions:
@@ -23,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Compila i moduli e controlla la sintassi
         run: |
-          python -m py_compile scripts/wu_api_health.py scripts/update_wunderground.py scripts/discover_wunderground.py scripts/discover_wu_southeast.py
+          python -m py_compile scripts/wu_api_health.py scripts/update_wunderground.py scripts/discover_wunderground.py scripts/discover_wu_southeast.py scripts/prune_wunderground_offline.py
       - name: Verifica la protezione dell'inventario senza usare l'API reale
-        run: python -m unittest discover -s tests -p 'test_wu_resilience.py' -v
+        run: |
+          python -m unittest discover -s tests -p 'test_wu_resilience.py' -v
+          python -m unittest discover -s tests -p 'test_wu_offline_pruning.py' -v
