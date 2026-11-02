@@ -78,6 +78,12 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$DATA_FILE"
+          # Il collector WU scrive anche lo stato della chiave API: il file
+          # va incluso nel commit, altrimenti git rebase fallisce con
+          # "You have unstaged changes" e blocca la pubblicazione dei dati.
+          if [ "$NETWORK" = "wunderground" ] && [ -f data/wunderground_app_api_health.json ]; then
+            git add data/wunderground_app_api_health.json
+          fi
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
