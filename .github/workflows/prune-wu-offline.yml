@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: observations-wunderground
+  group: observations-wunderground-prune
   cancel-in-progress: false
 
 jobs:
