@@ -10,6 +10,12 @@ on:
     workflows:
       - 'Aggiorna dati Weather Underground'
       - 'Aggiorna allerte MeteoAlarm Mediterraneo'
+      # Backup indipendenti: quando GitHub ritarda o perde gli eventi cron
+      # principali, una qualunque di queste reti riattiva DPCN e AM.
+      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
+      - 'Aggiorna pluviometri Sardegna CEDOC'
+      - 'Aggiorna incendi MTG FRP'
+      - 'Scopri stazioni Weather Underground'
     types: [completed]
   push:
     branches: [main]
