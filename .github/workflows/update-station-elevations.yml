@@ -1,0 +1,65 @@
+name: Calcola quote altimetriche delle stazioni
+# Solo metadati geografici: nessuna interrogazione alle API meteo.
+# Non modifica la quota ufficiale delle reti e non gira ogni 5 minuti.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-station-elevations.yml'
+      - 'scripts/update_station_elevations.py'
+  schedule:
+    - cron: '23 3 * * 5'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: station-elevations-dtm
+  cancel-in-progress: false
+
+jobs:
+  altimetry:
+    name: DTM regionale 10m (fallback SRTM 30m)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verifica sintassi Python
+        run: python -m py_compile scripts/update_station_elevations.py
+      - name: Calcola quota terreno ai punti delle stazioni senza quota dichiarata
+        run: python -u scripts/update_station_elevations.py
+      - name: Verifica contenuto e provenienza delle quote
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/station_elevations.json').read_text())
+          sites=data['stations']
+          assert data['station_count']==len(sites)
+          assert len(sites)==len({(x['network'],x['station_id']) for x in sites})
+          assert 0 <= len(sites) <= data['requested_station_count']
+          assert all(-20<=s['elev']<=2100 and s['method'] in ('regional_dtm_10m','srtm30m') for s in sites)
+          print('Verificate',len(sites),'quote:',data['source_counts'])
+          PY
+      - name: Pubblica solo la cache delle quote
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp data/station_elevations.json "$RUNNER_TEMP/station-elevations-pending.json"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP/station-elevations-pending.json" data/station_elevations.json
+            git add data/station_elevations.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Aggiorna quote terreno stazioni con DTM regionale"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
