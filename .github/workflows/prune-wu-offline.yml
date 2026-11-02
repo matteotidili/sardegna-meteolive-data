@@ -1,0 +1,54 @@
+name: Escludi stazioni WU offline da 14 giorni
+# Dopo un'interrogazione completa rimuove le PWS non operative dalla rete
+# attiva, conservando un registro per la successiva riattivazione.
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 'Aggiorna dati Weather Underground'
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prune-wu-offline.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: observations-wunderground
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Controlla sintassi
+        run: python -m py_compile scripts/prune_wunderground_offline.py
+      - name: Escludi solo PWS inattive da 14 giorni e verificate a ciclo completo
+        run: python scripts/prune_wunderground_offline.py
+      - name: Pubblica catalogo, osservazioni e registro offline
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/wunderground_stations.json data/wunderground.json
+          if [ -f data/wunderground_offline.json ]; then git add data/wunderground_offline.json; fi
+          if git diff --cached --quiet; then
+            echo "Nessuna PWS da escludere"
+            exit 0
+          fi
+          git commit -m "Escludi PWS WU offline da almeno 14 giorni"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
