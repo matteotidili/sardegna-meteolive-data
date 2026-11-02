@@ -35,7 +35,7 @@ BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 # Il ritmo di interrogazione rimane sotto 30 chiamate/minuto, ma il
 # volume giornaliero completo richiede un piano/quota API adeguati.
 MIN_RUN_INTERVAL_MIN = 29
-MIN_CATALOG_SIZE = 300
+MIN_CATALOG_SIZE = 200
 MAX_WORKERS = 4
 # Minimo 2,1 s tra inizi di richieste: meno di 30 interrogazioni/minuto
 # anche quando i worker sono concorrenti. 333 PWS richiedono ~12 minuti.
