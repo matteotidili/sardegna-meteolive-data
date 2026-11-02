@@ -2,6 +2,12 @@ name: Aggiorna pluviometri Sardegna CEDOC
 
 on:
   workflow_dispatch:
+  # Backup al cron: il completamento di reti indipendenti riavvia CEDOC.
+  workflow_run:
+    workflows:
+      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
+      - 'Aggiorna incendi MTG FRP'
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -17,7 +23,7 @@ permissions:
 
 concurrency:
   group: cedoc-rainfall-half-hourly
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   cedoc:
