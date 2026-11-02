@@ -8,6 +8,7 @@ on:
   workflow_run:
     workflows:
       - 'Aggiorna dati Weather Underground'
+      - 'Aggiorna dati MeteoHub'
       - 'Aggiorna allerte MeteoAlarm Mediterraneo'
       # Backup indipendenti: quando GitHub ritarda o perde gli eventi cron
       # principali, una qualunque di queste reti riattiva DPCN e AM.
@@ -22,6 +23,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/update-observations.yml'
+    # Heartbeat operativo: oltre al cron, il workflow MeteoHub indipendente
+    # riattiva l'acquisizione anche se GitHub salta singole esecuzioni.
+    # La rete WU rispetta il proprio intervallo minimo di 29 min
+    # e soprattutto il circuit breaker 401, senza richiedere nuove chiavi.
   schedule:
     # Polling unificato ripristinato (5 min). Nuova pubblicazione del
     # workflow riavvia le tre reti senza toccare le chiavi API.
