@@ -70,6 +70,9 @@ jobs:
           if [ -f data/cedoc_sensors.json ]; then
             cp data/cedoc_sensors.json "$RUNNER_TEMP/cedoc-sensors-pending.json"
           fi
+          if [ -f data/cedoc_sites.json ]; then
+            cp data/cedoc_sites.json "$RUNNER_TEMP/cedoc-sites-pending.json"
+          fi
           for attempt in 1 2 3 4 5; do
             # Non effettuare rebase su file appena generati: lo stesso JSON
             # può essere stato pubblicato da un altro workflow nel frattempo.
@@ -93,10 +96,14 @@ jobs:
               exit 0
             fi
             cp "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json
+            if [ -f "$RUNNER_TEMP/cedoc-sites-pending.json" ]; then
+              cp "$RUNNER_TEMP/cedoc-sites-pending.json" data/cedoc_sites.json
+            fi
             if [ -f "$RUNNER_TEMP/cedoc-sensors-pending.json" ]; then
               cp "$RUNNER_TEMP/cedoc-sensors-pending.json" data/cedoc_sensors.json
             fi
             git add data/cedoc.json
+            if [ -f data/cedoc_sites.json ]; then git add data/cedoc_sites.json; fi
             if [ -f data/cedoc_sensors.json ]; then git add data/cedoc_sensors.json; fi
             if git diff --cached --quiet; then exit 0; fi
             git commit -m 'Aggiorna CEDOC pluviometri giornalieri'
