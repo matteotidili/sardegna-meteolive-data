@@ -1,33 +1,11 @@
 name: Aggiorna dati Weather Underground
-# Aggiornamento completo delle stazioni WU, max una scansione ogni 29+ minuti.
-# Il workflow viene richiamato più spesso per resilienza del cron GitHub.
+# Esecuzione manuale di ripristino: il polling ordinario e' nel
+# workflow 'Aggiorna tutte le reti stazioni' ogni 5 minuti, come a ottobre.
+# Non avviare un secondo cron WU, che raddoppierebbe le chiamate API.
 
 on:
   workflow_dispatch:
-  # Due trigger indipendenti dal cron WU riducono i buchi del pianificatore.
-  # Lo script salta automaticamente gli avvii prima dei 29 minuti.
-  workflow_run:
-    workflows:
-      - 'Aggiorna pluviometri Sardegna CEDOC'
-      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
-      - 'Aggiorna vettori AROME 10m'
-      - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
-    types: [completed]
-  # Consente di avviare un controllo reale quando viene aggiornata la
-  # configurazione di questo workflow; nessun trigger sui dati osservativi.
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/update-wunderground.yml'
-  # Interroga tutta la rete nello stesso ciclo. Attenzione: 333 PWS × 48 cicli
-  # = 15984 richieste/giorno; la quota concessa dal provider deve permetterlo.
-  # Il collector mantiene i controlli sui codici HTTP 401/403/429.
-  schedule:
-    # Più occasioni di attivazione contro i cron GitHub saltati; il collector
-    # fa realmente una sola acquisizione completa ogni >=29 minuti.
-    - cron: '3,13,23,33,43,53 * * * *'
-  # Le modifiche al codice non generano richieste extra. Soltanto modifiche
-  # al workflow, schedulazione e trigger di backup avviano il job.
+
 permissions:
   contents: write
 
