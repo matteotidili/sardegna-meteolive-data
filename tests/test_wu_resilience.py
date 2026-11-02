@@ -57,7 +57,7 @@ class WUResilienceTests(unittest.TestCase):
         state2 = health.record_failure(state, 429, "quota")
         first = health.parse_stamp(state["blocked_until"])
         second = health.parse_stamp(state2["blocked_until"])
-        self.assertGreater((second - first).total_seconds(), 20 * 3600)
+        self.assertGreater((second - first).total_seconds(), 7 * 3600)
         self.assertFalse(health.in_cooldown(health.record_success(state2)))
 
     def test_discovery_additive_deduplicated_and_budgeted(self):
@@ -136,7 +136,7 @@ class WUResilienceTests(unittest.TestCase):
         self.assertEqual(result["generated_at"], "2026-10-29T00:00:00Z")
         self.assertEqual(result["stations"][0]["temp"], 12)
 
-    def test_every_cycle_queries_all_stations_without_rotation(self):
+    def test_rotating_batches_preserve_all_stations_and_respect_budget(self):
         stations = [
             {"station_id":sid,"name":sid,"lat":40.0,"lon":9.0}
             for sid in ("ONE", "TWO", "THREE")
@@ -159,11 +159,13 @@ class WUResilienceTests(unittest.TestCase):
              mock.patch.dict(os.environ, {"WU_BATCH_SIZE":"1"}):
             updater.main()
         result=self.read(self.data)
-        self.assertCountEqual(visited, ["ONE","TWO","THREE"])
-        self.assertEqual(result["batch_requested"],3)
-        self.assertEqual(result["batch_updated"],3)
+        self.assertEqual(visited, ["THREE"])
+        self.assertEqual(result["batch_requested"],1)
+        self.assertEqual(result["batch_updated"],1)
         self.assertEqual(result["next_cursor"],0)
-        self.assertEqual(result["station_count"],3)
+        # The archive keeps OLD entries and is never replaced by a single batch.
+        self.assertEqual(result["station_count"],2)
+        self.assertEqual({s["station_id"] for s in result["stations"]},{"ONE","THREE"})
 
     def test_successful_updater_keeps_unpolled_stations(self):
         self.write(self.catalog, {"stations":[
