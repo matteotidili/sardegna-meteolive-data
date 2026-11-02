@@ -47,7 +47,7 @@ jobs:
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
           # Budget prudenziale e rotazione persistente senza perdere stazioni.
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_wunderground.py
 
       - name: Pubblica il JSON aggiornato
