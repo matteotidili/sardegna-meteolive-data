@@ -31,20 +31,20 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-# Ripristino del funzionamento collaudato a ottobre: polling dell'intera
-# rete da workflow unificato ogni ~5 minuti, con 6 worker concorrenti.
-# Richiede una quota API compatibile con il traffico effettivo.
-MIN_RUN_INTERVAL_MIN = 4
+# Scansione di TUTTE le PWS, senza rotazione, non piu' spesso di ~30 min.
+# Protezione del limite di frequenza: massimo ~28 richieste/minuto.
+# La quota giornaliera del fornitore deve comunque consentire 304 * 48.
+MIN_RUN_INTERVAL_MIN = 29
 MIN_CATALOG_SIZE = 200
-MAX_WORKERS = 6
-REQUEST_SPACING_SECONDS = 0.0
+MAX_WORKERS = 4
+REQUEST_SPACING_SECONDS = 2.1
 _REQUEST_LOCK = threading.Lock()
 _NEXT_REQUEST_AT = 0.0
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 
 def fetch_json(url: str):
-    # Limitatore opzionale: 0.0 ripristina il polling concorrente di ottobre.
+    # Distanza minima fra gli inizi di tutte le richieste per la stessa API key.
     global _NEXT_REQUEST_AT
     with _REQUEST_LOCK:
         current = time.monotonic()
