@@ -48,7 +48,9 @@ jobs:
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
           # Nessuna rotazione: richiesta dell'intero inventario a ogni ciclo.
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          # Avvio manuale o modifica del workflow: esegui subito una scansione
+          # completa, senza attendere il controllo dei 29 minuti.
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
         run: python scripts/update_wunderground.py
 
       - name: Pubblica il JSON aggiornato
