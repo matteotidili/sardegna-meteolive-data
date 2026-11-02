@@ -99,7 +99,7 @@ class OfflinePruningTests(unittest.TestCase):
         self.assertFalse(self.retired.exists())
 
     def test_discovery_can_reactivate_only_with_recent_vendor_timestamp(self):
-        self.write(self.catalog, {"stations": [], "station_count": 0})
+        self.write(self.catalog, {"stations": [{"station_id": "SEED", "name": "Existing", "lat": 39.2, "lon": 9.1}], "station_count": 1})
         self.write(self.retired, {"stations": [
             {"station_id": "OLDPWS", "name": "Offline", "retired_at": pruning.stamp(self.now)},
             {"station_id": "OTHER", "name": "Offline2", "retired_at": pruning.stamp(self.now)}
