@@ -23,8 +23,10 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Heartbeat operativo ogni 5 minuti: è la frequenza minima supportata da GitHub Actions.
-    # Gli updater applicano autonomamente il proprio intervallo minimo per evitare richieste inutili.
+    # Polling unificato ripristinato (5 min). Nuova pubblicazione del
+    # workflow riavvia le tre reti senza toccare le chiavi API.
+    # Lo scheduler GitHub puo' ritardare: sul sito le postazioni restano
+    # visibili e gli ultimi valori sono marcati come NON aggiornati.
     - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
 
 permissions:
