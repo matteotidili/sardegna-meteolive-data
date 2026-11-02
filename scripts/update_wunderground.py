@@ -35,7 +35,7 @@ BASE = "https://api.weather.com/v2/pws/observations/all/1day"
 # resta visibile, ma non consumiamo >15.000 richieste al giorno
 # su una chiave che è già stata bloccata per eccesso di traffico.
 # 28 PWS ogni 30 minuti = <=1344 richieste/giorno se il cron è regolare.
-MIN_RUN_INTERVAL_MIN = 25
+MIN_RUN_INTERVAL_MIN = 29
 MAX_STATIONS_PER_CYCLE = 28
 MIN_CATALOG_SIZE = 300
 MAX_WORKERS = 4
