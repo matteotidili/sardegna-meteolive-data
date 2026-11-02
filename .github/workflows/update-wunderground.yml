@@ -1,5 +1,5 @@
 name: Aggiorna dati Weather Underground
-# Refresh completo dell'inventario WU
+# Refresh progressivo dell'inventario WU: lotti a rotazione, catalogo integro
 
 on:
   workflow_dispatch:
@@ -9,9 +9,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/update-wunderground.yml'
-  # Tutte le stazioni a ogni ciclo, senza rotazione.
-  # La quota stimata per 333 stazioni è 15.984 chiamate/giorno:
-  # verificare i limiti del provider, con circuit breaker su 401/403/429.
+  # Massimo 28 PWS per ciclo, a rotazione (~1344 richieste/giorno).
+  # Evita i picchi che provocavano il blocco 401 dell'API.
   schedule:
     - cron: '13,43 * * * *'
   # Nessun trigger su push: le modifiche al codice non devono generare
@@ -40,7 +39,7 @@ jobs:
       - name: Scarica ed elabora Weather Underground
         env:
           WU_APP_API_KEY: ${{ secrets.WU_APP_API_KEY }}
-          # Lo script interroga SEMPRE l'intero inventario; nessun batch/rotazione.
+          # Budget prudenziale e rotazione persistente senza perdere stazioni.
           FORCE_UPDATE: ${{ github.event_name != 'schedule' }}
         run: python scripts/update_wunderground.py
 
