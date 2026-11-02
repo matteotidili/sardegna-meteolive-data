@@ -37,6 +37,7 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data/wunderground_stations.json
+          if [ -f data/wunderground_offline.json ]; then git add data/wunderground_offline.json; fi
           if [ -f data/wunderground_app_api_health.json ]; then
             git add data/wunderground_app_api_health.json
           fi
