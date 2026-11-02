@@ -31,12 +31,10 @@ SRC = Path("data/wunderground_stations.json")
 TEST = Path("data/wunderground_current_test.json")
 OUT = Path("data/wunderground.json")
 BASE = "https://api.weather.com/v2/pws/observations/all/1day"
-# Interroghiamo una quota dell'inventario per ciclo: l'intero catalogo
-# resta visibile, ma non consumiamo >15.000 richieste al giorno
-# su una chiave che è già stata bloccata per eccesso di traffico.
-# 28 PWS ogni 30 minuti = <=1344 richieste/giorno se il cron è regolare.
+# Requisito operativo: interrogare l'intera rete PWS ad ogni ciclo.
+# Il ritmo di interrogazione rimane sotto 30 chiamate/minuto, ma il
+# volume giornaliero completo richiede un piano/quota API adeguati.
 MIN_RUN_INTERVAL_MIN = 29
-MAX_STATIONS_PER_CYCLE = 28
 MIN_CATALOG_SIZE = 300
 MAX_WORKERS = 4
 # Minimo 2,1 s tra inizi di richieste: meno di 30 interrogazioni/minuto
@@ -246,24 +244,17 @@ def main():
         for row in (previous.get("stations") or [])
         if isinstance(row, dict) and row.get("station_id")
     }
-    # Rotazione su TUTTE le stazioni, comprese quelle offline. Conserviamo
-    # il catalogo completo e le letture precedenti fino a nuovo dato reale.
-    # La dimensione del batch e' limitata anche se qualcuno configura un valore
-    # troppo alto: la protezione dalla quota non può essere disattivata per errore.
-    try:
-        configured_batch = int(os.getenv("WU_BATCH_SIZE", str(MAX_STATIONS_PER_CYCLE)))
-    except ValueError:
-        configured_batch = MAX_STATIONS_PER_CYCLE
-    limit = min(len(stations), max(1, min(configured_batch, MAX_STATIONS_PER_CYCLE)))
-    cursor = int(previous.get("next_cursor") or 0) % max(1, len(stations))
-    batch = (stations[cursor:] + stations[:cursor])[:limit]
+    # Nessuna rotazione: TUTTE le stazioni censite vengono richieste
+    # in OGNI ciclo. Una stazione offline non impedisce di interrogare
+    # le altre; le precedenti misure restano in archivio con l'ora reale.
+    batch = stations
     out_rows = []
     errors = []
     quota_stop = False
     completed = 0
 
-    print(f"Aggiornamento WU progressivo: {len(batch)}/{len(stations)} stazioni "
-          f"(partenza indice {cursor}), {MAX_WORKERS} worker, "
+    print(f"Aggiornamento WU completo: {len(batch)}/{len(stations)} stazioni "
+          f"nello stesso ciclo, {MAX_WORKERS} worker, "
           f"intervallo minimo {REQUEST_SPACING_SECONDS}s tra richieste", flush=True)
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = {
@@ -339,7 +330,7 @@ def main():
         "requested_stations": len(stations),
         "batch_requested": len(batch),
         "batch_updated": len(out_rows),
-        "next_cursor": (cursor + len(batch)) % max(1, len(stations)),
+        "next_cursor": 0,  # compatibilita con le versioni precedenti
         "errors": len(errors),
         "variable_counts": {
             "temperature": sum(1 for x in merged if x["available"]["temp"]),
@@ -355,7 +346,8 @@ def main():
     if out_rows:
         save_state(record_success(health))
     print(f"Archivio WU: {len(merged)} stazioni, {len(out_rows)} aggiornate nel ciclo completo; "
-          f"{len(errors)} errori", flush=True)
+          f"{len(errors)} errori. Nota: {len(stations)} richieste/ciclo "
+          f"richiedono una quota API >= {len(stations)*48} chiamate/giorno.", flush=True)
 
 if __name__ == "__main__":
     main()
