@@ -260,6 +260,35 @@ def main():
     finally:
         session.close()
     OUT.parent.mkdir(parents=True, exist_ok=True)
+        if state["status"] == "ok":
+            # Catalogo geografico persistente: un errore temporaneo del portale
+            # non deve far sparire le posizioni dei pluviometri dalla mappa.
+            sites_path = Path("data/cedoc_sites.json")
+            try:
+                saved = json.loads(sites_path.read_text(encoding="utf-8"))
+                sites = {str(p["station_id"]): {
+                    "station_id": str(p["station_id"]),
+                    "name": p["name"], "lat": p["lat"], "lon": p["lon"],
+                    "source_url": p.get("source_url", "")
+                } for p in saved.get("stations", []) if isinstance(p, dict) and
+                    p.get("station_id") and isinstance(p.get("lat"), (int, float)) and
+                    isinstance(p.get("lon"), (int, float))}
+            except (OSError, ValueError, TypeError, KeyError):
+                sites = {}
+            for p in state["stations"]:
+                sites[str(p["station_id"])] = {
+                    "station_id": str(p["station_id"]),
+                    "name": p["name"], "lat": p["lat"], "lon": p["lon"],
+                    "source_url": p["source_url"],
+                }
+            sites_rows = sorted(sites.values(), key=lambda p: p["station_id"])
+            sites_path.write_text(json.dumps({
+                "generated_at": state["generated_at"],
+                "source": "CEDOC / ADIS Regione Sardegna",
+                "station_count": len(sites_rows),
+                "description": "Solo anagrafica delle stazioni, nessuna osservazione",
+                "stations": sites_rows,
+            }, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     OUT.write_text(json.dumps(state, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(json.dumps({k:v for k,v in state.items() if k != "stations"},ensure_ascii=False))
     # Rilevazione dello stato (anche errore) senza pubblicare valori fittizi.
