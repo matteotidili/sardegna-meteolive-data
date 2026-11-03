@@ -8,6 +8,7 @@ import datetime
 import json
 import urllib.parse
 import urllib.request
+import urllib.error
 
 now=datetime.datetime.now(datetime.timezone.utc)
 params={"bbox":"7.7,38.65,10.6,41.32","exposure":"outdoor",
@@ -15,8 +16,12 @@ params={"bbox":"7.7,38.65,10.6,41.32","exposure":"outdoor",
 url="https://api.opensensemap.org/boxes?"+urllib.parse.urlencode(params)
 req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoLive/1.0 (weather station research)",
                                          "Accept":"application/json"})
-with urllib.request.urlopen(req,timeout=35) as response:
-    boxes=json.load(response)
+try:
+    with urllib.request.urlopen(req,timeout=35) as response:
+        boxes=json.load(response)
+except urllib.error.HTTPError as exc:
+    print("openSenseMap: HTTP",exc.code,exc.read(1000).decode("utf-8",errors="replace")[:700])
+    raise
 if not isinstance(boxes,list):
     raise ValueError("API returned non-list")
 counts=collections.Counter()
