@@ -11,6 +11,9 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 TITLE = "[MeteoLive] Rete stazioni non aggiornata"
+# WU temporaneamente spenta su richiesta: NON e' un guasto da riparare
+# e NON deve tenere aperta una segnalazione quando DPCN e AM sono sane.
+WU_ACTIVE = False
 SOURCES = {
     "DPCN": ("data/stations.json", 90),
     "Aeronautica Militare": ("data/am.json", 125),
@@ -51,7 +54,10 @@ def evaluate(now):
             "stations": len(rows), "fresh": count, "limit_min": limit,
             "latest": latest.isoformat().replace("+00:00", "Z") if latest else None,
         }
-        if name == "Weather Underground" and health.get("status") == "cooldown":
+        if name == "Weather Underground" and not WU_ACTIVE:
+            info["status"] = "paused"
+            info["fresh"] = 0
+        elif name == "Weather Underground" and health.get("status") == "cooldown":
             info["status"] = "api_throttled"
             info["blocked_until"] = health.get("blocked_until")
             info["reason"] = str(health.get("last_error") or "API throttled")[:100]
@@ -87,6 +93,8 @@ def description(report, now):
         lines.append("| "+name+" | "+v["status"]+" | "+str(v["latest"] or "—")
                      +" | "+str(v["fresh"])+"/"+str(v["stations"])+" |")
     wu=report["Weather Underground"]
+    if wu["status"]=="paused":
+        lines += ["", "WU sospesa volontariamente. Nessuna interrogazione API o recupero automatico."]
     if wu["status"]=="api_throttled":
         lines += ["", "WU: limitazione applicata dal fornitore ("+
                   wu.get("reason","quota")+"). Prossima prova non prima di "+
@@ -98,7 +106,7 @@ def description(report, now):
 def sync_issue(report, now):
     rows=github("GET","/issues?state=all&per_page=100")
     issue=next((x for x in rows if x.get("title")==TITLE and "pull_request" not in x),None)
-    degraded=any(v["status"]!="ok" for v in report.values())
+    degraded=any(v["status"] not in ("ok","paused") for v in report.values())
     if not degraded:
         if issue and issue.get("state")=="open":
             github("PATCH","/issues/"+str(issue["number"]),
