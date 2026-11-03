@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import sys
 import urllib.parse
+import urllib.error
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
@@ -28,7 +29,16 @@ def main():
     # Una prima richiesta limitata temporalmente; solo un thread.
     rid = None
     try:
-        response = hub.api("POST", "/api/data", token, body)
+        try:
+            response = hub.api("POST", "/api/data", token, body)
+        except urllib.error.HTTPError as exc:
+            # Leggi messaggio sanitario senza segreti, per individuare un
+            # eventuale dataset slug errato o mancanza di autorizzazioni.
+            raw_error=exc.read(500).decode("utf-8", errors="replace")
+            safe=raw_error.replace(token, "[REDACTED]")
+            print("MeteoHub dataset MeteoNetwork: HTTP",exc.code,
+                  "risposta",safe[:300])
+            return
         rid = hub.get_id(response)
         if rid is None:
             raise RuntimeError("MeteoHub: richiesta non accettata")
