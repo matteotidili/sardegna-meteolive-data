@@ -8,7 +8,6 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 TITLE = "[MeteoLive] Rete stazioni non aggiornata"
 # WU temporaneamente spenta su richiesta: NON e' un guasto da riparare
@@ -39,8 +38,6 @@ def evaluate(now):
     for name, (path, limit) in SOURCES.items():
         data = read(path)
         rows = data.get("stations") or []
-        if name == "DPCN" and 0 <= now.astimezone(ZoneInfo("Europe/Rome")).hour < 3:
-            limit = 230  # rollover giornaliero MeteoHub
         usable = [
             parse_time(row.get("last"))
             for row in rows if isinstance(row, dict)
