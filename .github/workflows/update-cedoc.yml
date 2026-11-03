@@ -13,6 +13,7 @@ on:
     paths:
       - 'scripts/update_cedoc.py'
       - '.github/workflows/update-cedoc.yml'
+      - 'tests/test_cedoc_catalog.py'
   schedule:
     # Tentativo ogni 5 minuti (minimo consentito da GitHub Actions).
     # Per ridurre il carico sulla fonte pubblica, le stazioni sono
@@ -39,6 +40,8 @@ jobs:
           python-version: '3.12'
       - name: Installazione parser HTML
         run: python -m pip install --disable-pip-version-check 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+      - name: Test di regressione sul catalogo durante gli errori 503
+        run: python -m unittest discover -s tests -p 'test_cedoc_catalog.py' -v
       - name: Leggi rete pubblica con controllo freschezza
         run: |
           python -m py_compile scripts/update_cedoc.py
