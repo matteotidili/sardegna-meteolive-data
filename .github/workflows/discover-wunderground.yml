@@ -2,9 +2,6 @@ name: Scopri stazioni Weather Underground
 
 on:
   workflow_dispatch:
-  # 12 interrogazioni al giorno, non migliaia per singola scansione.
-  schedule:
-    - cron: '17 4 * * *'
 
 permissions:
   contents: write
@@ -15,6 +12,8 @@ concurrency:
 
 jobs:
   discover:
+    # SOSPESA: non usare credenziali né consultare WU fino a riattivazione.
+    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
