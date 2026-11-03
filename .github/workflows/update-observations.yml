@@ -1,14 +1,14 @@
-name: Aggiorna tutte le reti stazioni
+name: Aggiorna reti MeteoHub e Aeronautica Militare
 
 on:
   workflow_dispatch:
-  # Torniamo al polling unificato di ottobre: WU, DPCN e AM nello stesso
-  # workflow ogni 5 minuti, con trigger complementari quando GitHub ritarda.
-  # I singoli updater mantengono i propri limiti di frequenza e i lock.
+  # Weather Underground temporaneamente disattivata per scelta operativa.
+  # Polling di MeteoHub DPCN e Aeronautica Militare, con recuperi indipendenti.
+  # I collector rispettano intervalli minimi e orari reali delle osservazioni.
   workflow_run:
     workflows:
-      - 'Aggiorna dati Weather Underground'
       - 'Aggiorna dati MeteoHub'
+      - 'Aggiorna dati Aeronautica Militare'
       - 'Aggiorna allerte MeteoAlarm Mediterraneo'
       # Backup indipendenti: quando GitHub ritarda o perde gli eventi cron
       # principali, una qualunque di queste reti riattiva DPCN e AM.
@@ -17,21 +17,14 @@ on:
       - 'Aggiorna incendi MTG FRP'
       - 'Aggiorna vettori AROME 10m'
       - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
-      - 'Scopri stazioni Weather Underground'
     types: [completed]
   push:
     branches: [main]
     paths:
       - '.github/workflows/update-observations.yml'
-    # Heartbeat operativo: oltre al cron, il workflow MeteoHub indipendente
-    # riattiva l'acquisizione anche se GitHub salta singole esecuzioni.
-    # La rete WU rispetta il proprio intervallo minimo di 29 min
-    # e soprattutto il circuit breaker 401, senza richiedere nuove chiavi.
   schedule:
-    # Polling unificato ripristinato (5 min). Nuova pubblicazione del
-    # workflow riavvia le tre reti senza toccare le chiavi API.
-    # Lo scheduler GitHub puo' ritardare: sul sito le postazioni restano
-    # visibili e gli ultimi valori sono marcati come NON aggiornati.
+    # Polling sfalsato ogni 5 min; due workflow dedicati sono ridondanti.
+    # Gli scheduler GitHub restano best-effort; il watchdog verifica i dati.
     - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
 
 permissions:
@@ -48,8 +41,6 @@ jobs:
         include:
           - network: meteohub
             file: stations
-          - network: wunderground
-            file: wunderground
           - network: am
             file: am
     # Stesso lock dei workflow manuali: niente doppie richieste alla stessa rete.
@@ -71,8 +62,6 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_USERNAME || '' }}
           METEOHUB_PASSWORD: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_PASSWORD || '' }}
-          # Utilizza la nuova chiave WU che e' gia' operativa, non la vecchia personale.
-          WU_APP_API_KEY: ${{ matrix.network == 'wunderground' && secrets.WU_APP_API_KEY || '' }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
           NETWORK: ${{ matrix.network }}
         run: python "scripts/update_${NETWORK}.py"
@@ -85,12 +74,6 @@ jobs:
           git config user.name "sardegna-meteolive-data-bot"
           git config user.email "actions@users.noreply.github.com"
           git add "$DATA_FILE"
-          # Il collector WU scrive anche lo stato della chiave API: il file
-          # va incluso nel commit, altrimenti git rebase fallisce con
-          # "You have unstaged changes" e blocca la pubblicazione dei dati.
-          if [ "$NETWORK" = "wunderground" ] && [ -f data/wunderground_app_api_health.json ]; then
-            git add data/wunderground_app_api_health.json
-          fi
           if git diff --cached --quiet; then
             echo "Nessuna variazione nei dati"
             exit 0
