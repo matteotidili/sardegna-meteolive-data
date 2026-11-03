@@ -1,4 +1,5 @@
 name: Aggiorna dati Aeronautica Militare
+# Raccolta indipendente e di riserva rispetto al workflow comune MeteoHub/AM.
 
 on:
   workflow_dispatch:
@@ -7,6 +8,8 @@ on:
     paths:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
+  schedule:
+    - cron: '2,12,22,32,42,52 * * * *'
 permissions:
   contents: write
 
@@ -17,7 +20,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -30,7 +33,7 @@ jobs:
 
       - name: Scarica ed elabora SYNOP AM
         env:
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
         run: python scripts/update_am.py
 
       - name: Pubblica il JSON aggiornato
@@ -43,8 +46,12 @@ jobs:
             exit 0
           fi
           git commit -m "Aggiorna osservazioni Aeronautica Militare"
-          if ! git push; then
+          for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase -X theirs origin/main
-            git push
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          echo "Pubblicazione AM fallita" >&2
+          exit 1
           fi
