@@ -1,0 +1,44 @@
+name: Sorveglia e ripristina automaticamente le reti di stazioni
+# Controlla ORARI reali e non solo lo stato verde delle Actions.
+# Non scarica osservazioni WU: rispetta blocchi quota/API.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/monitor_station_health.py'
+      - '.github/workflows/monitor-station-health.yml'
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_run:
+    workflows:
+      - 'Aggiorna tutte le reti stazioni'
+      - 'Aggiorna dati MeteoHub'
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: write
+  issues: write
+
+concurrency:
+  group: monitor-station-health
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Valida sintassi monitor
+        run: python -m py_compile scripts/monitor_station_health.py
+      - name: Controlla freschezza e tenta ripristino automatico DPCN/AM
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -u scripts/monitor_station_health.py
