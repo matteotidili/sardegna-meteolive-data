@@ -14,15 +14,16 @@ on:
       - 'scripts/update_cedoc.py'
       - '.github/workflows/update-cedoc.yml'
   schedule:
-    # Controllo ogni 15 minuti: una stazione resta comunque vincolata
-    # all'ora reale delle misure pubblicate dalla rete CEDOC.
-    - cron: '3,18,33,48 * * * *'
+    # Tentativo ogni 5 minuti (minimo consentito da GitHub Actions).
+    # Per ridurre il carico sulla fonte pubblica, le stazioni sono
+    # controllate a rotazione in 3 gruppi, circa ogni 15 minuti.
+    - cron: '3,8,13,18,23,28,33,38,43,48,53,58 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: cedoc-rainfall-half-hourly
+  group: cedoc-rainfall-five-minutely
   cancel-in-progress: false
 
 jobs:
@@ -48,7 +49,8 @@ jobs:
           import json, datetime as dt
           from pathlib import Path
           data=json.loads(Path('data/cedoc.json').read_text(encoding='utf-8'))
-          assert data['parameter']=='rain_today' and data['refresh_minutes']==15
+          assert data['parameter']=='rain_today' and data['refresh_minutes']==5
+          assert data['station_sweep_minutes']==15
           assert data['status'] in {'ok','unavailable','stale'}
           assert data['station_count']==len(data['stations'])
           for s in data['stations']:
