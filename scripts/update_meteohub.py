@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import gzip, io, json, os, sys, time, urllib.parse, urllib.request, zipfile
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -18,12 +18,11 @@ OUT = Path("data/stations.json")
 # I workflow possono controllare ogni 5 min, ma questo limite vale per
 # tutte le esecuzioni concorrenti grazie al lock e al JSON condiviso.
 MIN_RUN_INTERVAL_MIN = 7
-# Durante i primi minuti del giorno i dati DPCN possono non essere ancora
-# disponibili nel nuovo intervallo di riferimento (00:00 -> adesso).
-# Fino alle 03:00 locali MeteoHub può rispondere FAILURE alle richieste
-# dal primo minuto del nuovo giorno (es. 01/11 00:50 e 01:19 locali).
-# Rinviare anziché inviare query vuote che causano email automatiche.
-MIDNIGHT_GRACE_MINUTES = 180
+# Nei primi 180 minuti del giorno includi nella finestra anche le ultime
+# tre ore del giorno precedente: cosi' la richiesta non e' vuota durante
+# il rollover del dataset e i dati notturni possono essere ricevuti subito.
+# I cumulati e gli estremi sono sempre filtrati per il giorno osservativo.
+MIDNIGHT_LOOKBACK_MINUTES = 180
 
 V_TEMP="B12101"; V_RH="B13003"; V_WDIR="B11001"; V_WSPD="B11002"; V_GUST="B11041"; V_RAIN="B13011"
 DESIRED={V_TEMP,V_RH,V_WDIR,V_WSPD,V_GUST,V_RAIN}
@@ -65,6 +64,8 @@ def login():
 def request_body():
     now_local=datetime.now(ROME)
     start_local=now_local.replace(hour=0,minute=0,second=0,microsecond=0)
+    if now_local.hour*60+now_local.minute<MIDNIGHT_LOOKBACK_MINUTES:
+        start_local-=timedelta(minutes=MIDNIGHT_LOOKBACK_MINUTES)
     iso=lambda d:d.astimezone(UTC).isoformat(timespec="seconds").replace("+00:00","Z")
     return {
         "request_name":"sardegna-meteolive-auto",
@@ -246,23 +247,8 @@ def should_skip_recent_run():
         pass
     return False
 
-def should_skip_midnight():
-    """Evita query vuote prima dell'arrivo delle osservazioni del nuovo giorno."""
-    if str(os.environ.get("FORCE_UPDATE","")).lower() in {"1","true","yes"}:
-        return False
-    now=datetime.now(ROME)
-    elapsed=now.hour*60+now.minute
-    if elapsed<MIDNIGHT_GRACE_MINUTES:
-        ready_hour, ready_minute=divmod(MIDNIGHT_GRACE_MINUTES,60)
-        print(f"Salto MeteoHub: nessuna estrazione nelle prime "
-              f"{MIDNIGHT_GRACE_MINUTES} min del {now.date()}. "
-              f"Prima richiesta dopo le {ready_hour:02d}:{ready_minute:02d} locali; "
-              "resta disponibile il precedente archivio DPCN.", flush=True)
-        return True
-    return False
-
 def main():
-    if should_skip_midnight() or should_skip_recent_run():
+    if should_skip_recent_run():
         return
     token=login(); rid=None
     try:
