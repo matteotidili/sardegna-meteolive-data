@@ -36,11 +36,11 @@ class MonitorTests(unittest.TestCase):
     def write(self, path, stations):
         Path(path).write_text(json.dumps({"stations":stations}))
 
-    def test_provider_throttled_and_other_networks_ok(self):
+    def test_provider_wu_paused_and_other_networks_ok(self):
         report=monitor.evaluate(NOW)
         self.assertEqual(report["DPCN"]["status"],"ok")
         self.assertEqual(report["Aeronautica Militare"]["status"],"ok")
-        self.assertEqual(report["Weather Underground"]["status"],"api_throttled")
+        self.assertEqual(report["Weather Underground"]["status"],"paused")
         self.assertEqual(report["Weather Underground"]["fresh"],0)
 
     def test_stale_am_triggers_recovery_without_wu_api_call(self):
@@ -77,6 +77,8 @@ class MonitorTests(unittest.TestCase):
         mocked.assert_not_called()
 
     def test_issue_change_throttling(self):
+        self.write("data/stations.json", [
+            {"temp":12,"last":(NOW-timedelta(hours=4)).isoformat()}])
         report=monitor.evaluate(NOW)
         previous=monitor.description(report,NOW-timedelta(minutes=15))
         calls=[]
@@ -87,6 +89,18 @@ class MonitorTests(unittest.TestCase):
         with patch.object(monitor,"github",side_effect=fake_api):
             monitor.sync_issue(report,NOW)
         self.assertEqual([m for m,_ in calls if m=="PATCH"],[])
+
+    def test_disabled_wu_does_not_keep_incident_open(self):
+        report=monitor.evaluate(NOW)
+        calls=[]
+        def fake_api(method,path,payload=None):
+            calls.append((method,path,payload))
+            return [{"title":monitor.TITLE,"number":6,"state":"open",
+                     "body":"WU indisponibile"}] if method=="GET" else {}
+        with patch.object(monitor,"github",side_effect=fake_api):
+            monitor.sync_issue(report,NOW)
+        self.assertTrue(any(m=="PATCH" and payload.get("state")=="closed"
+                            for m,p,payload in calls))
 
 if __name__=="__main__":
     unittest.main()
