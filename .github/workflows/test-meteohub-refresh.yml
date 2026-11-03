@@ -1,0 +1,26 @@
+name: Test frequenza e continuita' notturna MeteoHub
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_meteohub.py'
+      - 'tests/test_meteohub_refresh.py'
+      - '.github/workflows/test-meteohub-refresh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verifica sintassi
+        run: python -m py_compile scripts/update_meteohub.py
+      - name: Test della frequenza API e delle finestre notturne
+        run: python -m unittest discover -s tests -p 'test_meteohub_refresh.py' -v
