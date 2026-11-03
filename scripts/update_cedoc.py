@@ -127,7 +127,7 @@ def sensor_catalog(session):
                                     str(entry.get("sensor_path", ""))) and entry.get("station_id")]
             if len(entries) >= 15:
                 cached = entries
-                if NOW - created < dt.timedelta(days=7):
+                if NOW - created < dt.timedelta(days=30):
                     return cached
         except (OSError, ValueError, KeyError, TypeError):
             pass
@@ -273,19 +273,41 @@ def main():
                     retained[code] = obs
             except (KeyError, ValueError, TypeError):
                 continue
-        # GitHub Actions non garantisce un avvio istantaneo: tentativo ogni
-        # 5 minuti con un terzo dei sensori per ciclo (giro completo ~15 min),
-        # senza triplicare le richieste al servizio pubblico CEDOC.
-        if len(retained) >= 15:
-            slot = (int(NOW.timestamp()) // 300) % 3
-            selected = [item for item in catalog if int(item["station_id"]) % 3 == slot]
+        # Il sito regionale e' attualmente intermittente: verificare prima
+        # una piccola scelta di sensori. In caso di HTTP 503 o misure ferme,
+        # NON fare centinaia di richieste ad ogni tentativo da GitHub Actions.
+        # La serie di probe cambia ogni ciclo per evitare falsi negativi.
+        slot = (int(NOW.timestamp()) // 300) % 3
+        selected = ([item for item in catalog if int(item["station_id"]) % 3 == slot]
+                    if retained else catalog)
+        if not selected:
+            selected = catalog
+        probe_count = min(3, len(selected))
+        probe_start = (int(NOW.timestamp()) // 300 * 7) % len(selected)
+        probe_items = [selected[(probe_start + i * max(1, len(selected)//probe_count))
+                                % len(selected)] for i in range(probe_count)]
+        prepared_probes = [{**item, "previous":retained.get(str(item["station_id"]),{})}
+                           for item in probe_items]
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+            probe_readings = list(filter(None, pool.map(one_station, prepared_probes)))
+        state["probe_count"] = len(probe_items)
+        state["probe_success_count"] = len(probe_readings)
+        if probe_readings:
+            # Se CEDOC e' di nuovo accessibile, dopo un blackout completo
+            # acquisire subito tutte le stazioni; con rete normale eseguire
+            # un terzo dei sensori ogni 5 min, completandoli in circa 15 min.
+            checked_ids = {str(x["station_id"]) for x in probe_items}
+            remaining = [item for item in selected
+                         if str(item["station_id"]) not in checked_ids]
+            prepared = [{**item,"previous":retained.get(str(item["station_id"]),{})}
+                        for item in remaining]
+            with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+                received = probe_readings + list(filter(None, pool.map(one_station, prepared)))
         else:
-            selected = catalog  # ripristino iniziale completo dopo un blackout
-        state["scan_batch_size"] = len(selected)
-        selected = [{**item,"previous":retained.get(str(item["station_id"]),{})}
-                    for item in selected]
-        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-            received = list(filter(None, pool.map(one_station, selected)))
+            received = []
+            print("CEDOC: nessuna lettura fresca nelle sonde di controllo; "
+                  "rinvio la scansione completa per non sovraccaricare la fonte.")
+        state["scan_batch_size"] = len(selected) if probe_readings else len(probe_items)
         combined = dict(retained)
         for obs in received:
             code = str(obs["station_id"])
@@ -296,9 +318,11 @@ def main():
         state["new_read_count"] = len(received)
         state["retained_station_count"] = len(stations) - len(received)
         state["acquisition_status"] = "ok" if received else "degraded"
-        if len(stations) < 15:
+        if not stations:
             state["status"] = "unavailable"
-            state["warning"] = "CEDOC: meno di 15 pluviometri con lettura giornaliera recente e orario verificato (" + str(len(stations)) + ")."
+            state["warning"] = ("CEDOC: nessun pluviometro con accumulo odierno "
+                                "e orario verificato. Possibile indisponibilita' "
+                                "o ritardo del portale regionale.")
         else:
             state["local_day"] = NOW.astimezone(TZ).date().isoformat()
             state["source_time"] = max(station["last"] for station in stations)
@@ -314,6 +338,10 @@ def main():
                 state["warning"] = ("CEDOC temporaneamente non raggiungibile: "
                                     "riportate solo osservazioni del giorno, "
                                     "con orario originale e meno di 3 ore.")
+            elif len(stations) < 15:
+                state["warning"] = ("Copertura parziale CEDOC: pubblicati soltanto "
+                                    + str(len(stations)) +
+                                    " pluviometri con misure odierne verificabili.")
     except Exception as exc:
         state["warning"] = "CEDOC non raggiungibile o formato modificato: " + str(exc)[:180]
     finally:
