@@ -14,9 +14,12 @@ TITLE = "[MeteoLive] Rete stazioni non aggiornata"
 # e NON deve tenere aperta una segnalazione quando DPCN e AM sono sane.
 WU_ACTIVE = False
 SOURCES = {
-    "DPCN": ("data/stations.json", 90),
-    "Aeronautica Militare": ("data/am.json", 125),
-    "Weather Underground": ("data/wunderground.json", 95),
+    "DPCN": ("data/stations.json", 90, "temp"),
+    "Aeronautica Militare": ("data/am.json", 125, "temp"),
+    # Le misure CEDOC sono pluviometriche: controllare la pioggia,
+    # non la temperatura che in questo dataset non e' prevista.
+    "CEDOC": ("data/cedoc.json", 180, "rain_today"),
+    "Weather Underground": ("data/wunderground.json", 95, "temp"),
 }
 
 def parse_time(value):
@@ -35,13 +38,14 @@ def read(path):
 def evaluate(now):
     health = read("data/wunderground_app_api_health.json")
     report = {}
-    for name, (path, limit) in SOURCES.items():
+    for name, (path, limit, measure) in SOURCES.items():
         data = read(path)
         rows = data.get("stations") or []
         usable = [
             parse_time(row.get("last"))
             for row in rows if isinstance(row, dict)
-            and isinstance(row.get("temp"), (int, float))
+            and isinstance(row.get(measure), (int, float))
+            and (name != "CEDOC" or data.get("status") == "ok")
         ]
         usable = [dt for dt in usable if dt and dt <= now + timedelta(minutes=5)]
         latest = max(usable, default=None)
@@ -83,7 +87,7 @@ def description(report, now):
     lines = [
         "Controllo automatico Sardegna MeteoLive. Nessun dato e' simulato o cancellato.",
         "", "Controllo UTC: "+now.isoformat(timespec="minutes"), "",
-        "| Rete | Stato | Ultima osservazione (UTC) | Stazioni con temperatura recente |",
+        "| Rete | Stato | Ultima osservazione (UTC) | Stazioni con misura recente |",
         "|---|---|---|---:|",
     ]
     for name, v in report.items():
@@ -130,17 +134,23 @@ def sync_issue(report, now):
         print("MONITOR: segnalazione aperta",created.get("html_url"),flush=True)
 
 def self_repair(report, now):
-    stale=[n for n in ("DPCN","Aeronautica Militare") if report[n]["status"]=="stale"]
-    if not stale:
-        return
-    runs=github("GET","/actions/workflows/update-observations.yml/runs?per_page=12").get("workflow_runs",[])
-    if any(t and (now-t).total_seconds()<20*60 for t in
-           [parse_time(x.get("created_at")) for x in runs]):
-        print("MONITOR: acquisizione recente, nessun doppio avvio",flush=True)
-        return
-    # Il job WU applica il proprio circuit breaker PRIMA delle richieste API.
-    github("POST","/actions/workflows/update-observations.yml/dispatches",{"ref":"main"})
-    print("MONITOR: ripristino automatico richiesto per",", ".join(stale),flush=True)
+    # Un collettore non disponibile non deve bloccare le altre reti:
+    # recuperi indipendenti, senza riattivare Weather Underground.
+    targets = [
+        (("DPCN", "Aeronautica Militare"), "update-observations.yml"),
+        (("CEDOC",), "update-cedoc.yml"),
+    ]
+    for networks, workflow in targets:
+        stale = [n for n in networks if report[n]["status"] == "stale"]
+        if not stale:
+            continue
+        runs=github("GET","/actions/workflows/"+workflow+"/runs?per_page=12").get("workflow_runs",[])
+        if any(t and (now-t).total_seconds()<20*60 for t in
+               [parse_time(x.get("created_at")) for x in runs]):
+            print("MONITOR: tentativo recente per "+workflow+", nessun doppio avvio",flush=True)
+            continue
+        github("POST","/actions/workflows/"+workflow+"/dispatches",{"ref":"main"})
+        print("MONITOR: ripristino automatico richiesto per",", ".join(stale),flush=True)
 
 def main():
     now=datetime.now(timezone.utc)
