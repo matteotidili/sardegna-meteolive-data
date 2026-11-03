@@ -23,6 +23,11 @@ class MonitorTests(unittest.TestCase):
             {"name": "DPCN test", "temp": 12, "last": (NOW-timedelta(minutes=12)).isoformat()}])
         self.write("data/am.json", [
             {"name": "AM test", "temp": 13, "last": (NOW-timedelta(minutes=20)).isoformat()}])
+        Path("data/cedoc.json").write_text(json.dumps({
+            "status": "ok", "stations": [
+                {"station_id": "001", "rain_today": 2.4,
+                 "last": (NOW-timedelta(minutes=30)).isoformat()}]
+        }))
         self.write("data/wunderground.json", [
             {"station_id":"PWS1","temp":10,"last":(NOW-timedelta(days=1)).isoformat()}])
         Path("data/wunderground_app_api_health.json").write_text(json.dumps(
@@ -40,8 +45,26 @@ class MonitorTests(unittest.TestCase):
         report=monitor.evaluate(NOW)
         self.assertEqual(report["DPCN"]["status"],"ok")
         self.assertEqual(report["Aeronautica Militare"]["status"],"ok")
+        self.assertEqual(report["CEDOC"]["status"],"ok")
         self.assertEqual(report["Weather Underground"]["status"],"paused")
         self.assertEqual(report["Weather Underground"]["fresh"],0)
+
+    def test_cedoc_fallback_stale_triggers_independent_recovery(self):
+        Path("data/cedoc.json").write_text(json.dumps({
+            "status": "unavailable", "stations": []}))
+        report=monitor.evaluate(NOW)
+        self.assertEqual(report["CEDOC"]["status"],"stale")
+        self.assertEqual(report["DPCN"]["status"],"ok")
+        calls=[]
+        def fake_api(method, path, payload=None):
+            calls.append((method,path,payload))
+            return {"workflow_runs":[]}
+        with patch.object(monitor,"github",side_effect=fake_api):
+            monitor.self_repair(report,NOW)
+        self.assertTrue(any(m=="POST" and "update-cedoc.yml/dispatches" in p
+                            for m,p,_ in calls))
+        self.assertFalse(any(m=="POST" and "update-observations.yml" in p
+                             for m,p,_ in calls))
 
     def test_stale_am_triggers_recovery_without_wu_api_call(self):
         self.write("data/am.json",[
