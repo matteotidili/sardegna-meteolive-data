@@ -109,8 +109,17 @@ def sync_issue(report, now):
     if issue:
         if issue["state"]=="closed":
             github("PATCH","/issues/"+str(issue["number"]),{"state":"open","body":body})
-        elif issue.get("body")!=body:
-            github("PATCH","/issues/"+str(issue["number"]),{"body":body})
+        else:
+            # Evita modifiche e notifiche ogni 15 minuti se la diagnosi
+            # e' invariata. Aggiorna solo sui cambi di stato/blocco.
+            previous=issue.get("body") or ""
+            same_states=all(
+                "| "+name+" | "+value["status"]+" |" in previous
+                for name,value in report.items()
+            )
+            same_block=(report["Weather Underground"].get("blocked_until") or "") in previous
+            if not same_states or not same_block:
+                github("PATCH","/issues/"+str(issue["number"]),{"body":body})
     else:
         created=github("POST","/issues",{"title":TITLE,"body":body})
         print("MONITOR: segnalazione aperta",created.get("html_url"),flush=True)
