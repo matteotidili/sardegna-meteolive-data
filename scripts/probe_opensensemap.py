@@ -12,7 +12,7 @@ import urllib.error
 
 now=datetime.datetime.now(datetime.timezone.utc)
 params={"bbox":"7.7,38.65,10.6,41.32","exposure":"outdoor",
-        "full":"true","limit":250}
+        "full":"true","limit":20}
 url="https://api.opensensemap.org/boxes?"+urllib.parse.urlencode(params)
 req=urllib.request.Request(url,headers={"User-Agent":"SardegnaMeteoLive/1.0 (weather station research)",
                                          "Accept":"application/json"})
