@@ -1,0 +1,71 @@
+name: Aggiorna rete Ecowitt autorizzata
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_ecowitt.py'
+      - '.github/workflows/update-ecowitt.yml'
+  schedule:
+    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: observations-ecowitt
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Acquisisci soltanto dispositivi autorizzati
+        env:
+          ECOWITT_APPLICATION_KEY: ${{ secrets.ECOWITT_APPLICATION_KEY }}
+          ECOWITT_API_KEY: ${{ secrets.ECOWITT_API_KEY }}
+          ECOWITT_DEVICE_MAC: ${{ secrets.ECOWITT_DEVICE_MAC }}
+        run: python scripts/update_ecowitt.py
+      - name: Pubblica JSON con controllo anti-sovrascrittura
+        env:
+          DATA_FILE: data/ecowitt.json
+        run: |
+          set -e
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp "$DATA_FILE" "$RUNNER_TEMP/ecowitt-candidate.json"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            python - "$DATA_FILE" "$RUNNER_TEMP/ecowitt-candidate.json" <<'PY'
+          import json,sys
+          from datetime import datetime,timezone
+          from pathlib import Path
+          target,source=map(Path,sys.argv[1:3])
+          new=json.loads(source.read_text(encoding="utf-8"))
+          old=json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
+          def ts(payload):
+              try:
+                  value=datetime.fromisoformat(str(payload.get("generated_at","")).replace("Z","+00:00"))
+                  return value.astimezone(timezone.utc)
+              except (ValueError,TypeError):
+                  return datetime.min.replace(tzinfo=timezone.utc)
+          if ts(new)>ts(old):
+              target.write_bytes(source.read_bytes())
+              print("Ecowitt: snapshot aggiornato; stazioni:",new.get("station_count"))
+          else:
+              print("Ecowitt: snapshot piu recente gia pubblicato")
+          PY
+            git add "$DATA_FILE"
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Aggiorna osservazioni Ecowitt"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
