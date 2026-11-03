@@ -12,9 +12,12 @@ BASE = "https://meteohub.agenziaitaliameteo.it"
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
-# Il workflow gira ogni 5 min, ma MeteoHub limita le richieste orarie.
-# Con un intervallo minimo di 9 min si invia circa una richiesta ogni 10 min.
-MIN_RUN_INTERVAL_MIN = 9
+# MeteoHub: quota predefinita 10 estrazioni/ora per account.
+# Intervallo minimo di 7 min: fino a ~8,6 estrazioni/ora, con margine
+# per esecuzioni ritardate e altri eventuali utilizzi dell'account.
+# I workflow possono controllare ogni 5 min, ma questo limite vale per
+# tutte le esecuzioni concorrenti grazie al lock e al JSON condiviso.
+MIN_RUN_INTERVAL_MIN = 7
 # Durante i primi minuti del giorno i dati DPCN possono non essere ancora
 # disponibili nel nuovo intervallo di riferimento (00:00 -> adesso).
 # Fino alle 03:00 locali MeteoHub può rispondere FAILURE alle richieste
