@@ -18,6 +18,25 @@ import update_meteohub as hub
 
 def main():
     token = hub.login()
+    try:
+        catalog=hub.api("GET", "/api/datasets", token)
+        datasets=catalog if isinstance(catalog,list) else (
+            catalog.get("data") or catalog.get("datasets") or catalog.get("items") or []
+            if isinstance(catalog,dict) else [])
+        names=[]
+        for entry in datasets:
+            if not isinstance(entry,dict):
+                continue
+            name=str(entry.get("name") or entry.get("dataset_name") or entry.get("id") or "")
+            title=str(entry.get("title") or entry.get("description") or "")
+            if any(word in (name+" "+title).lower() for word in ("meteo", "clima", "network", "dpcn")):
+                names.append({"name":name[:120],"title":title[:90]})
+        print("Catalogo MeteoHub (solo nomi dataset meteorologici):",json.dumps(names[:70]))
+        print("Total catalog entries",len(datasets))
+    except urllib.error.HTTPError as exc:
+        print("Catalogo MeteoHub: HTTP",exc.code)
+    except Exception as exc:
+        print("Catalogo MeteoHub: risposta non interpretabile",type(exc).__name__)
     body = hub.request_body()
     body["request_name"] = "sardegna-meteolive-meteonetwork-verifica"
     body["dataset_names"] = ["meteonetwork"]
