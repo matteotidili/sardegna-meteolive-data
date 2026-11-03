@@ -1,0 +1,24 @@
+name: Test controllo automatico delle reti
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/monitor_station_health.py'
+      - 'tests/test_station_monitor.py'
+      - '.github/workflows/test-station-health.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Controlla sintassi monitor
+        run: python -m py_compile scripts/monitor_station_health.py
+      - name: Simula provider bloccato, acquisizioni ferme e riavvio automatico
+        run: python -m unittest discover -s tests -p 'test_station_monitor.py' -v
