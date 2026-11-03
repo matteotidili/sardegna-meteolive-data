@@ -113,20 +113,37 @@ def discover_pluviometer(item):
 
 
 def sensor_catalog(session):
+    # Il catalogo e' un'anagrafica, NON una misura: resta utilizzabile anche
+    # oltre i 7 giorni se il portale CEDOC non risponde. Una scadenza non deve
+    # svuotare l'intera rete mentre la fonte ha un guasto HTTP 503.
+    cached = None
     if CATALOG.exists():
         try:
             old = json.loads(CATALOG.read_text(encoding="utf-8"))
             created = dt.datetime.fromisoformat(old["generated_at"].replace("Z", "+00:00"))
             entries = old["stations"]
-            if NOW - created < dt.timedelta(days=7) and len(entries) >= 15:
-                return entries
-        except (ValueError, KeyError, TypeError):
+            entries = [entry for entry in entries if isinstance(entry, dict) and
+                       re.fullmatch(r"/sensore/\d+/\d+/(?:20207|20406)",
+                                    str(entry.get("sensor_path", ""))) and entry.get("station_id")]
+            if len(entries) >= 15:
+                cached = entries
+                if NOW - created < dt.timedelta(days=7):
+                    return cached
+        except (OSError, ValueError, KeyError, TypeError):
             pass
-    index = get_catalog(session)
-    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        result = list(filter(None, pool.map(discover_pluviometer, index.items())))
-    if len(result) < 15:
-        raise ValueError("Directory sensori CEDOC incompleta: " + str(len(result)) + " identificati.")
+    try:
+        index = get_catalog(session)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+            result = list(filter(None, pool.map(discover_pluviometer, index.items())))
+        if len(result) < 15:
+            raise ValueError("Directory sensori CEDOC incompleta: " + str(len(result)) + " identificati.")
+    except (requests.RequestException, ValueError) as exc:
+        if cached:
+            print("CEDOC: catalogo pubblico non disponibile (" + str(exc)[:120] +
+                  "); continuo con " + str(len(cached)) +
+                  " sensori gia' censiti, senza considerare vecchie le misure nuove.")
+            return cached
+        raise
     CATALOG.parent.mkdir(parents=True, exist_ok=True)
     CATALOG.write_text(json.dumps({
         "generated_at":NOW.isoformat().replace("+00:00", "Z"),
@@ -214,7 +231,8 @@ def main():
         "parameter": "rain_today",
         "unit": "mm",
         "accumulation": "giornaliero (Europe/Rome)",
-        "refresh_minutes": 15,
+        "refresh_minutes": 5,
+        "station_sweep_minutes": 15,
         "max_observation_age_hours": 3,
         "status": "unavailable",
         "warning": "Dati automatici non validati ARPAS; verificare sempre l'ora delle misure.",
@@ -235,12 +253,49 @@ def main():
         state["catalog_count"] = len(catalog)
         try:
             previous_json=json.loads(OUT.read_text(encoding="utf-8"))
-            old_stations={str(st.get("station_id")):st for st in previous_json.get("stations",[]) if isinstance(st,dict)}
+            old_stations={str(st.get("station_id")):st for st in previous_json.get("stations",[])
+                          if isinstance(st,dict) and st.get("station_id")}
         except (OSError, ValueError, TypeError):
             old_stations={}
-        catalog=[{**item,"previous":old_stations.get(str(item["station_id"]),{})} for item in catalog]
+        local_day = NOW.astimezone(TZ).date().isoformat()
+        # Non cancellare osservazioni ancora valide solo per un errore di rete.
+        # Conserveremo il loro timestamp ORIGINALE; mai riciclare piogge del
+        # giorno precedente o con eta' > MAX_AGE.
+        retained = {}
+        for code, obs in old_stations.items():
+            try:
+                when = parse_time_iso(obs["last"])
+                if (obs.get("observed_day") == local_day and
+                    -dt.timedelta(minutes=6) <= NOW-when <= MAX_AGE and
+                    isinstance(obs.get("rain_today"), (int,float)) and
+                    0 <= obs["rain_today"] <= 1800 and
+                    38.6 <= obs["lat"] <= 41.5 and 7.5 <= obs["lon"] <= 10.4):
+                    retained[code] = obs
+            except (KeyError, ValueError, TypeError):
+                continue
+        # GitHub Actions non garantisce un avvio istantaneo: tentativo ogni
+        # 5 minuti con un terzo dei sensori per ciclo (giro completo ~15 min),
+        # senza triplicare le richieste al servizio pubblico CEDOC.
+        if len(retained) >= 15:
+            slot = (int(NOW.timestamp()) // 300) % 3
+            selected = [item for item in catalog if int(item["station_id"]) % 3 == slot]
+        else:
+            selected = catalog  # ripristino iniziale completo dopo un blackout
+        state["scan_batch_size"] = len(selected)
+        selected = [{**item,"previous":retained.get(str(item["station_id"]),{})}
+                    for item in selected]
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-            stations = list(filter(None, pool.map(one_station, catalog)))
+            received = list(filter(None, pool.map(one_station, selected)))
+        combined = dict(retained)
+        for obs in received:
+            code = str(obs["station_id"])
+            prior = combined.get(code)
+            if not prior or obs["last"] >= prior["last"]:
+                combined[code] = obs
+        stations = list(combined.values())
+        state["new_read_count"] = len(received)
+        state["retained_station_count"] = len(stations) - len(received)
+        state["acquisition_status"] = "ok" if received else "degraded"
         if len(stations) < 15:
             state["status"] = "unavailable"
             state["warning"] = "CEDOC: meno di 15 pluviometri con lettura giornaliera recente e orario verificato (" + str(len(stations)) + ")."
@@ -255,6 +310,10 @@ def main():
             state["stations"] = sorted(stations, key=lambda station: station["station_id"])
             state["station_count"] = len(stations)
             state["status"] = "ok"
+            if not received:
+                state["warning"] = ("CEDOC temporaneamente non raggiungibile: "
+                                    "riportate solo osservazioni del giorno, "
+                                    "con orario originale e meno di 3 ore.")
     except Exception as exc:
         state["warning"] = "CEDOC non raggiungibile o formato modificato: " + str(exc)[:180]
     finally:
