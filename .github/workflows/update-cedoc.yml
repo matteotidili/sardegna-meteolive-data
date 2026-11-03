@@ -88,10 +88,17 @@ jobs:
           existing_path=Path(sys.argv[2])
           if existing_path.exists():
               existing=json.loads(existing_path.read_text(encoding='utf-8'))
+              # L'esecuzione conclusa per ultima non e' necessariamente quella
+              # partita piu' tardi: confrontare SEMPRE anche l'ora del check.
+              candidate_check=candidate.get('generated_at')
+              existing_check=existing.get('generated_at')
+              if candidate_check and existing_check and existing_check >= candidate_check:
+                  print('CEDOC: acquisizione gia pubblicata piu recente, salto snapshot vecchio')
+                  sys.exit(1)
               candidate_time=candidate.get('source_time')
               existing_time=existing.get('source_time')
               if candidate_time and existing_time and existing_time > candidate_time:
-                  print('CEDOC: dataset pubblicato più recente, salto aggiornamento obsoleto')
+                  print('CEDOC: osservazioni pubblicate piu recenti, salto snapshot vecchio')
                   sys.exit(1)
           PY
             then
