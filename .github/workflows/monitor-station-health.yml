@@ -12,7 +12,7 @@ on:
     - cron: '7,22,37,52 * * * *'
   workflow_run:
     workflows:
-      - 'Aggiorna tutte le reti stazioni'
+      - 'Aggiorna reti MeteoHub e Aeronautica Militare'
       - 'Aggiorna dati MeteoHub'
       - 'Aggiorna dati Aeronautica Militare'
     types: [completed]
