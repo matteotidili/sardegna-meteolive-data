@@ -231,8 +231,8 @@ def main():
         "parameter": "rain_today",
         "unit": "mm",
         "accumulation": "giornaliero (Europe/Rome)",
-        "refresh_minutes": 5,
-        "station_sweep_minutes": 15,
+        "refresh_minutes": 15,
+        "station_sweep_minutes": 30,
         "max_observation_age_hours": 3,
         "status": "unavailable",
         "warning": "Dati automatici non validati ARPAS; verificare sempre l'ora delle misure.",
@@ -277,13 +277,15 @@ def main():
         # una piccola scelta di sensori. In caso di HTTP 503 o misure ferme,
         # NON fare centinaia di richieste ad ogni tentativo da GitHub Actions.
         # La serie di probe cambia ogni ciclo per evitare falsi negativi.
-        slot = (int(NOW.timestamp()) // 300) % 3
-        selected = ([item for item in catalog if int(item["station_id"]) % 3 == slot]
+        slot = (int(NOW.timestamp()) // 900) % 3
+        # Ogni quarto d'ora controlla due terzi dei sensori: ogni
+        # stazione viene riprovata almeno una volta ogni 30 minuti.
+        selected = ([item for item in catalog if int(item["station_id"]) % 3 != slot]
                     if retained else catalog)
         if not selected:
             selected = catalog
         probe_count = min(3, len(selected))
-        probe_start = (int(NOW.timestamp()) // 300 * 7) % len(selected)
+        probe_start = (int(NOW.timestamp()) // 900 * 7) % len(selected)
         probe_items = [selected[(probe_start + i * max(1, len(selected)//probe_count))
                                 % len(selected)] for i in range(probe_count)]
         prepared_probes = [{**item, "previous":retained.get(str(item["station_id"]),{})}
@@ -295,7 +297,7 @@ def main():
         if probe_readings:
             # Se CEDOC e' di nuovo accessibile, dopo un blackout completo
             # acquisire subito tutte le stazioni; con rete normale eseguire
-            # un terzo dei sensori ogni 5 min, completandoli in circa 15 min.
+            # due terzi dei sensori ogni 15 min, completandoli in circa 30 min.
             checked_ids = {str(x["station_id"]) for x in probe_items}
             remaining = [item for item in selected
                          if str(item["station_id"]) not in checked_ids]
