@@ -134,7 +134,11 @@ def station(device, info, current, now):
     ident = str(device.get("mac") or device.get("imei") or info.get("mac") or info.get("imei") or "")
     if not ident:
         return None
-    name = str(info.get("name") or device.get("name") or "Stazione Ecowitt")[:100].strip()
+    # Nome pubblico richiesto per la PWS personale di Villaspeciosa.
+    # Non rinominare eventuali altri dispositivi autorizzati.
+    name = ("Villaspeciosa" if str(device.get("name") or "").startswith("EasyWeatherPro-780FE8")
+            or str(info.get("name") or "").startswith("EasyWeatherPro-780FE8")
+            else str(info.get("name") or device.get("name") or "Stazione Ecowitt")[:100].strip())
     elev = number(info.get("elevation", info.get("altitude",
                         device.get("elevation", device.get("altitude")))))
     if elev is not None and not (-20 <= elev <= 2000):
@@ -207,6 +211,35 @@ def run():
         except (OSError, ValueError, TypeError) as exc:
             out["status"] = "upstream_unavailable"
             out["error_type"] = type(exc).__name__
+    # Non cancellare l'ultima osservazione valida se l'API non risponde.
+    # Timestamp e valori rimangono QUELLI ORIGINALI, mai aggiornati artificialmente.
+    # Non riproporre un pluviometro "oggi" proveniente dal giorno precedente.
+    if not out["stations"] and OUT.exists():
+        try:
+            old = json.loads(OUT.read_text(encoding="utf-8"))
+            previous = [dict(s) for s in old.get("stations", [])
+                        if isinstance(s, dict) and s.get("network") == "ecowitt"
+                        and s.get("station_id") and s.get("last")
+                        and number(s.get("lat")) is not None
+                        and number(s.get("lon")) is not None]
+            for st in previous:
+                st["name"] = "Villaspeciosa" if (st.get("station_id") == "ba209016a64287"
+                             or str(st.get("name", "")).startswith("EasyWeatherPro-780FE8")) else st.get("name")
+                try:
+                    last_dt = datetime.fromisoformat(str(st["last"]).replace("Z","+00:00"))
+                    st["stale_min"] = round((now-last_dt).total_seconds()/60,1)
+                    if last_dt.astimezone(ROME).date() != now.astimezone(ROME).date():
+                        st["rain_today"] = None
+                        st["tmin"] = None
+                        st["tmax"] = None
+                except (ValueError,TypeError):
+                    continue
+                out["stations"].append(st)
+            out["station_count"] = len(out["stations"])
+            if out["stations"]:
+                out["status"] = "last_observation_only"
+        except (ValueError, OSError, TypeError):
+            pass
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
                    encoding="utf-8")
