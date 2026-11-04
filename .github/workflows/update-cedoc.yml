@@ -65,8 +65,8 @@ jobs:
           import json, datetime as dt
           from pathlib import Path
           data=json.loads(Path('data/cedoc.json').read_text(encoding='utf-8'))
-          assert data['parameter']=='rain_today' and data['refresh_minutes']==5
-          assert data['station_sweep_minutes']==15
+          assert data['parameter']=='rain_today' and data['refresh_minutes']==15
+          assert data['station_sweep_minutes']==30
           assert data['status'] in {'ok','unavailable','stale'}
           assert data['station_count']==len(data['stations'])
           for s in data['stations']:
