@@ -9,9 +9,9 @@ on:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
   schedule:
-    # Backup sfalsato di 2 min rispetto ai cron del workflow comune,
+    # Backup ogni 30 min sfalsato rispetto al ciclo di 15 min,
     # limite GitHub 5 min. Il collector salta i controlli troppo ravvicinati.
-    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
+    - cron: '13,43 * * * *'
 permissions:
   contents: write
 
