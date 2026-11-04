@@ -1,4 +1,4 @@
-name: Aggiorna reti MeteoHub e Aeronautica Militare
+name: Aggiorna reti MeteoHub, Aeronautica Militare ed Ecowitt
 
 on:
   workflow_dispatch:
@@ -24,9 +24,9 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Polling sfalsato ogni 5 min; due workflow dedicati sono ridondanti.
+    # Ciclo principale ogni 15 min; workflow dedicati sono backup a 30 min.
     # Gli scheduler GitHub restano best-effort; il watchdog verifica i dati.
-    - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
+    - cron: '4,19,34,49 * * * *'
 
 permissions:
   contents: write
