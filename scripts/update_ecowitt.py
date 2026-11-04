@@ -164,6 +164,17 @@ def station(device, info, current, now):
 
 def run():
     now = datetime.now(timezone.utc)
+    # La matrice principale gira ogni 15 minuti. Le chiamate ridondanti
+    # non devono consumare quote Ecowitt tra due intervalli di raccolta.
+    if OUT.exists() and str(os.environ.get("FORCE_UPDATE","")).lower() not in ("1","true","yes"):
+        try:
+            previous=json.loads(OUT.read_text(encoding="utf-8"))
+            last=datetime.fromisoformat(str(previous.get("generated_at","")).replace("Z","+00:00"))
+            if 0 <= (now-last).total_seconds() < 12*60:
+                print("Ecowitt: controllo eseguito meno di 12 minuti fa, salto API")
+                return
+        except (OSError,ValueError,TypeError):
+            pass
     epoch = now.timestamp()
     out = {
         "generated_at": now.isoformat().replace("+00:00", "Z"),
