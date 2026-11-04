@@ -247,6 +247,44 @@ def should_skip_recent_run():
         pass
     return False
 
+def preserve_missing_stations(result):
+    """Non perdere una postazione se oggi MeteoHub non ne pubblica la misura.
+
+    Le righe conservate mantengono l'ultimo timestamp reale; il frontend le
+    contrassegna come dati storici, non come misure attuali.
+    """
+    if not OUT.exists():
+        return result
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+        previous_rows = previous.get("stations") or []
+        def identifier(row):
+            return (str(row.get("network","dpcn-sardegna")),
+                    str(row.get("station_id") or row.get("name") or "").casefold(),
+                    round(float(row.get("lat")),4),
+                    round(float(row.get("lon")),4))
+        present = {identifier(row) for row in result["stations"]}
+        retained = 0
+        for row in previous_rows:
+            if not isinstance(row,dict) or not row.get("last"):
+                continue
+            try:
+                k = identifier(row)
+                dt = parse_dt(row["last"])
+            except (TypeError,ValueError,KeyError):
+                continue
+            if dt > datetime.now(UTC)+timedelta(minutes=5) or k in present:
+                continue
+            present.add(k)
+            result["stations"].append(row)
+            retained += 1
+        result["station_count"] = len(result["stations"])
+        result["retained_previous_station_count"] = retained
+    except (OSError, ValueError, TypeError):
+        pass
+    return result
+
+
 def main():
     if should_skip_recent_run():
         return
@@ -257,7 +295,7 @@ def main():
         print("Download:",filename)
         raw=api("GET","/api/data/"+urllib.parse.quote(str(filename),safe=""),token,timeout=240,parse_json=False)
         if not isinstance(raw,(bytes,bytearray)): raw=json.dumps(raw).encode("utf-8")
-        result=aggregate(bytes(raw))
+        result=preserve_missing_stations(aggregate(bytes(raw)))
         result["checked_at"]=datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00","Z")
         OUT.parent.mkdir(parents=True,exist_ok=True)
         OUT.write_text(json.dumps(result,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
