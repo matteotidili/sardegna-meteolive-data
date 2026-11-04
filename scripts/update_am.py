@@ -400,6 +400,31 @@ def main():
     if not output:
         raise RuntimeError("Nessuna stazione AM/SYNOP ricevuta: mantengo il file precedente")
 
+    # Un SYNOP momentaneamente mancante non elimina l'ultima osservazione
+    # pubblicata. Ora/valori della vecchia misura restano immutati.
+    retained = 0
+    if OUT.exists():
+        try:
+            previous = json.loads(OUT.read_text(encoding="utf-8"))
+            ids = {str(row.get("station_id") or row.get("name"))
+                   for row in output}
+            for old in previous.get("stations", []):
+                if not isinstance(old, dict) or not old.get("last"):
+                    continue
+                sid = str(old.get("station_id") or old.get("name"))
+                if sid not in ids:
+                    try:
+                        stamp = datetime.fromisoformat(str(old["last"]).replace("Z","+00:00"))
+                        if stamp > now + timedelta(minutes=5):
+                            continue
+                    except (ValueError,TypeError):
+                        continue
+                    output.append(old)
+                    ids.add(sid)
+                    retained += 1
+        except (OSError,ValueError,TypeError):
+            pass
+
     newest = max(
         (datetime.fromisoformat(s["last"].replace("Z", "+00:00")) for s in output if s.get("last")),
         default=now,
@@ -410,6 +435,7 @@ def main():
         "local_day": str(local_day),
         "source": "Rete aeronautica / SYNOP via OGIMET + METAR via Aviation Weather Center",
         "station_count": len(output),
+        "retained_previous_station_count": retained,
         "stations": sorted(output, key=lambda x: x["name"].casefold()),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
