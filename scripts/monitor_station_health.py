@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Monitor automatico delle reti: controlla dati reali, riavvia DPCN/AM,
-segnala WU throttled, NON modifica osservazioni e non interroga provider meteo."""
+"""Monitor automatico: verifica i timestamp reali di DPCN, AM, Ecowitt, CEDOC;
+chiede il recupero dei collector inattivi, senza ripubblicare dati vecchi.
+Weather Underground rimane disattivata."""
 import json
 import os
 import sys
@@ -14,8 +15,9 @@ TITLE = "[MeteoLive] Rete stazioni non aggiornata"
 # e NON deve tenere aperta una segnalazione quando DPCN e AM sono sane.
 WU_ACTIVE = False
 SOURCES = {
-    "DPCN": ("data/stations.json", 90, "temp"),
-    "Aeronautica Militare": ("data/am.json", 125, "temp"),
+    "DPCN": ("data/stations.json", 75, "temp"),
+    "Aeronautica Militare": ("data/am.json", 85, "temp"),
+    "Ecowitt": ("data/ecowitt.json", 30, "temp"),
     # Le misure CEDOC sono pluviometriche: controllare la pioggia,
     # non la temperatura che in questo dataset non e' prevista.
     "CEDOC": ("data/cedoc.json", 180, "rain_today"),
@@ -138,6 +140,7 @@ def self_repair(report, now):
     # recuperi indipendenti, senza riattivare Weather Underground.
     targets = [
         (("DPCN", "Aeronautica Militare"), "update-observations.yml"),
+        (("Ecowitt",), "update-ecowitt.yml"),
         (("CEDOC",), "update-cedoc.yml"),
     ]
     for networks, workflow in targets:
