@@ -46,6 +46,19 @@ jobs:
         run: |
           python -m py_compile scripts/update_cedoc.py
           python scripts/update_cedoc.py
+      - name: Conserva ultimo snapshot CEDOC con misure reali
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          current=Path('data/cedoc.json')
+          data=json.loads(current.read_text(encoding='utf-8'))
+          if data.get('status')=='ok' and data.get('stations'):
+              Path('data/cedoc_last_valid.json').write_bytes(current.read_bytes())
+              print('Ultime osservazioni CEDOC valide conservate:',len(data['stations']))
+          else:
+              print('CEDOC non disponibile: non cancellare ultime osservazioni')
+          PY
       - name: Valida metadati e coordinate
         run: |
           python - <<'PY'
@@ -72,6 +85,9 @@ jobs:
           git config user.name 'sardegna-meteolive-data-bot'
           git config user.email 'actions@users.noreply.github.com'
           cp data/cedoc.json "$RUNNER_TEMP/cedoc-pending.json"
+          if [ -f data/cedoc_last_valid.json ]; then
+            cp data/cedoc_last_valid.json "$RUNNER_TEMP/cedoc-last-valid-pending.json"
+          fi
           if [ -f data/cedoc_sensors.json ]; then
             cp data/cedoc_sensors.json "$RUNNER_TEMP/cedoc-sensors-pending.json"
           fi
@@ -108,6 +124,9 @@ jobs:
               exit 0
             fi
             cp "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json
+            if [ -f "$RUNNER_TEMP/cedoc-last-valid-pending.json" ]; then
+              cp "$RUNNER_TEMP/cedoc-last-valid-pending.json" data/cedoc_last_valid.json
+            fi
             if [ -f "$RUNNER_TEMP/cedoc-sites-pending.json" ]; then
               cp "$RUNNER_TEMP/cedoc-sites-pending.json" data/cedoc_sites.json
             fi
@@ -115,6 +134,7 @@ jobs:
               cp "$RUNNER_TEMP/cedoc-sensors-pending.json" data/cedoc_sensors.json
             fi
             git add data/cedoc.json
+            if [ -f data/cedoc_last_valid.json ]; then git add data/cedoc_last_valid.json; fi
             if [ -f data/cedoc_sites.json ]; then git add data/cedoc_sites.json; fi
             if [ -f data/cedoc_sensors.json ]; then git add data/cedoc_sensors.json; fi
             if git diff --cached --quiet; then exit 0; fi
