@@ -22,6 +22,7 @@ SOURCES = (
     ("wunderground", Path("data/wunderground_stations.json")),
     ("cedoc", Path("data/cedoc_sites.json")),
     ("weatherlink", Path("data/weatherlink.json")),
+    ("ecowitt", Path("data/ecowitt.json")),
 )
 WMS = "https://webgis.regione.sardegna.it/geoserverraster/ows"
 LAYER = "raster:DTM_10M_ALTIMETRIA_REV01_GEOS"
@@ -126,7 +127,7 @@ def gather_sites():
             if not sid or not location_is_valid(lat, lon):
                 continue
             # L'altitudine dichiarata resta sempre prioritaria.
-            if is_number(row.get("elev")):
+            if network != "ecowitt" and is_number(row.get("elev")):
                 continue
             site = {
                 "network": network, "station_id": str(sid),
