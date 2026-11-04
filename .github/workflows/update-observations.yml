@@ -17,6 +17,7 @@ on:
       - 'Aggiorna incendi MTG FRP'
       - 'Aggiorna vettori AROME 10m'
       - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
+      - 'Aggiorna rete Ecowitt autorizzata'
     types: [completed]
   push:
     branches: [main]
@@ -43,6 +44,10 @@ jobs:
             file: stations
           - network: am
             file: am
+          # Percorso indipendente dal cron dedicato Ecowitt, soggetto a
+          # ritardi best-effort. Mantiene i segreti su Actions.
+          - network: ecowitt
+            file: ecowitt
     # Stesso lock dei workflow manuali: niente doppie richieste alla stessa rete.
     concurrency:
       group: observations-${{ matrix.network }}
@@ -62,6 +67,9 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_USERNAME || '' }}
           METEOHUB_PASSWORD: ${{ matrix.network == 'meteohub' && secrets.METEOHUB_PASSWORD || '' }}
+          ECOWITT_APPLICATION_KEY: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_APPLICATION_KEY || '' }}
+          ECOWITT_API_KEY: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_API_KEY || '' }}
+          ECOWITT_DEVICE_MAC: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_DEVICE_MAC || '' }}
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
           NETWORK: ${{ matrix.network }}
         run: python "scripts/update_${NETWORK}.py"
