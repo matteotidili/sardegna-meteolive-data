@@ -15,10 +15,10 @@ on:
       - '.github/workflows/update-cedoc.yml'
       - 'tests/test_cedoc_catalog.py'
   schedule:
-    # Tentativo ogni 5 minuti (minimo consentito da GitHub Actions).
+    # Tentativo ogni 15 minuti, anche quando il portale CEDOC è offline.
     # Per ridurre il carico sulla fonte pubblica, le stazioni sono
-    # controllate a rotazione in 3 gruppi, circa ogni 15 minuti.
-    - cron: '3,8,13,18,23,28,33,38,43,48,53,58 * * * *'
+    # controllate a rotazione in 3 gruppi, circa ogni 45 minuti quando il portale è disponibile.
+    - cron: '3,18,33,48 * * * *'
 
 permissions:
   contents: write
