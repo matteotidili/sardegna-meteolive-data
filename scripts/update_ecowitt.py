@@ -13,7 +13,7 @@ import os
 import re
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, time, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -99,6 +99,44 @@ def pick(groups, group, fields, now):
     return None, None
 
 
+def daily_temperature_extremes(keys, locator, now):
+    """Estremi campionati ogni 5 minuti dal giorno civile Europe/Rome.
+
+    Ecowitt /device/history restituisce una mappa timestamp UTC -> stringa
+    di temperatura, non il formato realtime. Nessun valore e' inventato
+    se l'API non ha osservazioni utilizzabili.
+    """
+    current = datetime.fromtimestamp(now, timezone.utc)
+    day = current.astimezone(ROME).date()
+    begin = datetime.combine(day, time.min, tzinfo=ROME).astimezone(timezone.utc)
+    data = get(
+        "/device/history", keys, **locator,
+        start_date=begin.strftime("%Y-%m-%d %H:%M:%S"),
+        end_date=current.strftime("%Y-%m-%d %H:%M:%S"),
+        call_back="outdoor.temperature", cycle_type="5min",
+        temp_unitid=1,
+    )
+    values = ((data or {}).get("outdoor") or {}).get("temperature") or {}
+    if not isinstance(values, dict) or not isinstance(values.get("list"), dict):
+        return None
+    unit = str(values.get("unit") or "").strip().lower()
+    fahrenheit = "f" in unit and "c" not in unit
+    readings = []
+    for ts, raw in values["list"].items():
+        stamp, temp = number(ts), number(raw)
+        if stamp is None or temp is None or not begin.timestamp() <= stamp <= now + 300:
+            continue
+        if datetime.fromtimestamp(stamp, ROME).date() != day:
+            continue
+        if fahrenheit:
+            temp = (temp - 32) * 5 / 9
+        if -60 <= temp <= 65:
+            readings.append(temp)
+    if not readings:
+        return None
+    return round(min(readings), 1), round(max(readings), 1), len(readings)
+
+
 def station(device, info, current, now):
     if not isinstance(current, dict):
         return None
@@ -170,12 +208,28 @@ def run():
         try:
             previous=json.loads(OUT.read_text(encoding="utf-8"))
             last=datetime.fromisoformat(str(previous.get("generated_at","")).replace("Z","+00:00"))
-            if 0 <= (now-last).total_seconds() < 12*60:
+            # Dopo un aggiornamento del collettore, non saltare la prima
+            # acquisizione quando il JSON non ha ancora minime e massime.
+            extrema_ready=all(
+                st.get("tmin") is not None and st.get("tmax") is not None
+                for st in previous.get("stations", []) if isinstance(st, dict)
+            ) and bool(previous.get("stations"))
+            if 0 <= (now-last).total_seconds() < 12*60 and extrema_ready:
                 print("Ecowitt: controllo eseguito meno di 12 minuti fa, salto API")
                 return
         except (OSError,ValueError,TypeError):
             pass
     epoch = now.timestamp()
+    # Ultimi estremi dello stesso giorno, utili se l'endpoint storico e'
+    # temporaneamente indisponibile. Non usare mai gli estremi di ieri.
+    prior_by_id = {}
+    try:
+        prior = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
+        if prior.get("local_day") == now.astimezone(ROME).date().isoformat():
+            prior_by_id = {st["station_id"]: st for st in prior.get("stations", [])
+                           if isinstance(st, dict) and st.get("station_id")}
+    except (OSError, ValueError, TypeError):
+        pass
     out = {
         "generated_at": now.isoformat().replace("+00:00", "Z"),
         "local_day": now.astimezone(ROME).date().isoformat(),
@@ -212,6 +266,32 @@ def run():
                                   rainfall_unitid=12, solar_irradiance_unitid=16) or {}
                     obs = station(device, info, current, epoch)
                     if obs:
+                        # La temperatura istantanea e' indipendente dal
+                        # servizio storico: un errore storia non fa sparire
+                        # la stazione dalla mappa.
+                        previous = prior_by_id.get(obs["station_id"], {})
+                        try:
+                            extrema = daily_temperature_extremes(keys, locator, epoch)
+                        except (OSError, ValueError, TypeError):
+                            extrema = None
+                        if extrema:
+                            low, high, samples = extrema
+                            # Il dato realtime puo' essere piu' recente
+                            # dell'ultimo campione storico disponibile.
+                            obs["tmin"] = round(min(low, obs["temp"]), 1)
+                            obs["tmax"] = round(max(high, obs["temp"]), 1)
+                            obs["extrema_samples"] = samples
+                            obs["extrema_source"] = "ecowitt_history_5min"
+                        else:
+                            older_min = number(previous.get("tmin"))
+                            older_max = number(previous.get("tmax"))
+                            if older_min is not None and older_max is not None:
+                                obs["tmin"] = round(min(older_min, obs["temp"]), 1)
+                                obs["tmax"] = round(max(older_max, obs["temp"]), 1)
+                                obs["extrema_source"] = "last_valid_today"
+                            else:
+                                obs["extrema_source"] = "not_available"
+                        obs["extrema_day"] = out["local_day"]
                         out["stations"].append(obs)
                 except (OSError, ValueError, TypeError):
                     errors += 1
