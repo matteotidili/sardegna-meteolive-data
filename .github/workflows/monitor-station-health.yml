@@ -9,7 +9,8 @@ on:
       - 'scripts/monitor_station_health.py'
       - '.github/workflows/monitor-station-health.yml'
   schedule:
-    - cron: '7,22,37,52 * * * *'
+    # Sorveglianza ogni 10 min dei timestamp reali, oltre ai trigger sui workflow.
+    - cron: '9,19,29,39,49,59 * * * *'
   workflow_run:
     workflows:
       - 'Aggiorna reti MeteoHub e Aeronautica Militare'
