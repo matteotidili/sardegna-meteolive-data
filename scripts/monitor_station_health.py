@@ -15,9 +15,9 @@ TITLE = "[MeteoLive] Rete stazioni non aggiornata"
 # e NON deve tenere aperta una segnalazione quando DPCN e AM sono sane.
 WU_ACTIVE = False
 SOURCES = {
-    "DPCN": ("data/stations.json", 75, "temp"),
-    "Aeronautica Militare": ("data/am.json", 85, "temp"),
-    "Ecowitt": ("data/ecowitt.json", 30, "temp"),
+    "DPCN": ("data/stations.json", 50, "temp"),
+    "Aeronautica Militare": ("data/am.json", 75, "temp"),
+    "Ecowitt": ("data/ecowitt.json", 25, "temp"),
     # Le misure CEDOC sono pluviometriche: controllare la pioggia,
     # non la temperatura che in questo dataset non e' prevista.
     "CEDOC": ("data/cedoc.json", 180, "rain_today"),
