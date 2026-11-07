@@ -13,11 +13,11 @@ ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
 # MeteoHub: quota predefinita 10 estrazioni/ora per account.
-# Intervallo minimo di 12 min: fino a 5 estrazioni/ora, con margine
-# per esecuzioni ritardate e altri eventuali utilizzi dell'account.
+# Intervallo minimo di 10 min: massimo 6 estrazioni/ora, con margine
+# rispetto alla quota MeteoHub di 10/ora e agli altri utilizzi dell'account.
 # I workflow possono controllare ogni 5 min, ma questo limite vale per
 # tutte le esecuzioni concorrenti grazie al lock e al JSON condiviso.
-MIN_RUN_INTERVAL_MIN = 12
+MIN_RUN_INTERVAL_MIN = 10
 # Nei primi 180 minuti del giorno includi nella finestra anche le ultime
 # tre ore del giorno precedente: cosi' la richiesta non e' vuota durante
 # il rollover del dataset e i dati notturni possono essere ricevuti subito.
