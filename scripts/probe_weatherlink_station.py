@@ -31,5 +31,11 @@ if match:
           "attiva:",s.get("active"))
 status,data=request("/current/"+UUID)
 print("WeatherLink /current/UUID: HTTP",status,
-      "realtime accessibile:",status==200,
       "sensori restituiti:",len(data.get("sensors",[])) if status==200 and isinstance(data,dict) else 0)
+if isinstance(data,dict):
+    # Struttura della risposta, nessuna osservazione / chiave privata nel log.
+    print("Current API response fields:", sorted(str(k) for k in data.keys())[:30])
+    for k in ("code","status","error","error_code","message"):
+        if k in data:
+            value=data[k]
+            print("Current status field",k,str(value)[:140])
