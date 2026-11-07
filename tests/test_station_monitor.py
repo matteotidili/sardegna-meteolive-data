@@ -23,6 +23,8 @@ class MonitorTests(unittest.TestCase):
             {"name": "DPCN test", "temp": 12, "last": (NOW-timedelta(minutes=12)).isoformat()}])
         self.write("data/am.json", [
             {"name": "AM test", "temp": 13, "last": (NOW-timedelta(minutes=20)).isoformat()}])
+        self.write("data/ecowitt.json", [
+            {"name": "Ecowitt test", "temp": 14, "last": (NOW-timedelta(minutes=5)).isoformat()}])
         Path("data/cedoc.json").write_text(json.dumps({
             "status": "ok", "stations": [
                 {"station_id": "001", "rain_today": 2.4,
