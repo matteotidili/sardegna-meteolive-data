@@ -7,7 +7,8 @@ on:
       - 'scripts/update_ecowitt.py'
       - '.github/workflows/update-ecowitt.yml'
   schedule:
-    - cron: '14,44 * * * *'
+    # Backup indipendente sfalsato dal workflow comune, ogni 30 min.
+    - cron: '8,38 * * * *'
 permissions:
   contents: write
 concurrency:
