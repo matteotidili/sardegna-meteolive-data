@@ -19,6 +19,16 @@ try:
                 "tags",definition.get("tags"),"params",fields,"security",definition.get("security"),
                 "body",str(body)[:550])
     print("SECURITY",json.dumps(data.get("securityDefinitions") or data.get("components",{}).get("securitySchemes") or {}))
+    comp=data.get("components") or {}
+    schemas=comp.get("schemas") or {}
+    for name,val in schemas.items():
+        if any(t in name.lower() for t in ("credential","station","realtime","daily","data","measure","token","login")):
+            print("SCHEMA",name,json.dumps(val,ensure_ascii=False)[:2400])
+    for target in ["/login","/stations","/data-realtime","/data-daily"]:
+        d=(data.get("paths") or {}).get(target) or {}
+        for method,spec in d.items():
+            if method not in ("get","post"):continue
+            print("DETAIL",method.upper(),target,json.dumps(spec,ensure_ascii=False)[:5500])
 except HTTPError as exc:
     print("Swagger fetch HTTP",exc.code,"contenttype",exc.headers.get("Content-Type"))
 except Exception as exc:
