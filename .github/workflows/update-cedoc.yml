@@ -5,7 +5,6 @@ on:
   # Backup al cron: il completamento di reti indipendenti riavvia CEDOC.
   workflow_run:
     workflows:
-      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
       - 'Aggiorna incendi MTG FRP'
     types: [completed]
   push:
