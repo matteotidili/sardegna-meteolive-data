@@ -58,7 +58,9 @@ jobs:
           ECOWITT_APPLICATION_KEY: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_APPLICATION_KEY || '' }}
           ECOWITT_API_KEY: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_API_KEY || '' }}
           ECOWITT_DEVICE_MAC: ${{ matrix.network == 'ecowitt' && secrets.ECOWITT_DEVICE_MAC || '' }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+          # Anche il watchdog puo' avviare questo workflow: non deve
+          # aggirare le quote minime dei provider.
+          FORCE_UPDATE: ${{ github.event_name == 'push' }}
           NETWORK: ${{ matrix.network }}
         run: python "scripts/update_${NETWORK}.py"
 
