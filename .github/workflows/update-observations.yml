@@ -5,20 +5,8 @@ on:
   # Weather Underground temporaneamente disattivata per scelta operativa.
   # Polling di MeteoHub DPCN e Aeronautica Militare, con recuperi indipendenti.
   # I collector rispettano intervalli minimi e orari reali delle osservazioni.
-  workflow_run:
-    workflows:
-      - 'Aggiorna dati MeteoHub'
-      - 'Aggiorna dati Aeronautica Militare'
-      - 'Aggiorna allerte MeteoAlarm Mediterraneo'
-      # Backup indipendenti: quando GitHub ritarda o perde gli eventi cron
-      # principali, una qualunque di queste reti riattiva DPCN e AM.
-      - 'Aggiorna rete WeatherLink (accesso autorizzato)'
-      - 'Aggiorna pluviometri Sardegna CEDOC'
-      - 'Aggiorna incendi MTG FRP'
-      - 'Aggiorna vettori AROME 10m'
-      - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
-      - 'Aggiorna rete Ecowitt autorizzata'
-    types: [completed]
+  # I workflow di backup dedicati e il watchdog coprono i ritardi cron.
+  # Non concatenare ogni run con altri run: puo' generare code e cancellazioni.
   push:
     branches: [main]
     paths:
