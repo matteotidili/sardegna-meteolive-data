@@ -202,7 +202,7 @@ def station(device, info, current, now):
 
 def run():
     now = datetime.now(timezone.utc)
-    # La matrice principale gira ogni 15 minuti. Le chiamate ridondanti
+    # La matrice principale gira ogni 10 minuti. Le chiamate ridondanti
     # non devono consumare quote Ecowitt tra due intervalli di raccolta.
     if OUT.exists() and str(os.environ.get("FORCE_UPDATE","")).lower() not in ("1","true","yes"):
         try:
@@ -214,8 +214,8 @@ def run():
                 st.get("tmin") is not None and st.get("tmax") is not None
                 for st in previous.get("stations", []) if isinstance(st, dict)
             ) and bool(previous.get("stations"))
-            if 0 <= (now-last).total_seconds() < 12*60 and extrema_ready:
-                print("Ecowitt: controllo eseguito meno di 12 minuti fa, salto API")
+            if 0 <= (now-last).total_seconds() < 9*60 and extrema_ready:
+                print("Ecowitt: controllo eseguito meno di 9 minuti fa, salto API")
                 return
         except (OSError,ValueError,TypeError):
             pass
