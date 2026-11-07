@@ -9,16 +9,8 @@ on:
       - 'scripts/monitor_station_health.py'
       - '.github/workflows/monitor-station-health.yml'
   schedule:
-    # Sorveglianza ogni 10 min dei timestamp reali, oltre ai trigger sui workflow.
+    # Sorveglianza ogni 10 min dei timestamp reali, con recupero su errore.
     - cron: '9,19,29,39,49,59 * * * *'
-  workflow_run:
-    workflows:
-      - 'Aggiorna reti MeteoHub e Aeronautica Militare'
-      - 'Aggiorna dati MeteoHub'
-      - 'Aggiorna dati Aeronautica Militare'
-      - 'Aggiorna rete Ecowitt autorizzata'
-      - 'Calcola accumuli pluviometrici 48 ore da tutte le reti'
-    types: [completed]
 
 permissions:
   contents: read
