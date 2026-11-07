@@ -24,9 +24,9 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Ciclo principale ogni 15 min; workflow dedicati sono backup a 30 min.
-    # Gli scheduler GitHub restano best-effort; il watchdog verifica i dati.
-    - cron: '4,19,34,49 * * * *'
+    # Ogni 10 minuti; i trigger di altri workflow e backup restano attivi.
+    # I singoli collector limitano le richieste API tramite checked_at.
+    - cron: '4,14,24,34,44,54 * * * *'
 
 permissions:
   contents: write
