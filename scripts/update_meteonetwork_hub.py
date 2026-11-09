@@ -71,6 +71,10 @@ def aggregate(raw, now=None):
     for line in unpack(raw).decode("utf-8", errors="replace").splitlines():
         try:
             rec = json.loads(line)
+            # L'estrazione ora puo' contenere DPCN e MNW insieme.
+            # Mai etichettare stazioni DPCN come MeteoNetwork.
+            if rec.get("network") != DATASET:
+                continue
             dt = parse_dt(rec["date"])
             data = rec.get("data") or []
             meta = data[0].get("vars") or {}
