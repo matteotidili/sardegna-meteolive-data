@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """MeteoNetwork via MeteoHub, flusso indipendente dalla rete DPCN."""
-import json, os, sys, urllib.parse
+import json, os, sys, urllib.parse, urllib.error
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -10,7 +10,7 @@ from update_meteohub import api, login, unpack, parse_dt, mval, get_id, wait_for
 
 UTC = timezone.utc
 OUT = Path("data/meteonetwork.json")
-DATASET = "meteonetwork"  # verificato /api/datasets: id=mnw, name=meteonetwork
+DATASET = "mnw"  # MeteoHub catalog: dataset id=mnw, name=meteonetwork
 TEMP, RH, DIR, WIND, GUST, RAIN = "B12101", "B13003", "B11001", "B11002", "B11041", "B13011"
 VAR = {TEMP, RH, DIR, WIND, GUST, RAIN}
 WINDOW_MIN = 75
@@ -163,7 +163,15 @@ def main():
         return
     rid = None
     try:
-        response = api("POST", "/api/data", token, build_request())
+        try:
+            response = api("POST", "/api/data", token, build_request())
+        except urllib.error.HTTPError as exc:
+            error_body = exc.read(900).decode("utf-8", "replace")
+            print("MeteoHub MNW: errore estrazione", exc.code, error_body[:700])
+            if exc.code in (403, 404):
+                print("Dataset MNW non accessibile con queste credenziali/richiesta: DPCN invariata")
+                return
+            raise
         rid = get_id(response)
         if rid is None:
             raise RuntimeError("MeteoHub: request_id mancante")
