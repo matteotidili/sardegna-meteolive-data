@@ -42,56 +42,5 @@ jobs:
           FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python scripts/update_meteohub.py
 
-      - name: Pubblica osservazioni evitando conflitti e vecchi snapshot
-        env:
-          DATA_FILE: data/stations.json
-        run: |
-          set -e
-          git config user.name "sardegna-meteolive-data-bot"
-          git config user.email "actions@users.noreply.github.com"
-          # Copia persistente nel runner, non soggetta ai reset del checkout.
-          cp "$DATA_FILE" "$RUNNER_TEMP/station-update-candidate.json"
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git reset --hard origin/main
-            # Non sovrascrivere un dato piu' recente pubblicato da un altro job.
-            # Scrivi il file soltanto se la nuova osservazione e/o acquisizione
-            # e' successiva a quanto gia' presente nel branch main.
-            python - "$DATA_FILE" "$RUNNER_TEMP/station-update-candidate.json" <<'PY'
-          import json,sys
-          from datetime import datetime,timezone
-          from pathlib import Path
-          target,source=map(Path,sys.argv[1:3])
-          new=json.loads(source.read_text(encoding="utf-8"))
-          old=json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
-          def ts(value):
-              try:
-                  v=datetime.fromisoformat(str(value).replace("Z","+00:00"))
-                  return v.astimezone(timezone.utc) if v.tzinfo else v.replace(tzinfo=timezone.utc)
-              except (ValueError,TypeError):
-                  return datetime.min.replace(tzinfo=timezone.utc)
-          nk=(ts(new.get("generated_at")),ts(new.get("checked_at")))
-          ok=(ts(old.get("generated_at")),ts(old.get("checked_at")))
-          if nk<=ok:
-              print("Gia' pubblicato un dataset equivalente o piu' recente: niente sovrascrittura")
-          else:
-              source_bytes=source.read_bytes()
-              target.write_bytes(source_bytes)
-              print("Pronto nuovo dataset: osservazione",new.get("generated_at"),
-                    "acquisizione",new.get("checked_at"))
-          PY
-            git add "$DATA_FILE"
-            if git diff --cached --quiet; then
-              echo "Nessuna nuova osservazione da pubblicare"
-              exit 0
-            fi
-            git commit -m "Aggiorna osservazioni MeteoHub"
-            if git push origin HEAD:main; then
-              echo "Osservazioni pubblicate correttamente"
-              exit 0
-            fi
-            echo "Commit concorrente: aggiorno main e riprovo" >&2
-            sleep "$attempt"
-          done
-          echo "ERRORE: dati acquisiti ma non pubblicati dopo cinque tentativi" >&2
-          exit 1
+      - name: Pubblica insieme DPCN e MeteoNetwork dalla stessa estrazione
+        run: bash scripts/publish_meteohub_combined.sh
