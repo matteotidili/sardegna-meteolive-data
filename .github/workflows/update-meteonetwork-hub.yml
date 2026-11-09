@@ -1,0 +1,72 @@
+name: Aggiorna stazioni MeteoNetwork tramite MeteoHub
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_meteonetwork_hub.py'
+      - '.github/workflows/update-meteonetwork-hub.yml'
+  schedule:
+    - cron: '8,38 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: meteohub-meteonetwork
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verifica sintassi
+        run: python -m py_compile scripts/update_meteonetwork_hub.py
+      - name: Scarica da MeteoHub
+        env:
+          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
+          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python scripts/update_meteonetwork_hub.py
+      - name: Pubblica solo dati MNW senza toccare le altre reti
+        run: |
+          set -e
+          if [ ! -f data/meteonetwork.json ]; then
+            echo "MNW non ancora disponibile: file non pubblicato"
+            exit 0
+          fi
+          cp data/meteonetwork.json "$RUNNER_TEMP/mnw-candidate.json"
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            python - "$RUNNER_TEMP/mnw-candidate.json" <<'PY'
+          import json,sys
+          from datetime import datetime,timezone
+          from pathlib import Path
+          src=Path(sys.argv[1])
+          dst=Path('data/meteonetwork.json')
+          new=json.loads(src.read_text())
+          old=json.loads(dst.read_text()) if dst.exists() else {}
+          def ts(x):
+              try: return datetime.fromisoformat(str(x).replace('Z','+00:00')).astimezone(timezone.utc)
+              except (ValueError,TypeError): return datetime.min.replace(tzinfo=timezone.utc)
+          if (ts(new.get('generated_at')),ts(new.get('checked_at'))) > (ts(old.get('generated_at')),ts(old.get('checked_at'))):
+              dst.write_bytes(src.read_bytes())
+              print('MNW pubblicata:',new.get('station_count'),'stazioni')
+          else:
+              print('MNW: dati già più recenti sul branch principale')
+          PY
+            git add data/meteonetwork.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Aggiorna stazioni MeteoNetwork da MeteoHub"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          echo "Errore push MNW dopo 5 tentativi"
+          exit 1
