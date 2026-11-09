@@ -1,0 +1,28 @@
+name: Prova unificazione MeteoHub DPCN e MNW
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_meteohub_combined.py'
+permissions:
+  contents: read
+concurrency:
+  group: probe-meteohub-combined
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prova un'unica estrazione senza pubblicare dati
+        env:
+          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
+          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+        run: python scripts/probe_meteohub_combined.py
