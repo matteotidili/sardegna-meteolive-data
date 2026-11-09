@@ -65,6 +65,7 @@ jobs:
         run: python "scripts/update_${NETWORK}.py"
 
       - name: Pubblica osservazioni evitando conflitti e vecchi snapshot
+        if: matrix.network != 'meteohub'
         env:
           DATA_FILE: data/${{ matrix.file }}.json
         run: |
@@ -117,3 +118,7 @@ jobs:
           done
           echo "ERRORE: dati acquisiti ma non pubblicati dopo cinque tentativi" >&2
           exit 1
+
+      - name: Pubblica DPCN e MNW dalla stessa estrazione MeteoHub
+        if: matrix.network == 'meteohub'
+        run: bash scripts/publish_meteohub_combined.sh
