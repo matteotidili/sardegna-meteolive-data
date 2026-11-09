@@ -109,44 +109,66 @@ test('Ecowitt con acquisizione recente ma dati sorgente vecchi: non duplica chia
   assert.deepEqual(dispatches,[]);
 });
 
-const mnw = NETWORKS.find(n => n.file === 'data/meteonetwork.json');
 
-test('MNW è rete autonoma e la soglia di recupero è 30 minuti', () => {
-  assert.ok(mnw);
-  assert.equal(mnw.workflow, 'update-meteonetwork-hub.yml');
-  assert.equal(mnw.staleMinutes, 30);
-  assert.equal(mnw.recentRunMinutes, 25);
+const combined = NETWORKS.find(n => n.companionFile === 'data/meteonetwork.json');
+
+function combinedFetch(dpcn, mnw, runs=[], dispatches=[]) {
+  const fallback=fakeFetch(dpcn,runs,dispatches);
+  return async (url,init) => {
+    if(url.includes('/contents/') && url.includes('/meteonetwork.json')) {
+      return new Response(JSON.stringify({encoding:'base64',content:enc(mnw)}),{status:200});
+    }
+    return fallback(url,init);
+  };
+}
+
+test('DPCN e MNW hanno un solo workflow MeteoHub e due file monitorati', () => {
+  assert.ok(combined);
+  assert.equal(combined.workflow,'update-meteohub.yml');
+  assert.equal(NETWORKS.filter(n=>n.workflow==='update-meteohub.yml').length,1);
 });
 
-test('MNW entro 30 minuti non interroga nuovamente MeteoHub', async () => {
+test('MeteoHub unificata fresca: nessun recupero', async () => {
   const dispatches=[];
-  const result=await inspectNetwork(mnw,env,now,fakeFetch({
-    checked_at:'2026-11-09T12:05:00Z',
-    generated_at:'2026-11-09T12:00:00Z',
-    station_count:13
-  },[],dispatches));
+  const result=await inspectNetwork(combined,env,now,combinedFetch(
+    {checked_at:'2026-11-09T12:21:00Z',generated_at:'2026-11-09T12:17:00Z'},
+    {checked_at:'2026-11-09T12:21:00Z',generated_at:'2026-11-09T12:10:00Z'},
+    [],dispatches
+  ));
   assert.equal(result.outcome,'fresh');
   assert.deepEqual(dispatches,[]);
 });
 
-test('MNW ferma da oltre 30 minuti: dispatch di recupero', async () => {
+test('MNW ferma mentre DPCN si aggiorna: recupero UNICO da MeteoHub', async () => {
   const dispatches=[];
-  const result=await inspectNetwork(mnw,env,now,fakeFetch({
-    checked_at:'2026-11-09T11:59:00Z',
-    generated_at:'2026-11-09T11:50:00Z',
-    station_count:13
-  },[],dispatches));
+  const result=await inspectNetwork(combined,env,now,combinedFetch(
+    {checked_at:'2026-11-09T12:22:00Z',generated_at:'2026-11-09T12:18:00Z'},
+    {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
+    [],dispatches
+  ));
   assert.equal(result.outcome,'recovery_dispatched');
+  assert.equal(result.mnwCheckedAgeMinutes,50);
   assert.deepEqual(dispatches,[{ref:'main'}]);
 });
 
-test('MNW cron recente: non duplica il workflow e protegge la quota MeteoHub', async () => {
+test('MNW fonte in ritardo, ma acquisizione comune recente: non duplicare MeteoHub', async () => {
   const dispatches=[];
-  const result=await inspectNetwork(mnw,env,now,fakeFetch({
-    checked_at:'2026-11-09T11:59:00Z',
-    generated_at:'2026-11-09T11:50:00Z',
-    station_count:13
-  },[{created_at:'2026-11-09T12:13:00Z'}],dispatches));
+  const result=await inspectNetwork(combined,env,now,combinedFetch(
+    {checked_at:'2026-11-09T12:22:00Z',generated_at:'2026-11-09T12:18:00Z'},
+    {checked_at:'2026-11-09T12:22:00Z',generated_at:'2026-11-09T10:00:00Z'},
+    [],dispatches
+  ));
+  assert.equal(result.outcome,'source_delayed');
+  assert.deepEqual(dispatches,[]);
+});
+
+test('MeteoHub unificata: esecuzione recente impedisce doppi avvii', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(combined,env,now,combinedFetch(
+    {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
+    {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
+    [{created_at:'2026-11-09T12:25:00Z'}],dispatches
+  ));
   assert.equal(result.outcome,'recent_run_pending');
   assert.deepEqual(dispatches,[]);
 });
