@@ -139,15 +139,26 @@ test('MeteoHub unificata fresca: nessun recupero', async () => {
   assert.deepEqual(dispatches,[]);
 });
 
-test('MNW ferma mentre DPCN si aggiorna: recupero UNICO da MeteoHub', async () => {
+test('MNW in ritardo mentre DPCN acquisita: avviso ma no quota sprecata', async () => {
   const dispatches=[];
   const result=await inspectNetwork(combined,env,now,combinedFetch(
     {checked_at:'2026-11-09T12:22:00Z',generated_at:'2026-11-09T12:18:00Z'},
     {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
     [],dispatches
   ));
-  assert.equal(result.outcome,'recovery_dispatched');
+  assert.equal(result.outcome,'mnw_pipeline_delayed');
   assert.equal(result.mnwCheckedAgeMinutes,50);
+  assert.deepEqual(dispatches,[]);
+});
+
+test('DPCN e MNW ferme: un solo dispatch da MeteoHub', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(combined,env,now,combinedFetch(
+    {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
+    {checked_at:'2026-11-09T11:40:00Z',generated_at:'2026-11-09T11:00:00Z'},
+    [],dispatches
+  ));
+  assert.equal(result.outcome,'recovery_dispatched');
   assert.deepEqual(dispatches,[{ref:'main'}]);
 });
 
