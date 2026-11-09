@@ -108,3 +108,45 @@ test('Ecowitt con acquisizione recente ma dati sorgente vecchi: non duplica chia
   assert.equal(result.outcome,'source_delayed');
   assert.deepEqual(dispatches,[]);
 });
+
+const mnw = NETWORKS.find(n => n.file === 'data/meteonetwork.json');
+
+test('MNW è rete autonoma e la soglia di recupero è 30 minuti', () => {
+  assert.ok(mnw);
+  assert.equal(mnw.workflow, 'update-meteonetwork-hub.yml');
+  assert.equal(mnw.staleMinutes, 30);
+  assert.equal(mnw.recentRunMinutes, 25);
+});
+
+test('MNW entro 30 minuti non interroga nuovamente MeteoHub', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(mnw,env,now,fakeFetch({
+    checked_at:'2026-11-09T12:05:00Z',
+    generated_at:'2026-11-09T12:00:00Z',
+    station_count:13
+  },[],dispatches));
+  assert.equal(result.outcome,'fresh');
+  assert.deepEqual(dispatches,[]);
+});
+
+test('MNW ferma da oltre 30 minuti: dispatch di recupero', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(mnw,env,now,fakeFetch({
+    checked_at:'2026-11-09T11:59:00Z',
+    generated_at:'2026-11-09T11:50:00Z',
+    station_count:13
+  },[],dispatches));
+  assert.equal(result.outcome,'recovery_dispatched');
+  assert.deepEqual(dispatches,[{ref:'main'}]);
+});
+
+test('MNW cron recente: non duplica il workflow e protegge la quota MeteoHub', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(mnw,env,now,fakeFetch({
+    checked_at:'2026-11-09T11:59:00Z',
+    generated_at:'2026-11-09T11:50:00Z',
+    station_count:13
+  },[{created_at:'2026-11-09T12:13:00Z'}],dispatches));
+  assert.equal(result.outcome,'recent_run_pending');
+  assert.deepEqual(dispatches,[]);
+});
