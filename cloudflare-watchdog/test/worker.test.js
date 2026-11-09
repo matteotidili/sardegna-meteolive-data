@@ -1,0 +1,74 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {inspectNetwork, minutesOld} from '../src/worker.js';
+
+const network = {name:'MeteoHub DPCN', file:'data/stations.json', workflow:'update-meteohub.yml'};
+const now = Date.parse('2026-11-09T12:30:00Z');
+const enc = data => Buffer.from(JSON.stringify(data)).toString('base64');
+const env = {GITHUB_ACTIONS_TOKEN:'test-token-not-real'};
+
+function fakeFetch(data, runs=[], dispatches=[]) {
+  return async (url, init) => {
+    if (url.includes('/contents/')) {
+      return new Response(JSON.stringify({encoding:'base64',content:enc(data)}), {status:200});
+    }
+    if (url.includes('/runs?')) {
+      return new Response(JSON.stringify({workflow_runs:runs}), {status:200});
+    }
+    if (url.includes('/dispatches') && init.method==='POST') {
+      dispatches.push(JSON.parse(init.body));
+      return new Response(null,{status:204});
+    }
+    throw new Error('Unexpected request: ' + url);
+  };
+}
+
+test('normalizza età e data invalida', () => {
+  assert.equal(minutesOld('2026-11-09T12:00:00Z', now), 30);
+  assert.equal(minutesOld(undefined, now), Infinity);
+});
+
+test('acquisizione recente: non avvia workflow', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(network,env,now,fakeFetch({
+    checked_at:'2026-11-09T12:20:00Z',generated_at:'2026-11-09T12:15:00Z'
+  },[],dispatches));
+  assert.equal(result.outcome,'fresh');
+  assert.deepEqual(dispatches,[]);
+});
+
+test('fonte in ritardo: niente recupero se acquisizione recente', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(network,env,now,fakeFetch({
+    checked_at:'2026-11-09T12:20:00Z',generated_at:'2026-11-09T10:20:00Z'
+  },[],dispatches));
+  assert.equal(result.outcome,'source_delayed');
+  assert.deepEqual(dispatches,[]);
+});
+
+test('acquisizione vecchia: dispatch automatico', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(network,env,now,fakeFetch({
+    checked_at:'2026-11-09T12:00:00Z',generated_at:'2026-11-09T12:00:00Z'
+  },[],dispatches));
+  assert.equal(result.outcome,'recovery_dispatched');
+  assert.deepEqual(dispatches,[{ref:'main'}]);
+});
+
+test('esecuzione recente: evita duplicati', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(network,env,now,fakeFetch({
+    checked_at:'2026-11-09T12:00:00Z',generated_at:'2026-11-09T12:00:00Z'
+  },[{created_at:'2026-11-09T12:25:00Z'}],dispatches));
+  assert.equal(result.outcome,'recent_run_pending');
+  assert.deepEqual(dispatches,[]);
+});
+
+test('checked_at mancante: richiede recupero', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(network,env,now,fakeFetch({
+    generated_at:'2026-11-09T12:00:00Z'
+  },[],dispatches));
+  assert.equal(result.outcome,'recovery_dispatched');
+  assert.equal(dispatches.length,1);
+});
