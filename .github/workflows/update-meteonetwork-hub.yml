@@ -1,13 +1,8 @@
 name: Aggiorna stazioni MeteoNetwork tramite MeteoHub
+# MNW viene acquisita insieme a DPCN da update-meteohub.yml.
+# Manteniamo il ripristino manuale soltanto durante la migrazione.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/update_meteonetwork_hub.py'
-      - '.github/workflows/update-meteonetwork-hub.yml'
-  schedule:
-    - cron: '8,38 * * * *'
 permissions:
   contents: write
 concurrency:
