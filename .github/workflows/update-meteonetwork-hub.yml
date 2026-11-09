@@ -30,7 +30,7 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
           METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: ${{ github.event_name != 'schedule' }}
         run: python scripts/update_meteonetwork_hub.py
       - name: Pubblica solo dati MNW senza toccare le altre reti
         run: |
