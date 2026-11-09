@@ -25,6 +25,16 @@ o altri tentativi di aggirare le quote del servizio.
 `last` indica l'ora reale dell'osservazione. Il sito legge questi file separatamente
 dal proprio deploy e mantiene il colore dell'ultimo valore disponibile.
 
+I nomi delle stazioni MNW usano comune e località riportati nel
+[portale ufficiale MeteoNetwork](https://www.meteonetwork.eu/it/stations-list),
+verificati anche nelle schede della LiveMap. L'associazione tra codice e nome è
+in `config/meteonetwork_places.json`: si applica a ogni acquisizione e anche alle
+osservazioni precedenti conservate. `station_code` e `station_id` mantengono
+l'identità della stazione; misure e orari non cambiano quando cambia il nome.
+I nuovi codici senza associazione restano visibili con il codice originale.
+Le due stazioni `srd175` e `srd176` risultano entrambe a Oristano nelle schede
+ufficiali e mantengono identificativi distinti.
+
 
 ## Incendi attivi MTG FCI / EUMETSAT
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """MeteoNetwork via MeteoHub, flusso indipendente dalla rete DPCN."""
-import json, os, sys, urllib.parse, urllib.error
+import json, os, re, sys, urllib.parse, urllib.error
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -10,11 +10,42 @@ from update_meteohub import api, login, unpack, parse_dt, mval, get_id, wait_for
 
 UTC = timezone.utc
 OUT = Path("data/meteonetwork.json")
+PLACES = Path(__file__).resolve().parents[1] / "config" / "meteonetwork_places.json"
 DATASET = "mnw"  # MeteoHub catalog: dataset id=mnw, name=meteonetwork
 TEMP, RH, DIR, WIND, GUST, RAIN = "B12101", "B13003", "B11001", "B11002", "B11041", "B13011"
 VAR = {TEMP, RH, DIR, WIND, GUST, RAIN}
 WINDOW_MIN = 150
 SARDINIA = (38.75, 41.4, 7.7, 10.3)
+
+def load_station_places():
+    """Local display labels only: source codes remain the station identity."""
+    try:
+        places = json.loads(PLACES.read_text(encoding="utf-8"))
+        return {code.strip().casefold(): name.strip() for code, name in places.items()
+                if isinstance(code, str) and isinstance(name, str) and name.strip()}
+    except (OSError, ValueError, AttributeError):
+        return {}
+
+def named_station(station, places):
+    result = dict(station)
+    code = result.get("station_code")
+    if not isinstance(code, str) or not code.strip():
+        # Older published rows have no separate code. Only recognize the exact
+        # MeteoHub MNW identity format; do not infer a code from a locality name.
+        match = re.fullmatch(r"mnw-(srd\d{3})-\d+\.\d{4}-\d+\.\d{4}",
+                             str(result.get("station_id", "")), re.IGNORECASE)
+        code = match.group(1) if match else None
+    if code:
+        code = code.strip().casefold()
+        result["station_code"] = code
+        result["name"] = places.get(code, result.get("name") or code)
+    return result
+
+def apply_station_names(doc, places=None):
+    places = load_station_places() if places is None else places
+    stations = [named_station(station, places) for station in doc["stations"]]
+    stations.sort(key=lambda station: (station["name"].casefold(), station["station_id"]))
+    return {**doc, "stations": stations, "station_count": len(stations)}
 
 def iso(dt):
     return dt.astimezone(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -133,7 +164,8 @@ def aggregate(raw, now=None):
             continue
         station_id = f"mnw-{name.casefold().replace(' ', '-')}-{lat:.4f}-{lon:.4f}"
         stations.append({
-            "station_id": station_id, "name": name, "network": "meteonetwork",
+            "station_id": station_id, "station_code": name,
+            "name": name, "network": "meteonetwork",
             "lat": lat, "lon": lon, "elev": st["elev"],
             "temp": temp, "tmin": None, "tmax": None, "rh": rh,
             "wind_kmh": round(wind_ms * 3.6, 1) if wind_ms is not None else None,
@@ -150,17 +182,18 @@ def aggregate(raw, now=None):
         })
     if not stations:
         raise ValueError(f"MNW: nessuna stazione sarda con osservazioni valide ({checked_records} record sardi)")
-    stations.sort(key=lambda x: (x["name"].casefold(), x["station_id"]))
-    return {
+    return apply_station_names({
         "generated_at": iso(max_dt), "checked_at": iso(now), "local_day": local_day,
         "source": "MeteoHub / MeteoNetwork",
         "license": "CC BY - MeteoNetwork / Agenzia ItaliaMeteo",
         "station_count": len(stations), "stations": stations,
-    }
+    })
 
 
 def preserve_previous(doc, path=OUT):
     """Keep missing stations with their original observation time (max 48h)."""
+    places = load_station_places()
+    doc = apply_station_names(doc, places)
     if not path.exists():
         return doc
     try:
@@ -181,7 +214,7 @@ def preserve_previous(doc, path=OUT):
                 continue
             if 0 <= age <= 48 * 3600:
                 found.add(sid)
-                doc["stations"].append(station)
+                doc["stations"].append(named_station(station, places))
                 kept += 1
         doc["stations"].sort(key=lambda s: (s["name"].casefold(), s["station_id"]))
         doc["station_count"] = len(doc["stations"])
