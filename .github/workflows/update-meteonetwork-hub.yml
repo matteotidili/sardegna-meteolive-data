@@ -30,7 +30,9 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
           METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
-          FORCE_UPDATE: ${{ github.event_name != 'schedule' }}
+          # Ogni avvio, anche quello di recupero Cloudflare, rispetta la pausa
+          # minima di 25 minuti: MNW condivide la quota API MeteoHub con DPCN.
+          FORCE_UPDATE: 'false'
         run: python scripts/update_meteonetwork_hub.py
       - name: Pubblica solo dati MNW senza toccare le altre reti
         run: |
