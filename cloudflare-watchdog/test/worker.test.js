@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {inspectNetwork, minutesOld} from '../src/worker.js';
+import {inspectNetwork, minutesOld, latestObservation, NETWORKS} from '../src/worker.js';
 
 const network = {name:'MeteoHub DPCN', file:'data/stations.json', workflow:'update-meteohub.yml'};
 const now = Date.parse('2026-11-09T12:30:00Z');
@@ -71,4 +71,40 @@ test('checked_at mancante: richiede recupero', async () => {
   },[],dispatches));
   assert.equal(result.outcome,'recovery_dispatched');
   assert.equal(dispatches.length,1);
+});
+
+const ecowitt = NETWORKS.find(n => n.file === 'data/ecowitt.json');
+
+test('Ecowitt è inclusa tra le reti sorvegliate', () => {
+  assert.ok(ecowitt);
+  assert.equal(ecowitt.workflow, 'update-ecowitt.yml');
+});
+
+test('Ecowitt: la freschezza deriva da stations[].last, non dal generated_at', () => {
+  assert.equal(latestObservation({
+    generated_at:'2026-11-09T12:29:00Z',
+    stations:[{last:'2026-11-09T10:10:00Z'}]
+  }, true), '2026-11-09T10:10:00.000Z');
+});
+
+test('Ecowitt ferma da ore: watchdog richiede recupero', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(ecowitt,env,now,fakeFetch({
+    generated_at:'2026-11-09T10:10:00Z',
+    status:'ok',
+    stations:[{name:'Villaspeciosa',last:'2026-11-09T10:09:00Z'}]
+  },[],dispatches));
+  assert.equal(result.outcome,'recovery_dispatched');
+  assert.deepEqual(dispatches,[{ref:'main'}]);
+});
+
+test('Ecowitt con acquisizione recente ma dati sorgente vecchi: non duplica chiamate', async () => {
+  const dispatches=[];
+  const result=await inspectNetwork(ecowitt,env,now,fakeFetch({
+    generated_at:'2026-11-09T12:27:00Z',
+    status:'last_observation_only',
+    stations:[{name:'Villaspeciosa',last:'2026-11-09T10:09:00Z'}]
+  },[],dispatches));
+  assert.equal(result.outcome,'source_delayed');
+  assert.deepEqual(dispatches,[]);
 });
