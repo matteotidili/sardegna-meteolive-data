@@ -72,7 +72,10 @@ export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
     ? minutesOld(companion.checked_at || companion.generated_at, nowMs) : null;
   const companionObservationAge = companion
     ? minutesOld(companion.generated_at, nowMs) : null;
-  const checkedAgeMinutes = companion ? Math.max(primaryCheckAge, companionCheckAge) : primaryCheckAge;
+  // Entrambe le reti sono elaborate da UN solo workflow: il ritmo delle
+  // richieste e' governato dalla freschezza DPCN, evitando di consumare
+  // quota per MNW quando la sua fonte non ha ancora pubblicato misure.
+  const checkedAgeMinutes = primaryCheckAge;
   const observationAgeMinutes = companion ? Math.max(primaryObservationAge, companionObservationAge) : primaryObservationAge;
   const result = {
     network: network.name,
@@ -91,7 +94,9 @@ export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
   const recentRunMinutes = network.recentRunMinutes ?? RECENT_RUN_MINUTES;
   // Acquisizione recente + osservazione vecchia: ritardo della fonte, non del cron.
   if (checkedAgeMinutes < staleMinutes) {
-    result.outcome = observationAgeMinutes > 30 ? 'source_delayed' : 'fresh';
+    result.outcome = companion && companionCheckAge >= 30
+      ? 'mnw_pipeline_delayed'
+      : observationAgeMinutes > 30 ? 'source_delayed' : 'fresh';
     return result;
   }
 
