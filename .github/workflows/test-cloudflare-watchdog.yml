@@ -1,0 +1,22 @@
+name: Test watchdog Cloudflare
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'cloudflare-watchdog/**'
+      - '.github/workflows/test-cloudflare-watchdog.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Testa i recuperi senza usare credenziali o API reali
+        working-directory: cloudflare-watchdog
+        run: npm test
