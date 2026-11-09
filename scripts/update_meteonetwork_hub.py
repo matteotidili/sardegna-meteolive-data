@@ -13,7 +13,7 @@ OUT = Path("data/meteonetwork.json")
 DATASET = "mnw"  # MeteoHub catalog: dataset id=mnw, name=meteonetwork
 TEMP, RH, DIR, WIND, GUST, RAIN = "B12101", "B13003", "B11001", "B11002", "B11041", "B13011"
 VAR = {TEMP, RH, DIR, WIND, GUST, RAIN}
-WINDOW_MIN = 75
+WINDOW_MIN = 150
 SARDINIA = (38.75, 41.4, 7.7, 10.3)
 
 def iso(dt):
@@ -154,6 +154,38 @@ def aggregate(raw, now=None):
         "station_count": len(stations), "stations": stations,
     }
 
+
+def preserve_previous(doc, path=OUT):
+    """Keep missing stations with their original observation time (max 48h)."""
+    if not path.exists():
+        return doc
+    try:
+        prev = json.loads(path.read_text())
+        found = {s["station_id"] for s in doc["stations"]}
+        kept = 0
+        current = parse_dt(doc["checked_at"])
+        for station in prev.get("stations", []):
+            if not isinstance(station, dict):
+                continue
+            sid = station.get("station_id")
+            last = station.get("last")
+            if not sid or sid in found or not last:
+                continue
+            try:
+                age = (current - parse_dt(last)).total_seconds()
+            except (TypeError, ValueError):
+                continue
+            if 0 <= age <= 48 * 3600:
+                found.add(sid)
+                doc["stations"].append(station)
+                kept += 1
+        doc["stations"].sort(key=lambda s: (s["name"].casefold(), s["station_id"]))
+        doc["station_count"] = len(doc["stations"])
+        doc["retained_previous_station_count"] = kept
+    except (OSError, ValueError, TypeError, KeyError):
+        pass
+    return doc
+
 def main():
     if not should_poll():
         print("MNW: acquisizione recente, nessuna richiesta")
@@ -178,7 +210,7 @@ def main():
         filename = wait_for_request(token, rid)
         raw = api("GET", "/api/data/" + urllib.parse.quote(str(filename), safe=""),
                   token, timeout=240, parse_json=False)
-        doc = aggregate(raw if isinstance(raw, bytes) else json.dumps(raw).encode())
+        doc = preserve_previous(aggregate(raw if isinstance(raw, bytes) else json.dumps(raw).encode()))
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
         print(f"MeteoHub MNW: {doc['station_count']} stazioni sarde, ultima osservazione {doc['generated_at']}")
