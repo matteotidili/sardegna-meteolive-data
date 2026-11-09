@@ -5,9 +5,9 @@ Questo Cloudflare Worker affianca i workflow GitHub Actions di `matteotidili/sar
 ## Funzionamento
 
 - Cloudflare esegue il controllo ogni 5 minuti, indipendentemente da GitHub Actions.
-- Per MeteoHub/DPCN (`data/stations.json`) e Aeronautica Militare (`data/am.json`) legge `checked_at`, l'orario dell'ultima acquisizione effettiva.
+- Per MeteoHub/DPCN (`data/stations.json`) e Aeronautica Militare (`data/am.json`) legge `checked_at`; per Ecowitt Villaspeciosa (`data/ecowitt.json`) legge `checked_at` (o `generated_at` sui vecchi dataset) come orario dell'ultimo controllo e `stations[].last` come orario dell'ultima osservazione reale.
 - Se l'acquisizione ha almeno 18 minuti e non risultano esecuzioni recenti (12 minuti) del workflow dedicato, richiede su GitHub il recupero con `workflow_dispatch`.
-- Se `checked_at` è recente ma `generated_at` è vecchio, registra `source_delayed`: non confonde ritardi della fonte con quelli della nostra acquisizione.
+- Se il controllo è recente ma l'osservazione è vecchia, registra `source_delayed`: per Ecowitt non interpreta `generated_at` come orario della misura e non forza interrogazioni ravvicinate se Ecowitt è offline.
 - I controlli già presenti su GitHub restano attivi come riserva. Non viene riattivata Weather Underground.
 
 ## Attivazione una tantum
@@ -29,3 +29,7 @@ Con Node.js: `npm test`. Il test non interroga i servizi esterni.
 Un controllo esterno riduce i buchi del cron GitHub, ma l'esecuzione dei workflow resta soggetta ai tempi di GitHub Actions. Non garantisce matematicamente nuovi dati entro 30 minuti e non può accelerare la pubblicazione delle osservazioni all'origine. Collaudare la continuità per 24–48 ore; sorvegliare la scadenza del token GitHub.
 
 Cloudflare Workers Free, nei normali limiti per questo carico, non comporta canone aggiuntivo. Verificare i limiti correnti e gli eventuali altri utilizzi dell'account Cloudflare.
+
+## Nota sul Worker già creato dalla dashboard Cloudflare
+
+Il progetto Ecowitt è stato aggiunto al codice su GitHub, ma **la modifica su GitHub non aggiorna automaticamente il Worker installato manualmente nella dashboard Cloudflare**. Per attivare Ecowitt aprire **Cloudflare → Workers & Pages → sardegna-meteolive-watchdog → Edit code**, sostituire il contenuto con la versione corrente di `src/worker.js` e premere **Deploy**. Il cron e il secret `GITHUB_ACTIONS_TOKEN` già configurati non vanno ricreati.
