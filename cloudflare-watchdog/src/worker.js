@@ -8,11 +8,9 @@ const STALE_CHECK_MINUTES = 18;
 const RECENT_RUN_MINUTES = 12;
 
 export const NETWORKS = [
-  {name:'MeteoHub DPCN',file:'data/stations.json',workflow:'update-meteohub.yml'},
+  {name:'MeteoHub DPCN + MeteoNetwork MNW',file:'data/stations.json',companionFile:'data/meteonetwork.json',workflow:'update-meteohub.yml'},
   {name:'Aeronautica Militare',file:'data/am.json',workflow:'update-am.yml'},
   {name:'Ecowitt Villaspeciosa',file:'data/ecowitt.json',workflow:'update-ecowitt.yml',stationObservations:true},
-  // MNW condivide la quota MeteoHub con DPCN: non anticipare il polling di 25 min.
-  {name:'MeteoNetwork MNW',file:'data/meteonetwork.json',workflow:'update-meteonetwork-hub.yml',staleMinutes:30,recentRunMinutes:25},
 ];
 
 export function minutesOld(timestamp, nowMs) {
@@ -55,18 +53,36 @@ export function latestObservation(data, stationObservations) {
 }
 
 export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
-  const encodedPath = network.file.split('/').map(encodeURIComponent).join('/');
-  const data = decodeGithubContent(await github(env, '/contents/' + encodedPath + '?ref=main', fetchImpl));
-  // Ecowitt espone generated_at come ora del controllo; le osservazioni
-  // vere hanno un timestamp separato in stations[].last.
-  const checkedAgeMinutes = minutesOld(data.checked_at || data.generated_at, nowMs);
-  const observationAgeMinutes = minutesOld(
+  const readFile = async path => {
+    const encoded = path.split('/').map(encodeURIComponent).join('/');
+    return decodeGithubContent(await github(env, '/contents/' + encoded + '?ref=main', fetchImpl));
+  };
+  // DPCN e MNW sono ora scaricate insieme: sorvegliamo entrambi i file
+  // ma avviamo UN SOLO workflow MeteoHub e non duplichiamo le richieste API.
+  const [data, companion] = await Promise.all([
+    readFile(network.file),
+    network.companionFile ? readFile(network.companionFile) : Promise.resolve(null),
+  ]);
+  // Ecowitt: generated_at indica l'acquisizione, stations[].last la misura.
+  const primaryCheckAge = minutesOld(data.checked_at || data.generated_at, nowMs);
+  const primaryObservationAge = minutesOld(
     latestObservation(data, network.stationObservations), nowMs
   );
+  const companionCheckAge = companion
+    ? minutesOld(companion.checked_at || companion.generated_at, nowMs) : null;
+  const companionObservationAge = companion
+    ? minutesOld(companion.generated_at, nowMs) : null;
+  const checkedAgeMinutes = companion ? Math.max(primaryCheckAge, companionCheckAge) : primaryCheckAge;
+  const observationAgeMinutes = companion ? Math.max(primaryObservationAge, companionObservationAge) : primaryObservationAge;
   const result = {
     network: network.name,
     checkedAgeMinutes: Math.round(checkedAgeMinutes),
     observationAgeMinutes: Math.round(observationAgeMinutes),
+    ...(companion ? {
+      dpcnCheckedAgeMinutes: Math.round(primaryCheckAge),
+      mnwCheckedAgeMinutes: Math.round(companionCheckAge),
+      mnwObservationAgeMinutes: Math.round(companionObservationAge),
+    } : {}),
     outcome: 'fresh',
   };
 
