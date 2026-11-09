@@ -8,7 +8,8 @@ import sys
 import urllib.parse
 import zipfile
 from datetime import datetime, timedelta, timezone
-from update_meteohub import api, login, get_id, wait_for_request
+from update_meteohub import api, login, get_id, wait_for_request, aggregate as aggregate_dpcn
+from update_meteonetwork_hub import aggregate as aggregate_mnw
 
 NOW = datetime.now(timezone.utc)
 
@@ -92,6 +93,13 @@ def main():
         print("Struttura minima:",sample)
         if not any("dpcn" in n.lower() for n in counts) or not any("mnw" in n.lower() or "meteonetwork" in n.lower() for n in counts):
             raise RuntimeError("Estrazione combinata non contiene ENTRAMBE le reti: non modificare produzione")
+        dpcn = aggregate_dpcn(bytes(raw))
+        mnw = aggregate_mnw(bytes(raw))
+        print("Parser DPCN:",dpcn["station_count"],"stazioni")
+        print("Parser MNW:",mnw["station_count"],"stazioni")
+        print("Esempio codice MNW:",mnw["stations"][0]["station_id"])
+        assert dpcn["station_count"] >= 70, "DPCN incompleta"
+        assert 8 <= mnw["station_count"] <= 50, "MeteoNetwork: conteggio anomalo (dataset mescolati?)"
     finally:
         if request_id is not None:
             try:
