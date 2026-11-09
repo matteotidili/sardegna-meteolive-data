@@ -92,7 +92,7 @@ def request_body():
         "reftime":{"from":iso(start_local),"to":iso(now_local)},
         "only_reliable":True,
         "output_format":"json",
-        "dataset_names":["dpcn-sardegna"]
+        "dataset_names":["dpcn-sardegna","mnw"]
     }
 
 def normalize_requests(obj):
@@ -295,11 +295,28 @@ def main():
         print("Download:",filename)
         raw=api("GET","/api/data/"+urllib.parse.quote(str(filename),safe=""),token,timeout=240,parse_json=False)
         if not isinstance(raw,(bytes,bytearray)): raw=json.dumps(raw).encode("utf-8")
+        # Una sola estrazione contiene due reti. Manteniamo due file separati
+        # e il timestamp reale di ciascuna sorgente per la webapp.
         result=preserve_missing_stations(aggregate(bytes(raw)))
         result["checked_at"]=datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00","Z")
         OUT.parent.mkdir(parents=True,exist_ok=True)
         OUT.write_text(json.dumps(result,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
-        print(f"Scritte {result['station_count']} stazioni; timestamp {result['generated_at']}")
+        print(f"DPCN: {result['station_count']} stazioni; osservazioni {result['generated_at']}")
+
+        try:
+            # Il parser MNW filtra obbligatoriamente network='mnw';
+            # i record DPCN non vengono quindi duplicati nella rete MNW.
+            from update_meteonetwork_hub import aggregate as aggregate_mnw, preserve_previous as preserve_mnw
+            mnw=preserve_mnw(aggregate_mnw(bytes(raw)))
+            mnw["checked_at"]=result["checked_at"]
+            mnw_path=Path("data/meteonetwork.json")
+            mnw_path.parent.mkdir(parents=True,exist_ok=True)
+            mnw_path.write_text(json.dumps(mnw,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+            print(f"MNW: {mnw['station_count']} stazioni; osservazioni {mnw['generated_at']}")
+        except (OSError,ValueError,TypeError,KeyError,ImportError) as exc:
+            # Non interrompere DPCN se la sorgente MNW è temporaneamente vuota.
+            # Il JSON MNW precedente e i suoi orari restano invariati.
+            print("MNW: dati non aggiornabili in questo ciclo:",type(exc).__name__,str(exc)[:150])
     finally:
         # Eseguito anche su FAILURE, ERROR, timeout o download non riuscito.
         # Il server può comunque inviare l'email prima della cancellazione:
