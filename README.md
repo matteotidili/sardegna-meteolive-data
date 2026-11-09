@@ -1,11 +1,13 @@
 # Sardegna MeteoLive Data
 
-Dati pubblici MeteoHub / DPCN Sardegna, Weather Underground e Aeronautica Militare.
+Dati pubblici MeteoHub / DPCN Sardegna e MeteoNetwork (MNW), Aeronautica Militare, Ecowitt e altre reti configurate. Weather Underground resta temporaneamente disattivata.
 Le credenziali sono conservate esclusivamente nei GitHub Actions Secrets.
 
-Il workflow `Aggiorna tutte le reti stazioni` è programmato ogni 5 minuti.
-Ogni rete viene raccolta e pubblicata in un job indipendente: un servizio lento o
-non disponibile non blocca gli altri. I job della stessa rete non si sovrappongono,
+Il workflow di acquisizione generale è programmato ogni 10 minuti (pianificazione GitHub best-effort); il watchdog esterno Cloudflare verifica le acquisizioni ogni 5 minuti.
+DPCN Sardegna e MNW sono raccolte **insieme, con un'unica estrazione MeteoHub**,
+ma pubblicate nei due JSON indipendenti `stations.json` e `meteonetwork.json`.
+Aeronautica Militare ed Ecowitt mantengono acquisizioni indipendenti: un servizio
+lento o non disponibile non blocca gli altri. I job della stessa rete non si sovrappongono,
 anche quando avviati manualmente. Gli updater applicano un margine di 4 minuti
 tra i controlli per non saltare il ciclo successivo a causa della durata del job.
 
@@ -16,6 +18,7 @@ preservando il dataset precedente. Non sono previste richieste con nuove chiavi
 o altri tentativi di aggirare le quote del servizio.
 
 - `data/stations.json`: MeteoHub / DPCN
+- `data/meteonetwork.json`: MeteoHub / MeteoNetwork MNW (stessa estrazione)
 - `data/wunderground.json`: PWS Weather Underground
 - `data/am.json`: SYNOP / METAR Aeronautica Militare
 
