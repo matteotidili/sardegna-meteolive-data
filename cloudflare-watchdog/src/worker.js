@@ -11,6 +11,8 @@ export const NETWORKS = [
   {name:'MeteoHub DPCN',file:'data/stations.json',workflow:'update-meteohub.yml'},
   {name:'Aeronautica Militare',file:'data/am.json',workflow:'update-am.yml'},
   {name:'Ecowitt Villaspeciosa',file:'data/ecowitt.json',workflow:'update-ecowitt.yml',stationObservations:true},
+  // MNW condivide la quota MeteoHub con DPCN: non anticipare il polling di 25 min.
+  {name:'MeteoNetwork MNW',file:'data/meteonetwork.json',workflow:'update-meteonetwork-hub.yml',staleMinutes:30,recentRunMinutes:25},
 ];
 
 export function minutesOld(timestamp, nowMs) {
@@ -68,8 +70,11 @@ export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
     outcome: 'fresh',
   };
 
+  // Soglie personalizzate: MNW interroga MeteoHub ogni 30 min, non ogni 18.
+  const staleMinutes = network.staleMinutes ?? STALE_CHECK_MINUTES;
+  const recentRunMinutes = network.recentRunMinutes ?? RECENT_RUN_MINUTES;
   // Acquisizione recente + osservazione vecchia: ritardo della fonte, non del cron.
-  if (checkedAgeMinutes < STALE_CHECK_MINUTES) {
+  if (checkedAgeMinutes < staleMinutes) {
     result.outcome = observationAgeMinutes > 30 ? 'source_delayed' : 'fresh';
     return result;
   }
@@ -77,7 +82,7 @@ export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
   // Nessun avvio duplicato mentre un workflow recente è già in coda.
   const runs = await github(env, '/actions/workflows/' + network.workflow + '/runs?per_page=10', fetchImpl);
   const hasRecentRun = (runs.workflow_runs || []).some(run =>
-    minutesOld(run.created_at, nowMs) < RECENT_RUN_MINUTES
+    minutesOld(run.created_at, nowMs) < recentRunMinutes
   );
   if (hasRecentRun) {
     result.outcome = 'recent_run_pending';
