@@ -41,10 +41,22 @@ def main():
         "request_name": "sardegna-meteolive-probe-dpcn-mnw",
         "reftime": {"from":start, "to":end},
         "dataset_names": ["dpcn-sardegna","mnw"],
-        "filters": {"product": [
-            {"code":c,"active":True}
-            for c in ["B11001","B11002","B11041","B12101","B13003","B13011"]
-        ]},
+        "filters": {
+            "level": [
+                {"code":"1,0,0,0","active":True},
+                {"code":"103,2000,0,0","active":True},
+                {"code":"103,10000,0,0","active":True}
+            ],
+            "product": [
+                {"code":c,"active":True}
+                for c in ["B11001","B11002","B11041","B12101","B13003","B13011"]
+            ],
+            "timerange": [
+                {"code":"1,0,60","active":True},
+                {"code":"2,0,3600","active":True},
+                {"code":"254,0,0","active":True}
+            ]
+        },
         "only_reliable":True,
         "output_format":"json"
     }
