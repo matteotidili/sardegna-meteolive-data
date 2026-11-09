@@ -271,7 +271,14 @@ def main():
             pass
 
     local_day = now.astimezone(ROME).date()
-    raw = fetch_synops()
+    # Un guasto OGIMET non deve impedire l'acquisizione dei METAR.
+    source_errors = []
+    try:
+        raw = fetch_synops()
+    except Exception as exc:
+        print("ATTENZIONE: SYNOP non disponibili:", type(exc).__name__)
+        source_errors.append("synop_unavailable")
+        raw = ""
     metars = fetch_metars()
     rows = defaultdict(list)
     metar_rows = defaultdict(list)
@@ -308,6 +315,9 @@ def main():
             continue
         metar_rows[wmo].append((dt, row.get("rawOb") or "", decoded))
 
+    if not rows and not metar_rows:
+        raise RuntimeError("Nessuna osservazione valida da SYNOP o METAR: archivio invariato")
+
     previous = load_previous()
     output = []
 
@@ -328,6 +338,13 @@ def main():
             continue
 
         latest_dt, latest_raw, latest, latest_kind = combined[-1]
+        old = previous.get(wmo)
+        old_dt = parse_obs_time(old.get("last")) if old else None
+        if old_dt and latest_dt < old_dt <= now + timedelta(minutes=5):
+            rec = dict(old)
+            rec["stale_min"] = round((now-old_dt).total_seconds()/60)
+            output.append(rec)
+            continue
         today = [x for x in combined if x[0].astimezone(ROME).date() == local_day]
         temps = [x[2].get("temp") for x in today if x[2].get("temp") is not None]
         synop_today = [x for x in synop_series if x[0].astimezone(ROME).date() == local_day]
@@ -431,7 +448,8 @@ def main():
     )
     result = {
         "generated_at": newest.astimezone(UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
-        "checked_at": now.isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "checked_at": datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "source_errors": source_errors,
         "local_day": str(local_day),
         "source": "Rete aeronautica / SYNOP via OGIMET + METAR via Aviation Weather Center",
         "station_count": len(output),
@@ -446,3 +464,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

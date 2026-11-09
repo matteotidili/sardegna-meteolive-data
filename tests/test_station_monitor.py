@@ -22,7 +22,7 @@ class MonitorTests(unittest.TestCase):
         self.write("data/stations.json", [
             {"name": "DPCN test", "temp": 12, "last": (NOW-timedelta(minutes=12)).isoformat()}])
         self.write("data/am.json", [
-            {"name": "AM test", "temp": 13, "last": (NOW-timedelta(minutes=20)).isoformat()}])
+            {"name": "AM test", "temp": 13, "last": (NOW-timedelta(minutes=10)).isoformat()}])
         self.write("data/ecowitt.json", [
             {"name": "Ecowitt test", "temp": 14, "last": (NOW-timedelta(minutes=5)).isoformat()}])
         Path("data/cedoc.json").write_text(json.dumps({
@@ -41,7 +41,8 @@ class MonitorTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def write(self, path, stations):
-        Path(path).write_text(json.dumps({"stations":stations}))
+        Path(path).write_text(json.dumps({"stations":stations,
+            "checked_at": max((s["last"] for s in stations), default=None)}))
 
     def test_provider_wu_paused_and_other_networks_ok(self):
         report=monitor.evaluate(NOW)
@@ -50,6 +51,30 @@ class MonitorTests(unittest.TestCase):
         self.assertEqual(report["CEDOC"]["status"],"ok")
         self.assertEqual(report["Weather Underground"]["status"],"paused")
         self.assertEqual(report["Weather Underground"]["fresh"],0)
+
+    def test_old_acquisition_is_detected_even_with_recent_observation(self):
+        p = Path("data/stations.json")
+        data = json.loads(p.read_text())
+        data["checked_at"] = (NOW-timedelta(minutes=31)).isoformat()
+        p.write_text(json.dumps(data))
+        info = monitor.evaluate(NOW)["DPCN"]
+        self.assertEqual(info["status"], "acquisition_stale")
+        self.assertTrue(info["recovery_due"])
+
+    def test_source_delay_does_not_trigger_repeated_acquisition(self):
+        p = Path("data/am.json")
+        p.write_text(json.dumps({"checked_at": NOW.isoformat(), "stations": [
+            {"temp": 13, "last": (NOW-timedelta(hours=2)).isoformat()}]}))
+        info = monitor.evaluate(NOW)["Aeronautica Militare"]
+        self.assertEqual(info["status"], "source_delayed")
+        self.assertFalse(info["recovery_due"])
+
+    def test_preventive_recovery_at_twenty_minutes(self):
+        p = Path("data/stations.json")
+        data = json.loads(p.read_text())
+        data["checked_at"] = (NOW-timedelta(minutes=20)).isoformat()
+        p.write_text(json.dumps(data))
+        self.assertTrue(monitor.evaluate(NOW)["DPCN"]["recovery_due"])
 
     def test_cedoc_fallback_stale_triggers_independent_recovery(self):
         Path("data/cedoc.json").write_text(json.dumps({
@@ -129,3 +154,4 @@ class MonitorTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+

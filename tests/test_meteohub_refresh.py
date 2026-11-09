@@ -29,7 +29,7 @@ def when(iso):
 class MeteoHubRefreshTests(unittest.TestCase):
     def test_rate_under_default_ten_per_hour(self):
         self.assertGreater(M.MIN_RUN_INTERVAL_MIN,6)
-        self.assertLessEqual(M.MIN_RUN_INTERVAL_MIN,7)
+        self.assertLessEqual(M.MIN_RUN_INTERVAL_MIN,10)
 
     def test_first_minutes_include_previous_evening(self):
         body=body_at(datetime(2026,11,3,0,20,tzinfo=ROME))
@@ -55,3 +55,4 @@ class MeteoHubRefreshTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+

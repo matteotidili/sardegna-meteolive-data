@@ -15,8 +15,8 @@ TITLE = "[MeteoLive] Rete stazioni non aggiornata"
 # e NON deve tenere aperta una segnalazione quando DPCN e AM sono sane.
 WU_ACTIVE = False
 SOURCES = {
-    "DPCN": ("data/stations.json", 50, "temp"),
-    "Aeronautica Militare": ("data/am.json", 75, "temp"),
+    "DPCN": ("data/stations.json", 30, "temp"),
+    "Aeronautica Militare": ("data/am.json", 30, "temp"),
     "Ecowitt": ("data/ecowitt.json", 25, "temp"),
     # Le misure CEDOC sono pluviometriche: controllare la pioggia,
     # non la temperatura che in questo dataset non e' prevista.
@@ -57,6 +57,17 @@ def evaluate(now):
             "stations": len(rows), "fresh": count, "limit_min": limit,
             "latest": latest.isoformat().replace("+00:00", "Z") if latest else None,
         }
+        if name in ("DPCN", "Aeronautica Militare"):
+            checked = parse_time(data.get("checked_at"))
+            age = (now-checked).total_seconds()/60 if checked and checked <= now else None
+            info["checked_at"] = data.get("checked_at")
+            info["acquisition_age_min"] = age
+            # Recupero preventivo prima del limite richiesto di 30 minuti.
+            info["recovery_due"] = age is None or age >= 20
+            if age is None or age > 30:
+                info["status"] = "acquisition_stale"
+            elif not count:
+                info["status"] = "source_delayed"
         if name == "Weather Underground" and not WU_ACTIVE:
             info["status"] = "paused"
             info["fresh"] = 0
@@ -144,7 +155,8 @@ def self_repair(report, now):
         (("CEDOC",), "update-cedoc.yml"),
     ]
     for networks, workflow in targets:
-        stale = [n for n in networks if report[n]["status"] == "stale"]
+        stale = [n for n in networks if report[n].get("recovery_due",
+                  report[n]["status"] == "stale")]
         if not stale:
             continue
         runs=github("GET","/actions/workflows/"+workflow+"/runs?per_page=12").get("workflow_runs",[])
@@ -171,3 +183,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
