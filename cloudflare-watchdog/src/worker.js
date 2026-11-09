@@ -1,6 +1,6 @@
 /**
  * Sardegna MeteoLive — sorveglianza esterna indipendente.
- * Non effettua richieste dirette alle API MeteoHub o Aeronautica.
+ * Non effettua richieste dirette alle API delle reti meteorologiche.
  */
 const REPOSITORY = 'matteotidili/sardegna-meteolive-data';
 const API_BASE = 'https://api.github.com/repos/' + REPOSITORY;
@@ -10,6 +10,7 @@ const RECENT_RUN_MINUTES = 12;
 export const NETWORKS = [
   {name:'MeteoHub DPCN',file:'data/stations.json',workflow:'update-meteohub.yml'},
   {name:'Aeronautica Militare',file:'data/am.json',workflow:'update-am.yml'},
+  {name:'Ecowitt Villaspeciosa',file:'data/ecowitt.json',workflow:'update-ecowitt.yml',stationObservations:true},
 ];
 
 export function minutesOld(timestamp, nowMs) {
@@ -43,11 +44,23 @@ function decodeGithubContent(data) {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
+export function latestObservation(data, stationObservations) {
+  if (!stationObservations) return data.generated_at;
+  const readings = (data.stations || [])
+    .map(station => Date.parse(station?.last))
+    .filter(Number.isFinite);
+  return readings.length ? new Date(Math.max(...readings)).toISOString() : null;
+}
+
 export async function inspectNetwork(network, env, nowMs, fetchImpl = fetch) {
   const encodedPath = network.file.split('/').map(encodeURIComponent).join('/');
   const data = decodeGithubContent(await github(env, '/contents/' + encodedPath + '?ref=main', fetchImpl));
-  const checkedAgeMinutes = minutesOld(data.checked_at, nowMs);
-  const observationAgeMinutes = minutesOld(data.generated_at, nowMs);
+  // Ecowitt espone generated_at come ora del controllo; le osservazioni
+  // vere hanno un timestamp separato in stations[].last.
+  const checkedAgeMinutes = minutesOld(data.checked_at || data.generated_at, nowMs);
+  const observationAgeMinutes = minutesOld(
+    latestObservation(data, network.stationObservations), nowMs
+  );
   const result = {
     network: network.name,
     checkedAgeMinutes: Math.round(checkedAgeMinutes),
