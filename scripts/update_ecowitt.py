@@ -232,6 +232,7 @@ def run():
         pass
     out = {
         "generated_at": now.isoformat().replace("+00:00", "Z"),
+        "checked_at": now.isoformat().replace("+00:00", "Z"),
         "local_day": now.astimezone(ROME).date().isoformat(),
         "source": "Ecowitt Cloud API v3 (dispositivi autorizzati)",
         "status": "awaiting_credentials",
