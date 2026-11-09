@@ -1,0 +1,57 @@
+name: Verifica accesso MeteoHub MeteoNetwork
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/probe-meteohub-mnw.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Individua dataset MNW senza richiedere estrazioni
+        env:
+          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
+          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request, urllib.error
+          base='https://meteohub.agenziaitaliameteo.it'
+          user=os.getenv('METEOHUB_USERNAME')
+          pwd=os.getenv('METEOHUB_PASSWORD')
+          if not user or not pwd:
+              raise SystemExit('MeteoHub secrets mancanti')
+          req=urllib.request.Request(base+'/auth/login',data=json.dumps({'username':user,'password':pwd}).encode(),headers={'Content-Type':'application/json','User-Agent':'SardegnaMeteoLive/1.0'})
+          with urllib.request.urlopen(req,timeout=25) as f:
+              obj=json.loads(f.read())
+          token=obj if isinstance(obj,str) else obj.get('access_token') or obj.get('token') or obj.get('access')
+          if not token:
+              raise SystemExit('Login senza token')
+          for route in ['/api/datasets','/api/hourly']:
+              try:
+                  req=urllib.request.Request(base+route,headers={'Authorization':'Bearer '+token,'Accept':'application/json','User-Agent':'SardegnaMeteoLive/1.0'})
+                  with urllib.request.urlopen(req,timeout=25) as f:
+                      raw=f.read()
+                  obj=json.loads(raw)
+                  if route.endswith('hourly'):
+                      print('Quota MeteoHub (chiavi soltanto):',list(obj) if isinstance(obj,dict) else type(obj).__name__)
+                      continue
+                  def walk(v,depth=0):
+                      if depth>5: return
+                      if isinstance(v,dict):
+                          blob=json.dumps(v,ensure_ascii=False).lower()
+                          if 'meteonetwork' in blob and len(blob)<2000:
+                              print('Dataset candidato:',{k:val for k,val in v.items() if isinstance(val,(str,int,bool))})
+                          else:
+                              for val in v.values():walk(val,depth+1)
+                      elif isinstance(v,list):
+                          for val in v:walk(val,depth+1)
+                  print('Catalogo MeteoHub tipo:',type(obj).__name__,'lunghezza:',len(obj))
+                  walk(obj)
+              except urllib.error.HTTPError as exc:
+                  print('Endpoint',route,'HTTP',exc.code)
+              except Exception as exc:
+                  print('Endpoint',route,'errore',type(exc).__name__,str(exc)[:140])
+          PY
