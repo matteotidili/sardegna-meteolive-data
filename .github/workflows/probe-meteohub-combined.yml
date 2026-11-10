@@ -1,10 +1,8 @@
 name: Prova unificazione MeteoHub DPCN e MNW
+# Sondaggio di tutte le variabili di MeteoHub: solo su richiesta manuale.
+# Evita estrazioni supplementari ad ogni commit durante il funzionamento operativo.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_meteohub_combined.py'
 permissions:
   contents: read
 concurrency:
