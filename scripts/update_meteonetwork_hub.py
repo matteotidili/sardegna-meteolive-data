@@ -9,6 +9,7 @@ from zoneinfo import ZoneInfo
 from update_meteohub import api, login, unpack, parse_dt, mval, get_id, wait_for_request, SARDINIA_BOUNDING_BOX
 
 UTC = timezone.utc
+ROME = ZoneInfo("Europe/Rome")
 OUT = Path("data/meteonetwork.json")
 PLACES = Path(__file__).resolve().parents[1] / "config" / "meteonetwork_places.json"
 DATASET = "mnw"  # MeteoHub catalog: dataset id=mnw, name=meteonetwork
@@ -144,7 +145,8 @@ def aggregate(raw, now=None):
                 except (TypeError, ValueError, OverflowError):
                     pass
     stations = []
-    local_day = now.astimezone(ZoneInfo("Europe/Rome")).date().isoformat()
+    local_day_date = now.astimezone(ROME).date()
+    local_day = local_day_date.isoformat()
     for (name, lat, lon), st in stations_by_key.items():
         vs = st["vars"]
         timestamp = max((t for arr in vs.values() for t, _, _ in arr), default=None)
@@ -152,6 +154,22 @@ def aggregate(raw, now=None):
             continue
         tk = latest(vs[TEMP])[1]
         temp = fnum(tk - 273.15, -45, 55) if tk is not None and 170 <= tk <= 350 else None
+        # MeteoHub fornisce le osservazioni campionate della giornata.
+        # Si calcolano i due estremi soltanto sui campioni di temperatura
+        # realmente presenti oggi (fuso Europe/Rome), non su valori inventati
+        # o sulle misure della sera precedente incluse nella finestra notturna.
+        daily_temp_by_time = {}
+        for observed_at, kelvin, _ in vs[TEMP]:
+            if observed_at > now + timedelta(minutes=5):
+                continue
+            if observed_at.astimezone(ROME).date() != local_day_date:
+                continue
+            celsius = fnum(kelvin - 273.15, -45, 55) if 170 <= kelvin <= 350 else None
+            if celsius is not None:
+                daily_temp_by_time[observed_at] = celsius
+        today_temps = list(daily_temp_by_time.values())
+        tmin = round(min(today_temps), 1) if today_temps else None
+        tmax = round(max(today_temps), 1) if today_temps else None
         rh = fnum(latest(vs[RH])[1], 0, 100)
         wind_ms = fnum(latest(vs[WIND])[1], 0, 90)
         gust_ms = fnum(latest(vs[GUST])[1], 0, 120)
@@ -170,7 +188,10 @@ def aggregate(raw, now=None):
             "station_id": station_id, "station_code": name,
             "name": name, "network": "meteonetwork",
             "lat": lat, "lon": lon, "elev": st["elev"],
-            "temp": temp, "tmin": None, "tmax": None, "rh": rh,
+            "temp": temp, "tmin": tmin, "tmax": tmax, "rh": rh,
+            "extrema_source": "meteohub_mnw_sampled" if today_temps else None,
+            "extrema_samples": len(today_temps),
+            "extrema_day": local_day,
             "wind_kmh": round(wind_ms * 3.6, 1) if wind_ms is not None else None,
             "wind_dir": wdir,
             "gust_kmh": round(gust_ms * 3.6, 1) if gust_ms is not None else None,
