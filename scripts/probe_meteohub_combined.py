@@ -8,6 +8,7 @@ import sys
 import urllib.parse
 import zipfile
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from update_meteohub import api, login, get_id, wait_for_request, aggregate as aggregate_dpcn, SARDINIA_BOUNDING_BOX
 from update_meteonetwork_hub import aggregate as aggregate_mnw
 
@@ -36,7 +37,10 @@ def main():
         print("Quota MeteoHub residua:", remaining)
         if remaining < 2:
             raise RuntimeError("Quota oraria insufficiente per prova combinata; niente interrogazione")
-    start = (NOW - timedelta(hours=3)).isoformat(timespec="seconds").replace("+00:00","Z")
+    # Ultima giornata civile in Italia: include possibili massime/minime
+    # pubblicate solo a fine periodo, senza scaricare altre regioni.
+    local_now = NOW.astimezone(ZoneInfo("Europe/Rome"))
+    start = local_now.replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00","Z")
     end = NOW.isoformat(timespec="seconds").replace("+00:00","Z")
     request = {
         "request_name": "sardegna-meteolive-probe-dpcn-mnw",
