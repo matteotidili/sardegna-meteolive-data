@@ -42,23 +42,9 @@ def main():
         "request_name": "sardegna-meteolive-probe-dpcn-mnw",
         "reftime": {"from":start, "to":end},
         "dataset_names": ["dpcn-sardegna","mnw"],
-        "filters": {
-            "bounding_box": SARDINIA_BOUNDING_BOX.copy(),
-            "level": [
-                {"code":"1,0,0,0","active":True},
-                {"code":"103,2000,0,0","active":True},
-                {"code":"103,10000,0,0","active":True}
-            ],
-            "product": [
-                {"code":c,"active":True}
-                for c in ["B11001","B11002","B11041","B12101","B13003","B13011"]
-            ],
-            "timerange": [
-                {"code":"1,0,60","active":True},
-                {"code":"2,0,3600","active":True},
-                {"code":"254,0,0","active":True}
-            ]
-        },
+        # Sondaggio COMPLETO: nessun filtro su variabili, livelli o periodi.
+        # Mantiene il ritaglio Sardegna per rispettare quote e dimensioni.
+        "filters": {"bounding_box": SARDINIA_BOUNDING_BOX.copy()},
         "only_reliable":True,
         "output_format":"json"
     }
@@ -81,17 +67,40 @@ def main():
         counts=collections.Counter()
         latest={}
         sample={}
+        observed_codes=collections.defaultdict(collections.Counter)
+        temperature_extremes=collections.defaultdict(list)
+        recent_stations=collections.defaultdict(set)
         for name,blob in blobs:
             for obj in inspect_payload(name,blob):
                 network=str(obj.get("network") or "<assente>")
                 counts[network]+=1
                 sample.setdefault(network,{"keys":list(obj.keys()),"metadata_vars":list(((obj.get("data") or [{}])[0].get("vars") or {}).keys())[:10]})
+                station_id=obj.get("ident")
+                if station_id is not None:
+                    recent_stations[network].add(str(station_id))
+                for entry in (obj.get("data") or [])[1:]:
+                    if not isinstance(entry,dict):
+                        continue
+                    for code,value in (entry.get("vars") or {}).items():
+                        observed_codes[network][code]+=1
+                        if code in {"B12011","B12012","B12021","B12022","B12111","B12112","B12116","B12117","B12118","B12119"}:
+                            if len(temperature_extremes[network])<20:
+                                temperature_extremes[network].append({
+                                    "code":code,
+                                    "v": value.get("v") if isinstance(value,dict) else value,
+                                    "date":obj.get("date"),
+                                    "timerange":entry.get("timerange"),
+                                    "level":entry.get("level")
+                                })
                 stamp=str(obj.get("date") or "")
                 if stamp and stamp>latest.get(network,""):
                     latest[network]=stamp
         print("Reti nella singola estrazione:",dict(counts))
         print("Ultime misure per rete:",latest)
         print("Struttura minima:",sample)
+        print("Stazioni uniche per rete:",{k:len(v) for k,v in recent_stations.items()})
+        print("Codici BUFR presenti per rete:",{k:dict(v.most_common()) for k,v in observed_codes.items()})
+        print("Estremi originali BUFR (solo esempi non nominativi):",dict(temperature_extremes))
         if not any("dpcn" in n.lower() for n in counts) or not any("mnw" in n.lower() or "meteonetwork" in n.lower() for n in counts):
             raise RuntimeError("Estrazione combinata non contiene ENTRAMBE le reti: non modificare produzione")
         dpcn = aggregate_dpcn(bytes(raw))
