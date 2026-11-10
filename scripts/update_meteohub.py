@@ -219,6 +219,12 @@ def aggregate(raw):
         rec["temp"]=round(tk-273.15,1) if tk is not None else None
         td=[v-273.15 for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
         rec["tmin"]=round(min(td),1) if td else None; rec["tmax"]=round(max(td),1) if td else None
+        # La sorgente BUFR espone B12101 (temperatura campionata), non gli
+        # estremi continui del sensore. Registriamo la provenienza come per
+        # MeteoNetwork, senza presentarli come valori assoluti strumentali.
+        rec["extrema_source"]="meteohub_dpcn_sampled" if td else None
+        rec["extrema_samples"]=len({dt for dt,_,_,_ in ts if dt.astimezone(ROME).date()==target_day})
+        rec["extrema_day"]=str(target_day)
         rh,_=latest(s.get(V_RH,[])); rec["rh"]=round(rh) if rh is not None else None
         ws,_=latest(s.get(V_WSPD,[])); rec["wind_ms"]=round(ws,1) if ws is not None else None; rec["wind_kmh"]=round(ws*3.6,1) if ws is not None else None
         wd,_=latest(s.get(V_WDIR,[])); rec["wind_dir"]=round(wd) if wd is not None else None
