@@ -1,4 +1,5 @@
 import importlib.util
+import io
 import json
 import os
 import tempfile
@@ -151,6 +152,30 @@ class MonitorTests(unittest.TestCase):
             monitor.sync_issue(report,NOW)
         self.assertTrue(any(m=="PATCH" and payload.get("state")=="closed"
                             for m,p,payload in calls))
+
+    def test_main_recovers_and_summarizes_without_issue_notifications(self):
+        self.write("data/stations.json", [
+            {"temp":12,"last":(NOW-timedelta(hours=4)).isoformat()}])
+        report=monitor.evaluate(NOW)
+        summary=Path(self.tmp.name)/"summary.md"
+        calls=[]
+        output=io.StringIO()
+        def fake_api(method,path,payload=None):
+            self.assertNotIn("/issues",path)
+            calls.append((method,path,payload))
+            return {"workflow_runs":[]}
+        with patch.dict(os.environ,{"GH_TOKEN":"test",
+                                    "GITHUB_STEP_SUMMARY":str(summary)},clear=True), \
+             patch.object(monitor,"evaluate",return_value=report), \
+             patch.object(monitor,"github",side_effect=fake_api), \
+             patch("sys.stdout",output):
+            monitor.main()
+        self.assertTrue(any(method=="POST" and path==
+                            "/actions/workflows/update-observations.yml/dispatches"
+                            for method,path,_ in calls))
+        self.assertIn("MONITOR DPCN acquisition_stale",output.getvalue())
+        self.assertIn("| DPCN | acquisition_stale |",summary.read_text())
+        self.assertIn("| Weather Underground | paused |",summary.read_text())
 
 if __name__=="__main__":
     unittest.main()

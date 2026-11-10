@@ -8,7 +8,7 @@ import sys
 import urllib.parse
 import zipfile
 from datetime import datetime, timedelta, timezone
-from update_meteohub import api, login, get_id, wait_for_request, aggregate as aggregate_dpcn
+from update_meteohub import api, login, get_id, wait_for_request, aggregate as aggregate_dpcn, SARDINIA_BOUNDING_BOX
 from update_meteonetwork_hub import aggregate as aggregate_mnw
 
 NOW = datetime.now(timezone.utc)
@@ -43,6 +43,7 @@ def main():
         "reftime": {"from":start, "to":end},
         "dataset_names": ["dpcn-sardegna","mnw"],
         "filters": {
+            "bounding_box": SARDINIA_BOUNDING_BOX.copy(),
             "level": [
                 {"code":"1,0,0,0","active":True},
                 {"code":"103,2000,0,0","active":True},

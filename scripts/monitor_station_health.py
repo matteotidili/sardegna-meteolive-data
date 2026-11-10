@@ -178,8 +178,10 @@ def main():
             f.write(description(report,now)+"\n")
     if not (os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")):
         return
-    for action in (self_repair,sync_issue):
-        action(report,now)  # un'automazione rotta deve risultare fallita
+    # Su richiesta dell'utente, nessuna issue automatica: creazioni e cambi
+    # di stato possono generare email GitHub. Diagnosi e orari restano nel
+    # log e nel riepilogo Actions; il recupero automatico rimane attivo.
+    self_repair(report,now)  # un'automazione rotta deve risultare fallita
 
 if __name__=="__main__":
     main()

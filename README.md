@@ -35,6 +35,26 @@ I nuovi codici senza associazione restano visibili con il codice originale.
 Le due stazioni `srd175` e `srd176` risultano entrambe a Oristano nelle schede
 ufficiali e mantengono identificativi distinti.
 
+## Notifiche e dimensioni delle estrazioni MeteoHub
+
+Prima di avviare estrazioni, il login disattiva e verifica nel profilo MeteoHub
+`notify_on_successful_request`. Se non riesce a confermare la disattivazione,
+non avvia nuove estrazioni. La preferenza riguarda l'account MeteoHub.
+La [guida ufficiale](https://meteohub.agenziaitaliameteo.it/ui/user-guide)
+specifica che le email di errore vengono comunque inviate: per escludere anche
+quelle dalla casella serve un filtro sul mittente
+`noreply@meteohub.hpc.cineca.it`, oppure sospendere le estrazioni.
+Il monitor conserva autoripristino e riepiloghi Actions senza creare o aggiornare
+issue GitHub automaticamente. Le notifiche native GitHub dipendono dalle
+preferenze dell'account e del repository.
+
+Le estrazioni combinate DPCN/MNW, quelle MNW manuali e la prova combinata usano
+`filters.bounding_box` per limitare i dati alla Sardegna già sul server
+(latitudine 38.75–41.4, longitudine 7.7–10.3), secondo lo
+[schema API ufficiale](https://meteohub.agenziaitaliameteo.it/api/specs).
+Non viene più scaricata l'intera rete MNW nazionale. La finestra osservativa
+giornaliera e i controlli di quota del servizio restano attivi.
+
 
 ## Incendi attivi MTG FCI / EUMETSAT
 

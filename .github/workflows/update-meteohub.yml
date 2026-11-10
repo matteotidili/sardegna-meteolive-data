@@ -35,6 +35,14 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Disattiva e verifica subito le email di successo MeteoHub
+        if: github.event_name == 'push'
+        env:
+          METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
+          METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
+          PYTHONPATH: scripts
+        run: python -c 'from update_meteohub import login; login()'
+
       - name: Scarica ed elabora MeteoHub
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}

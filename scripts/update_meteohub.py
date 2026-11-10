@@ -23,6 +23,9 @@ MIN_RUN_INTERVAL_MIN = 10
 # il rollover del dataset e i dati notturni possono essere ricevuti subito.
 # I cumulati e gli estremi sono sempre filtrati per il giorno osservativo.
 MIDNIGHT_LOOKBACK_MINUTES = 180
+# Filter at the source: MNW also contains stations outside Sardinia. Downloading
+# the national network all day can exceed MeteoHub's disk quota.
+SARDINIA_BOUNDING_BOX = {"lonmin": 7.7, "latmin": 38.75, "lonmax": 10.3, "latmax": 41.4}
 
 V_TEMP="B12101"; V_RH="B13003"; V_WDIR="B11001"; V_WSPD="B11002"; V_GUST="B11041"; V_RAIN="B13011"
 DESIRED={V_TEMP,V_RH,V_WDIR,V_WSPD,V_GUST,V_RAIN}
@@ -60,7 +63,25 @@ def login():
     if not token:
         raise RuntimeError("Token MeteoHub non trovato nella risposta di login")
 
+    disable_success_notifications(token)
     return token
+
+def disable_success_notifications(token):
+    """Verify the account preference before submitting any extraction.
+
+    MeteoHub always emails failures; those require a mailbox rule if the user
+    wants no mail at all. There is no documented per-extraction email flag.
+    """
+    profile = api("GET", "/auth/profile", token)
+    if not isinstance(profile, dict) or profile.get("notify_on_successful_request") is not False:
+        # PATCH returns 204 with an empty body; do not try to decode it as JSON.
+        api("PATCH", "/auth/profile", token,
+            {"notify_on_successful_request": False}, parse_json=False)
+        profile = api("GET", "/auth/profile", token)
+    if not isinstance(profile, dict) or profile.get("notify_on_successful_request") is not False:
+        raise RuntimeError("Notifiche email MeteoHub non disattivate: nessuna estrazione avviata")
+    print("MeteoHub: notifiche email delle estrazioni riuscite disattivate e verificate")
+
 def request_body():
     now_local=datetime.now(ROME)
     start_local=now_local.replace(hour=0,minute=0,second=0,microsecond=0)
@@ -70,6 +91,7 @@ def request_body():
     return {
         "request_name":"sardegna-meteolive-auto",
         "filters":{
+            "bounding_box": SARDINIA_BOUNDING_BOX.copy(),
             "level":[
                 {"code":"1,0,0,0","active":True},
                 {"code":"103,2000,0,0","active":True},

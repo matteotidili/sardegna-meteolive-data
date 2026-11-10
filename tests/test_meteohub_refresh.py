@@ -3,7 +3,7 @@ import importlib.util
 import unittest
 from datetime import datetime
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import call, patch
 from zoneinfo import ZoneInfo
 
 SCRIPT=Path(__file__).resolve().parents[1]/"scripts"/"update_meteohub.py"
@@ -31,6 +31,15 @@ class MeteoHubRefreshTests(unittest.TestCase):
         self.assertGreater(M.MIN_RUN_INTERVAL_MIN,6)
         self.assertLessEqual(M.MIN_RUN_INTERVAL_MIN,10)
 
+    def test_combined_request_limits_both_networks_to_sardinia_at_source(self):
+        body=body_at(datetime(2026,11,3,23,25,tzinfo=ROME))
+        self.assertEqual(body["dataset_names"],["dpcn-sardegna","mnw"])
+        self.assertEqual(body["filters"]["bounding_box"],
+                         {"lonmin":7.7,"latmin":38.75,"lonmax":10.3,"latmax":41.4})
+        self.assertEqual(when(body["reftime"]["from"]).strftime("%Y-%m-%d %H:%M"),
+                         "2026-11-03 00:00")
+        self.assertNotIn("force_obs_download",body)
+
     def test_first_minutes_include_previous_evening(self):
         body=body_at(datetime(2026,11,3,0,20,tzinfo=ROME))
         self.assertEqual(when(body["reftime"]["from"]).strftime("%Y-%m-%d %H:%M"),
@@ -52,6 +61,43 @@ class MeteoHubRefreshTests(unittest.TestCase):
         body=body_at(datetime(2026,11,3,16,25,tzinfo=ROME))
         self.assertEqual(when(body["reftime"]["from"]).strftime("%Y-%m-%d %H:%M"),
                          "2026-11-03 00:00")
+
+class MeteoHubNotificationTests(unittest.TestCase):
+    def test_login_turns_off_success_emails_and_verifies_before_returning(self):
+        with patch.dict(M.os.environ,{"METEOHUB_USERNAME":"test-user","METEOHUB_PASSWORD":"test-password"}), \
+             patch.object(M,"api",side_effect=[{"access_token":"test-token"},
+                          {"notify_on_successful_request":True},b"",
+                          {"notify_on_successful_request":False}]) as request:
+            self.assertEqual(M.login(),"test-token")
+        self.assertEqual(request.call_args_list,[
+            call("POST","/auth/login",body={"username":"test-user","password":"test-password"}),
+            call("GET","/auth/profile","test-token"),
+            call("PATCH","/auth/profile","test-token",{"notify_on_successful_request":False},parse_json=False),
+            call("GET","/auth/profile","test-token"),
+        ])
+
+    def test_already_disabled_preference_does_not_modify_profile(self):
+        with patch.object(M,"api",return_value={"notify_on_successful_request":False}) as request:
+            M.disable_success_notifications("test-token")
+        request.assert_called_once_with("GET","/auth/profile","test-token")
+
+    def test_no_extraction_when_preference_cannot_be_confirmed(self):
+        with patch.dict(M.os.environ,{"METEOHUB_USERNAME":"test-user","METEOHUB_PASSWORD":"test-password"}), \
+             patch.object(M,"should_skip_recent_run",return_value=False), \
+             patch.object(M,"api",side_effect=[{"access_token":"test-token"},
+                          {"notify_on_successful_request":True},b"",
+                          {"notify_on_successful_request":True}]) as request:
+            with self.assertRaisesRegex(RuntimeError,"nessuna estrazione avviata"):
+                M.main()
+        self.assertFalse(any(entry.args[1]=="/api/data" for entry in request.call_args_list))
+
+    def test_profile_api_error_does_not_start_an_extraction(self):
+        with patch.dict(M.os.environ,{"METEOHUB_USERNAME":"test-user","METEOHUB_PASSWORD":"test-password"}), \
+             patch.object(M,"should_skip_recent_run",return_value=False), \
+             patch.object(M,"api",side_effect=[{"access_token":"test-token"},RuntimeError("profile unavailable")]) as request:
+            with self.assertRaisesRegex(RuntimeError,"profile unavailable"):
+                M.main()
+        self.assertFalse(any(entry.args[1]=="/api/data" for entry in request.call_args_list))
 
 if __name__=="__main__":
     unittest.main()

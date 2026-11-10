@@ -1,4 +1,4 @@
-name: Test frequenza e continuita' notturna MeteoHub
+name: Test notifiche, area e continuita' MeteoHub
 on:
   push:
     branches: [main]
@@ -22,5 +22,5 @@ jobs:
           python-version: '3.12'
       - name: Verifica sintassi
         run: python -m py_compile scripts/update_meteohub.py
-      - name: Test della frequenza API e delle finestre notturne
+      - name: Test notifiche email, area Sardegna e finestre notturne
         run: python -m unittest discover -s tests -p 'test_meteohub_refresh.py' -v

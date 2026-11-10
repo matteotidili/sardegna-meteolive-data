@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from update_meteohub import api, login, unpack, parse_dt, mval, get_id, wait_for_request
+from update_meteohub import api, login, unpack, parse_dt, mval, get_id, wait_for_request, SARDINIA_BOUNDING_BOX
 
 UTC = timezone.utc
 OUT = Path("data/meteonetwork.json")
@@ -65,7 +65,10 @@ def build_request(now=None):
         "dataset_names": [DATASET],
         "output_format": "json",
         "only_reliable": True,
-        "filters": {"product": [{"code": k, "active": True} for k in sorted(VAR)]},
+        "filters": {
+            "bounding_box": SARDINIA_BOUNDING_BOX.copy(),
+            "product": [{"code": k, "active": True} for k in sorted(VAR)],
+        },
     }
 
 def should_poll(path=OUT, now=None):
