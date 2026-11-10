@@ -96,6 +96,43 @@ class MeteoNetworkNameTests(unittest.TestCase):
         self.assertEqual(len({row["station_id"] for row in result["stations"]}), 2)
         self.assertEqual(json.loads(path.read_text())["stations"], previous_rows)
 
+    def test_daily_extremes_are_from_todays_mnw_temperature_samples(self):
+        def at(iso, kelvin):
+            row = observation(date=iso)
+            row["data"][1]["vars"]["B12101"]["v"] = kelvin
+            return row
+
+        result = aggregate(
+            at("2026-11-08T22:59:00Z", 273.15),  # 23:59 Italian time: previous day
+            at("2026-11-08T23:05:00Z", 286.15),  # 00:05 Italian time: today, 13°C
+            at("2026-11-09T07:00:00Z", 285.15),  # 08:00 Italian time: 12°C
+            at("2026-11-09T15:00:00Z", 293.15),  # 16:00 Italian time: 20°C
+            at("2026-11-09T15:00:00Z", 293.15),  # duplicate should not inflate samples
+        )
+        row = result["stations"][0]
+        self.assertEqual(row["tmin"], 12.0)
+        self.assertEqual(row["tmax"], 20.0)
+        self.assertEqual(row["temp"], 20.0)
+        self.assertEqual(row["extrema_source"], "meteohub_mnw_sampled")
+        self.assertEqual(row["extrema_samples"], 3)
+        self.assertEqual(row["extrema_day"], "2026-11-09")
+
+    def test_no_daily_samples_leaves_extremes_unavailable(self):
+        result = aggregate(observation(date="2026-11-08T20:00:00Z"))
+        row = result["stations"][0]
+        self.assertIsNone(row["tmin"])
+        self.assertIsNone(row["tmax"])
+        self.assertIsNone(row["extrema_source"])
+        self.assertEqual(row["extrema_samples"], 0)
+
+    def test_current_day_samples_are_not_continuous_sensor_extremes(self):
+        result = aggregate(observation())
+        row = result["stations"][0]
+        self.assertEqual(row["tmin"], 20.0)
+        self.assertEqual(row["tmax"], 20.0)
+        self.assertEqual(row["extrema_samples"], 1)
+        self.assertEqual(row["extrema_source"], "meteohub_mnw_sampled")
+
     def test_only_known_legacy_identity_format_supplies_a_code(self):
         station = {"station_id": "mnw-srd013-wrong-format", "name": "Existing place"}
         result = MNW.named_station(station, {"srd013": "Ossi"})
