@@ -13,6 +13,7 @@ import urllib.request
 from pathlib import Path
 import numpy as np
 from eccodes import codes_get, codes_get_values, codes_grib_new_from_file, codes_release
+from arome_bundle import validate_bundle
 
 BASE="https://meteofrance-pnt.s3.rbx.io.cloud.ovh.net"
 ROOT=Path("data/arome")
@@ -77,11 +78,14 @@ def run():
     run=dt.datetime.fromisoformat(stamp)
     expected=cycle
     if MANIFEST.exists():
-        old=json.loads(MANIFEST.read_text("utf-8"))
-        if (old.get("run_time")==expected and len(old.get("frames",[]))==51 and
-            all((TARGET/f"h{lead:02d}.bin").is_file() for lead in leads)):
-            print("Vettori U/V già pubblicati per questa corsa",expected,flush=True)
-            return
+        try:
+            if validate_bundle()==expected:
+                print("Vettori U/V già pubblicati e validi per questa corsa",expected,flush=True)
+                return
+        except (OSError,ValueError,KeyError,TypeError) as exc:
+            # Riparare anche file mancanti/corrotti della stessa corsa, senza
+            # considerarli completi soltanto perché il percorso esiste.
+            print("Vettori U/V da rigenerare:",type(exc).__name__,flush=True)
     TARGET.mkdir(parents=True,exist_ok=True)
     frames=[]
     total=0

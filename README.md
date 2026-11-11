@@ -56,6 +56,24 @@ Non viene più scaricata l'intera rete MNW nazionale. La finestra osservativa
 giornaliera e i controlli di quota del servizio restano attivi.
 
 
+## Previsioni AROME HD e animazione del vento
+
+`update-arome-hd.yml` genera i raster e i campi U/V a 10 m della **stessa corsa**
+prima di pubblicarli insieme in un unico commit. Sono mantenuti i 51 passi orari,
+i 21 prodotti e il dominio Mediterraneo occidentale. Se un campo manca o non
+supera i controlli, la previsione precedente resta pubblicata per intero.
+`scripts/arome_bundle.py` verifica corse, validità dei frame, geometria e binari;
+a ogni tentativo di pubblicazione esclude candidate superate da una corsa remota
+più recente e ripete la validazione dopo il rebase.
+
+Il workflow `update-arome-wind-vectors.yml` rimane un ripristino manuale o su
+modifiche al proprio codice: condivide il lock con AROME HD e può pubblicare
+vettori soltanto per la corsa raster ancora presente su `main`. Il normale
+aggiornamento non dipende da un secondo cron né dal trigger `push` di un altro
+workflow. Per il recupero immediato si può avviare il ripristino vettori senza
+rigenerare i raster. AROME HD riusa comunque i raster della corsa corrente quando
+sono già completi e ricostruisce i vettori mancanti o non coerenti.
+
 ## Incendi attivi MTG FCI / EUMETSAT
 
 Il workflow `Aggiorna incendi MTG FRP` interroga il servizio WFS EUMETView

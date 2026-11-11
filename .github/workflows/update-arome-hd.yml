@@ -6,6 +6,9 @@ on:
     paths:
       - 'scripts/update_arome_hd.py'
       - 'scripts/arome_parameters.py'
+      - 'scripts/update_arome_wind_vectors.py'
+      - 'scripts/arome_bundle.py'
+      - 'tests/test_arome_bundle.py'
       - '.github/workflows/update-arome-hd.yml'
   schedule:
     # Le corse ufficiali sono di norma ogni 3 ore, con ritardi di pubblicazione.
@@ -14,7 +17,7 @@ permissions:
   contents: write
 concurrency:
   group: ar0me-hd-sardegna
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -23,10 +26,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Verifica sincronizzazione e pubblicazione AROME
+        run: python3 -m unittest discover -s tests -p 'test_arome_bundle.py' -v
       - name: Installa decodifica scientifica GRIB2
         run: python3 -m pip install --disable-pip-version-check eccodes numpy pillow
       - name: Scarica AROME HD H+51 e genera raster Mediterraneo occidentale
         run: python3 scripts/update_arome_hd.py
+      - name: Genera i vettori 10 m della stessa corsa raster
+        run: python3 scripts/update_arome_wind_vectors.py
       - name: Controlla metadati e immagini
         run: |
           python3 - <<'PY'
@@ -63,20 +70,7 @@ jobs:
           print('AROME HD Mediterraneo H+51 valido:',obj['run_time'],len(obj['frames']),
                 'raster precip +',len(params),'products:',len(params)*51,'WEBP')
           PY
-      - name: Pubblica solo la nuova corsa AROME
-        run: |
-          git config user.name "sardegna-meteolive-data-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/arome/forecast.json data/arome/precip_h*.png data/arome/products/
-          if git diff --cached --quiet; then
-            echo "Nessuna nuova corsa disponibile"
-            exit 0
-          fi
-          git commit -m "Aggiorna AROME HD H+51 Mediterraneo occidentale (21 prodotti)"
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main
-            if git push origin HEAD:main; then exit 0; fi
-            sleep "$attempt"
-          done
-          exit 1
+      - name: Verifica corsa, validità e binari dei 51 campi U/V
+        run: python3 scripts/arome_bundle.py validate
+      - name: Pubblica atomicamente raster e vettori della stessa corsa
+        run: python3 scripts/arome_bundle.py publish --mode full
