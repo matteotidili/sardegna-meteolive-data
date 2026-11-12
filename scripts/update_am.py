@@ -369,9 +369,39 @@ def main():
         ]
 
         min_candidates = list(temps) + reported_mins
-        max_candidates = list(temps) + reported_maxs
         tmin = min(min_candidates) if min_candidates else None
-        tmax = max(max_candidates) if max_candidates else None
+
+        # Il METAR riporta normalmente la temperatura al grado intero:
+        # per esempio 28°C puo' rappresentare 27,7°C. Una volta disponibile
+        # la massima strumentale della sezione 333 del SYNOP delle 18 UTC,
+        # essa ha precedenza sul massimo campionato *precedente* (SYNOP e
+        # METAR). Non si deve usare max(28 arrotondato, 27,7 osservato).
+        #
+        # Le osservazioni successive al SYNOP delle 18 UTC possono invece
+        # stabilire un nuovo massimo della giornata civile: in quel caso
+        # l'estremo torna provvisorio in attesa di conferma.
+        official_max = reported_maxs[-1] if reported_maxs else None
+        max_report_at = max(
+            (dt for dt, _, decoded in synop_today
+             if dt.hour == 18 and decoded.get("reported_tmax") is not None
+             and -60 <= decoded["reported_tmax"] <= 60),
+            default=None,
+        )
+        if official_max is not None and max_report_at is not None:
+            after_report = [
+                dec["temp"] for dt, _, dec, _ in combined
+                if dt > max_report_at
+                and dt.astimezone(ROME).date() == local_day
+                and dec.get("temp") is not None
+            ]
+            newer_high = max(after_report, default=None)
+            tmax = max(official_max, newer_high) if newer_high is not None else official_max
+            tmax_provisional = newer_high is not None and newer_high > official_max
+            tmax_source = "synop_reported" if not tmax_provisional else "post_synop_sampled"
+        else:
+            tmax = max(temps) if temps else None
+            tmax_provisional = True
+            tmax_source = "sampled_synop_metar" if temps else None
 
         rec = {
             "name": meta["name"],
@@ -386,7 +416,8 @@ def main():
             "tmin": round(tmin, 1) if tmin is not None else None,
             "tmax": round(tmax, 1) if tmax is not None else None,
             "tmin_provisional": not bool(reported_mins),
-            "tmax_provisional": not bool(reported_maxs),
+            "tmax_provisional": tmax_provisional,
+            "tmax_source": tmax_source,
             "rh": round(latest["rh"]) if latest.get("rh") is not None else None,
             "dewpoint": round(latest["dewpoint"], 1) if latest.get("dewpoint") is not None else None,
             "pressure_hpa": round(latest["pressure_hpa"], 1) if latest.get("pressure_hpa") is not None else None,
