@@ -22,7 +22,7 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(data["stations"][0]["observation_type"], "METAR")
             self.assertEqual(data["source_errors"], ["synop_unavailable"])
 
-    def test_sunop_official_tmax_overrides_rounded_metar(self):
+    def test_synop_official_tmax_overrides_rounded_metar(self):
         # METAR delle 12:20 UTC: 28°C arrotondati; SYNOP 18 UTC: 27,7°C.
         fixed = datetime(2026, 11, 12, 18, 15, tzinfo=timezone.utc)
         class Clock(datetime):
@@ -39,8 +39,8 @@ class RefreshTests(unittest.TestCase):
         }]
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / "am.json"
-            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \\
-                 patch.object(am, "fetch_synops", return_value=synops), \\
+            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \
+                 patch.object(am, "fetch_synops", return_value=synops), \
                  patch.object(am, "fetch_metars", return_value=metars):
                 am.main()
             elmas = next(st for st in json.loads(out.read_text())["stations"] if st["station_id"] == "LIEE")
@@ -60,8 +60,8 @@ class RefreshTests(unittest.TestCase):
         }]
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / "am.json"
-            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \\
-                 patch.object(am, "fetch_synops", return_value=""), \\
+            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \
+                 patch.object(am, "fetch_synops", return_value=""), \
                  patch.object(am, "fetch_metars", return_value=metars):
                 am.main()
             elmas = next(st for st in json.loads(out.read_text())["stations"] if st["station_id"] == "LIEE")
@@ -84,8 +84,8 @@ class RefreshTests(unittest.TestCase):
         }]
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / "am.json"
-            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \\
-                 patch.object(am, "fetch_synops", return_value=synops), \\
+            with patch.object(am, "OUT", out), patch.object(am, "datetime", Clock), \
+                 patch.object(am, "fetch_synops", return_value=synops), \
                  patch.object(am, "fetch_metars", return_value=metars):
                 am.main()
             elmas = next(st for st in json.loads(out.read_text())["stations"] if st["station_id"] == "LIEE")
