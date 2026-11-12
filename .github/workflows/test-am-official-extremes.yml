@@ -1,0 +1,22 @@
+name: Test estremi Aeronautica Militare
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_am.py'
+      - 'tests/test_am_refresh.py'
+      - '.github/workflows/test-am-official-extremes.yml'
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verifica regressioni SYNOP e METAR Cagliari-Elmas
+        run: python -m unittest discover -s tests -p 'test_am_refresh.py' -v
