@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from eccodes import codes_get, codes_get_values, codes_grib_new_from_file, codes_release
-from arome_parameters import Renderer, unpack, STOPS
+from arome_parameters import Renderer, unpack, STOPS, PARAMETERS
 
 BASE = "https://meteofrance-pnt.s3.rbx.io.cloud.ovh.net"
 OUT = Path("data/arome")
@@ -185,11 +185,14 @@ def run():
             if (existing.get("run_time")==iso(cycle)
                 and len(existing.get("frames",[]))==len(LEADS)
                 and existing.get("domain")=="EURW1S100-WesternMediterranean-H51"
-                and len(existing.get("parameters",{}))>=20
+                and len(existing.get("parameters",{}))==len(PARAMETERS)
                 # Se cambia la palette degli accumuli, rigenerare il ciclo H+51
                 # anche quando i GRIB appartengono alla stessa corsa già pubblicata.
                 # Confrontiamo le soglie effettive con quelle dei raster, non il solo run_time.
                 and existing.get("parameters",{}).get("rain_acc",{}).get("scale")=="precip_total"
+                and existing.get("hourly_precip_stops")==[
+                    [value,list(color)] for value,color in PALETTE if value>0
+                ]
                 and existing.get("parameters",{}).get("rain_acc",{}).get("stops")==[
                     [value,list(color)] for value,color in STOPS["precip_total"]
                 ]
@@ -238,6 +241,9 @@ def run():
         "model":"AROME-France HD",
         "domain":"EURW1S100-WesternMediterranean-H51",
         "parameters":renderer.manifest(),
+        # Palette precisa del raster orario: il frontend non deve inventare
+        # soglie o colori indipendenti dai PNG generati dal backend.
+        "hourly_precip_stops":[[value,list(color)] for value,color in PALETTE if value>0],
         "product_path_template":"data/arome/products/{parameter}/h{lead:02d}.webp",
         "product_count":len(renderer.manifest()),
         "forecast_horizon_hours":LEADS[-1],
