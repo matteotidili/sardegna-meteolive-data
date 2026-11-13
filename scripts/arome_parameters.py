@@ -20,14 +20,20 @@ PARAMETERS = {
     "td2m": {"label":"Punto di rugiada 2 m (calcolato)", "unit":"°C", "group":"Temperature", "scale":"temp"},
     "rh2m": {"label":"Umidità relativa 2 m", "unit":"%", "group":"Atmosfera", "scale":"humidity"},
     "wind10": {"label":"Velocità vento 10 m", "unit":"km/h", "group":"Vento", "scale":"wind"},
+    "winddir10": {"label":"Direzione di provenienza vento 10 m", "unit":"°", "group":"Vento", "scale":"winddir"},
     "gust10": {"label":"Raffiche 10 m, stima da componenti massime", "unit":"km/h", "group":"Vento", "scale":"gust"},
     "gustmaxrun": {"label":"Raffica massima stimata dall'inizio corsa", "unit":"km/h", "group":"Vento", "scale":"gust"},
     "cape": {"label":"CAPE diagnostica (CAPE_INS)", "unit":"J/kg", "group":"Instabilità", "scale":"cape"},
+    "pressure_sfc": {"label":"Pressione alla superficie del modello (non ridotta al mare)", "unit":"hPa", "group":"Atmosfera", "scale":"pressure_sfc"},
     "cloud_low": {"label":"Nuvolosità bassa", "unit":"%", "group":"Nuvolosità", "scale":"cloud"},
     "cloud_mid": {"label":"Nuvolosità media", "unit":"%", "group":"Nuvolosità", "scale":"cloud"},
     "cloud_high": {"label":"Nuvolosità alta", "unit":"%", "group":"Nuvolosità", "scale":"cloud"},
     "sim_refl": {"label":"Riflettività radar SIMULATA dal modello", "unit":"dBZ (indicativa)", "group":"Instabilità", "scale":"reflectivity"},
-    "rain_acc": {"label":"Precipitazioni cumulate dall'inizio corsa", "unit":"mm", "group":"Precipitazioni", "scale":"precip_total"},
+    "rain_acc": {"label":"Precipitazioni totali cumulate dall'inizio corsa", "unit":"mm", "group":"Precipitazioni", "scale":"precip_total"},
+    "rain_liquid_acc": {"label":"Pioggia cumulata dall'inizio corsa", "unit":"mm", "group":"Precipitazioni", "scale":"precip_total"},
+    "rain_1h": {"label":"Pioggia nell'ora precedente", "unit":"mm", "group":"Precipitazioni", "scale":"precip"},
+    "snow_1h": {"label":"Neve nell'ora precedente (acqua equivalente)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
+    "graupel_1h": {"label":"Graupel nell'ora precedente (acqua equivalente)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
     "snow_acc": {"label":"Neve cumulata (equivalente in acqua)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
     "graupel_acc": {"label":"Graupel cumulato (equivalente in acqua)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
     "frozen_acc": {"label":"Neve + graupel cumulati (acqua equivalente)", "unit":"mm eq.", "group":"Precipitazioni", "scale":"precip"},
@@ -41,6 +47,8 @@ STOPS = {
  "heat":[(24,(56,187,126)),(29,(245,211,65)),(35,(244,125,42)),(42,(224,45,51)),(55,(124,38,123))],
  "humidity":[(0,(183,105,57)),(30,(241,194,90)),(60,(101,182,181)),(80,(62,133,214)),(100,(59,59,152))],
  "wind":[(0,(88,161,208)),(15,(46,191,183)),(30,(109,197,67)),(50,(241,202,52)),(75,(251,110,46)),(110,(167,42,110))],
+ "winddir":[(0,(226,58,67)),(90,(247,206,66)),(180,(55,184,127)),(270,(68,129,232)),(360,(226,58,67))],
+ "pressure_sfc":[(650,(76,33,108)),(800,(72,68,162)),(900,(66,136,214)),(960,(88,181,191)),(990,(158,209,122)),(1010,(246,229,91)),(1030,(240,137,61)),(1050,(192,54,72))],
  "gust":[(0,(88,161,208)),(20,(46,191,183)),(40,(109,197,67)),(65,(241,202,52)),(95,(251,110,46)),(150,(167,42,110))],
  "cape":[(0,(99,141,192)),(250,(62,193,156)),(750,(205,217,67)),(1500,(247,144,43)),(2500,(230,55,48)),(4000,(155,42,141))],
  "cloud":[(0,(121,137,151)),(20,(110,154,195)),(50,(77,137,198)),(75,(199,197,222)),(100,(247,247,255))],
@@ -62,7 +70,7 @@ PHASE_RGB={1:(30,170,231),2:(245,245,255),3:(235,120,42),4:(197,74,174)}
 def unpack(blob, pack, lead, win):
     keep={
         "SP1":{"2t","2r","10u","10v","max_10efg","max_10nfg"},
-        "SP2":{"CAPE_INS","lcc","mcc","hcc","tirf","tsnowp","tgrp"},
+        "SP2":{"sp","CAPE_INS","lcc","mcc","hcc","tirf","tsnowp","tgrp"},
         "SP3":set()
     }
     values={}
@@ -169,7 +177,7 @@ class Renderer:
         cum_snow=sp2["tsnowp"]
         cum_graupel=sp2["tgrp"]
         accum=cum_rain+cum_snow+cum_graupel
-        if previous_sp2:
+        if previous_sp2 is not None:
             pr=np.maximum(0,cum_rain-previous_sp2["tirf"])
             ps=np.maximum(0,cum_snow-previous_sp2["tsnowp"])
             pg=np.maximum(0,cum_graupel-previous_sp2["tgrp"])
@@ -183,13 +191,17 @@ class Renderer:
         phase=np.where((total>=.2)&(ps>=.75*total),2,phase)
         phase=np.where((total>=.2)&(pg>=.75*total),3,phase)
         phase=np.where(np.isfinite(total),phase,np.nan)
+        # La direzione è meteorologica: provenienza da 0° (N), 90° (E).
+        winddir=np.mod(np.degrees(np.arctan2(-u,-v))+360,360)
+        winddir=np.where(wind>=1.0,winddir,np.nan)
         products={
             "t2m":temp,"tmaxrun":self.running_max,"tminrun":self.running_min,
             "windchill":wchill,"humidex":humidex,"td2m":dewpoint,"rh2m":sp1["2r"],
-            "wind10":wind,"gust10":gust,"gustmaxrun":self.running_gust,
-            "cape":sp2["CAPE_INS"],"cloud_low":sp2["lcc"],
+            "wind10":wind,"winddir10":winddir,"gust10":gust,"gustmaxrun":self.running_gust,
+            "cape":sp2["CAPE_INS"],"pressure_sfc":sp2["sp"]/100.0,"cloud_low":sp2["lcc"],
             "cloud_mid":sp2["mcc"],"cloud_high":sp2["hcc"],
             "sim_refl":sp2["sim_refl"],"rain_acc":accum,
+            "rain_liquid_acc":cum_rain,"rain_1h":pr,"snow_1h":ps,"graupel_1h":pg,
             "snow_acc":cum_snow,"graupel_acc":cum_graupel,
             "frozen_acc":cum_snow+cum_graupel,"precip_phase":phase,
             "sim_ir":sp3["sim_ir"]-273.15
