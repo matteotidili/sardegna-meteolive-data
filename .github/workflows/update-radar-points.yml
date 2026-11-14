@@ -1,0 +1,75 @@
+name: Aggiorna valori puntuali radar DPC SRI e VMI
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_radar_points.py'
+      - 'tests/test_radar_points.py'
+      - '.github/workflows/update-radar-points.yml'
+  schedule:
+    - cron: '*/10 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: dpc-radar-point-values
+  cancel-in-progress: false
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installa decodifica GeoTIFF e geoproiezione
+        run: python -m pip install --disable-pip-version-check numpy rasterio pillow
+      - name: Convalida algoritmo numerico e maschera NoData
+        run: python -m unittest discover -s tests -p 'test_radar_points.py' -v
+      - name: Acquisisci originali DPC ed estrai i raster numerici sardi
+        run: python scripts/update_radar_points.py
+      - name: Verifica manifest e PNG dei dati originali
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          p=Path("data/radar_points/manifest.json")
+          if not p.is_file():
+              print("Nessun manifest aggiornato: radar DPC temporaneamente non disponibile")
+          else:
+              m=json.loads(p.read_text())
+              assert m['schema_version']==1
+              for prod in ('SRI','VMI'):
+                  for r in m['frames'][prod]:
+                      f=Path(r['file'])
+                      assert f.is_file(),f
+                      with Image.open(f) as im:
+                          assert im.mode=='RGBA'
+                          assert im.size==(m['grid']['width'],m['grid']['height'])
+              print("Dati numerici Radar DPC:",{k:len(v) for k,v in m['frames'].items()})
+          PY
+      - name: Pubblica solo dati numerici DPC modificati
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A -- data/radar_points
+          if git diff --cached --quiet; then
+            echo "Radar numerico invariato; non creo commit"
+            exit 0
+          fi
+          git commit -m "Aggiorna radar DPC: griglie numeriche SRI/VMI, 3 ore"
+          for n in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo "Dati radar numerici pubblicati"
+              exit 0
+            fi
+            sleep "$n"
+          done
+          echo "Pubblicazione radar non riuscita"
+          exit 1
