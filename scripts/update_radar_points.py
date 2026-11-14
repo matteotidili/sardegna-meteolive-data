@@ -215,7 +215,7 @@ def fetch_opera_frame(timestamp: int):
         request = urllib.request.Request(f"{OPERA_BASE}/{key}", headers={"User-Agent": "SardegnaMeteoLive/1.0"})
         with urllib.request.urlopen(request, timeout=35) as response:
             payload = response.read(15_000_001)
-        if not payload.startswith(b"\\x89HDF\\r\\n\\x1a\\n") or len(payload) > 15_000_000:
+        if not payload.startswith(b"\x89HDF\r\n\x1a\n") or len(payload) > 15_000_000:
             raise ValueError("Sorgente OPERA non è ODIM HDF5")
         values = decode_opera_rate(payload)
         window, grid = opera_crop_window(values.shape)
