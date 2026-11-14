@@ -1,0 +1,16 @@
+name: Verifica sorgenti numeriche radar DPC
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/probe_dpc_radar_raw.py'
+      - '.github/workflows/probe-dpc-radar-raw.yml'
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/probe_dpc_radar_raw.py
