@@ -1,6 +1,14 @@
 name: Aggiorna valori puntuali radar DPC SRI e VMI
 on:
   workflow_dispatch:
+  # Il cron di Actions e' best-effort: se parte in ritardo, il completamento
+  # dei workflow operativi gia' attivi avvia anche questa acquisizione.
+  # Nessun loop: i file radar_points non attivano questi workflow.
+  workflow_run:
+    workflows:
+      - 'Sorveglia e ripristina automaticamente le reti di stazioni'
+      - 'Aggiorna dati MeteoHub'
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -8,7 +16,7 @@ on:
       - 'tests/test_radar_points.py'
       - '.github/workflows/update-radar-points.yml'
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '2,12,22,32,42,52 * * * *'
 permissions:
   contents: write
 concurrency:
@@ -16,6 +24,8 @@ concurrency:
   cancel-in-progress: false
 jobs:
   radar:
+    # Un upstream fallito non deve generare un carico extra sui server radar.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 18
     steps:
