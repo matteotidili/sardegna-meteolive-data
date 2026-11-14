@@ -111,7 +111,7 @@ def fetch_frame(product: str, timestamp: int):
         request=urllib.request.Request(signed["url"],headers={"User-Agent":"SardegnaMeteoLive/1.0"})
         with urllib.request.urlopen(request,timeout=30) as resp:
             original=resp.read(9_000_001)
-        if not original.startswith((b"II*\\x00",b"MM\\x00*")) or len(original)>9_000_000:
+        if not original.startswith((b"II*\x00",b"MM\x00*")) or len(original)>9_000_000:
             raise ValueError("Sorgente non è GeoTIFF")
         from rasterio.io import MemoryFile
         with MemoryFile(original) as dataset:
@@ -191,7 +191,7 @@ def main():
         "units":{"SRI":"mm/h","VMI":"dBZ"},
         "frames":kept,
     }
-    MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,separators=(",",":"))+"\\n",encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     published={row["file"] for rows in kept.values() for row in rows}
     for path in ROOT.glob("*/*.png"):
         if path.as_posix() not in published:
