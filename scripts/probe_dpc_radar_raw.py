@@ -30,9 +30,10 @@ for prod in ("SRI","VMI"):
             "has_url",bool(result.get("url")),"error",result.get("error"))
     signed=result.get("url")
     if not signed: continue
-    req=urllib.request.Request(signed,method="HEAD",headers={"User-Agent":"SardegnaMeteoLive/1.0"})
+    req=urllib.request.Request(signed,headers={"User-Agent":"SardegnaMeteoLive/1.0","Range":"bytes=0-127"})
     with urllib.request.urlopen(req,timeout=30) as r:
-      print(prod,"TIFF HEAD",r.status,"bytes",r.headers.get("Content-Length"),"content-type",r.headers.get("Content-Type"))
+      blob=r.read(256)
+      print(prod,"TIFF GET",r.status,"signature",blob[:4].hex(),"bytes",len(blob),"size",r.headers.get("Content-Range") or r.headers.get("Content-Length"),"content-type",r.headers.get("Content-Type"))
   except urllib.error.HTTPError as e:
     print(prod,"HTTP_ERROR",e.code,e.read(260).decode("utf8","replace"))
   except Exception as e: print(prod,"ERROR",type(e).__name__,str(e)[:220])
