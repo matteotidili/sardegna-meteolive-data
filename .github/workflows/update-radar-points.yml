@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Installa decodifica GeoTIFF e geoproiezione
-        run: python -m pip install --disable-pip-version-check numpy rasterio pillow
+        run: python -m pip install --disable-pip-version-check numpy rasterio pillow h5py pyproj
       - name: Convalida algoritmo numerico e maschera NoData
         run: python -m unittest discover -s tests -p 'test_radar_points.py' -v
       - name: Acquisisci originali DPC ed estrai i raster numerici sardi
@@ -60,6 +60,16 @@ jobs:
                       with Image.open(f) as im:
                           assert im.mode=='RGBA'
                           assert im.size==(m['grid']['width'],m['grid']['height'])
+              if m.get('opera'):
+                  o=m['opera']
+                  assert o['crs_proj4'] and o['grid']['width']>0 and o['grid']['height']>0
+                  for r in o['frames']:
+                      f=Path(r['file'])
+                      assert f.is_file(),f
+                      with Image.open(f) as im:
+                          assert im.mode=='RGBA'
+                          assert im.size==(o['grid']['width'],o['grid']['height'])
+                  print("Dati numerici OPERA RATE:",len(o['frames']))
               print("Dati numerici Radar DPC:",{k:len(v) for k,v in m['frames'].items()})
           PY
       - name: Pubblica solo dati numerici DPC modificati
