@@ -39,9 +39,9 @@ for prod in ("SRI","VMI"):
     import tempfile
     import rasterio
     import numpy as np
-    with tempfile.TemporaryFile() as handle:
-      handle.write(binary);handle.flush()
-      with rasterio.open(handle.name) as raster:
+    from rasterio.io import MemoryFile
+    with MemoryFile(binary) as handle:
+      with handle.open() as raster:
         band=raster.read(1)
         valid=band[np.isfinite(band)&(band>-9000)&(band<10000)]
         print(prod,"RASTER",raster.width,raster.height,str(raster.crs),
