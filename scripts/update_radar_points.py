@@ -22,10 +22,12 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import h5py
 import numpy as np
 import rasterio
 from PIL import Image
 from rasterio.warp import transform as geo_transform
+from pyproj import Transformer
 
 ROOT = Path("data/radar_points")
 MANIFEST = ROOT / "manifest.json"
@@ -41,6 +43,11 @@ BIAS = 1000
 MAX_CODE = 65535
 CROP_BOUNDS = (7.0, 38.0, 11.1, 42.3)  # W S E N, solo per coprire Sardegna
 PROJECTION = "+proj=tmerc +lat_0=42 +lon_0=12.5 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+OPERA_BASE = "https://s3.waw3-1.cloudferro.com/openradar-archive"
+OPERA_PROJECTION = "+proj=laea +lat_0=55.0 +lon_0=10.0 +x_0=1950000.0 +y_0=-2100000.0 +ellps=WGS84"
+OPERA_STEP_MS = 15 * 60_000
+OPERA_HISTORY = 12  # ultime 3 ore, 15 minuti
+OPERA_PIXEL_M = 2000
 
 
 def api_json(url: str, payload: dict | None = None):
@@ -140,6 +147,124 @@ def fetch_frame(product: str, timestamp: int):
         return timestamp,None,None
 
 
+
+
+def opera_crop_window(shape: tuple[int, int]):
+    """Finestra OPERA RATE su Sardegna, restituita in coordinate pixel ODIM."""
+    height, width = shape
+    xscale, yscale = 3_800_000.0 / width, 4_400_000.0 / height
+    w, s, e, n = CROP_BOUNDS
+    transformer = Transformer.from_crs("EPSG:4326", OPERA_PROJECTION, always_xy=True)
+    longitudes = [w + (e - w) * i / 10 for i in range(11)]
+    latitudes = [s + (n - s) * i / 10 for i in range(11)]
+    pairs = [(x, y) for x in longitudes for y in (s, n)] + [(x, y) for y in latitudes for x in (w, e)]
+    px, py = transformer.transform([x for x, _ in pairs], [y for _, y in pairs])
+    left = max(0, int(math.floor(min(px) / xscale)) - 1)
+    right = min(width, int(math.ceil(max(px) / xscale)) + 1)
+    top = max(0, int(math.floor((0 - max(py)) / yscale)) - 1)
+    bottom = min(height, int(math.ceil((0 - min(py)) / yscale)) + 1)
+    if not (0 <= left < right <= width and 0 <= top < bottom <= height):
+        raise ValueError("Ritaglio OPERA fuori griglia")
+    window = (left, top, right, bottom)
+    grid = {
+        "x0_m": int(round(left * xscale)),
+        "y0_m": int(round(-top * yscale)),
+        "pixel_m": int(round(xscale)),
+        "width": right - left,
+        "height": bottom - top,
+    }
+    return window, grid
+
+
+def decode_opera_rate(payload: bytes) -> np.ndarray:
+    """Decodifica il campo RATE ufficiale da un prodotto composite ODIM HDF5."""
+    with h5py.File(io.BytesIO(payload), "r") as h5:
+        for ds_name in sorted((n for n in h5 if n.startswith("dataset")), key=lambda n: int(n[7:]) if n[7:].isdigit() else 10**9):
+            ds = h5[ds_name]
+            for data_name in sorted((n for n in ds if n.startswith("data")), key=lambda n: int(n[4:]) if n[4:].isdigit() else 10**9):
+                group = ds[data_name]
+                if "what" not in group or "data" not in group:
+                    continue
+                attrs = {}
+                for key, value in group["what"].attrs.items():
+                    if isinstance(value, bytes):
+                        value = value.decode("utf-8", errors="replace")
+                    elif isinstance(value, np.generic):
+                        value = value.item()
+                    attrs[key] = value
+                if str(attrs.get("quantity", "")).upper() != "RATE":
+                    continue
+                raw = group["data"][:]
+                values = raw.astype(np.float32) * float(attrs.get("gain", 1.0)) + float(attrs.get("offset", 0.0))
+                nodata, undetect = attrs.get("nodata"), attrs.get("undetect")
+                if nodata is not None:
+                    values[raw == nodata] = np.nan
+                if undetect is not None:
+                    values[raw == undetect] = 0.0
+                return values
+    raise ValueError("Prodotto OPERA senza quantità RATE")
+
+
+def fetch_opera_frame(timestamp: int):
+    stamp = datetime.fromtimestamp(timestamp / 1000, timezone.utc)
+    key = f"{stamp:%Y/%m/%d}/OPERA/COMP/OPERA@{stamp:%Y%m%dT%H%M}@0@RATE.h5"
+    path = ROOT / "OPERA" / f"{stamp:%Y%m%dT%H%M}.png"
+    if path.is_file() and path.stat().st_size > 100:
+        return timestamp, path, None
+    try:
+        request = urllib.request.Request(f"{OPERA_BASE}/{key}", headers={"User-Agent": "SardegnaMeteoLive/1.0"})
+        with urllib.request.urlopen(request, timeout=35) as response:
+            payload = response.read(15_000_001)
+        if not payload.startswith(b"\\x89HDF\\r\\n\\x1a\\n") or len(payload) > 15_000_000:
+            raise ValueError("Sorgente OPERA non è ODIM HDF5")
+        values = decode_opera_rate(payload)
+        window, grid = opera_crop_window(values.shape)
+        left, top, right, bottom = window
+        values = values[top:bottom, left:right]
+        if int(np.isfinite(values).sum()) < 100:
+            raise ValueError("Campo OPERA RATE senza copertura sufficiente")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temp = path.with_suffix(".tmp.png")
+        pack_png(values).save(temp, "PNG", optimize=True)
+        os.replace(temp, path)
+        print(f"OPERA RATE {stamp:%Y%m%dT%H%M}: {int(np.isfinite(values).sum())} celle valide, PNG={path.stat().st_size} B", flush=True)
+        return timestamp, path, grid
+    except (urllib.error.HTTPError, TimeoutError, ValueError, OSError, KeyError) as exc:
+        print(f"OPERA RATE {stamp:%Y%m%dT%H%M}: non disponibile {type(exc).__name__}: {str(exc)[:95]}", flush=True)
+        return timestamp, None, None
+
+
+def collect_opera(previous: dict):
+    """Conserva o aggiorna le ultime 3 ore del prodotto ufficiale OPERA RATE."""
+    now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
+    latest = now_ms - (now_ms % OPERA_STEP_MS)
+    timestamps = [latest - i * OPERA_STEP_MS for i in range(OPERA_HISTORY, -1, -1)]
+    previous_meta = previous.get("opera") or {}
+    grid = previous_meta.get("grid")
+    frames = []
+    for timestamp in timestamps:
+        stamp, path, found_grid = fetch_opera_frame(timestamp)
+        if path is None:
+            continue
+        if found_grid is not None:
+            if grid is not None and grid != found_grid:
+                raise ValueError(f"Griglia OPERA variata: {grid} != {found_grid}")
+            grid = found_grid
+        frames.append({
+            "time": datetime.fromtimestamp(stamp / 1000, timezone.utc).isoformat().replace("+00:00", "Z"),
+            "file": path.as_posix(),
+        })
+    if not frames or not grid:
+        return previous_meta or None
+    return {
+        "grid": grid,
+        "crs_proj4": OPERA_PROJECTION,
+        "encoding": {"format": "PNG-RG16", "nodata_code": 0, "scale": SCALE, "bias": BIAS,
+                     "decode": "(R + 256*G - 1) / scale - bias", "precision": "0.1 mm/h"},
+        "frames": frames,
+    }
+
+
 def main():
     ROOT.mkdir(parents=True,exist_ok=True)
     previous={}
@@ -170,6 +295,10 @@ def main():
         kept[product]=entries
         print(f"{product}: {len(entries)} fotogrammi numerici nell'ultima finestra di 3 h",flush=True)
 
+    opera_meta = collect_opera(previous)
+    if opera_meta:
+        print(f"OPERA RATE: {len(opera_meta.get('frames', []))} fotogrammi numerici nell'ultima finestra di 3 h", flush=True)
+
     if not kept or not grid:
         print("Nessun nuovo dato completo; il precedente archivio non viene sovrascritto.",flush=True)
         return
@@ -191,8 +320,12 @@ def main():
         "units":{"SRI":"mm/h","VMI":"dBZ"},
         "frames":kept,
     }
+    if opera_meta:
+        manifest["opera"] = opera_meta
     MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
     published={row["file"] for rows in kept.values() for row in rows}
+    if opera_meta:
+        published.update(row["file"] for row in opera_meta.get("frames", []))
     for path in ROOT.glob("*/*.png"):
         if path.as_posix() not in published:
             path.unlink()
