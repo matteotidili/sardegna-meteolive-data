@@ -43,7 +43,7 @@ BIAS = 1000
 MAX_CODE = 65535
 CROP_BOUNDS = (7.0, 38.0, 11.1, 42.3)  # W S E N, solo per coprire Sardegna
 PROJECTION = "+proj=tmerc +lat_0=42 +lon_0=12.5 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
-OPERA_BASE = "https://s3.waw3-1.cloudferro.com/openradar-24h"
+OPERA_BASE = "https://object-store.os-api.cci1.ecmwf.int/openradar-24h-backup"
 OPERA_PROJECTION = "+proj=laea +lat_0=55.0 +lon_0=10.0 +x_0=1950000.0 +y_0=-2100000.0 +ellps=WGS84"
 OPERA_STEP_MS = 15 * 60_000
 OPERA_HISTORY = 12  # ultime 3 ore, 15 minuti
