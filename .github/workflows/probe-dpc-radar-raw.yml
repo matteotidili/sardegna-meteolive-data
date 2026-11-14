@@ -13,4 +13,5 @@ jobs:
     timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
+      - run: python3 -m pip install --disable-pip-version-check rasterio numpy
       - run: python3 scripts/probe_dpc_radar_raw.py
