@@ -34,6 +34,19 @@ for prod in ("SRI","VMI"):
     with urllib.request.urlopen(req,timeout=30) as r:
       blob=r.read(256)
       print(prod,"TIFF GET",r.status,"signature",blob[:4].hex(),"bytes",len(blob),"size",r.headers.get("Content-Range") or r.headers.get("Content-Length"),"content-type",r.headers.get("Content-Type"),"CORS",r.headers.get("Access-Control-Allow-Origin"))
+    with urllib.request.urlopen(urllib.request.Request(signed,headers={"User-Agent":"SardegnaMeteoLive/1.0"}),timeout=30) as r:
+      binary=r.read(12_000_000)
+    import tempfile
+    import rasterio
+    import numpy as np
+    with tempfile.TemporaryFile() as handle:
+      handle.write(binary);handle.flush()
+      with rasterio.open(handle.name) as raster:
+        band=raster.read(1)
+        valid=band[np.isfinite(band)&(band>-9000)&(band<10000)]
+        print(prod,"RASTER",raster.width,raster.height,str(raster.crs),
+              "transform",str(raster.transform),"nodata",raster.nodata,"dtype",str(band.dtype),
+              "valid",len(valid),"percentiles",np.percentile(valid,[0,1,10,50,95,99,100]).tolist() if len(valid) else [])
   except urllib.error.HTTPError as e:
     print(prod,"HTTP_ERROR",e.code,e.read(260).decode("utf8","replace"))
   except Exception as e: print(prod,"ERROR",type(e).__name__,str(e)[:220])
