@@ -29,6 +29,7 @@ OROSEIMETEO_STATIONS = {
     'calaginepro': ('Calaginepro', 40.448149, 9.785657, 8),
     'funtanas': ('Orosei Funtanas Cortesas', 40.412422, 9.753746, 15),
 }
+QUARTUMETEO_URL = 'https://quartuweather.altervista.org/'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -374,6 +375,54 @@ def fetch_oroseimeteo(key):
     return parse_oroseimeteo(oroseimeteo_payload(), key)
 
 
+def parse_quartumeteo(current, extremes):
+    if not isinstance(current, dict):
+        raise ValueError('QuartuMeteo observations unavailable')
+    observed = datetime.fromisoformat(str(current.get('timestamp') or '').replace('Z', '+00:00'))
+    if observed.tzinfo is None:
+        raise ValueError('QuartuMeteo observation timezone unavailable')
+    def number(payload, key):
+        value = number_value(payload.get(key))
+        return round(value, 1) if value is not None else None
+    temp = number(current, 'outsideTempC')
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('QuartuMeteo outdoor temperature unavailable')
+    try:
+        extreme_time = datetime.fromisoformat(str(extremes.get('timestamp') or '').replace('Z', '+00:00'))
+        daily_valid = extreme_time.tzinfo is not None and extreme_time.astimezone(ZoneInfo('Europe/Rome')).date() == observed.astimezone(ZoneInfo('Europe/Rome')).date()
+    except (AttributeError, TypeError, ValueError):
+        daily_valid = False
+    direction = number(current, 'windDirectionDeg')
+    # Coordinates and 15m elevation from the operator-linked AWEKAS station 10101.
+    return dict(
+        station_id='quartu-quartumeteo', name='Quartu Sant’Elena – QuartuMeteo',
+        lat=39.2333333333, lon=9.1833333333, elev=15,
+        source_url=QUARTUMETEO_URL, last=observed.astimezone(timezone.utc).isoformat(),
+        observation_type='QuartuMeteo.it · Davis Vantage Pro2 Wireless · dati pubblici del gestore',
+        temp=temp,
+        tmin=number(extremes, 'dayLowOutsideTempC') if daily_valid else None,
+        tmax=number(extremes, 'dayHighOutsideTempC') if daily_valid else None,
+        rh=number(current, 'outsideHumidityPct'),
+        pressure_hpa=number(current, 'barometerHpa'),
+        wind_kmh=number(current, 'windSpeedKmh'),
+        wind_dir=direction if direction is not None and 0 <= direction <= 360 else None,
+        gust_kmh=number(extremes, 'dayHighWindGustKmh') if daily_valid else None,
+        rain_today=number(current, 'dayRainMm'), rain_rate=number(current, 'rainRateMmPerHour'),
+        rain_48h=None,
+    )
+
+
+def fetch_quartumeteo():
+    with urllib.request.urlopen(QUARTUMETEO_URL + 'current.json', timeout=40) as response:
+        current = json.load(response)
+    try:
+        with urllib.request.urlopen(QUARTUMETEO_URL + 'day-extremes.json', timeout=40) as response:
+            extremes = json.load(response)
+    except (OSError, ValueError):
+        extremes = {}
+    return parse_quartumeteo(current, extremes)
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -387,7 +436,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo',
+    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -396,7 +445,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])

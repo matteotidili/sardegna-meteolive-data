@@ -215,5 +215,28 @@ class OroseiMeteoTests(unittest.TestCase):
 
 
 
+class QuartuMeteoTests(unittest.TestCase):
+    def test_metric_outdoor_values_daily_gust_and_original_utc_time(self):
+        current = dict(timestamp='2026-11-18T18:10:14.652Z', outsideTempC=20.833333,
+            insideTempC=99, outsideHumidityPct=82, barometerHpa=1009.855,
+            windSpeedKmh=6.437, windDirectionDeg=255, dayRainMm=0, rainRateMmPerHour=0)
+        extremes = dict(timestamp='2026-11-18T18:06:59Z', dayHighOutsideTempC=24.333,
+            dayLowOutsideTempC=18.4444, dayHighWindGustKmh=41.84284)
+        row = collector.parse_quartumeteo(current, extremes)
+        self.assertEqual(row['last'], '2026-11-18T18:10:14.652000+00:00')
+        self.assertEqual((row['temp'], row['tmin'], row['tmax']), (20.8, 18.4, 24.3))
+        self.assertEqual((row['wind_kmh'], row['gust_kmh'], row['pressure_hpa']), (6.4, 41.8, 1009.9))
+        self.assertNotIn('insideTempC', row)
+
+    def test_stale_extremes_omitted_and_missing_outdoor_rejected(self):
+        current = dict(timestamp='2026-11-18T23:10:00Z', outsideTempC=18)
+        extremes = dict(timestamp='2026-11-18T18:00:00Z', dayHighOutsideTempC=24)
+        self.assertIsNone(collector.parse_quartumeteo(current, extremes)['tmax'])
+        self.assertIsNone(collector.parse_quartumeteo(current, {})['tmin'])
+        with self.assertRaises(ValueError):
+            collector.parse_quartumeteo(dict(timestamp=current['timestamp'], insideTempC=20), {})
+
+
+
 if __name__ == '__main__':
     unittest.main()

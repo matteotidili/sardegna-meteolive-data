@@ -1,6 +1,6 @@
 {
-  "source": "Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo",
-  "generated_at": "2026-11-18T18:04:08.340122+00:00",
+  "source": "Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo",
+  "generated_at": "2026-11-18T18:13:08.625765+00:00",
   "stations": [
     {
       "station_id": "domusnovas-meteo",
@@ -294,6 +294,27 @@
       "wind_kmh": 1.8,
       "wind_dir": 274.0,
       "gust_kmh": 38.5,
+      "rain_today": 0.0,
+      "rain_rate": 0.0,
+      "rain_48h": null
+    },
+    {
+      "station_id": "quartu-quartumeteo",
+      "name": "Quartu Sant’Elena – QuartuMeteo",
+      "lat": 39.2333333333,
+      "lon": 9.1833333333,
+      "elev": 15,
+      "source_url": "https://quartuweather.altervista.org/",
+      "last": "2026-11-18T18:11:44.649000+00:00",
+      "observation_type": "QuartuMeteo.it · Davis Vantage Pro2 Wireless · dati pubblici del gestore",
+      "temp": 20.8,
+      "tmin": 18.4,
+      "tmax": 24.3,
+      "rh": 82.0,
+      "pressure_hpa": 1009.9,
+      "wind_kmh": 3.2,
+      "wind_dir": 265.0,
+      "gust_kmh": 41.8,
       "rain_today": 0.0,
       "rain_rate": 0.0,
       "rain_48h": null
