@@ -3,7 +3,9 @@ import json
 import math
 import re
 import urllib.request
-from datetime import datetime, timezone
+import urllib.parse
+from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -17,6 +19,7 @@ LUSEI_URL = 'https://www.weatherlink.com/embeddablePage/show/a4c8319b1ee6449dabd
 MARINA_OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/a6eb95fef32b4318af568792c6a48ee2/fullscreen'
 COLLINAS_URL = 'https://www.weatherlink.com/embeddablePage/show/865c69d0529a4b2d907ab00a67d2935d/signature'
 CORALLINA_URL = 'https://www.weatherlink.com/embeddablePage/show/e0be4d8b618a43808d5677a51aa291ea/fullscreen'
+IGLESIAS_SHARE_URL = 'https://www.ecowitt.net/home/share?authorize=59C96F&device_id=bEFwaHNOMEd0TGRob0pZRStYTldyZz09'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -256,6 +259,64 @@ def fetch_corallina():
     ))
 
 
+def parse_iglesias_share(payload, received):
+    if not isinstance(payload, dict) or str(payload.get('errcode')) != '0':
+        raise ValueError('Ecowitt shared observations unavailable')
+    groups = payload.get('data') or {}
+    def record(group, field):
+        return (groups.get(group) or {}).get('data', {}).get(field, {})
+    def value(group, field, kind):
+        entry = record(group, field)
+        unit = str(entry.get('unit') or '').replace('℃', '°C').replace('℉', '°F')
+        return metric_value(dict(convertedValue=entry.get('value'), unitLabel=unit), kind)
+    # Use the outdoor sensor's reported local minute, never acquisition time or
+    # the dashboard-wide timespan (another sensor can update independently).
+    stamp = str(record('temp', 'tempf').get('time') or '')
+    match = re.fullmatch(r'(Today|Yesterday) (\d{1,2}):(\d{2})', stamp)
+    if not match:
+        raise ValueError('Ecowitt outdoor observation timestamp unavailable')
+    day = received.astimezone(ZoneInfo('Europe/Rome')).date()
+    if match[1] == 'Yesterday':
+        day -= timedelta(days=1)
+    observed = datetime(day.year, day.month, day.day, int(match[2]), int(match[3]), tzinfo=ZoneInfo('Europe/Rome')).astimezone(timezone.utc)
+    if observed > received + timedelta(minutes=5):
+        raise ValueError('Ecowitt outdoor observation timestamp in future')
+    temp = value('temp', 'tempf', 'temperature')
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Ecowitt outdoor temperature unavailable')
+    same_day = observed.astimezone(ZoneInfo('Europe/Rome')).date() == received.astimezone(ZoneInfo('Europe/Rome')).date()
+    direction = number_value(record('wind', 'winddir').get('value'))
+    return dict(
+        station_id='iglesias-marco-polo-ecowitt',
+        name='Iglesias – Via Marco Polo (pos. indicativa)',
+        lat=39.3008623, lon=8.5586961, elev=None,
+        location_precision='street', location_source='OpenStreetMap: Via Marco Polo; civico 12 non verificato',
+        source_url=IGLESIAS_SHARE_URL, last=observed.isoformat(),
+        observation_type='Ecowitt pubblico · sensori esterni · posizione indicativa lungo la via',
+        temp=temp,
+        tmin=value('temp', 'min_daily_tempf', 'temperature') if same_day else None,
+        tmax=value('temp', 'max_daily_tempf', 'temperature') if same_day else None,
+        rh=value('temp', 'humidity', 'humidity'),
+        wind_kmh=value('wind', 'windspeedmph', 'wind'),
+        wind_dir=direction if direction is not None and 0 <= direction <= 360 else None,
+        gust_kmh=value('wind', 'max_daily_windgustmph', 'wind') if same_day else None,
+        pressure_hpa=value('pressure', 'baromrelin', 'pressure'),
+        rain_today=value('rain', 'dailyrainin', 'rain') if same_day else None,
+        rain_rate=value('rain', 'rainratein', 'rain_rate'), rain_48h=None,
+    )
+
+
+def fetch_iglesias():
+    params = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(IGLESIAS_SHARE_URL).query))
+    # Read-only request used by the public share page, not the account API.
+    request = urllib.request.Request('https://www.ecowitt.net/index/home',
+        data=urllib.parse.urlencode(params).encode(),
+        headers={'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json'})
+    with urllib.request.urlopen(request, timeout=40) as response:
+        received = parsedate_to_datetime(response.headers['Date']) if response.headers.get('Date') else datetime.now(timezone.utc)
+        return parse_iglesias_share(json.load(response), received)
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -269,7 +330,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia / Collinas / Costa Corallina',
+    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia / Collinas / Costa Corallina / Iglesias',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -278,7 +339,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias)], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])

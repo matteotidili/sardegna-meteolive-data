@@ -1,6 +1,6 @@
 {
   "source": "Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia / Collinas / Costa Corallina",
-  "generated_at": "2026-11-18T17:37:34.420525+00:00",
+  "generated_at": "2026-11-18T17:43:10.187560+00:00",
   "stations": [
     {
       "station_id": "domusnovas-meteo",
@@ -187,6 +187,29 @@
       "wind_kmh": 3.1,
       "wind_dir": 222.0,
       "gust_kmh": 43.5,
+      "rain_today": 0.0,
+      "rain_rate": 0.0,
+      "rain_48h": null
+    },
+    {
+      "station_id": "iglesias-marco-polo-ecowitt",
+      "name": "Iglesias – Via Marco Polo (pos. indicativa)",
+      "lat": 39.3008623,
+      "lon": 8.5586961,
+      "elev": null,
+      "location_precision": "street",
+      "location_source": "OpenStreetMap: Via Marco Polo; civico 12 non verificato",
+      "source_url": "https://www.ecowitt.net/home/share?authorize=59C96F&device_id=bEFwaHNOMEd0TGRob0pZRStYTldyZz09",
+      "last": "2026-11-18T17:42:00+00:00",
+      "observation_type": "Ecowitt pubblico · sensori esterni · posizione indicativa lungo la via",
+      "temp": 20.0,
+      "tmin": 18.8,
+      "tmax": 20.8,
+      "rh": 89.0,
+      "wind_kmh": 7.2,
+      "wind_dir": 249.0,
+      "gust_kmh": 51.5,
+      "pressure_hpa": 1014.8,
       "rain_today": 0.0,
       "rain_rate": 0.0,
       "rain_48h": null

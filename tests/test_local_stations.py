@@ -136,5 +136,47 @@ class AlbertiTests(unittest.TestCase):
         self.assertEqual(document['errors'], {'domusnovas-meteo': 'OSError'})
 
 
+def ecowitt_share_payload():
+    def record(value, unit, time='Today 18:40'):
+        return dict(value=str(value), unit=unit, time=time)
+    return dict(errcode='0', data={
+        'temp': {'data': {'tempf': record(20.1, '℃'), 'min_daily_tempf': record(18.8, '℃'), 'max_daily_tempf': record(20.8, '℃'), 'humidity': record(89, '%')}},
+        'tempin': {'data': {'tempf': record(99, '℃')}},
+        'wind': {'data': {'windspeedmph': record(7.2, 'km/h'), 'winddir': record(262, 'º'), 'max_daily_windgustmph': record(51.5, 'km/h')}},
+        'rain': {'data': {'dailyrainin': record(0, 'mm'), 'rainratein': record(0, 'mm/hr')}},
+        'pressure': {'data': {'baromrelin': record(1014.7, 'hPa')}},
+    })
+
+
+class EcowittSharedStationTests(unittest.TestCase):
+    received = datetime(2026, 11, 18, 17, 40, 8, tzinfo=timezone.utc)
+
+    def test_outdoor_observation_time_units_and_extremes(self):
+        row = collector.parse_iglesias_share(ecowitt_share_payload(), self.received)
+        self.assertEqual(row['last'], '2026-11-18T17:40:00+00:00')
+        self.assertEqual((row['temp'], row['tmin'], row['tmax']), (20.1, 18.8, 20.8))
+        self.assertEqual((row['wind_kmh'], row['wind_dir'], row['gust_kmh']), (7.2, 262, 51.5))
+        self.assertEqual(row['pressure_hpa'], 1014.7)
+        self.assertEqual(row['location_precision'], 'street')
+        self.assertNotIn('tempin', row)
+
+    def test_yesterdays_sensor_keeps_its_date_and_omits_todays_totals(self):
+        payload = ecowitt_share_payload()
+        payload['data']['temp']['data']['tempf']['time'] = 'Yesterday 23:55'
+        row = collector.parse_iglesias_share(payload, self.received)
+        self.assertEqual(row['last'], '2026-11-17T22:55:00+00:00')
+        self.assertIsNone(row['tmin'])
+        self.assertIsNone(row['rain_today'])
+
+    def test_bad_or_missing_sensor_data_is_rejected(self):
+        payload = ecowitt_share_payload()
+        del payload['data']['temp']['data']['tempf']['time']
+        with self.assertRaises(ValueError):
+            collector.parse_iglesias_share(payload, self.received)
+        with self.assertRaises(ValueError):
+            collector.parse_iglesias_share(dict(errcode='1'), self.received)
+
+
+
 if __name__ == '__main__':
     unittest.main()
