@@ -32,6 +32,12 @@ OROSEIMETEO_STATIONS = {
 }
 QUARTUMETEO_URL = 'https://quartuweather.altervista.org/'
 DESULO_URL = 'https://www.bakumeteo.it/desulo/wltab6b.php'
+TONARA_URL = 'https://www.tonarameteo.it/'
+LACONI_URL = 'https://www.laconimeteo.it/wxindex.php'
+SERRAMANNA_URL = 'https://www.serramannameteo.it/index.htm'
+MEANA_URL = 'https://www.meanasardometeo.it/'
+NOLZA_URL = 'https://www.oroseimeteo.it/stazioni/nolza/wltab6b.php'
+SANTELIAS_URL = 'https://stazioni.oroseimeteo.it/Santelias/wltab6buvrad.php'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -425,26 +431,26 @@ def fetch_quartumeteo():
     return parse_quartumeteo(current, extremes)
 
 
-def parse_desulo(page):
+def parse_desulo(page, station=None):
     parser = PageText()
     parser.feed(page)
     text = ' '.join(' '.join(parser.parts).split())
-    stamp = re.search(r'Dati aggiornati il (\d{2}/\d{2}/\d{2}) alle ore (\d{1,2})[.:](\d{2})', text)
+    stamp = re.search(r'Dati aggiornati il (\d{2}/\d{2}/\d{2}) alle ore (\d{1,2})[.:](\d{2})(?::(\d{2}))?', text)
     if not stamp:
         raise ValueError('Desulo observation time unavailable')
-    observed = datetime.strptime(f'{stamp[1]} {stamp[2]}:{stamp[3]}', '%d/%m/%y %H:%M').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    observed = datetime.strptime(f'{stamp[1]} {stamp[2]}:{stamp[3]}:{stamp[4] or "00"}', '%d/%m/%y %H:%M:%S').replace(tzinfo=ZoneInfo('Europe/Rome'))
     def number(label, unit):
-        found = re.search(label + r'\s*([+-]?\d+(?:[.,]\d+)?)\s*' + unit, text, re.I)
+        found = re.search(label + r'\s*([+-]?\d[\d.,]*)\s*' + unit, text, re.I)
         return number_value(found[1]) if found else None
     temp = number('Temperatura:', '°C')
     if temp is None or not -60 <= temp <= 65:
         raise ValueError('Desulo outdoor temperature unavailable')
     extremes = re.search(r'Estremi Oggi:\s*([+-]?\d+(?:[.,]\d+)?)\s*°C\s*\(\s*\d{1,2}[.:]\d{2}\s*\)\s*([+-]?\d+(?:[.,]\d+)?)\s*°C', text)
-    wind = re.search(r'Velocit[aà] attuale:\s*[+-]?\d+(?:[.,]\d+)?\s*Km/h\s*([NSEWO]{1,3})\b', text, re.I)
+    wind = re.search(r'Velocit[aà] attuale:\s*[+-]?\d+(?:[.,]\d+)?\s*Km/h\s*(?:da\s+)?([NSEWO]{1,3})\b', text, re.I)
     compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
     direction = wind[1].upper().replace('O', 'W') if wind else None
     # Coordinates/elevation: Sardegna Clima station Desulo (NU), id 64.
-    return dict(
+    row = dict(
         station_id='desulo-bakumeteo', name='Desulo – BakuMeteo',
         lat=40.0157, lon=9.2311, elev=945,
         source_url=DESULO_URL, last=observed.astimezone(timezone.utc).isoformat(),
@@ -459,6 +465,10 @@ def parse_desulo(page):
         rain_rate=number('Intensit[aà]:', 'mm/h'), rain_48h=None,
     )
 
+    if station:
+        row.update(station)
+    return row
+
 
 def fetch_desulo():
     with urllib.request.urlopen(DESULO_URL, timeout=40) as response:
@@ -468,6 +478,172 @@ def fetch_desulo():
     except UnicodeDecodeError:
         page = raw.decode('latin-1')
     return parse_desulo(page)
+
+
+def public_json(url):
+    with urllib.request.urlopen(url, timeout=40) as response:
+        return json.load(response)
+
+
+def public_html(url):
+    with urllib.request.urlopen(url, timeout=40) as response:
+        raw = response.read()
+    try:
+        return raw.decode('utf-8')
+    except UnicodeDecodeError:
+        return raw.decode('latin-1')
+
+
+def compass_degrees(text):
+    labels = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+    text = str(text or '').strip().upper().replace('O', 'W')
+    return labels.index(text) * 22.5 if text in labels else None
+
+
+def parse_tonara(p):
+    observed = datetime.fromisoformat(p['updatedAt'].replace('Z', '+00:00'))
+    if observed.tzinfo is None:
+        raise ValueError('Tonara observation timezone unavailable')
+    temp = number_value(p.get('tempC'))
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Tonara outdoor temperature unavailable')
+    def n(k): return number_value(p.get(k))
+    # Operator's station sheet: 40°01'28 N, 09°10'19 E, 910m.
+    # The homepage's JSON-LD geo describes a different town and is not used.
+    return dict(station_id='tonarameteo', name='Tonara – TonaraMeteo',
+        lat=40.0244444444, lon=9.1719444444, elev=910,
+        last=observed.astimezone(timezone.utc).isoformat(), source_url=TONARA_URL,
+        observation_type='TonaraMeteo · osservazioni pubbliche del gestore',
+        temp=temp, tmin=n('tempMinToday'), tmax=n('tempMaxToday'), rh=n('humidity'),
+        pressure_hpa=n('pressureHpa'), wind_kmh=n('windKmh'), wind_dir=n('windDirDeg'),
+        gust_kmh=n('gustKmh'), rain_today=n('rainToday'), rain_rate=n('rainRateMmH'), rain_48h=None)
+
+
+def fetch_tonara():
+    return parse_tonara(public_json(TONARA_URL + 'api/weather.php'))
+
+
+def parse_laconi(page):
+    parser = PageText(); parser.feed(page)
+    text = ' '.join(' '.join(parser.parts).split())
+    stamp = re.search(r'Dati ricevuti\s*:\s*@?\s*(\d{2}/\d{2}/\d{4})\s*(\d{1,2}:\d{2})', text)
+    if not stamp:
+        raise ValueError('Laconi observation timestamp unavailable')
+    observed = datetime.strptime(f'{stamp[1]} {stamp[2]}', '%d/%m/%Y %H:%M').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    def n(pattern):
+        match = re.search(pattern, text, re.I)
+        return number_value(match[1]) if match else None
+    temp = n(r'Temperatura:\s*([+-]?[\d.,]+)\s*°C')
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Laconi outdoor temperature unavailable')
+    wind = re.search(r'Vento:\s*([NSEWO]{1,3})\s*([\d.,]+)\s*km/h', text)
+    extreme = re.search(r'Oggi Ieri Max:\s*([+-]?[\d.,]+)\s*°C.*?Min:\s*([+-]?[\d.,]+)\s*°C', text)
+    # Coordinates/elevation from the operator's wxabout.php station sheet.
+    return dict(station_id='laconimeteo', name='Laconi – LaconiMeteo',
+        lat=39.8530555556, lon=9.0486111111, elev=512,
+        source_url=LACONI_URL, last=observed.astimezone(timezone.utc).isoformat(),
+        observation_type='LaconiMeteo · Davis Vantage Pro2 · dati del gestore',
+        temp=temp, tmin=number_value(extreme[2]) if extreme else None,
+        tmax=number_value(extreme[1]) if extreme else None,
+        rh=n(r'Umidità:\s*([\d.,]+)\s*%'), pressure_hpa=n(r'Barometro:\s*([\d.,]+)\s*hPa'),
+        wind_kmh=number_value(wind[2]) if wind else None, wind_dir=compass_degrees(wind[1]) if wind else None,
+        gust_kmh=n(r'Oggi:\s*([\d.,]+)\s*km/h'), rain_today=n(r'Pioggia odierna:\s*([\d.,]+)\s*mm'),
+        rain_rate=n(r'Accumulo \(/hr\):\s*([\d.,]+)\s*mm'), rain_48h=None)
+
+
+def fetch_laconi():
+    return parse_laconi(public_html(LACONI_URL))
+
+
+def dms_coordinate(text):
+    nums = re.findall(r'\d+(?:\.\d+)?', str(text))
+    if len(nums) != 3:
+        raise ValueError('Station coordinate unavailable')
+    d, m, sec = map(float, nums)
+    if m >= 60 or sec >= 60:
+        raise ValueError('Invalid station coordinate')
+    return (d + m/60 + sec/3600) * (-1 if re.search(r'[SW]', str(text)) else 1)
+
+
+def parse_serramanna(p):
+    if 'Serramanna' not in str(p.get('location')):
+        raise ValueError('Serramanna station identity changed')
+    observed = datetime.strptime(p['update'], '%d/%m/%Y %H:%M:%S').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    def field(key, kind, unit):
+        return metric_value(dict(convertedValue=p.get(key), unitLabel=p.get(unit)), kind)
+    temp = field('temp', 'temperature', 'tempunit')
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Serramanna outdoor temperature unavailable')
+    daily = str(p.get('rollovertime')).lower() == 'midnight'
+    elevation = re.fullmatch(r'([\d.,]+)\s*m', str(p.get('altitude')))
+    return dict(station_id='serramannameteo', name='Serramanna – Campu Sa Lua',
+        lat=dms_coordinate(p['latitude']), lon=dms_coordinate(p['longitude']),
+        elev=number_value(elevation[1]) if elevation else None,
+        source_url=SERRAMANNA_URL, last=observed.astimezone(timezone.utc).isoformat(),
+        observation_type='SerramannaMeteo · ' + str(p.get('stationtype') or 'Cumulus MX'),
+        temp=temp, tmin=field('tempTL','temperature','tempunit') if daily else None,
+        tmax=field('tempTH','temperature','tempunit') if daily else None,
+        rh=number_value(p.get('hum')), pressure_hpa=field('press','pressure','pressunit'),
+        wind_kmh=field('wspeed','wind','windunit'), wind_dir=number_value(p.get('avgbearing')),
+        gust_kmh=field('wgustTM','wind','windunit') if daily else None,
+        rain_today=field('rmidnight','rain','rainunit'), rain_rate=metric_value(dict(convertedValue=p.get('rrate'),unitLabel=str(p.get('rainunit'))+'/h'),'rain_rate'),
+        rain_48h=None)
+
+
+def fetch_serramanna():
+    return parse_serramanna(public_json('https://www.serramannameteo.it/websitedata.json'))
+
+
+def parse_meana(p):
+    if str(p.get('station',{}).get('city','')).casefold() != 'meanasardo':
+        raise ValueError('Meana Sardo station identity changed')
+    observed = weatherlink_time(p.get('time',{}).get('unixtime'))
+    units = p['station'].get('units','').split(',')
+    if len(units) < 4:
+        raise ValueError('Meana Sardo units unavailable')
+    def field(group, key, kind, unit):
+        return metric_value(dict(convertedValue=p.get(group,{}).get(key),unitLabel=unit),kind)
+    temp = field('temperature','current','temperature',units[0])
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Meana Sardo outdoor temperature unavailable')
+    wind_unit = 'km/h' if units[2] == 'kmh' else units[2]
+    rain_rate = field('rain','currrate','rain_rate',units[3]+'/h')
+    # The operator's own renderer reports no rain when current rain is zero,
+    # otherwise leaves intensity unavailable if the rate field is missing.
+    if rain_rate is None and number_value(p.get('rain',{}).get('current')) == 0:
+        rain_rate = 0
+    return dict(station_id='meanasardometeo-peldu-murone',name='Meana Sardo – Peldu Murone',
+        lat=39.95,lon=9.0666666667,elev=588,location_precision='arcminute',
+        source_url=MEANA_URL,last=observed.isoformat(),
+        observation_type='MeanaSardoMeteo · Davis Vantage Vue · coordinate arrotondate del gestore',
+        temp=temp,tmin=field('temperature','min','temperature',units[0]),tmax=field('temperature','max','temperature',units[0]),
+        rh=number_value(p.get('humidity',{}).get('current')),
+        pressure_hpa=field('barometer','current','pressure',units[1]),
+        wind_kmh=field('wind','current','wind',wind_unit),wind_dir=compass_degrees(p.get('wind',{}).get('currdir')),
+        gust_kmh=field('wind','todaygust','wind',wind_unit),rain_today=field('rain','today','rain',units[3]),
+        rain_rate=rain_rate,rain_48h=None)
+
+
+def fetch_meana():
+    return parse_meana(public_json('https://www.meanasardometeo.it/anemos/dbmeteo-proxy.asp'))
+
+
+def fetch_nolza():
+    row = parse_desulo(public_html(NOLZA_URL),dict(station_id='meanasardometeo-nolza',name='Meana Sardo – Nolza',
+        lat=39.916944,lon=9.074722,elev=720,source_url=NOLZA_URL,observation_type='MeanaSardoMeteo / OroseiMeteo · Nolza'))
+    try:
+        wind = public_json('https://www.oroseimeteo.it/stazioni/nolza/vento.php')
+        if not wind.get('error'):
+            row['wind_kmh'] = number_value(wind.get('wind_speed'))
+            row['wind_dir'] = compass_degrees(wind.get('wind_direction'))
+    except (OSError, ValueError, TypeError):
+        pass
+    return row
+
+
+def fetch_santelias():
+    return parse_desulo(public_html(SANTELIAS_URL),dict(station_id='meanasardometeo-santelias',name='Meana Sardo – Sant’Elias',
+        lat=39.930275,lon=9.121454,elev=1080,source_url=SANTELIAS_URL,observation_type='MeanaSardoMeteo / OroseiMeteo · Sant’Elias'))
 
 
 def collect(sources, previous):
@@ -485,7 +661,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / BakuMeteo',
+    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / BakuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -494,7 +670,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo), ('tonarameteo', fetch_tonara), ('laconimeteo', fetch_laconi), ('serramannameteo', fetch_serramanna), ('meanasardometeo-peldu-murone', fetch_meana), ('meanasardometeo-nolza', fetch_nolza), ('meanasardometeo-santelias', fetch_santelias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])

@@ -265,5 +265,39 @@ class DesuloTests(unittest.TestCase):
 
 
 
+class AdditionalPublicStationsTests(unittest.TestCase):
+    def test_tonara_uses_observation_time(self):
+        row = collector.parse_tonara(dict(updatedAt='2026-11-18T19:30:32+01:00', fetchedAt='2026-11-18T20:00:00+01:00', tempC=13.6, gustKmh=59.5))
+        self.assertEqual(row['last'], '2026-11-18T18:30:32+00:00')
+        self.assertEqual(row['gust_kmh'], 59.5)
+        with self.assertRaises(ValueError):
+            collector.parse_tonara(dict(updatedAt='2026-11-18T19:30:32+01:00',tempC=None))
+
+    def test_laconi_daily_extremes_exclude_yesterday(self):
+        row = collector.parse_laconi('Dati ricevuti : 18/11/2026 19:33 Temperatura:16.2°C Vento: O 0.0 km/h Oggi Ieri Max:19.3°C14:29 18.6°C14:00 Min:15.6°C00:00 12.6°C05:20 Pioggia odierna:0.4mm Accumulo (/hr):0.0mm')
+        self.assertEqual((row['tmin'],row['tmax'],row['wind_dir']), (15.6,19.3,270))
+        self.assertEqual(row['rain_today'],0.4)
+
+    def test_serramanna_decimal_units_and_midnight_rain(self):
+        p = dict(location='Serramanna',update='18/11/2026 19:30:00',latitude='N 39°25\'36"',longitude='E 08°55\'22"',temp='20,7',tempunit='°C',press='1010,4',pressunit='mb',rainunit='mm',rmidnight='1,2',rfall='4,5',rrate='0,0',rollovertime='9am',tempTL='18,1')
+        row = collector.parse_serramanna(p)
+        self.assertEqual((row['temp'],row['pressure_hpa'],row['rain_today']), (20.7,1010.4,1.2))
+        self.assertAlmostEqual(row['lat'],39.4266666667)
+        self.assertIsNone(row['tmin'])
+
+    def test_meana_uses_outdoor_and_sea_level_pressure(self):
+        p = dict(station=dict(city='meanasardo',units='C,hPa,kmh,mm,m,cm',lat='39.5643'),time=dict(unixtime='1795026950'),temperature=dict(current='16.0',intemp='23.7'),barometer=dict(current='1012.2',pressure='944.7'),rain=dict(current='0',currrate=None))
+        row=collector.parse_meana(p)
+        self.assertEqual((row['temp'],row['pressure_hpa'],row['rain_rate']), (16,1012.2,0))
+        self.assertEqual(row['lat'],39.95)
+        p['rain']['current']='1'
+        self.assertIsNone(collector.parse_meana(p)['rain_rate'])
+
+    def test_legacy_seconds_grouped_pressure_and_identity(self):
+        row=collector.parse_desulo('Dati aggiornati il 18/11/26 alle ore 19:33:59 Temperatura:15.2°C Pressione:1,008.5hPa Velocità attuale:30.6Km/h da W Raffica giornaliera:82.8Km/h',dict(station_id='nolza',name='Nolza'))
+        self.assertEqual((row['station_id'],row['pressure_hpa'],row['wind_dir']),('nolza',1008.5,270))
+        self.assertEqual(row['last'],'2026-11-18T18:33:59+00:00')
+
+
 if __name__ == '__main__':
     unittest.main()
