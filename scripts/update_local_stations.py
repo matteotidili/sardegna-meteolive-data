@@ -12,6 +12,8 @@ DOMUSNOVAS_URL = 'http://domusnovasmeteo.altervista.org/Domusmeteo_attuale.htm'
 ALBERTI_URL = 'https://www.weatherlink.com/embeddablePage/show/005f46805f72422cb4fb809dfdda94b9/summary'
 GEREMEAS_URL = 'https://www.weatherlink.com/embeddablePage/show/b705697e439146cf9ce467059fbd41d9/summary'
 OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/7c12f8f5ec584ea193e52eea4a55c0c3/summary'
+PORTO_RAFAEL_URL = 'https://www.weatherlink.com/embeddablePage/show/70ab2a521ef347dea1c43d082d591bf8/wide'
+LUSEI_URL = 'https://www.weatherlink.com/embeddablePage/show/a4c8319b1ee6449dabdbd71c408a078c/wide'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -127,8 +129,8 @@ def parse_alberti(payload, station=None):
     def field(name, kind):
         return metric_value(current.get(name.casefold(), {}), kind)
     def extreme(name, kind):
-        recorded_time = daily.get((name + ' Time').casefold(), {}).get('value')
-        if recorded_time is not None and weatherlink_time(recorded_time).astimezone(ZoneInfo('Europe/Rome')).date() != observed.astimezone(ZoneInfo('Europe/Rome')).date():
+        recorded_time = number_value(daily.get((name + ' Time').casefold(), {}).get('value'))
+        if recorded_time is not None and recorded_time > 0 and weatherlink_time(recorded_time).astimezone(ZoneInfo('Europe/Rome')).date() != observed.astimezone(ZoneInfo('Europe/Rome')).date():
             return None
         return metric_value(daily.get(name.casefold(), {}), kind)
     temperature = field('Temp', 'temperature')
@@ -197,6 +199,24 @@ def fetch_olbia():
     ))
 
 
+def fetch_porto_rafael():
+    # Position confirmed by the user's WeatherLink shared map.
+    return fetch_weatherlink(PORTO_RAFAEL_URL, ('porto', 'rafael'), dict(
+        station_id='porto-rafael-weatherlink', name='Porto Rafael',
+        lat=41.181923, lon=9.380664, elev=None, source_url=PORTO_RAFAEL_URL,
+        observation_type='Porto Rafael · WeatherLink pubblico',
+    ))
+
+
+def fetch_lusei():
+    # Position confirmed by the shared map; elevation from the station operator.
+    return fetch_weatherlink(LUSEI_URL, ('monte', 'lusei'), dict(
+        station_id='monte-lusei-weatherlink', name='Monte Lusei',
+        lat=39.807163, lon=9.326586, elev=1116, source_url=LUSEI_URL,
+        observation_type='Monte Lusei · WeatherLink pubblico',
+    ))
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -210,7 +230,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari / Geremeas / Olbia Meteo',
+    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -219,7 +239,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei)], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])

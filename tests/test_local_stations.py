@@ -81,6 +81,13 @@ class AlbertiTests(unittest.TestCase):
         self.assertEqual(row['source_url'], collector.GEREMEAS_URL)
         self.assertEqual(row['temp'], 21.8)
 
+    def test_missing_extreme_time_does_not_discard_live_observation(self):
+        payload = alberti_payload()
+        payload['highLowValues'][3]['value'] = '--'
+        payload['highLowValues'][4]['value'] = 0
+        row = collector.parse_alberti(payload)
+        self.assertEqual((row['temp'], row['tmin'], row['tmax']), (21.8, 19.4, 24.1))
+
     def test_explicit_imperial_units_are_converted_once(self):
         payload = alberti_payload()
         payload['currConditionValues'][0].update(convertedValue='71.6', unitLabel='°F')
