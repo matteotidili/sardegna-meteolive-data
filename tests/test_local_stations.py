@@ -72,6 +72,15 @@ class AlbertiTests(unittest.TestCase):
         self.assertEqual((row['wind_kmh'], row['wind_dir'], row['gust_kmh']), (22.5, 256, 46.7))
         self.assertEqual((row['rain_today'], row['rain_rate'], row['pressure_hpa']), (0, 0, 1009.1))
 
+    def test_geremeas_identity_and_console_rain_rate_unit(self):
+        payload = alberti_payload()
+        payload['currConditionValues'][-1].update(sensorDataTypeId=615, convertedValue='2,4', unitLabel='mm')
+        row = collector.parse_alberti(payload, dict(station_id='geremeas-weatherlink', name='Geremeas', lat=39.164, lon=9.386, elev=10, source_url=collector.GEREMEAS_URL))
+        self.assertEqual(row['station_id'], 'geremeas-weatherlink')
+        self.assertEqual(row['rain_rate'], 2.4)
+        self.assertEqual(row['source_url'], collector.GEREMEAS_URL)
+        self.assertEqual(row['temp'], 21.8)
+
     def test_explicit_imperial_units_are_converted_once(self):
         payload = alberti_payload()
         payload['currConditionValues'][0].update(convertedValue='71.6', unitLabel='°F')

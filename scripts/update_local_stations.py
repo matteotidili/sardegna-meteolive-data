@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 
 DOMUSNOVAS_URL = 'http://domusnovasmeteo.altervista.org/Domusmeteo_attuale.htm'
 ALBERTI_URL = 'https://www.weatherlink.com/embeddablePage/show/005f46805f72422cb4fb809dfdda94b9/summary'
+GEREMEAS_URL = 'https://www.weatherlink.com/embeddablePage/show/b705697e439146cf9ce467059fbd41d9/summary'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -94,6 +95,8 @@ def metric_value(record, kind):
     unit = str(record.get('unitLabel') or '').replace(' ', '').replace('°', '').lower()
     if value is None:
         return None
+    if kind == 'rain_rate' and record.get('sensorDataTypeId') == 615 and unit in ('mm', 'in', 'inch'):
+        unit += '/h'
     if kind == 'temperature':
         return value if unit == 'c' else round((value - 32) * 5 / 9, 1) if unit == 'f' else None
     factors = {
@@ -114,7 +117,7 @@ def weatherlink_time(value):
     return datetime.fromtimestamp(value / 1000 if value > 100_000_000_000 else value, timezone.utc)
 
 
-def parse_alberti(payload):
+def parse_alberti(payload, station=None):
     if not isinstance(payload, dict) or payload.get('noAccess'):
         raise ValueError('Alberti: public observations unavailable')
     observed = weatherlink_time(payload.get('lastReceived'))
@@ -134,7 +137,7 @@ def parse_alberti(payload):
     rain_today = metric_value({'convertedValue': rain.get('convertedValues', {}).get('DAY'), 'unitLabel': rain.get('unitLabel')}, 'rain')
     # The embed itself uses raw degrees here; convertedValue can contain a sector-conversion artefact.
     direction = number_value(current.get('wind direction', {}).get('value'))
-    return dict(
+    row = dict(
         station_id='liceo-alberti-cagliari', name='Cagliari – Liceo Alberti',
         lat=39.208, lon=9.12, elev=5,
         last=observed.isoformat(), source_url=ALBERTI_URL,
@@ -146,6 +149,10 @@ def parse_alberti(payload):
         rain_today=rain_today, rain_rate=field('Rain Rate', 'rain_rate'), rain_48h=None,
     )
 
+    if station:
+        row.update(station)
+    return row
+
 
 def fetch_domusnovas():
     with urllib.request.urlopen(DOMUSNOVAS_URL, timeout=40) as response:
@@ -154,17 +161,30 @@ def fetch_domusnovas():
     return parse_domusnovas(page)
 
 
-def fetch_alberti():
-    with urllib.request.urlopen(ALBERTI_URL, timeout=40) as response:
+def fetch_weatherlink(url, identity, station=None):
+    with urllib.request.urlopen(url, timeout=40) as response:
         page = response.read().decode('utf-8')
     name = re.search(r'wl\._systemName\s*=\s*"([^"]+)"', page)
     token = re.search(r'wl\._deviceUrlToken\s*=\s*"([a-f0-9]{32})"', page)
-    if not name or not all(part in name[1].casefold() for part in ('alberti', 'cagliari')) or not token:
+    if not name or not all(part in name[1].casefold() for part in identity) or not token:
         raise ValueError('Alberti: public embed identity changed or unavailable')
     # Follow only the public summary request advertised by this embeddable page.
     # No WeatherLink account, private API or credentials are used.
     with urllib.request.urlopen('https://www.weatherlink.com/embeddablePage/summaryData/' + token[1], timeout=40) as response:
-        return parse_alberti(json.load(response))
+        return parse_alberti(json.load(response), station)
+
+
+def fetch_alberti():
+    return fetch_weatherlink(ALBERTI_URL, ('alberti', 'cagliari'))
+
+
+def fetch_geremeas():
+    # Public station location: MeteoNetwork srd040 Geremeas Country Club.
+    return fetch_weatherlink(GEREMEAS_URL, ('geremeas', 'sardegna'), dict(
+        station_id='geremeas-weatherlink', name='Geremeas',
+        lat=39.164, lon=9.386, elev=10, source_url=GEREMEAS_URL,
+        observation_type='Geremeas · Davis Vantage Pro2 Wireless · WeatherLink pubblico',
+    ))
 
 
 def collect(sources, previous):
@@ -180,7 +200,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari',
+    return dict(source='Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari / Geremeas',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -189,7 +209,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas)], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
