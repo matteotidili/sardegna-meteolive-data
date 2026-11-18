@@ -3,6 +3,7 @@ import json
 import math
 import re
 import urllib.request
+import urllib.error
 import urllib.parse
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
@@ -478,6 +479,8 @@ def collect(sources, previous):
             fresh += 1
         except (OSError, ValueError, KeyError, TypeError, OverflowError) as error:
             failures[station_id] = type(error).__name__
+            if station_id == 'desulo-bakumeteo' and isinstance(error, urllib.error.URLError):
+                print('Desulo public source connection:', str(error.reason)[:180])
             if station_id in retained:
                 rows.append(retained[station_id])
     if not fresh:
