@@ -178,5 +178,42 @@ class EcowittSharedStationTests(unittest.TestCase):
 
 
 
+def oroseimeteo_payload():
+    return dict(ok=True, generated_at='2026-11-18T19:00:58+01:00', stations={
+        'orosei': dict(name='Orosei Centro', updated_at='2026-11-18 19:00:47',
+            temperature=22.2, temp_min=20.7, temp_max=24.8, humidity=68,
+            pressure=1007.4, wind_speed=24.1, wind_dir_deg=289,
+            gust=24.1, gust_day=48.3, rain_day=0, rain_rate=0),
+    })
+
+
+class OroseiMeteoTests(unittest.TestCase):
+    def test_original_sensor_time_metric_values_and_daily_gust(self):
+        row = collector.parse_oroseimeteo(oroseimeteo_payload(), 'orosei')
+        self.assertEqual(row['last'], '2026-11-18T18:00:47+00:00')
+        self.assertEqual((row['temp'], row['tmin'], row['tmax']), (22.2, 20.7, 24.8))
+        self.assertEqual((row['wind_kmh'], row['wind_dir'], row['gust_kmh']), (24.1, 289, 48.3))
+        self.assertEqual((row['rain_today'], row['rain_rate']), (0, 0))
+        self.assertEqual(row['elev'], 19)
+
+    def test_summer_time_and_previous_day_do_not_invent_current_daily_extremes(self):
+        p = oroseimeteo_payload()
+        p['generated_at'] = '2026-07-19T00:05:00+02:00'
+        p['stations']['orosei']['updated_at'] = '2026-07-18 23:59:00'
+        row = collector.parse_oroseimeteo(p, 'orosei')
+        self.assertEqual(row['last'], '2026-07-18T21:59:00+00:00')
+        self.assertIsNone(row['tmin'])
+        self.assertIsNone(row['rain_today'])
+
+    def test_missing_observation_or_changed_identity_rejected(self):
+        p = oroseimeteo_payload()
+        with self.assertRaises(ValueError):
+            collector.parse_oroseimeteo(p, 'aratha')
+        p['stations']['orosei']['name'] = 'Another station'
+        with self.assertRaises(ValueError):
+            collector.parse_oroseimeteo(p, 'orosei')
+
+
+
 if __name__ == '__main__':
     unittest.main()

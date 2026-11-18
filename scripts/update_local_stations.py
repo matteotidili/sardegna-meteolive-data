@@ -7,6 +7,7 @@ import urllib.parse
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
+from functools import lru_cache
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -20,6 +21,14 @@ MARINA_OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/a6eb95fef32b
 COLLINAS_URL = 'https://www.weatherlink.com/embeddablePage/show/865c69d0529a4b2d907ab00a67d2935d/signature'
 CORALLINA_URL = 'https://www.weatherlink.com/embeddablePage/show/e0be4d8b618a43808d5677a51aa291ea/fullscreen'
 IGLESIAS_SHARE_URL = 'https://www.ecowitt.net/home/share?authorize=59C96F&device_id=bEFwaHNOMEd0TGRob0pZRStYTldyZz09'
+OROSEIMETEO_URL = 'https://oroseimeteo.com/api/stations.php'
+# Coordinates/elevations published by OroseiMeteo /api/rete/stazioni.php.
+OROSEIMETEO_STATIONS = {
+    'orosei': ('Orosei Centro', 40.378, 9.694, 19),
+    'aratha': ('Agro di Aratha', 40.357, 9.692, 9),
+    'calaginepro': ('Calaginepro', 40.448149, 9.785657, 8),
+    'funtanas': ('Orosei Funtanas Cortesas', 40.412422, 9.753746, 15),
+}
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -317,6 +326,54 @@ def fetch_iglesias():
         return parse_iglesias_share(json.load(response), received)
 
 
+def parse_oroseimeteo(payload, key):
+    if not isinstance(payload, dict) or payload.get('ok') is not True:
+        raise ValueError('OroseiMeteo public observations unavailable')
+    raw = payload.get('stations', {}).get(key)
+    if not isinstance(raw, dict):
+        raise ValueError('OroseiMeteo station unavailable')
+    name, lat, lon, elev = OROSEIMETEO_STATIONS[key]
+    if raw.get('name') != name:
+        raise ValueError('OroseiMeteo station identity changed')
+    observed = datetime.strptime(raw['updated_at'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    generated = datetime.fromisoformat(payload['generated_at'].replace('Z', '+00:00'))
+    if generated.tzinfo is None:
+        raise ValueError('OroseiMeteo dataset timezone unavailable')
+    current_day = observed.date() == generated.astimezone(ZoneInfo('Europe/Rome')).date()
+    temp = number_value(raw.get('temperature'))
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('OroseiMeteo outdoor temperature unavailable')
+    def number(field):
+        return number_value(raw.get(field))
+    direction = number('wind_dir_deg')
+    return dict(
+        station_id='oroseimeteo-' + key, name=name,
+        lat=lat, lon=lon, elev=elev,
+        last=observed.astimezone(timezone.utc).isoformat(),
+        source_url='https://oroseimeteo.com/stazioni.php',
+        observation_type='OroseiMeteo · ' + str(raw.get('detail') or 'rete locale'),
+        temp=temp, tmin=number('temp_min') if current_day else None,
+        tmax=number('temp_max') if current_day else None,
+        rh=number('humidity'), pressure_hpa=number('pressure'),
+        wind_kmh=number('wind_speed'),
+        wind_dir=direction if direction is not None and 0 <= direction <= 360 else None,
+        gust_kmh=number('gust_day') if current_day else None,
+        rain_today=number('rain_day') if current_day else None,
+        rain_rate=number('rain_rate'), rain_48h=None,
+    )
+
+
+@lru_cache(maxsize=1)
+def oroseimeteo_payload():
+    # One public request for all four stations per collector invocation.
+    with urllib.request.urlopen(OROSEIMETEO_URL, timeout=40) as response:
+        return json.load(response)
+
+
+def fetch_oroseimeteo(key):
+    return parse_oroseimeteo(oroseimeteo_payload(), key)
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -330,7 +387,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia / Collinas / Costa Corallina / Iglesias',
+    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -339,7 +396,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
