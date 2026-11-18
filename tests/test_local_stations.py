@@ -299,5 +299,28 @@ class AdditionalPublicStationsTests(unittest.TestCase):
         self.assertEqual(row['last'],'2026-11-18T18:33:59+00:00')
 
 
+class MeteomanAndDecimomannuTests(unittest.TestCase):
+    def test_weatherlink_text_units_and_observation_time(self):
+        values=['-']*54
+        for i,v in {0:'18/11/26',1:'19:50',2:'19.9',3:'74',5:'11.3',7:'26',8:'0',9:'1.2',10:'1010.2',13:'km/hr',14:'°C',15:'hPa',16:'mm',26:'21.9',28:'16.9',32:'56.3'}.items(): values[i]=v
+        row=collector.parse_meteoman('|'.join(values))
+        self.assertEqual((row['temp'],row['tmin'],row['tmax'],row['rain_today']), (19.9,16.9,21.9,1.2))
+        self.assertEqual(row['last'],'2026-11-18T18:50:00+00:00')
+        values[2]='--'
+        with self.assertRaises(ValueError): collector.parse_meteoman('|'.join(values))
+
+    def test_decimomannu_identity_and_daily_extremes(self):
+        row=collector.parse_decimomannu('Dati aggiornati il 18/11/26 alle ore 19.52 Temperatura:20.1°C Estremi Oggi:23.7°C ( 13.20 )19.2°C (02.02) Velocità attuale:1.6 Km/h NNW Raffica giornaliera:45.1 Km/h')
+        self.assertEqual((row['station_id'],row['temp'],row['tmin'],row['tmax']),('decimomannu-meteoproject',20.1,19.2,23.7))
+        self.assertIsNone(row['elev'])
+
+    def test_desulo_label_updated_during_outage(self):
+        def fail(): raise OSError('offline')
+        old=dict(station_id='desulo-bakumeteo',name='Desulo – BakuMeteo',last='2026-11-18T18:00:00Z')
+        p=collector.collect([('desulo-bakumeteo',fail),('other',lambda:dict(station_id='other'))],dict(stations=[old]))
+        self.assertEqual(p['stations'][0]['name'],'Desulo')
+        self.assertEqual(p['stations'][0]['last'],old['last'])
+
+
 if __name__ == '__main__':
     unittest.main()
