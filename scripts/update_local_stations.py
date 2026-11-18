@@ -11,6 +11,7 @@ from zoneinfo import ZoneInfo
 DOMUSNOVAS_URL = 'http://domusnovasmeteo.altervista.org/Domusmeteo_attuale.htm'
 ALBERTI_URL = 'https://www.weatherlink.com/embeddablePage/show/005f46805f72422cb4fb809dfdda94b9/summary'
 GEREMEAS_URL = 'https://www.weatherlink.com/embeddablePage/show/b705697e439146cf9ce467059fbd41d9/summary'
+OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/7c12f8f5ec584ea193e52eea4a55c0c3/summary'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -187,6 +188,15 @@ def fetch_geremeas():
     ))
 
 
+def fetch_olbia():
+    # Position supplied by the user's WeatherLink shared map for Olbia.
+    return fetch_weatherlink(OLBIA_URL, ('olbia', 'meteo'), dict(
+        station_id='olbia-weatherlink', name='Olbia Meteo',
+        lat=40.92269, lon=9.52219, elev=None, source_url=OLBIA_URL,
+        observation_type='Olbia Meteo · WeatherLink pubblico',
+    ))
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -200,7 +210,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari / Geremeas',
+    return dict(source='Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari / Geremeas / Olbia Meteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -209,7 +219,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia)], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
