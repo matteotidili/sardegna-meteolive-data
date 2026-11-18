@@ -88,6 +88,21 @@ class AlbertiTests(unittest.TestCase):
         row = collector.parse_alberti(payload)
         self.assertEqual((row['temp'], row['tmin'], row['tmax']), (21.8, 19.4, 24.1))
 
+    def test_legacy_hhmm_extreme_times_are_not_unix_dates(self):
+        payload = alberti_payload()
+        payload['highLowValues'][3]['value'] = 1344
+        payload['highLowValues'][4]['value'] = 1
+        payload['highLowValues'].append(dict(sensorDataName='High Wind Speed Time', value=344))
+        row = collector.parse_alberti(payload)
+        self.assertEqual((row['tmin'], row['tmax'], row['gust_kmh']), (19.4, 24.1, 46.7))
+
+    def test_gross_erroneous_minimum_does_not_replace_valid_current_data(self):
+        payload = alberti_payload()
+        payload['highLowValues'][1]['convertedValue'] = '-28,5'
+        row = collector.parse_alberti(payload)
+        self.assertIsNone(row['tmin'])
+        self.assertEqual((row['temp'], row['tmax']), (21.8, 24.1))
+
     def test_explicit_imperial_units_are_converted_once(self):
         payload = alberti_payload()
         payload['currConditionValues'][0].update(convertedValue='71.6', unitLabel='°F')

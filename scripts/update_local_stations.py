@@ -131,7 +131,10 @@ def parse_alberti(payload, station=None):
         return metric_value(current.get(name.casefold(), {}), kind)
     def extreme(name, kind):
         recorded_time = number_value(daily.get((name + ' Time').casefold(), {}).get('value'))
-        if recorded_time is not None and recorded_time > 0 and weatherlink_time(recorded_time).astimezone(ZoneInfo('Europe/Rome')).date() != observed.astimezone(ZoneInfo('Europe/Rome')).date():
+        # Legacy WeatherLink stations report daily extreme times as HHMM (1344 = 13:44),
+        # whereas newer consoles use Unix timestamps. Only timestamps carry a date.
+        is_clock = recorded_time is not None and recorded_time == int(recorded_time) and 0 <= recorded_time <= 2359 and recorded_time % 100 < 60
+        if recorded_time is not None and recorded_time > 0 and not is_clock and weatherlink_time(recorded_time).astimezone(ZoneInfo('Europe/Rome')).date() != observed.astimezone(ZoneInfo('Europe/Rome')).date():
             return None
         return metric_value(daily.get(name.casefold(), {}), kind)
     temperature = field('Temp', 'temperature')
@@ -153,6 +156,12 @@ def parse_alberti(payload, station=None):
         rain_today=rain_today, rain_rate=field('Rain Rate', 'rain_rate'), rain_48h=None,
     )
 
+    # Reject gross sensor/reset artefacts (e.g. Marina di Olbia: -28.5°C
+    # daily minimum alongside 20.5°C current temperature), keeping other measures.
+    for key in ('tmin', 'tmax'):
+        value = row[key]
+        if value is not None and (abs(value - temperature) > 40 or (key == 'tmin' and value > temperature + 0.2) or (key == 'tmax' and value < temperature - 0.2)):
+            row[key] = None
     if station:
         row.update(station)
     return row
