@@ -15,6 +15,8 @@ OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/7c12f8f5ec584ea193e
 PORTO_RAFAEL_URL = 'https://www.weatherlink.com/embeddablePage/show/70ab2a521ef347dea1c43d082d591bf8/wide'
 LUSEI_URL = 'https://www.weatherlink.com/embeddablePage/show/a4c8319b1ee6449dabdbd71c408a078c/wide'
 MARINA_OLBIA_URL = 'https://www.weatherlink.com/embeddablePage/show/a6eb95fef32b4318af568792c6a48ee2/fullscreen'
+COLLINAS_URL = 'https://www.weatherlink.com/embeddablePage/show/865c69d0529a4b2d907ab00a67d2935d/signature'
+CORALLINA_URL = 'https://www.weatherlink.com/embeddablePage/show/e0be4d8b618a43808d5677a51aa291ea/fullscreen'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -236,6 +238,24 @@ def fetch_marina_olbia():
     ))
 
 
+def fetch_collinas():
+    # Position confirmed by the user's WeatherLink shared map.
+    return fetch_weatherlink(COLLINAS_URL, ('collinas',), dict(
+        station_id='collinas-weatherlink', name='Collinas',
+        lat=39.63833, lon=8.84326, elev=None, source_url=COLLINAS_URL,
+        observation_type='Collinas · WeatherLink pubblico',
+    ))
+
+
+def fetch_corallina():
+    # Position confirmed by the user's WeatherLink shared map.
+    return fetch_weatherlink(CORALLINA_URL, ('marina', 'costa', 'corallina'), dict(
+        station_id='costa-corallina-weatherlink', name='Marina di Costa Corallina',
+        lat=40.882806, lon=9.626597, elev=None, source_url=CORALLINA_URL,
+        observation_type='Marina di Costa Corallina · WeatherLink pubblico',
+    ))
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -249,7 +269,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia',
+    return dict(source='Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia / Collinas / Costa Corallina',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -258,7 +278,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia)], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina)], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
