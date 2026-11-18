@@ -471,8 +471,14 @@ def parse_desulo(page, station=None):
 
 
 def fetch_desulo():
-    with urllib.request.urlopen(DESULO_URL, timeout=40) as response:
-        raw = response.read()
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(DESULO_URL, timeout=40) as response:
+                raw = response.read()
+            break
+        except urllib.error.URLError:
+            if attempt:
+                raise
     try:
         page = raw.decode('utf-8')
     except UnicodeDecodeError:
