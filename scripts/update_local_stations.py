@@ -663,7 +663,7 @@ def parse_meteoman(raw):
     if temp is None or not -60 <= temp <= 65:
         raise ValueError('Meteoman outdoor temperature unavailable')
     # Coordinates are rounded to minutes in the operator's station sheet.
-    return dict(station_id='villacidro-meteoman', name='Villacidro – Meteoman (posizione indicativa)',
+    return dict(station_id='villacidro-meteoman', name='Villacidro',
         lat=39.5,lon=8.7,elev=265,location_precision='arcminute',
         source_url='https://meteoman.altervista.org/wxindex_new.php',last=observed.astimezone(timezone.utc).isoformat(),
         observation_type='Meteoman · Davis Vantage Vue · coordinate arrotondate del gestore',
