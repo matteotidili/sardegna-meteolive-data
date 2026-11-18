@@ -689,6 +689,35 @@ def fetch_decimomannu():
     return parse_decimomannu(public_html('https://stazioni.meteoproject.it/dati/decimomannu/tabella-vuota.php'))
 
 
+def parse_caletta(page):
+    parser = PageText(); parser.feed(page)
+    text = ' '.join(' '.join(parser.parts).split())
+    stamp = re.search(r'(\d{2}:\d{2}:\d{2})\s+(\d{2}/\d{2}/\d{4})',text)
+    if not stamp: raise ValueError('La Caletta observation time unavailable')
+    observed = datetime.strptime(stamp[2]+' '+stamp[1],'%d/%m/%Y %H:%M:%S').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    def n(label,unit):
+        m=re.search(label+r'\s*([+-]?[\d.,]+)\s*'+unit,text,re.I)
+        return number_value(m[1]) if m else None
+    def wind(label):
+        value=n(label,'kts')
+        return round(value*1.852,3) if value is not None else None
+    temp=n('Temperatura:','°C')
+    speed=wind('Vento Attuale:')
+    if temp is None and speed is None: raise ValueError('La Caletta observations unavailable')
+    direction=re.search(r'Direzione:\s*([NSEWO]{1,3})\b',text,re.I)
+    return dict(station_id='siniscola-la-caletta',name='Siniscola – La Caletta',
+        lat=40.602227,lon=9.750968,elev=None,
+        source_url='https://vedetta.org/webcam/italia/sardegna/nuoro/siniscola-la-caletta/',
+        last=observed.astimezone(timezone.utc).isoformat(),observation_type='Vedetta · El Barrio del Mar · dati numerici pubblici',
+        temp=temp,tmin=None,tmax=None,rh=n('Umidità:','%'),pressure_hpa=n('Pressione:','hpa'),
+        wind_kmh=speed,wind_dir=compass_degrees(direction[1]) if direction else None,
+        gust_kmh=wind('Raffica MAX OGGI:'),rain_today=None,rain_rate=None,rain_48h=None)
+
+
+def fetch_caletta():
+    return parse_caletta(public_html('https://vedetta.org/image-client/siniscola-la-caletta/meteo/dati_meteo.html'))
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -716,7 +745,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo), ('villacidro-meteoman', fetch_meteoman), ('decimomannu-meteoproject', fetch_decimomannu), ('tonarameteo', fetch_tonara), ('laconimeteo', fetch_laconi), ('serramannameteo', fetch_serramanna), ('meanasardometeo-peldu-murone', fetch_meana), ('meanasardometeo-nolza', fetch_nolza), ('meanasardometeo-santelias', fetch_santelias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo), ('villacidro-meteoman', fetch_meteoman), ('decimomannu-meteoproject', fetch_decimomannu), ('siniscola-la-caletta', fetch_caletta), ('tonarameteo', fetch_tonara), ('laconimeteo', fetch_laconi), ('serramannameteo', fetch_serramanna), ('meanasardometeo-peldu-murone', fetch_meana), ('meanasardometeo-nolza', fetch_nolza), ('meanasardometeo-santelias', fetch_santelias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])

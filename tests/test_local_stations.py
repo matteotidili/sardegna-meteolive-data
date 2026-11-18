@@ -322,5 +322,16 @@ class MeteomanAndDecimomannuTests(unittest.TestCase):
         self.assertEqual(p['stations'][0]['last'],old['last'])
 
 
+class CalettaTests(unittest.TestCase):
+    def test_knots_daily_gust_and_unknown_rain_period(self):
+        row=collector.parse_caletta('22:03:33 18/11/2026 Vento Attuale:2.9 kts Direzione:SSW Raffica MAX:2.9 kts Raffica MAX OGGI:26.8 kts Temperatura:18.5 °C Umidità:70 % Pioggia:0.0 mm Pressione:1012.2 hpa')
+        self.assertAlmostEqual(row['wind_kmh'],5.371)
+        self.assertAlmostEqual(row['gust_kmh'],49.634)
+        self.assertEqual(row['last'],'2026-11-18T21:03:33+00:00')
+        self.assertEqual(row['wind_dir'],202.5)
+        self.assertIsNone(row['rain_today'])
+        with self.assertRaises(ValueError): collector.parse_caletta('Vento Attuale:2.9 kts')
+
+
 if __name__ == '__main__':
     unittest.main()
