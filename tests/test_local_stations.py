@@ -238,5 +238,32 @@ class QuartuMeteoTests(unittest.TestCase):
 
 
 
+class DesuloTests(unittest.TestCase):
+    page = """<style>Temperatura: 99 °C</style><body>
+        Dati aggiornati il 18/11/26 alle ore 19.25
+        Temperatura: 13.7 °C Umidità: 90 % Percepita: 14 °C
+        Estremi Oggi: 14.7 °C (13.37) 12.9 °C (00.24)
+        Dew Point: 12.2 °C Pressione: 1012.3 hPa
+        Velocità attuale: 1.6 Km/h SSE Media: 3.2 Km/h
+        Raffica giornaliera: 46.7 Km/h Ora Raffica: 13.48
+        Pioggia giorno: 8.8 mm Intensità: 0.0 mm/h Intensità massima: 10.2 mm/h
+        </body>"""
+
+    def test_observation_extremes_and_current_not_maximum_rain_rate(self):
+        row = collector.parse_desulo(self.page)
+        self.assertEqual(row['last'], '2026-11-18T18:25:00+00:00')
+        self.assertEqual((row['temp'], row['tmin'], row['tmax']), (13.7, 12.9, 14.7))
+        self.assertEqual((row['wind_kmh'], row['wind_dir'], row['gust_kmh']), (1.6, 157.5, 46.7))
+        self.assertEqual((row['rain_today'], row['rain_rate']), (8.8, 0))
+        self.assertEqual(row['elev'], 945)
+
+    def test_missing_timestamp_or_outdoor_temperature_rejected(self):
+        with self.assertRaises(ValueError):
+            collector.parse_desulo(self.page.replace('Dati aggiornati il', 'Unknown'))
+        with self.assertRaises(ValueError):
+            collector.parse_desulo(self.page.replace('Temperatura: 13.7', 'Temperatura: --'))
+
+
+
 if __name__ == '__main__':
     unittest.main()

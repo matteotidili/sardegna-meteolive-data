@@ -1,6 +1,6 @@
 {
-  "source": "Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo",
-  "generated_at": "2026-11-18T18:13:59.060055+00:00",
+  "source": "Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / BakuMeteo",
+  "generated_at": "2026-11-18T18:28:46.262684+00:00",
   "stations": [
     {
       "station_id": "domusnovas-meteo",
@@ -316,6 +316,27 @@
       "wind_dir": 317.0,
       "gust_kmh": 38.5,
       "rain_today": 0.0,
+      "rain_rate": 0.0,
+      "rain_48h": null
+    },
+    {
+      "station_id": "desulo-bakumeteo",
+      "name": "Desulo – BakuMeteo",
+      "lat": 40.0157,
+      "lon": 9.2311,
+      "elev": 945,
+      "source_url": "https://www.bakumeteo.it/desulo/wltab6b.php",
+      "last": "2026-11-18T18:28:00+00:00",
+      "observation_type": "BakuMeteo / Sardegna Clima · Desulo 945 m",
+      "temp": 13.7,
+      "tmin": 12.9,
+      "tmax": 14.7,
+      "rh": 90.0,
+      "pressure_hpa": 1012.1,
+      "wind_kmh": 0.0,
+      "wind_dir": 292.5,
+      "gust_kmh": 46.7,
+      "rain_today": 8.8,
       "rain_rate": 0.0,
       "rain_48h": null
     }

@@ -30,6 +30,7 @@ OROSEIMETEO_STATIONS = {
     'funtanas': ('Orosei Funtanas Cortesas', 40.412422, 9.753746, 15),
 }
 QUARTUMETEO_URL = 'https://quartuweather.altervista.org/'
+DESULO_URL = 'https://www.bakumeteo.it/desulo/wltab6b.php'
 OUTPUT = Path('data/local_stations.json')
 
 
@@ -423,6 +424,51 @@ def fetch_quartumeteo():
     return parse_quartumeteo(current, extremes)
 
 
+def parse_desulo(page):
+    parser = PageText()
+    parser.feed(page)
+    text = ' '.join(' '.join(parser.parts).split())
+    stamp = re.search(r'Dati aggiornati il (\d{2}/\d{2}/\d{2}) alle ore (\d{1,2})[.:](\d{2})', text)
+    if not stamp:
+        raise ValueError('Desulo observation time unavailable')
+    observed = datetime.strptime(f'{stamp[1]} {stamp[2]}:{stamp[3]}', '%d/%m/%y %H:%M').replace(tzinfo=ZoneInfo('Europe/Rome'))
+    def number(label, unit):
+        found = re.search(label + r'\s*([+-]?\d+(?:[.,]\d+)?)\s*' + unit, text, re.I)
+        return number_value(found[1]) if found else None
+    temp = number('Temperatura:', '°C')
+    if temp is None or not -60 <= temp <= 65:
+        raise ValueError('Desulo outdoor temperature unavailable')
+    extremes = re.search(r'Estremi Oggi:\s*([+-]?\d+(?:[.,]\d+)?)\s*°C\s*\(\s*\d{1,2}[.:]\d{2}\s*\)\s*([+-]?\d+(?:[.,]\d+)?)\s*°C', text)
+    wind = re.search(r'Velocit[aà] attuale:\s*[+-]?\d+(?:[.,]\d+)?\s*Km/h\s*([NSEWO]{1,3})\b', text, re.I)
+    compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+    direction = wind[1].upper().replace('O', 'W') if wind else None
+    # Coordinates/elevation: Sardegna Clima station Desulo (NU), id 64.
+    return dict(
+        station_id='desulo-bakumeteo', name='Desulo – BakuMeteo',
+        lat=40.0157, lon=9.2311, elev=945,
+        source_url=DESULO_URL, last=observed.astimezone(timezone.utc).isoformat(),
+        observation_type='BakuMeteo / Sardegna Clima · Desulo 945 m',
+        temp=temp, tmin=number_value(extremes[2]) if extremes else None,
+        tmax=number_value(extremes[1]) if extremes else None,
+        rh=number('Umidit[aà]:', '%'), pressure_hpa=number('Pressione:', 'hPa'),
+        wind_kmh=number('Velocit[aà] attuale:', 'Km/h'),
+        wind_dir=compass.index(direction) * 22.5 if direction in compass else None,
+        gust_kmh=number('Raffica giornaliera:', 'Km/h'),
+        rain_today=number('Pioggia giorno:', 'mm'),
+        rain_rate=number('Intensit[aà]:', 'mm/h'), rain_48h=None,
+    )
+
+
+def fetch_desulo():
+    with urllib.request.urlopen(DESULO_URL, timeout=40) as response:
+        raw = response.read()
+    try:
+        page = raw.decode('utf-8')
+    except UnicodeDecodeError:
+        page = raw.decode('latin-1')
+    return parse_desulo(page)
+
+
 def collect(sources, previous):
     retained = {row['station_id']: row for row in previous.get('stations', [])}
     rows, failures, fresh = [], {}, 0
@@ -436,7 +482,7 @@ def collect(sources, previous):
                 rows.append(retained[station_id])
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo',
+    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / BakuMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -445,7 +491,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
