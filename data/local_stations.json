@@ -1,6 +1,6 @@
 {
-  "source": "Stazioni locali · Domusnovas Meteo",
-  "generated_at": "2026-11-18T16:08:40.485025+00:00",
+  "source": "Stazioni locali · Domusnovas Meteo / Liceo Alberti Cagliari",
+  "generated_at": "2026-11-18T16:34:46.963146+00:00",
   "stations": [
     {
       "station_id": "domusnovas-meteo",
@@ -8,20 +8,42 @@
       "lat": 39.3167,
       "lon": 8.65,
       "elev": 138,
-      "last": "2026-11-18T16:05:00+00:00",
+      "last": "2026-11-18T16:25:00+00:00",
       "source_url": "http://domusnovasmeteo.altervista.org/Domusmeteo_attuale.htm",
       "observation_type": "Domusnovas Meteo · Davis Vantage Pro2 Wireless",
-      "temp": 20.2,
+      "temp": 20.0,
       "tmin": 18.4,
       "tmax": 22.9,
-      "rh": 81.0,
-      "pressure_hpa": 1009.5,
-      "wind_kmh": 20.9,
-      "wind_dir": 270.0,
+      "rh": 82.0,
+      "pressure_hpa": 1009.7,
+      "wind_kmh": 12.9,
+      "wind_dir": 247.5,
       "gust_kmh": 45.1,
       "rain_today": 0.0,
       "rain_rate": 0.0,
       "rain_48h": null
+    },
+    {
+      "station_id": "liceo-alberti-cagliari",
+      "name": "Cagliari – Liceo Alberti",
+      "lat": 39.208,
+      "lon": 9.12,
+      "elev": 5,
+      "last": "2026-11-18T16:34:11+00:00",
+      "source_url": "https://www.weatherlink.com/embeddablePage/show/005f46805f72422cb4fb809dfdda94b9/summary",
+      "observation_type": "Liceo Alberti Cagliari · Davis Vantage Pro2 Wireless · WeatherLink pubblico",
+      "temp": 21.9,
+      "tmin": 19.4,
+      "tmax": 24.1,
+      "rh": 75.2,
+      "pressure_hpa": 1009.1,
+      "wind_kmh": 12.9,
+      "wind_dir": 222.0,
+      "gust_kmh": 46.7,
+      "rain_today": 0.0,
+      "rain_rate": 0.0,
+      "rain_48h": null
     }
-  ]
+  ],
+  "errors": {}
 }
