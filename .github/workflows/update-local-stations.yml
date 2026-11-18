@@ -1,0 +1,42 @@
+name: Aggiorna stazioni locali
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  push:
+    branches: [main]
+    paths: ['scripts/update_local_stations.py', 'tests/test_local_stations.py', '.github/workflows/update-local-stations.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: observations-local-stations
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verifica lettura dati
+        run: python -m unittest discover -s tests -p test_local_stations.py
+      - name: Acquisisci osservazioni locali
+        run: python scripts/update_local_stations.py
+      - name: Pubblica dati
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/local_stations.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Aggiorna osservazioni stazioni locali"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
