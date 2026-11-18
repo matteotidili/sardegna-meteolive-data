@@ -1,6 +1,6 @@
 {
-  "source": "Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei",
-  "generated_at": "2026-11-18T17:12:35.302935+00:00",
+  "source": "Stazioni amatoriali · Domusnovas / Liceo Alberti / Geremeas / Olbia / Porto Rafael / Monte Lusei / Marina di Olbia",
+  "generated_at": "2026-11-18T17:18:29.805013+00:00",
   "stations": [
     {
       "station_id": "domusnovas-meteo",
@@ -125,6 +125,27 @@
       "wind_dir": 276.0,
       "gust_kmh": null,
       "rain_today": 2.4,
+      "rain_rate": 0.0,
+      "rain_48h": null
+    },
+    {
+      "station_id": "marina-olbia-weatherlink",
+      "name": "Marina di Olbia",
+      "lat": 40.916139,
+      "lon": 9.523805,
+      "elev": null,
+      "last": "2026-11-18T17:18:15+00:00",
+      "source_url": "https://www.weatherlink.com/embeddablePage/show/a6eb95fef32b4318af568792c6a48ee2/fullscreen",
+      "observation_type": "Marina di Olbia · WeatherLink pubblico",
+      "temp": 20.6,
+      "tmin": null,
+      "tmax": null,
+      "rh": 70.0,
+      "pressure_hpa": 1007.6,
+      "wind_kmh": 33.7,
+      "wind_dir": 282.0,
+      "gust_kmh": null,
+      "rain_today": 0.0,
       "rain_rate": 0.0,
       "rain_48h": null
     }
