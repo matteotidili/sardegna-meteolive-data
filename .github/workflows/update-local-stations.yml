@@ -1,7 +1,7 @@
 name: Aggiorna stazioni locali
 on:
   schedule:
-    - cron: '3,13,23,33,43,53 * * * *'
+    - cron: '*/5 * * * *'
   push:
     branches: [main]
     paths: ['scripts/update_local_stations.py', 'scripts/update_meteoproject.py', 'tests/test_local_stations.py', '.github/workflows/update-local-stations.yml']
