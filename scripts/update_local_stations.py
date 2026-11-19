@@ -895,9 +895,6 @@ def add_sampled_temperature_extremes(rows, retained):
                 row['tmin_provisional'] = True
             if 'max' in sampled_fields:
                 row['tmax_provisional'] = True
-        elif direct_min is not None or direct_max is not None:
-            row['extrema_source'] = row.get('extrema_source') or 'provider_reported'
-            row['extrema_day'] = local_day
 
 
 def parse_datetime(value):
