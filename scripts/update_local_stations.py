@@ -30,6 +30,27 @@ OROSEIMETEO_STATIONS = {
     'calaginepro': ('Calaginepro', 40.448149, 9.785657, 8),
     'funtanas': ('Orosei Funtanas Cortesas', 40.412422, 9.753746, 15),
 }
+# Panoramicams pages expose an Ecowitt public JSON feed. Multiple camera pages
+# reuse each feed; keep one map station per distinct sensor rather than cloning
+# the same observation at every camera position. Coordinates are the reference
+# camera locations for the associated area and are therefore indicative.
+PANORAMICAMS_STATIONS = [
+    dict(station_id='panoramicams-sinis', feed='GW1100A-WIFI8F00', area='sinis', name='Sinis – Panoramicams', lat=39.885152, lon=8.430593, source_url='https://panoramicams.com/san-giovanni-di-sinis/'),
+    dict(station_id='panoramicams-porto-pollo', feed='GW1100A-WIFI86B9', area='portopollo', name='Porto Pollo – Panoramicams', lat=41.193837, lon=9.316426, source_url='https://panoramicams.com/porto-pollo-sottovento/'),
+    dict(station_id='panoramicams-aglientu', feed='GW1100A-WIFI50BD', area='aglientu', name='Aglientu – Panoramicams', lat=41.219663, lon=9.094963, source_url='https://panoramicams.com/la-liccia-rena-majori/'),
+    dict(station_id='panoramicams-costa-rei', feed='GW1100A-WIFI855D', area='costarei', name='Costa Rei – Panoramicams', lat=39.265682, lon=9.580918, source_url='https://panoramicams.com/piscina-rei-capo-ferrato/'),
+    dict(station_id='panoramicams-sa-barra', feed='GW1100A-WIFI935C', area='sabarra', name='Sant’Antioco – Sa Barra', lat=39.090983, lon=8.440464, source_url='https://panoramicams.com/sa-barra-sant-antioco/'),
+    dict(station_id='panoramicams-buggerru', feed='GW1100A-WIFI4CA0', area='buggerru', name='Buggerru – Panoramicams', lat=39.428326, lon=8.403195, source_url='https://panoramicams.com/san-nicolo/'),
+    dict(station_id='panoramicams-san-teodoro', feed='GW1100A-WIFI4CD4', area='santeodoro', name='San Teodoro – Panoramicams', lat=40.784039, lon=9.668824, source_url='https://panoramicams.com/la-cinta-san-teodoro/'),
+    dict(station_id='panoramicams-la-caletta', feed='GW1100A-WIFI818B', area='lacaletta', name='La Caletta – Panoramicams', lat=40.602164, lon=9.748702, source_url='https://panoramicams.com/la-caletta-siniscola/'),
+    dict(station_id='panoramicams-punta-saline', feed='GW1100A-WIFI3299', area='puntasaline', name='Punta Saline – Olbia', lat=40.908131, lon=9.571293, source_url='https://panoramicams.com/punta-saline-olbia/'),
+    dict(station_id='panoramicams-capoterra', feed='GW1100A-WIFI3322', area='capoterra', name='Capoterra – La Maddalena', lat=39.146931, lon=9.014834, source_url='https://panoramicams.com/spiaggia-la-maddalena-capoterra/'),
+    dict(station_id='panoramicams-olbia', feed='GW1100A-WIFI4E1E', area='olbia', name='Olbia – Panoramicams', lat=40.917368, lon=9.552461, source_url='https://panoramicams.com/golfo-di-olbia/'),
+    dict(station_id='panoramicams-alghero', feed='GW1100A-WIFI2FF4', area='alghero', name='Alghero – Mugoni', lat=40.616597, lon=8.204152, source_url='https://panoramicams.com/mugoni-alghero/'),
+    dict(station_id='panoramicams-poetto', feed='GW1100A-WIFIB452', area='poetto', name='Cagliari – Poetto', lat=39.201229, lon=9.159600, source_url='https://panoramicams.com/poetto-cagliari/'),
+    dict(station_id='panoramicams-stintino', feed='GW1100A-WIFIFECC', area='stintino', name='Stintino – Le Saline', lat=40.903741, lon=8.237674, source_url='https://panoramicams.com/le-saline-stintino/'),
+    dict(station_id='panoramicams-la-conia', feed='GW1100A-WIFI0928', area='laconia', name='Cannigione – La Conia', lat=41.124833, lon=9.437239, source_url='https://panoramicams.com/la-conia-golfo-di-arzachena/'),
+]
 QUARTUMETEO_URL = 'https://quartuweather.altervista.org/'
 DESULO_URL = 'https://www.bakumeteo.it/desulo/wltab6b.php'
 TONARA_URL = 'https://www.tonarameteo.it/'
@@ -714,6 +735,78 @@ def parse_vedetta_station(page, station_id, name, lat, lon, source_url, observat
         gust_kmh=wind('Raffica MAX OGGI:'),rain_today=None,rain_rate=None,rain_48h=None)
 
 
+def parse_panoramicams(payload, station):
+    records = payload if isinstance(payload, list) else [payload]
+    valid = []
+    for record in records:
+        if not isinstance(record, dict) or not record.get('dateutc'):
+            continue
+        try:
+            observed = datetime.strptime(record['dateutc'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc)
+        except (TypeError, ValueError):
+            continue
+        valid.append((observed, record))
+    if not valid:
+        raise ValueError('Panoramicams Ecowitt observation unavailable')
+    observed, record = max(valid, key=lambda item: item[0])
+
+    temp_c = number_value(record.get('tempc'))
+    temp_f = number_value(record.get('tempf'))
+    temp_from_f = (temp_f - 32) * 5 / 9 if temp_f is not None and -80 <= temp_f <= 140 else None
+    # Some feeds return a mismatched Celsius field while Fahrenheit remains valid.
+    if temp_c == -17.78 and temp_f is None:
+        temp = None  # Ecowitt missing-temperature sentinel; tempinf is indoor.
+    elif temp_c is None or not -60 <= temp_c <= 65 or (temp_from_f is not None and abs(temp_c - temp_from_f) > 4):
+        temp = temp_from_f
+    else:
+        temp = temp_c
+    if temp is not None and not -60 <= temp <= 65:
+        temp = None
+
+    def bounded(key, low, high):
+        value = number_value(record.get(key))
+        return value if value is not None and low <= value <= high else None
+
+    observed_local = observed.astimezone(ZoneInfo('Europe/Rome'))
+    today_local = datetime.now(timezone.utc).astimezone(ZoneInfo('Europe/Rome')).date()
+    daily_valid = observed_local.date() == today_local
+    pressure_in = bounded('baromrelin', 20, 35)
+    wind = bounded('windspeedkmh', 0, 250)
+    if wind is None:
+        mph = bounded('windspeedmph', 0, 160)
+        wind = round(mph * 1.609344, 3) if mph is not None else None
+    wind_direction = bounded('winddir_avg10m', 0, 360)
+    if wind_direction is None:
+        wind_direction = bounded('winddir', 0, 360)
+    gust = bounded('maxdailygust', 0, 300) if daily_valid else None
+    if gust is None and daily_valid:
+        gust = bounded('windgustkmh', 0, 300)
+    rain_day_in = bounded('dailyrainin', 0, 20) if daily_valid else None
+    rain_rate_in = bounded('rainratein', 0, 10)
+    rh = bounded('humidity', 0, 100)
+    if all(value is None for value in (temp, wind, rh, rain_rate_in)):
+        raise ValueError('Panoramicams Ecowitt has no usable current observations')
+
+    return dict(
+        station_id=station['station_id'], name=station['name'],
+        lat=station['lat'], lon=station['lon'], elev=None,
+        source_url=station['source_url'], last=observed.isoformat(),
+        observation_type='Panoramicams · Ecowitt · coordinate indicativa dell’area',
+        temp=round(temp, 2) if temp is not None else None, tmin=None, tmax=None,
+        rh=rh, pressure_hpa=round(pressure_in * 33.8638866667, 1) if pressure_in is not None else None,
+        wind_kmh=wind, wind_dir=wind_direction, gust_kmh=gust,
+        rain_today=round(rain_day_in * 25.4, 2) if rain_day_in is not None else None,
+        rain_rate=round(rain_rate_in * 25.4, 2) if rain_rate_in is not None else None,
+        rain_48h=None,
+    )
+
+
+def fetch_panoramicams(station):
+    url = 'https://panoramicams.com/ecowitt/get_json.php?' + urllib.parse.urlencode({
+        'station': 'panoramicamsweather_' + station['feed'], 'location': station['area']})
+    return parse_panoramicams(public_json(url), station)
+
+
 def parse_caletta(page):
     return parse_vedetta_station(page,'siniscola-la-caletta','Siniscola – La Caletta',40.602227,9.750968,
         'https://vedetta.org/webcam/italia/sardegna/nuoro/siniscola-la-caletta/',
@@ -763,7 +856,7 @@ def collect(sources, previous):
                 rows.append(row)
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
-    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
+    return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Panoramicams / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
 
@@ -772,7 +865,7 @@ def main():
         previous = json.loads(OUTPUT.read_text())
     except (OSError, ValueError):
         previous = {}
-    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo), ('villacidro-meteoman', fetch_meteoman), ('decimomannu-meteoproject', fetch_decimomannu), ('siniscola-la-caletta', fetch_caletta), ('alghero-punta-negra', fetch_punta_negra), ('sant-antioco', fetch_sant_antioco), ('isola-rossa', fetch_isola_rossa), ('tonarameteo', fetch_tonara), ('laconimeteo', fetch_laconi), ('serramannameteo', fetch_serramanna), ('meanasardometeo-peldu-murone', fetch_meana), ('meanasardometeo-nolza', fetch_nolza), ('meanasardometeo-santelias', fetch_santelias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
+    payload = collect([('domusnovas-meteo', fetch_domusnovas), ('liceo-alberti-cagliari', fetch_alberti), ('geremeas-weatherlink', fetch_geremeas), ('olbia-weatherlink', fetch_olbia), ('porto-rafael-weatherlink', fetch_porto_rafael), ('monte-lusei-weatherlink', fetch_lusei), ('marina-olbia-weatherlink', fetch_marina_olbia), ('collinas-weatherlink', fetch_collinas), ('costa-corallina-weatherlink', fetch_corallina), ('iglesias-marco-polo-ecowitt', fetch_iglesias), ('quartu-quartumeteo', fetch_quartumeteo), ('desulo-bakumeteo', fetch_desulo), ('villacidro-meteoman', fetch_meteoman), ('decimomannu-meteoproject', fetch_decimomannu), ('siniscola-la-caletta', fetch_caletta), ('alghero-punta-negra', fetch_punta_negra), ('sant-antioco', fetch_sant_antioco), ('isola-rossa', fetch_isola_rossa)] + [(station['station_id'], lambda station=station: fetch_panoramicams(station)) for station in PANORAMICAMS_STATIONS] + [('tonarameteo', fetch_tonara), ('laconimeteo', fetch_laconi), ('serramannameteo', fetch_serramanna), ('meanasardometeo-peldu-murone', fetch_meana), ('meanasardometeo-nolza', fetch_nolza), ('meanasardometeo-santelias', fetch_santelias)] + [('oroseimeteo-' + key, lambda key=key: fetch_oroseimeteo(key)) for key in OROSEIMETEO_STATIONS], previous)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     for row in payload['stations']:
         print(row['station_id'], row['last'])
