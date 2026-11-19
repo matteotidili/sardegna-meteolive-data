@@ -1,10 +1,5 @@
 name: Aggiorna MeteoProject Cagliari
 on:
-  schedule:
-    - cron: '4,19,34,49 * * * *'
-  push:
-    branches: [main]
-    paths: ['scripts/update_meteoproject.py', '.github/workflows/update-meteoproject.yml']
   workflow_dispatch:
 permissions:
   contents: write
