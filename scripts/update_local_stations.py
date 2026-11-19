@@ -849,6 +849,69 @@ def fetch_isola_rossa():
         'Vedetta · La Marinedda · dati numerici pubblici')
 
 
+def add_sampled_temperature_extremes(rows, retained):
+    """Fill missing daily extremes from unique 10-minute network observations."""
+    for row in rows:
+        temp = number_value(row.get('temp'))
+        observed = parse_datetime(row.get('last'))
+        if observed is None:
+            continue
+        local_day = observed.astimezone(ZoneInfo('Europe/Rome')).date().isoformat()
+        old = retained.get(row.get('station_id'), {})
+        old_stamp = parse_datetime(old.get('last'))
+        old_day = old.get('extrema_day') or (
+            old_stamp.astimezone(ZoneInfo('Europe/Rome')).date().isoformat() if old_stamp else None)
+        same_day = old_day == local_day
+        old_temp = number_value(old.get('temp')) if same_day else None
+        old_min = number_value(old.get('tmin')) if same_day else None
+        old_max = number_value(old.get('tmax')) if same_day else None
+        direct_min = number_value(row.get('tmin'))
+        direct_max = number_value(row.get('tmax'))
+        if temp is None and direct_min is None and direct_max is None:
+            continue
+        is_new_sample = temp is not None and (old_stamp is None or observed > old_stamp)
+        samples = (int(old.get('extrema_samples') or (1 if old_temp is not None else 0)) if same_day else 0)
+        if is_new_sample:
+            samples += 1
+
+        sampled_min = min([v for v in (old_min, temp) if v is not None], default=None)
+        sampled_max = max([v for v in (old_max, temp) if v is not None], default=None)
+        row['tmin'] = direct_min if direct_min is not None else sampled_min
+        row['tmax'] = direct_max if direct_max is not None else sampled_max
+        sampled_fields = []
+        if direct_min is None and sampled_min is not None:
+            sampled_fields.append('min')
+        if direct_max is None and sampled_max is not None:
+            sampled_fields.append('max')
+
+        if sampled_fields:
+            reported_fields = []
+            if direct_min is not None: reported_fields.append('min')
+            if direct_max is not None: reported_fields.append('max')
+            row['extrema_source'] = 'provider_reported+network_sampled_10min' if reported_fields else 'network_sampled_10min'
+            row['extrema_samples'] = samples
+            row['extrema_day'] = local_day
+            if 'min' in sampled_fields:
+                row['tmin_provisional'] = True
+            if 'max' in sampled_fields:
+                row['tmax_provisional'] = True
+        elif direct_min is not None or direct_max is not None:
+            row['extrema_source'] = row.get('extrema_source') or 'provider_reported'
+            row['extrema_day'] = local_day
+
+
+def parse_datetime(value):
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+        if parsed.tzinfo is None:
+            return parsed.replace(tzinfo=timezone.utc)
+        return parsed
+    except (TypeError, ValueError):
+        return None
+
+
 def collect(sources, previous):
     """Refresh providers concurrently, retry errors, and isolate outages."""
     retained = {row['station_id']: row for row in previous.get('stations', [])}
@@ -891,6 +954,7 @@ def collect(sources, previous):
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
     rows = [results[station_id] for station_id, _ in sources if station_id in results]
+    add_sampled_temperature_extremes(rows, retained)
     print(f'Refreshed {fresh}/{len(sources)} stations; {len(failures)} provider(s) failed after retries')
     return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Panoramicams / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
