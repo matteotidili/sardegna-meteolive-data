@@ -58,5 +58,5 @@ def fetch_latest():
 if __name__ == '__main__':
     row = fetch_latest()
     payload = dict(source='MeteoProject · Liceo Euclide', generated_at=datetime.now(timezone.utc).isoformat(), stations=[row])
-    Path('data/meteoproject.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2)+'\\n')
+    Path('data/meteoproject.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2)+chr(10))
     print('Published observation:', row['last'])
