@@ -37,7 +37,7 @@ OROSEIMETEO_STATIONS = {
 # the same observation at every camera position. Coordinates are the reference
 # camera locations for the associated area and are therefore indicative.
 PANORAMICAMS_STATIONS = [
-    dict(station_id='panoramicams-sinis', feed='GW1100A-WIFI8F00', area='sinis', name='Sinis – Panoramicams', lat=39.885152, lon=8.430593, source_url='https://panoramicams.com/san-giovanni-di-sinis/'),
+    dict(station_id='panoramicams-sinis', feed='GW1100A-WIFI8F00', area='sinis', name='San Giovanni di Sinis – Panoramicams', lat=39.885152, lon=8.430593, source_url='https://panoramicams.com/san-giovanni-di-sinis/'),
     dict(station_id='panoramicams-porto-pollo', feed='GW1100A-WIFI86B9', area='portopollo', name='Porto Pollo – Panoramicams', lat=41.193837, lon=9.316426, source_url='https://panoramicams.com/porto-pollo-sottovento/'),
     dict(station_id='panoramicams-aglientu', feed='GW1100A-WIFI50BD', area='aglientu', name='Aglientu – Panoramicams', lat=41.219663, lon=9.094963, source_url='https://panoramicams.com/la-liccia-rena-majori/'),
     dict(station_id='panoramicams-costa-rei', feed='GW1100A-WIFI855D', area='costarei', name='Costa Rei – Panoramicams', lat=39.265682, lon=9.580918, source_url='https://panoramicams.com/piscina-rei-capo-ferrato/'),
