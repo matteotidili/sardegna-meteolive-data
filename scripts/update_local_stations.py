@@ -944,7 +944,9 @@ def collect(sources, previous):
             if row is not None:
                 results[station_id] = row
                 continue
-            failures[station_id] = f"{type(error).__name__}: {str(error)[:180]}" if error else 'UnexpectedError'
+            failures[station_id] = type(error).__name__ if error else 'UnexpectedError'
+            if station_id.startswith('panoramicams-') and error is not None:
+                print(f'{station_id} source error: {error!r}')
             if station_id == 'desulo-bakumeteo' and isinstance(error, urllib.error.URLError):
                 print('Desulo public source connection:', str(error.reason)[:180])
             if station_id in retained:
