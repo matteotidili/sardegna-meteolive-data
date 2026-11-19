@@ -2,6 +2,7 @@
 import html
 import json
 import re
+import time
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -36,9 +37,26 @@ def parse_page(page):
     return row
 
 
+def fetch_latest():
+    last_error = None
+    for attempt in range(3):
+        try:
+            request = urllib.request.Request(SOURCE, headers={
+                'User-Agent': 'Mozilla/5.0 (compatible; SardegnaMeteoLive/1.0)',
+                'Cache-Control': 'no-cache',
+            })
+            with urllib.request.urlopen(request, timeout=25) as response:
+                row = parse_page(response.read().decode('utf-8'))
+            return row
+        except Exception as error:
+            last_error = error
+            if attempt < 2:
+                time.sleep((2, 5)[attempt])
+    raise RuntimeError(f'MeteoProject source unavailable after 3 attempts: {type(last_error).__name__}') from last_error
+
+
 if __name__ == '__main__':
-    with urllib.request.urlopen(SOURCE, timeout=40) as response:
-        row = parse_page(response.read().decode('utf-8'))
+    row = fetch_latest()
     payload = dict(source='MeteoProject · Liceo Euclide', generated_at=datetime.now(timezone.utc).isoformat(), stations=[row])
-    Path('data/meteoproject.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2)+'\n')
+    Path('data/meteoproject.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2)+'\\n')
     print('Published observation:', row['last'])
