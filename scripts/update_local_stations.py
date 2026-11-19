@@ -11,6 +11,7 @@ from html.parser import HTMLParser
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+import threading
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -36,6 +37,8 @@ OROSEIMETEO_STATIONS = {
 # reuse each feed; keep one map station per distinct sensor rather than cloning
 # the same observation at every camera position. Coordinates are the reference
 # camera locations for the associated area and are therefore indicative.
+PANORAMICAMS_REQUESTS = threading.BoundedSemaphore(3)
+
 PANORAMICAMS_STATIONS = [
     dict(station_id='panoramicams-sinis', feed='GW1100A-WIFI8F00', area='sinis', name='San Giovanni di Sinis – Panoramicams', lat=39.885152, lon=8.430593, source_url='https://panoramicams.com/san-giovanni-di-sinis/'),
     dict(station_id='panoramicams-porto-pollo', feed='GW1100A-WIFI86B9', area='portopollo', name='Porto Pollo – Panoramicams', lat=41.193837, lon=9.316426, source_url='https://panoramicams.com/porto-pollo-sottovento/'),
@@ -813,8 +816,11 @@ def fetch_panoramicams(station):
         'Referer': 'https://panoramicams.com/',
         'Accept': 'application/json',
     })
-    with urllib.request.urlopen(request, timeout=40) as response:
-        payload = json.load(response)
+    # Keep the provider's endpoint from receiving a burst of many simultaneous
+    # requests when all webcam stations are refreshed in the same run.
+    with PANORAMICAMS_REQUESTS:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = json.load(response)
     return parse_panoramicams(payload, station)
 
 
@@ -938,7 +944,7 @@ def collect(sources, previous):
             if row is not None:
                 results[station_id] = row
                 continue
-            failures[station_id] = type(error).__name__ if error else 'UnexpectedError'
+            failures[station_id] = f"{type(error).__name__}: {str(error)[:180]}" if error else 'UnexpectedError'
             if station_id == 'desulo-bakumeteo' and isinstance(error, urllib.error.URLError):
                 print('Desulo public source connection:', str(error.reason)[:180])
             if station_id in retained:
