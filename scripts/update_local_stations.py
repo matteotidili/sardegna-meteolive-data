@@ -804,7 +804,16 @@ def parse_panoramicams(payload, station):
 def fetch_panoramicams(station):
     url = 'https://panoramicams.com/ecowitt/get_json.php?' + urllib.parse.urlencode({
         'station': 'panoramicamsweather_' + station['feed'], 'location': station['area']})
-    return parse_panoramicams(public_json(url), station)
+    # The public feed rejects bare urllib requests; send the same page context
+    # and JSON Accept header used by the Panoramicams embedded widget.
+    request = urllib.request.Request(url, headers={
+        'User-Agent': 'Mozilla/5.0 (compatible; SardegnaMeteoLive/1.0)',
+        'Referer': 'https://panoramicams.com/',
+        'Accept': 'application/json',
+    })
+    with urllib.request.urlopen(request, timeout=40) as response:
+        payload = json.load(response)
+    return parse_panoramicams(payload, station)
 
 
 def parse_caletta(page):
