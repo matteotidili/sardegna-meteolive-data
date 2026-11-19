@@ -756,7 +756,7 @@ def parse_panoramicams(payload, station):
     # Some feeds return a mismatched Celsius field while Fahrenheit remains valid.
     if temp_c == -17.78 and temp_f is None:
         temp = None  # Ecowitt missing-temperature sentinel; tempinf is indoor.
-    elif temp_c is None or not -60 <= temp_c <= 65 or (temp_from_f is not None and abs(temp_c - temp_from_f) > 4):
+    elif temp_c is None or not -60 <= temp_c <= 65 or (temp_from_f is not None and abs(temp_c - temp_from_f) > 2):
         temp = temp_from_f
     else:
         temp = temp_c
