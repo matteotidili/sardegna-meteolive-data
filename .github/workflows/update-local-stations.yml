@@ -1,7 +1,7 @@
 name: Aggiorna stazioni locali
 on:
   schedule:
-    - cron: '7,22,37,52 * * * *'
+    - cron: '3,13,23,33,43,53 * * * *'
   push:
     branches: [main]
     paths: ['scripts/update_local_stations.py', 'tests/test_local_stations.py', '.github/workflows/update-local-stations.yml']
@@ -14,7 +14,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
