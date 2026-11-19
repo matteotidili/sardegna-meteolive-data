@@ -151,7 +151,7 @@ def metric_value(record, kind):
         return value if unit == 'c' else round((value - 32) * 5 / 9, 1) if unit == 'f' else None
     factors = {
         'humidity': {'%': 1},
-        'wind': {'km/h': 1, 'km/hr': 1, 'mph': 1.609344, 'm/s': 3.6, 'knots': 1.852, 'kt': 1.852},
+        'wind': {'km/h': 1, 'km/hr': 1, 'mph': 1.609344, 'm/s': 3.6, 'knots': 1.852, 'knot': 1.852, 'kt': 1.852, 'kts': 1.852, 'kn': 1.852},
         'pressure': {'hpa': 1, 'mb': 1, 'mbar': 1, 'inhg': 33.8638867, 'mmhg': 1.3332239},
         'rain': {'mm': 1, 'in': 25.4, 'inch': 25.4, '"': 25.4},
         'rain_rate': {'mm/h': 1, 'mm/hr': 1, 'in/h': 25.4, 'in/hr': 25.4, '"/h': 25.4, '"/hr': 25.4},
