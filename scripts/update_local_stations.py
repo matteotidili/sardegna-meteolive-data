@@ -9,6 +9,8 @@ from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -848,23 +850,48 @@ def fetch_isola_rossa():
 
 
 def collect(sources, previous):
+    """Refresh providers concurrently, retry errors, and isolate outages."""
     retained = {row['station_id']: row for row in previous.get('stations', [])}
-    rows, failures, fresh = [], {}, 0
-    for station_id, fetcher in sources:
-        try:
-            rows.append(fetcher())
-            fresh += 1
-        except (OSError, ValueError, KeyError, TypeError, OverflowError) as error:
-            failures[station_id] = type(error).__name__
+    results = {}
+    failures = {}
+
+    def fetch_with_retry(fetcher):
+        last_error = None
+        for attempt in range(3):
+            try:
+                return fetcher(), None
+            except Exception as error:
+                last_error = error
+                if attempt < 2:
+                    time.sleep((2, 5)[attempt])
+        return None, last_error
+
+    with ThreadPoolExecutor(max_workers=10, thread_name_prefix='station') as pool:
+        jobs = {pool.submit(fetch_with_retry, fetcher): station_id
+                for station_id, fetcher in sources}
+        for future in as_completed(jobs):
+            station_id = jobs[future]
+            try:
+                row, error = future.result()
+            except Exception as unexpected:
+                row, error = None, unexpected
+            if row is not None:
+                results[station_id] = row
+                continue
+            failures[station_id] = type(error).__name__ if error else 'UnexpectedError'
             if station_id == 'desulo-bakumeteo' and isinstance(error, urllib.error.URLError):
                 print('Desulo public source connection:', str(error.reason)[:180])
             if station_id in retained:
                 row = dict(retained[station_id])
                 if station_id == 'desulo-bakumeteo':
                     row.update(name='Desulo',observation_type='Sardegna Clima · Desulo 945 m')
-                rows.append(row)
+                results[station_id] = row
+
+    fresh = sum(1 for station_id, _ in sources if station_id in results and station_id not in failures)
     if not fresh:
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
+    rows = [results[station_id] for station_id, _ in sources if station_id in results]
+    print(f'Refreshed {fresh}/{len(sources)} stations; {len(failures)} provider(s) failed after retries')
     return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Panoramicams / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
 
