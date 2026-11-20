@@ -29,6 +29,7 @@ STATIONS = {
     "16531": {"name": "Olbia-Costa Smeralda", "icao": "LIEO", "lat": 40.9000, "lon": 9.5167, "elev": 11},
     "16532": {"name": "Monte Limbara", "icao": "LIEW", "lat": 40.8525, "lon": 9.1764, "elev": 1363},
     "16539": {"name": "Capo Frasca", "icao": "LIEF", "lat": 39.7500, "lon": 8.4667, "elev": 89},
+    "16541": {"name": "Perdasdefogu", "lat": 39.6744, "lon": 9.4431, "elev": 608},
     "16542": {"name": "Capo San Lorenzo", "icao": "LIEL", "lat": 39.4981, "lon": 9.6292, "elev": 5},
     "16546": {"name": "Decimomannu", "icao": "LIED", "lat": 39.3461, "lon": 8.9675, "elev": 28},
     "16550": {"name": "Capo Bellavista", "icao": "LIEB", "lat": 39.9333, "lon": 9.7167, "elev": 150},
