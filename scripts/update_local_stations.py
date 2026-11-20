@@ -42,10 +42,8 @@ PANORAMICAMS_REQUESTS = threading.BoundedSemaphore(3)
 PANORAMICAMS_STATIONS = [
     dict(station_id='panoramicams-sinis', feed='GW1100A-WIFI8F00', area='sinis', name='San Giovanni di Sinis – Panoramicams', lat=39.885152, lon=8.430593, source_url='https://panoramicams.com/san-giovanni-di-sinis/'),
     dict(station_id='panoramicams-porto-pollo', feed='GW1100A-WIFI86B9', area='portopollo', name='Porto Pollo – Panoramicams', lat=41.193837, lon=9.316426, source_url='https://panoramicams.com/porto-pollo-sottovento/'),
-    dict(station_id='panoramicams-aglientu', feed='GW1100A-WIFI50BD', area='aglientu', name='Aglientu – Panoramicams', lat=41.177222, lon=9.171667, source_url='https://panoramicams.com/la-liccia-rena-majori/'),
     dict(station_id='panoramicams-costa-rei', feed='GW1100A-WIFI855D', area='costarei', name='Costa Rei – Panoramicams', lat=39.265682, lon=9.580918, source_url='https://panoramicams.com/piscina-rei-capo-ferrato/'),
     dict(station_id='panoramicams-sa-barra', feed='GW1100A-WIFI935C', area='sabarra', name='Sant’Antioco – Sa Barra', lat=39.090983, lon=8.440464, source_url='https://panoramicams.com/sa-barra-sant-antioco/'),
-    dict(station_id='panoramicams-buggerru', feed='GW1100A-WIFI4CA0', area='buggerru', name='Buggerru – Panoramicams', lat=39.428326, lon=8.403195, source_url='https://panoramicams.com/san-nicolo/'),
     dict(station_id='panoramicams-san-teodoro', feed='GW1100A-WIFI4CD4', area='santeodoro', name='San Teodoro – Panoramicams', lat=40.784039, lon=9.668824, source_url='https://panoramicams.com/la-cinta-san-teodoro/'),
     dict(station_id='panoramicams-la-caletta', feed='GW1100A-WIFI818B', area='lacaletta', name='La Caletta – Panoramicams', lat=40.602164, lon=9.748702, source_url='https://panoramicams.com/la-caletta-siniscola/'),
     dict(station_id='panoramicams-punta-saline', feed='GW1100A-WIFI3299', area='puntasaline', name='Punta Saline – Olbia', lat=40.908131, lon=9.571293, source_url='https://panoramicams.com/punta-saline-olbia/'),
