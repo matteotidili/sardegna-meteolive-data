@@ -5,68 +5,68 @@
     {
       "country": "Italia",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:35.884685Z",
-      "feed_updated": "2026-11-19T23:06:20.908382Z"
+      "checked_at": "2026-11-20T03:59:52.627149Z",
+      "feed_updated": "2026-11-20T03:35:57.037980Z"
     },
     {
       "country": "Spagna",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:36.336010Z",
-      "feed_updated": "2026-11-19T23:05:51.510744Z"
+      "checked_at": "2026-11-20T03:59:53.102345Z",
+      "feed_updated": "2026-11-20T03:35:35.967968Z"
     },
     {
       "country": "Francia",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:36.316683Z",
-      "feed_updated": "2026-11-19T23:05:55.797955Z"
+      "checked_at": "2026-11-20T03:59:53.287109Z",
+      "feed_updated": "2026-11-20T03:35:39.941748Z"
     },
     {
       "country": "Slovenia",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:36.905735Z",
-      "feed_updated": "2026-11-19T23:07:32.803148Z"
+      "checked_at": "2026-11-20T03:59:54.085910Z",
+      "feed_updated": "2026-11-20T03:35:28.250109Z"
     },
     {
       "country": "Croazia",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:37.632725Z",
-      "feed_updated": "2026-11-19T23:05:21.062025Z"
+      "checked_at": "2026-11-20T03:59:54.781876Z",
+      "feed_updated": "2026-11-20T03:35:22.587883Z"
     },
     {
       "country": "Bosnia ed Erzegovina",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:38.062871Z",
-      "feed_updated": "2026-11-19T23:05:32.450755Z"
+      "checked_at": "2026-11-20T03:59:54.547905Z",
+      "feed_updated": "2026-11-20T03:35:33.163566Z"
     },
     {
       "country": "Montenegro",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:37.918474Z",
-      "feed_updated": "2026-11-19T23:05:43.924754Z"
+      "checked_at": "2026-11-20T03:59:54.902630Z",
+      "feed_updated": "2026-11-20T03:35:51.468160Z"
     },
     {
       "country": "Grecia",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:38.368789Z",
-      "feed_updated": "2026-11-19T23:05:05.027594Z"
+      "checked_at": "2026-11-20T03:59:55.194356Z",
+      "feed_updated": "2026-11-20T03:35:01.849243Z"
     },
     {
       "country": "Malta",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:38.498374Z",
-      "feed_updated": "2026-11-19T23:05:07.060539Z"
+      "checked_at": "2026-11-20T03:59:55.604176Z",
+      "feed_updated": "2026-11-20T03:35:03.995126Z"
     },
     {
       "country": "Cipro",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:38.496991Z",
-      "feed_updated": "2026-11-19T23:05:18.495567Z"
+      "checked_at": "2026-11-20T03:59:55.614478Z",
+      "feed_updated": "2026-11-20T03:35:22.026426Z"
     },
     {
       "country": "Israele",
       "status": "ok",
-      "checked_at": "2026-11-19T23:14:38.959058Z",
-      "feed_updated": "2026-11-19T23:05:44.281753Z"
+      "checked_at": "2026-11-20T03:59:56.315049Z",
+      "feed_updated": "2026-11-20T03:35:51.962122Z"
     }
   ],
   "uncovered": [
@@ -84,459 +84,6 @@
   ],
   "region": "Mediterraneo",
   "regions": {
-    "IT019": {
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              9.617,
-              41.084
-            ],
-            [
-              9.525,
-              41.174
-            ],
-            [
-              9.484,
-              41.247
-            ],
-            [
-              9.354,
-              41.338
-            ],
-            [
-              9.288,
-              41.236
-            ],
-            [
-              9.224,
-              41.272
-            ],
-            [
-              9.133,
-              41.246
-            ],
-            [
-              9.159,
-              41.169
-            ],
-            [
-              9.072,
-              41.131
-            ],
-            [
-              9.046,
-              41.141
-            ],
-            [
-              8.999,
-              41.117
-            ],
-            [
-              8.858,
-              41.016
-            ],
-            [
-              8.865,
-              40.999
-            ],
-            [
-              8.786,
-              40.923
-            ],
-            [
-              8.714,
-              40.924
-            ],
-            [
-              8.632,
-              40.884
-            ],
-            [
-              8.568,
-              40.838
-            ],
-            [
-              8.463,
-              40.821
-            ],
-            [
-              8.414,
-              40.845
-            ],
-            [
-              8.319,
-              40.847
-            ],
-            [
-              8.267,
-              40.885
-            ],
-            [
-              8.239,
-              40.926
-            ],
-            [
-              8.299,
-              41.042
-            ],
-            [
-              8.338,
-              41.045
-            ],
-            [
-              8.359,
-              41.099
-            ],
-            [
-              8.322,
-              41.128
-            ],
-            [
-              8.264,
-              41.105
-            ],
-            [
-              8.195,
-              41.007
-            ],
-            [
-              8.17,
-              40.937
-            ],
-            [
-              8.211,
-              40.894
-            ],
-            [
-              8.127,
-              40.724
-            ],
-            [
-              8.194,
-              40.683
-            ],
-            [
-              8.178,
-              40.645
-            ],
-            [
-              8.129,
-              40.624
-            ],
-            [
-              8.157,
-              40.556
-            ],
-            [
-              8.193,
-              40.568
-            ],
-            [
-              8.239,
-              40.566
-            ],
-            [
-              8.292,
-              40.589
-            ],
-            [
-              8.337,
-              40.498
-            ],
-            [
-              8.369,
-              40.491
-            ],
-            [
-              8.384,
-              40.414
-            ],
-            [
-              8.376,
-              40.335
-            ],
-            [
-              8.439,
-              40.316
-            ],
-            [
-              8.469,
-              40.285
-            ],
-            [
-              8.451,
-              40.145
-            ],
-            [
-              8.479,
-              40.091
-            ],
-            [
-              8.269,
-              39.985
-            ],
-            [
-              8.43,
-              39.854
-            ],
-            [
-              8.443,
-              39.62
-            ],
-            [
-              8.378,
-              39.468
-            ],
-            [
-              8.363,
-              39.238
-            ],
-            [
-              8.197,
-              39.153
-            ],
-            [
-              8.247,
-              39.099
-            ],
-            [
-              8.35,
-              39.055
-            ],
-            [
-              8.383,
-              38.983
-            ],
-            [
-              8.408,
-              38.951
-            ],
-            [
-              8.451,
-              38.928
-            ],
-            [
-              8.648,
-              38.86
-            ],
-            [
-              8.863,
-              38.877
-            ],
-            [
-              8.99,
-              38.969
-            ],
-            [
-              9.02,
-              38.981
-            ],
-            [
-              9.043,
-              39.017
-            ],
-            [
-              9.051,
-              39.058
-            ],
-            [
-              9.026,
-              39.084
-            ],
-            [
-              9.018,
-              39.121
-            ],
-            [
-              9.027,
-              39.151
-            ],
-            [
-              9.097,
-              39.207
-            ],
-            [
-              9.159,
-              39.175
-            ],
-            [
-              9.173,
-              39.19
-            ],
-            [
-              9.162,
-              39.196
-            ],
-            [
-              9.192,
-              39.22
-            ],
-            [
-              9.237,
-              39.224
-            ],
-            [
-              9.248,
-              39.215
-            ],
-            [
-              9.297,
-              39.212
-            ],
-            [
-              9.37,
-              39.168
-            ],
-            [
-              9.393,
-              39.141
-            ],
-            [
-              9.437,
-              39.12
-            ],
-            [
-              9.493,
-              39.131
-            ],
-            [
-              9.501,
-              39.107
-            ],
-            [
-              9.53,
-              39.077
-            ],
-            [
-              9.544,
-              39.079
-            ],
-            [
-              9.535,
-              39.121
-            ],
-            [
-              9.572,
-              39.138
-            ],
-            [
-              9.608,
-              39.131
-            ],
-            [
-              9.612,
-              39.153
-            ],
-            [
-              9.575,
-              39.162
-            ],
-            [
-              9.583,
-              39.183
-            ],
-            [
-              9.572,
-              39.218
-            ],
-            [
-              9.606,
-              39.289
-            ],
-            [
-              9.639,
-              39.294
-            ],
-            [
-              9.639,
-              39.307
-            ],
-            [
-              9.606,
-              39.322
-            ],
-            [
-              9.645,
-              39.434
-            ],
-            [
-              9.683,
-              39.749
-            ],
-            [
-              9.702,
-              39.85
-            ],
-            [
-              9.694,
-              39.892
-            ],
-            [
-              9.725,
-              39.929
-            ],
-            [
-              9.695,
-              39.955
-            ],
-            [
-              9.748,
-              40.089
-            ],
-            [
-              9.669,
-              40.14
-            ],
-            [
-              9.639,
-              40.221
-            ],
-            [
-              9.684,
-              40.324
-            ],
-            [
-              9.782,
-              40.389
-            ],
-            [
-              9.842,
-              40.531
-            ],
-            [
-              9.769,
-              40.604
-            ],
-            [
-              9.755,
-              40.695
-            ],
-            [
-              9.7,
-              40.781
-            ],
-            [
-              9.775,
-              40.925
-            ],
-            [
-              9.617,
-              41.046
-            ],
-            [
-              9.617,
-              41.084
-            ]
-          ]
-        ]
-      },
-      "source": "bundled-emma",
-      "precision": "region",
-      "source_code": "IT019",
-      "matched_by": "code"
-    },
     "IT001": {
       "geometry": {
         "type": "Polygon",
@@ -1509,6 +1056,459 @@
       "source": "bundled-emma",
       "precision": "region",
       "source_code": "IT018",
+      "matched_by": "code"
+    },
+    "IT019": {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.617,
+              41.084
+            ],
+            [
+              9.525,
+              41.174
+            ],
+            [
+              9.484,
+              41.247
+            ],
+            [
+              9.354,
+              41.338
+            ],
+            [
+              9.288,
+              41.236
+            ],
+            [
+              9.224,
+              41.272
+            ],
+            [
+              9.133,
+              41.246
+            ],
+            [
+              9.159,
+              41.169
+            ],
+            [
+              9.072,
+              41.131
+            ],
+            [
+              9.046,
+              41.141
+            ],
+            [
+              8.999,
+              41.117
+            ],
+            [
+              8.858,
+              41.016
+            ],
+            [
+              8.865,
+              40.999
+            ],
+            [
+              8.786,
+              40.923
+            ],
+            [
+              8.714,
+              40.924
+            ],
+            [
+              8.632,
+              40.884
+            ],
+            [
+              8.568,
+              40.838
+            ],
+            [
+              8.463,
+              40.821
+            ],
+            [
+              8.414,
+              40.845
+            ],
+            [
+              8.319,
+              40.847
+            ],
+            [
+              8.267,
+              40.885
+            ],
+            [
+              8.239,
+              40.926
+            ],
+            [
+              8.299,
+              41.042
+            ],
+            [
+              8.338,
+              41.045
+            ],
+            [
+              8.359,
+              41.099
+            ],
+            [
+              8.322,
+              41.128
+            ],
+            [
+              8.264,
+              41.105
+            ],
+            [
+              8.195,
+              41.007
+            ],
+            [
+              8.17,
+              40.937
+            ],
+            [
+              8.211,
+              40.894
+            ],
+            [
+              8.127,
+              40.724
+            ],
+            [
+              8.194,
+              40.683
+            ],
+            [
+              8.178,
+              40.645
+            ],
+            [
+              8.129,
+              40.624
+            ],
+            [
+              8.157,
+              40.556
+            ],
+            [
+              8.193,
+              40.568
+            ],
+            [
+              8.239,
+              40.566
+            ],
+            [
+              8.292,
+              40.589
+            ],
+            [
+              8.337,
+              40.498
+            ],
+            [
+              8.369,
+              40.491
+            ],
+            [
+              8.384,
+              40.414
+            ],
+            [
+              8.376,
+              40.335
+            ],
+            [
+              8.439,
+              40.316
+            ],
+            [
+              8.469,
+              40.285
+            ],
+            [
+              8.451,
+              40.145
+            ],
+            [
+              8.479,
+              40.091
+            ],
+            [
+              8.269,
+              39.985
+            ],
+            [
+              8.43,
+              39.854
+            ],
+            [
+              8.443,
+              39.62
+            ],
+            [
+              8.378,
+              39.468
+            ],
+            [
+              8.363,
+              39.238
+            ],
+            [
+              8.197,
+              39.153
+            ],
+            [
+              8.247,
+              39.099
+            ],
+            [
+              8.35,
+              39.055
+            ],
+            [
+              8.383,
+              38.983
+            ],
+            [
+              8.408,
+              38.951
+            ],
+            [
+              8.451,
+              38.928
+            ],
+            [
+              8.648,
+              38.86
+            ],
+            [
+              8.863,
+              38.877
+            ],
+            [
+              8.99,
+              38.969
+            ],
+            [
+              9.02,
+              38.981
+            ],
+            [
+              9.043,
+              39.017
+            ],
+            [
+              9.051,
+              39.058
+            ],
+            [
+              9.026,
+              39.084
+            ],
+            [
+              9.018,
+              39.121
+            ],
+            [
+              9.027,
+              39.151
+            ],
+            [
+              9.097,
+              39.207
+            ],
+            [
+              9.159,
+              39.175
+            ],
+            [
+              9.173,
+              39.19
+            ],
+            [
+              9.162,
+              39.196
+            ],
+            [
+              9.192,
+              39.22
+            ],
+            [
+              9.237,
+              39.224
+            ],
+            [
+              9.248,
+              39.215
+            ],
+            [
+              9.297,
+              39.212
+            ],
+            [
+              9.37,
+              39.168
+            ],
+            [
+              9.393,
+              39.141
+            ],
+            [
+              9.437,
+              39.12
+            ],
+            [
+              9.493,
+              39.131
+            ],
+            [
+              9.501,
+              39.107
+            ],
+            [
+              9.53,
+              39.077
+            ],
+            [
+              9.544,
+              39.079
+            ],
+            [
+              9.535,
+              39.121
+            ],
+            [
+              9.572,
+              39.138
+            ],
+            [
+              9.608,
+              39.131
+            ],
+            [
+              9.612,
+              39.153
+            ],
+            [
+              9.575,
+              39.162
+            ],
+            [
+              9.583,
+              39.183
+            ],
+            [
+              9.572,
+              39.218
+            ],
+            [
+              9.606,
+              39.289
+            ],
+            [
+              9.639,
+              39.294
+            ],
+            [
+              9.639,
+              39.307
+            ],
+            [
+              9.606,
+              39.322
+            ],
+            [
+              9.645,
+              39.434
+            ],
+            [
+              9.683,
+              39.749
+            ],
+            [
+              9.702,
+              39.85
+            ],
+            [
+              9.694,
+              39.892
+            ],
+            [
+              9.725,
+              39.929
+            ],
+            [
+              9.695,
+              39.955
+            ],
+            [
+              9.748,
+              40.089
+            ],
+            [
+              9.669,
+              40.14
+            ],
+            [
+              9.639,
+              40.221
+            ],
+            [
+              9.684,
+              40.324
+            ],
+            [
+              9.782,
+              40.389
+            ],
+            [
+              9.842,
+              40.531
+            ],
+            [
+              9.769,
+              40.604
+            ],
+            [
+              9.755,
+              40.695
+            ],
+            [
+              9.7,
+              40.781
+            ],
+            [
+              9.775,
+              40.925
+            ],
+            [
+              9.617,
+              41.046
+            ],
+            [
+              9.617,
+              41.084
+            ]
+          ]
+        ]
+      },
+      "source": "bundled-emma",
+      "precision": "region",
+      "source_code": "IT019",
       "matched_by": "code"
     },
     "IT017": {
@@ -13413,45 +13413,15 @@
   "region_count": 75,
   "region_geometry_errors": [],
   "feed_url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-  "generated_at": "2026-11-19T23:14:38.984374Z",
-  "feed_updated": "2026-11-19T23:07:32.803148Z",
-  "warning_count": 162,
-  "active_count": 88,
-  "upcoming_count": 74,
+  "generated_at": "2026-11-20T03:59:56.339076Z",
+  "feed_updated": "2026-11-20T03:35:57.037980Z",
+  "warning_count": 156,
+  "active_count": 90,
+  "upcoming_count": 66,
   "max_level": 3,
   "active_max_level": 3,
   "upcoming_max_level": 2,
   "warnings": [
-    {
-      "id": "2.49.0.0.380.3.IT.261119110556.109",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T00:00:00Z",
-      "onset": "2026-11-19T00:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Molise",
-      "emma_id": "IT014",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/174fe67c-447e-4b6f-a8a0-686a6a1664ec",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
     {
       "id": "2.49.0.0.380.3.IT.261119110556.106",
       "status": "active",
@@ -13477,66 +13447,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/12b24162-91f2-4bc0-96a4-b17c9ae4619c",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261119110556.118",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T09:00:00Z",
-      "onset": "2026-11-19T09:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Basilicata",
-      "emma_id": "IT017",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/ba5996eb-e49a-4568-ade7-116790474950",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261119110556.113",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T09:00:00Z",
-      "onset": "2026-11-19T09:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Campania",
-      "emma_id": "IT016",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c2ec4039-d91e-49c3-81c5-d4cea063ffee",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -13903,36 +13813,6 @@
       "country_code": "italy"
     },
     {
-      "id": "2.49.0.0.380.3.IT.261119110556.115",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T09:00:00Z",
-      "onset": "2026-11-19T09:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Puglia",
-      "emma_id": "IT015",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/6fd1601c-2e30-4264-af59-d9617dfa8bc2",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
       "id": "2.49.0.0.380.3.IT.261119110556.096",
       "status": "active",
       "sent": "2026-11-19T10:05:56Z",
@@ -13987,36 +13867,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/f973b7a5-939d-4387-ba25-5a3d768e29f3",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261119110556.124",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T10:00:00Z",
-      "onset": "2026-11-19T10:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Orange Wind Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Severe",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 3,
-      "level_name": "arancione",
-      "type_code": null,
-      "type_name": "Vento",
-      "area_desc": "Sardegna",
-      "emma_id": "IT019",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/559164af-4d46-4459-a1d5-9cdfb997acab",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -14347,36 +14197,6 @@
       "geometry": null,
       "radius_km": null,
       "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/f033b36b-5b28-4d91-ac30-645ef25242ca",
-      "source_web": "",
-      "sender_name": "",
-      "country": "Italia",
-      "country_code": "italy"
-    },
-    {
-      "id": "2.49.0.0.380.3.IT.261119110556.120",
-      "status": "active",
-      "sent": "2026-11-19T10:05:57Z",
-      "effective": "2026-11-19T10:00:00Z",
-      "onset": "2026-11-19T10:00:00Z",
-      "expires": "2026-11-19T23:59:00Z",
-      "event": "Yellow Rain Warning",
-      "headline": "",
-      "description": "",
-      "instruction": "",
-      "severity": "Moderate",
-      "urgency": "Future",
-      "certainty": "Likely",
-      "awareness_level": "",
-      "awareness_type": "",
-      "level": 2,
-      "level_name": "giallo",
-      "type_code": null,
-      "type_name": "Pioggia",
-      "area_desc": "Calabria",
-      "emma_id": "IT001",
-      "geometry": null,
-      "radius_km": null,
-      "cap_url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/8e2f7804-fe7f-47c1-974e-df691a2a054e",
       "source_web": "",
       "sender_name": "",
       "country": "Italia",
@@ -16178,7 +15998,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261119110556.119",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T10:05:57Z",
       "effective": "2026-11-20T00:00:00Z",
       "onset": "2026-11-20T00:00:00Z",
@@ -16208,7 +16028,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261119110556.116",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T10:05:57Z",
       "effective": "2026-11-20T00:00:00Z",
       "onset": "2026-11-20T00:00:00Z",
@@ -16238,7 +16058,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261119110556.125",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T10:05:57Z",
       "effective": "2026-11-20T00:00:00Z",
       "onset": "2026-11-20T00:00:00Z",
@@ -16268,7 +16088,7 @@
     },
     {
       "id": "2.49.0.0.380.3.IT.261119110556.095",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T10:05:56Z",
       "effective": "2026-11-20T01:00:00Z",
       "onset": "2026-11-20T01:00:00Z",
@@ -16298,7 +16118,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261119131000.010000008",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T13:10:00Z",
       "effective": "2026-11-19T13:10:00Z",
       "onset": "2026-11-20T01:00:00Z",
@@ -16328,7 +16148,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261119125600.001000008",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T12:56:00Z",
       "effective": "2026-11-19T12:56:00Z",
       "onset": "2026-11-20T01:00:00Z",
@@ -16358,7 +16178,7 @@
     },
     {
       "id": "2.49.0.0.300.0.GR.261119125600.001000002",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T12:56:00Z",
       "effective": "2026-11-19T12:56:00Z",
       "onset": "2026-11-20T01:00:00Z",
@@ -16388,7 +16208,7 @@
     },
     {
       "id": "2.49.0.0.705.2.SI.20261119090206.flood_14_20261120030001",
-      "status": "upcoming",
+      "status": "active",
       "sent": "2026-11-19T08:02:06Z",
       "effective": "2026-11-19T08:02:06Z",
       "onset": "2026-11-20T02:00:01Z",
