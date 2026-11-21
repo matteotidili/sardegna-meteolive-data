@@ -8,7 +8,8 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
-from urllib.request import Request, urlopen\nfrom urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 
 PAGE = "https://www.mareografico.it/it/mappa-interattiva.html"
 # Coordinate e indici sono verificati sulle matrici La/Lo/Da del feed cartografico RON.
@@ -40,16 +41,23 @@ def number(value):
 
 
 def main() -> None:
-    html = get(PAGE)
-    # ISPRA assegna alla RON il feed _jS4_; la pagina pubblica il file cartografico corrente.
-    paths = re.findall(r"[^\"'<> ]*_jS4_\d{12}\.map", html)
-    if not paths:
-        # Alcune versioni della pagina indicano il feed senza il prefisso di directory.
-        paths = re.findall(r"_jS4_\d{12}\.map", html)
-    if not paths:
-        raise RuntimeError("Feed RON _jS4_ non trovato nella pagina ISPRA")
-    feed_url = urljoin(PAGE, paths[-1])
-    source = get(feed_url)
+    # ISPRA publishes RON snapshots as _jS4_<UTC>.map; discover the newest file.
+    now_dt = datetime.now(timezone.utc).replace(second=0, microsecond=0)
+    now_dt = now_dt.replace(minute=(now_dt.minute // 10) * 10)
+    feed_url = None
+    source = None
+    for step in range(0, 24 * 6 + 1):
+        stamp = (now_dt - __import__("datetime").timedelta(minutes=10 * step)).strftime("%Y%m%d%H%M")
+        candidate = f"https://www.mareografico.it/FILE/TEMP/_jS4_{stamp}.map"
+        try:
+            candidate_source = get(candidate)
+            if "var La=" in candidate_source and "var Da=" in candidate_source:
+                feed_url, source = candidate, candidate_source
+                break
+        except (HTTPError, URLError, TimeoutError):
+            continue
+    if not feed_url or not source:
+        raise RuntimeError("Nessun feed RON ISPRA trovato nelle ultime 24 ore")
     lats, lons, rows = js_array(source, "La"), js_array(source, "Lo"), js_array(source, "Da")
     names = [str(row[0]).strip().upper() for row in rows]
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
