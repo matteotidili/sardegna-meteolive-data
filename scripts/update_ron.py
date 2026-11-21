@@ -23,7 +23,7 @@ def get(url: str) -> str:
 
 
 def js_array(source: str, name: str):
-    match = re.search(rf"\\bvar\\s+{re.escape(name)}\\s*=\\s*(\\[.*?\\]);", source, re.S)
+    match = re.search(rf"\bvar\s+{re.escape(name)}\s*=\s*(\[.*?\]);", source, re.S)
     if not match:
         raise RuntimeError(f"Array {name} non trovato nel feed RON")
     return ast.literal_eval(match.group(1))
@@ -42,10 +42,10 @@ def number(value):
 def main() -> None:
     html = get(PAGE)
     # ISPRA assegna alla RON il feed _jS4_; la pagina pubblica il file cartografico corrente.
-    paths = re.findall(r"[^\\"'<> ]*_jS4_\\d{12}\\.map", html)
+    paths = re.findall(r"[^\"'<> ]*_jS4_\d{12}\.map", html)
     if not paths:
         # Alcune versioni della pagina indicano il feed senza il prefisso di directory.
-        paths = re.findall(r"_jS4_\\d{12}\\.map", html)
+        paths = re.findall(r"_jS4_\d{12}\.map", html)
     if not paths:
         raise RuntimeError("Feed RON _jS4_ non trovato nella pagina ISPRA")
     feed_url = urljoin(PAGE, paths[-1])
@@ -53,7 +53,7 @@ def main() -> None:
     lats, lons, rows = js_array(source, "La"), js_array(source, "Lo"), js_array(source, "Da")
     names = [str(row[0]).strip().upper() for row in rows]
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
-    file_time = re.search(r"_(\\d{12})\\.map(?:\\?|$)", feed_url)
+    file_time = re.search(r"_(\d{12})\.map(?:\?|$)", feed_url)
     snapshot = (datetime.strptime(file_time.group(1), "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
                 .isoformat(timespec="seconds").replace("+00:00", "Z") if file_time else now)
     out = []
@@ -89,7 +89,7 @@ def main() -> None:
                "generated_at": now, "feed_url": feed_url, "station_count": len(out),
                "stations": out,
                "note": "Dati dinamici non validati da ISPRA; precipitazione cumulata della fonte, periodo non specificato."}
-    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Acquisite {len(out)} boe RON sarde ({now})")
 
 
