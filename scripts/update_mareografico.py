@@ -53,6 +53,12 @@ def main() -> None:
     lats, lons, rows = js_array(source, "La"), js_array(source, "Lo"), js_array(source, "Da")
     names = [str(row[0]).strip().upper() for row in rows]
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    file_time = re.search(r"_(\d{12})\.map(?:\?|$)", feed_url)
+    snapshot = (
+        datetime.strptime(file_time.group(1), "%Y%m%d%H%M").replace(tzinfo=timezone.utc)
+        .isoformat(timespec="seconds").replace("+00:00", "Z")
+        if file_time else now
+    )
     out = []
     for key, (name, lat, lon) in STATIONS.items():
         if key not in names:
@@ -66,7 +72,7 @@ def main() -> None:
         out.append({
             "station_id": "ispra-" + key.lower().replace(" ", "-"), "name": name,
             "lat": lat, "lon": lon, "elev": None,
-            "last": now, "snapshot_at": now,
+            "last": snapshot, "snapshot_at": snapshot,
             "temp": air_temp, "rh": humidity, "pressure_hpa": pressure,
             "wind_kmh": wind_ms * 3.6 if wind_ms is not None else None,
             "wind_dir": wind_dir, "gust_kmh": None,
