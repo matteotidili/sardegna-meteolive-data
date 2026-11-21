@@ -8,7 +8,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
-from urllib.request import Request, urlopen
+from urllib.request import Request, urlopen\nfrom urllib.error import HTTPError, URLError
 
 PAGE = "https://www.mareografico.it/it/mappa-interattiva.html"
 # Coordinate e indici sono verificati sulle matrici La/Lo/Da del feed cartografico RON.
