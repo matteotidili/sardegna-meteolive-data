@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+from marine_forecast import marine_forecast
 import json
 import re
 from datetime import datetime, timezone
@@ -78,6 +79,7 @@ def main() -> None:
             "wind_dir": wind_dir, "gust_kmh": None,
             "sea_level_m": sea_level, "water_temp_c": water_temp,
             "solar_wm2": solar, "precip_mm": precip,
+            "marine_forecast": marine_forecast(lat, lon),
             "available": {"temp": air_temp is not None, "rh": humidity is not None,
                           "wind": wind_ms is not None, "wind_dir": wind_dir is not None,
                           "gust": False, "rain": False},
