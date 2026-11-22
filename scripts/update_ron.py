@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+from marine_forecast import marine_forecast
 import json
 import re
 from datetime import datetime, timezone
@@ -84,6 +85,7 @@ def main() -> None:
             "wind_kmh": wind_ms * 3.6 if wind_ms is not None else None,
             "wind_dir": wind_dir, "gust_kmh": None,
             "water_temp_c": water, "solar_wm2": solar, "precip_mm": precip,
+            "marine_forecast": marine_forecast(lat, lon),
             "period_mean_s": period_mean, "period_peak_s": period_peak,
             "wave_height_significant_m": wave_hs, "wave_direction_mean_deg": wave_dir,
             "wave_height_max_m": wave_max, "current_speed_ms": current_ms,
