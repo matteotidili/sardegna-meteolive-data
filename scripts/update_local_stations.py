@@ -958,6 +958,27 @@ def collect(sources, previous):
         raise RuntimeError('No local station could be refreshed; previous dataset preserved')
     rows = [results[station_id] for station_id, _ in sources if station_id in results]
     add_sampled_temperature_extremes(rows, retained)
+    # Track the highest gust exposed by each station every collector cycle.
+    # The timestamp is when the web app observed the value, not necessarily
+    # the exact physical instant of the peak.
+    today = datetime.now(ZoneInfo('Europe/Rome')).date().isoformat()
+    for row in rows:
+        observed = parse_datetime(row.get('last'))
+        gust = number_value(row.get('gust_kmh'))
+        old = retained.get(row.get('station_id'), {})
+        old_day = old.get('gust_day') or (
+            parse_datetime(old.get('last')).astimezone(ZoneInfo('Europe/Rome')).date().isoformat()
+            if parse_datetime(old.get('last')) else None)
+        if observed is None or observed.astimezone(ZoneInfo('Europe/Rome')).date().isoformat() != today:
+            continue
+        peak = number_value(old.get('gust_day_max_kmh')) if old_day == today else None
+        peak_at = old.get('gust_day_max_at') if old_day == today else None
+        if gust is not None and (peak is None or gust > peak):
+            peak, peak_at = gust, observed.isoformat()
+        row['gust_day_max_kmh'] = peak
+        row['gust_day_max_at'] = peak_at
+        row['gust_day'] = today
+        row['gust_day_source'] = 'network_sampled_10min'
     print(f'Refreshed {fresh}/{len(sources)} stations; {len(failures)} provider(s) failed after retries')
     return dict(source='Stazioni amatoriali · WeatherLink / Ecowitt / Panoramicams / Domusnovas Meteo / OroseiMeteo / QuartuMeteo / TonaraMeteo / LaconiMeteo / SerramannaMeteo / MeanaSardoMeteo',
                 generated_at=datetime.now(timezone.utc).isoformat(), stations=rows, errors=failures)
