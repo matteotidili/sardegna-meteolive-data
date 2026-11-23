@@ -95,6 +95,21 @@ def main() -> None:
                           "gust": False, "rain": False},
             "source_url": "https://www.mareografico.it/it/mappa-interattiva.html",
         })
+    # Rolling 7-day time series from the real RON snapshots.
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        previous = {}
+    old = {item.get("station_id"): item.get("history", []) for item in previous.get("stations", [])}
+    cutoff = datetime.now(timezone.utc).timestamp() - 7 * 86400
+    history_fields = ("water_temp_c", "temp", "pressure_hpa", "wind_kmh", "wind_dir", "period_mean_s", "period_peak_s", "wave_height_significant_m", "wave_direction_mean_deg", "wave_height_max_m", "current_speed_ms", "current_direction_deg", "solar_wm2", "precip_mm")
+    for row in out:
+        points = [p for p in old.get(row["station_id"], []) if float(p.get("t", 0)) >= cutoff]
+        stamp = datetime.fromisoformat(row["last"].replace("Z", "+00:00"))
+        point = {"t": int(stamp.timestamp() * 1000)}
+        point.update({key: row.get(key) for key in history_fields})
+        if not any(p.get("t") == point["t"] for p in points): points.append(point)
+        row["history"] = sorted(points, key=lambda p: p["t"])[-1008:]
     payload = {"source": "Rete Ondametrica Nazionale · ISPRA", "license": "CC BY 4.0",
                "generated_at": now, "feed_url": feed_url, "station_count": len(out),
                "stations": out,
