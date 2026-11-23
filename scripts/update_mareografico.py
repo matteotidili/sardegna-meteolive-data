@@ -85,6 +85,21 @@ def main() -> None:
                           "gust": False, "rain": False},
             "source_url": "https://www.mareografico.it/it/mappa-interattiva.html",
         })
+    # Maintain a rolling 7-day history from actual ISPRA scans.
+    try:
+        previous = json.loads(OUT.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        previous = {}
+    old = {item.get("station_id"): item.get("history", []) for item in previous.get("stations", [])}
+    cutoff = datetime.now(timezone.utc).timestamp() - 7 * 86400
+    history_fields = ("water_temp_c", "temp", "pressure_hpa", "wind_kmh", "wind_dir", "sea_level_m", "solar_wm2", "precip_mm")
+    for row in out:
+        points = [p for p in old.get(row["station_id"], []) if float(p.get("t", 0)) >= cutoff]
+        stamp = datetime.fromisoformat(row["last"].replace("Z", "+00:00"))
+        point = {"t": int(stamp.timestamp() * 1000)}
+        point.update({key: row.get(key) for key in history_fields})
+        if not any(p.get("t") == point["t"] for p in points): points.append(point)
+        row["history"] = sorted(points, key=lambda p: p["t"])[-1008:]
     payload = {
         "source": "Rete Mareografica Nazionale · ISPRA",
         "license": "CC BY 4.0",
