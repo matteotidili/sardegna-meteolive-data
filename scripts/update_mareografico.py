@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import ast
+import csv
+import io
 from marine_forecast import marine_forecast
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
@@ -19,6 +21,8 @@ STATIONS = {
     "PORTO TORRES": ("Porto Torres", 40.8422050476074, 8.4039134979248),
 }
 OUT = Path("data/mareografico.json")
+TAD_DEVICE_URL = "https://tsunami.isprambiente.it/TAD_Server/Device/214"
+TAD_API = "https://tsunami.isprambiente.it/TAD_Server/api/Data/Get/214"
 
 
 def get(url: str) -> str:
@@ -42,6 +46,33 @@ def number(value):
         return result if result == result else None
     except (TypeError, ValueError):
         return None
+
+
+
+def tad_history(now: datetime) -> list[dict]:
+    """Legge lo storico pubblico TAD e conserva campioni reali ogni 5 minuti."""
+    start = now - timedelta(days=7)
+    params = f"?tMin={start:%Y-%m-%d %H:%M:%S}&tMax={now:%Y-%m-%d %H:%M:%S}&nRec=20000&mode=CSV".replace(" ", "%20")
+    rows = csv.DictReader(io.StringIO(get(TAD_API + params)))
+    samples: dict[int, dict] = {}
+    for row in rows:
+        try:
+            stamp = datetime.strptime(row["Time(UTC)"], "%d %b %Y %H:%M:%S").replace(tzinfo=timezone.utc)
+        except (KeyError, ValueError):
+            continue
+        ms = int(stamp.timestamp() * 1000)
+        bucket = ms // (5 * 60_000) * (5 * 60_000)
+        samples[bucket] = {
+            "t": ms,
+            "sea_level_m": number(row.get("Level (m)")),
+            "water_temp_c": number(row.get("Water Temp (m)")),
+            "rms_30_m": number(row.get("rms 30 (m)")),
+            "alert": number(row.get("Alert")),
+            "alert_signal_m": number(row.get("Alert signal (m)")),
+            "forecast_30_m": number(row.get("Forecast 30 (m)")),
+            "forecast_300_m": number(row.get("Forecast 300 (m)")),
+        }
+    return [samples[key] for key in sorted(samples)]
 
 
 def main() -> None:
@@ -100,6 +131,37 @@ def main() -> None:
         point.update({key: row.get(key) for key in history_fields})
         if not any(p.get("t") == point["t"] for p in points): points.append(point)
         row["history"] = sorted(points, key=lambda p: p["t"])[-1008:]
+
+    # Il dispositivo TAD 214 è un mareografo costiero a Teulada, distinto dalle boe ondometriche.
+    try:
+        tad = tad_history(datetime.now(timezone.utc))
+    except Exception as exc:
+        print(f"Storico TAD Teulada non raggiungibile: {exc}")
+        tad = []
+    tad_id = "ispra-tad-teulada-214"
+    if tad:
+        latest = tad[-1]
+        stamp = datetime.fromtimestamp(latest["t"] / 1000, timezone.utc)
+        out.append({
+            "station_id": tad_id, "name": "Teulada · Mareografo TAD",
+            "observation_type": "mareografo TAD ISPRA",
+            "lat": 38.927562, "lon": 8.719502, "elev": 0,
+            "last": stamp.isoformat(timespec="seconds").replace("+00:00", "Z"),
+            "snapshot_at": stamp.isoformat(timespec="seconds").replace("+00:00", "Z"),
+            "temp": None, "rh": None, "pressure_hpa": None, "wind_kmh": None,
+            "wind_dir": None, "gust_kmh": None,
+            "sea_level_m": latest["sea_level_m"], "water_temp_c": latest["water_temp_c"],
+            "solar_wm2": None, "precip_mm": None,
+            "tad": {k: latest[k] for k in ("rms_30_m", "alert", "alert_signal_m", "forecast_30_m", "forecast_300_m")},
+            "history": tad,
+            "available": {"temp": False, "rh": False, "wind": False, "wind_dir": False, "gust": False, "rain": False},
+            "source_url": TAD_DEVICE_URL,
+        })
+    else:
+        old_tad = next((row for row in previous.get("stations", []) if row.get("station_id") == tad_id), None)
+        if old_tad:
+            out.append(old_tad)
+
     payload = {
         "source": "Rete Mareografica Nazionale · ISPRA",
         "license": "CC BY 4.0",
