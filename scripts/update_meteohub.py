@@ -178,6 +178,31 @@ def latest(series):
     dt,v,_,_=max(series,key=lambda x:x[0])
     return v,dt
 
+def filter_temperature_spikes(samples):
+    """Rimuove letture termiche isolate incompatibili con i campioni vicini."""
+    ordered=sorted(samples,key=lambda x:x[0])
+    kept=[]
+    rejected=0
+    for i,(dt,value) in enumerate(ordered):
+        before=ordered[i-1] if i>0 else None
+        after=ordered[i+1] if i+1<len(ordered) else None
+        isolated=False
+        if before and after:
+            close=(dt-before[0]<=timedelta(hours=2) and after[0]-dt<=timedelta(hours=2))
+            stable_neighbors=abs(before[1]-after[1])<=4.0
+            isolated=close and stable_neighbors and abs(value-(before[1]+after[1])/2)>=12.0
+        # Also catch a bad final sample by comparing it with the freshest
+        # observed temperature when both readings are within two hours.
+        if not isolated and before is not None and i==len(ordered)-1:
+            close=dt-before[0]<=timedelta(hours=2)
+            isolated=close and abs(value-before[1])>=12.0
+        if isolated:
+            rejected+=1
+        else:
+            kept.append((dt,value))
+    return kept,rejected
+
+
 def aggregate(raw):
     text=unpack(raw).decode("utf-8",errors="replace")
     rows=[]; max_dt=None
@@ -217,13 +242,16 @@ def aggregate(raw):
         ts=[x for x in s.get(V_TEMP,[]) if x[3] and x[3][0]==103 and x[3][1]==2000] or s.get(V_TEMP,[])
         tk,_=latest(ts)
         rec["temp"]=round(tk-273.15,1) if tk is not None else None
-        td=[v-273.15 for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
+        day_temp_samples=[(dt,v-273.15) for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
+        day_temp_samples,rejected_temp_spikes=filter_temperature_spikes(day_temp_samples)
+        td=[v for _,v in day_temp_samples]
         rec["tmin"]=round(min(td),1) if td else None; rec["tmax"]=round(max(td),1) if td else None
         # La sorgente BUFR espone B12101 (temperatura campionata), non gli
         # estremi continui del sensore. Registriamo la provenienza come per
         # MeteoNetwork, senza presentarli come valori assoluti strumentali.
         rec["extrema_source"]="meteohub_dpcn_sampled" if td else None
-        rec["extrema_samples"]=len({dt for dt,_,_,_ in ts if dt.astimezone(ROME).date()==target_day})
+        rec["extrema_samples"]=len(day_temp_samples)
+        rec["extrema_rejected_spikes"]=rejected_temp_spikes
         rec["extrema_day"]=str(target_day)
         rh,_=latest(s.get(V_RH,[])); rec["rh"]=round(rh) if rh is not None else None
         ws,_=latest(s.get(V_WSPD,[])); rec["wind_ms"]=round(ws,1) if ws is not None else None; rec["wind_kmh"]=round(ws*3.6,1) if ws is not None else None
