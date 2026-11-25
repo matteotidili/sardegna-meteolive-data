@@ -20,7 +20,7 @@ ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
 AWC = "https://aviationweather.gov/api/data/metar"
-# Margine per la durata dei job: ciclo principale 10 min, backup 30 min.
+# Raccolta frequente: controllo ogni 5 min, backup indipendente ogni 30 min.
 MIN_RUN_INTERVAL_MIN = 5
 
 STATIONS = {
