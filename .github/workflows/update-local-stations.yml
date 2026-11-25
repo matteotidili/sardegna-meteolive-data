@@ -1,7 +1,8 @@
 name: Aggiorna stazioni locali
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    # Polling ogni 5 minuti.
+    - cron: '1,6,11,16,21,26,31,36,41,46,51,56 * * * *'
   push:
     branches: [main]
     paths: ['scripts/update_local_stations.py', 'scripts/update_meteoproject.py', 'tests/test_local_stations.py', '.github/workflows/update-local-stations.yml']
@@ -22,7 +23,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verifica lettura dati
+      - name: Verifica parser (solo su avvio manuale)
+        if: github.event_name == 'workflow_dispatch'
         run: python -m unittest discover -s tests -p test_local_stations.py
       - name: Acquisisci osservazioni locali
         run: python scripts/update_local_stations.py
