@@ -26,6 +26,9 @@ class MonitorTests(unittest.TestCase):
             {"name": "AM test", "temp": 13, "last": (NOW-timedelta(minutes=10)).isoformat()}])
         self.write("data/ecowitt.json", [
             {"name": "Ecowitt test", "temp": 14, "last": (NOW-timedelta(minutes=5)).isoformat()}])
+        self.write("data/local_stations.json", [
+            {"station_id": "iglesias-marco-polo-ecowitt", "name": "Iglesias · Via Marco Polo",
+             "temp": 15, "last": (NOW-timedelta(minutes=5)).isoformat()}])
         Path("data/cedoc.json").write_text(json.dumps({
             "status": "ok", "stations": [
                 {"station_id": "001", "rain_today": 2.4,
@@ -126,6 +129,22 @@ class MonitorTests(unittest.TestCase):
         with patch.object(monitor,"github") as mocked:
             monitor.self_repair(report,NOW)
         mocked.assert_not_called()
+
+    def test_stale_iglesias_local_station_triggers_local_collector(self):
+        self.write("data/local_stations.json", [
+            {"station_id": "iglesias-marco-polo-ecowitt", "name": "Iglesias · Via Marco Polo",
+             "temp": 15, "last": (NOW-timedelta(minutes=12)).isoformat()}])
+        report=monitor.evaluate(NOW)
+        self.assertEqual(report["Iglesias · Via Marco Polo"]["status"], "stale")
+        calls=[]
+        def fake_api(method,path,payload=None):
+            calls.append((method,path,payload))
+            return {"workflow_runs": []}
+        with patch.object(monitor,"github",side_effect=fake_api):
+            monitor.self_repair(report,NOW)
+        self.assertTrue(any(m=="POST" and p.endswith(
+            "/actions/workflows/update-local-stations.yml/dispatches")
+            for m,p,_ in calls))
 
     def test_issue_change_throttling(self):
         self.write("data/stations.json", [
