@@ -189,6 +189,20 @@ def is_temperature_2m(level):
     except (TypeError, ValueError):
         return False
 
+def is_instantaneous(timerange):
+    """Esclude medie/accumuli: per temperatura servono solo osservazioni istantanee."""
+    if isinstance(timerange, dict):
+        timerange = timerange.get("code") or timerange.get("value") or timerange.get("timerange")
+    if isinstance(timerange, str):
+        timerange = timerange.split(",")
+    if not isinstance(timerange, (list, tuple)) or not timerange:
+        return False
+    try:
+        # MeteoHub codifica la misura puntuale con indicator 254, durata zero.
+        return int(timerange[0]) == 254 and (len(timerange) < 3 or int(timerange[2]) == 0)
+    except (TypeError, ValueError):
+        return False
+
 
 def aggregate(raw):
     text=unpack(raw).decode("utf-8",errors="replace")
@@ -228,7 +242,7 @@ def aggregate(raw):
         rec={k:st[k] for k in ("name","network","lat","lon","elev")}
         # Non ripiegare sugli altri livelli: può mescolare temperatura al suolo,
         # a 2 m e a 10 m, producendo estremi incompatibili con la stazione.
-        ts=[x for x in s.get(V_TEMP,[]) if is_temperature_2m(x[3])]
+        ts=[x for x in s.get(V_TEMP,[]) if is_temperature_2m(x[3]) and is_instantaneous(x[2])]
         tk,tk_dt=latest(ts)
         rec["temp"]=round(tk-273.15,1) if tk is not None else None
         day_temp_samples=[v-273.15 for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
