@@ -235,11 +235,14 @@ def aggregate(raw):
                 try:v=float(obj.get("v"))
                 except (TypeError,ValueError):continue
                 st["series"][code].append((dt,v,item.get("timerange"),item.get("level")))
+                if "serpeddi" in str(st["name"]).casefold() and code == V_TEMP:
+                    st.setdefault("_raw_temp_meta",[]).append((dt.isoformat(),dict(obj),item.get("timerange"),item.get("level")))
     output=[]
     for st in stations.values():
         s=st["series"]
         if not any(s.get(c) for c in DESIRED): continue
         if "serpeddi" in st["name"].casefold():
+            print("Serpeddi raw B12101:", st.get("_raw_temp_meta", [])[-8:])
             diagnostic=defaultdict(list)
             for dt0,v0,tr0,lev0 in s.get(V_TEMP,[]):
                 diagnostic[(str(lev0),str(tr0))].append((dt0,v0-273.15))
