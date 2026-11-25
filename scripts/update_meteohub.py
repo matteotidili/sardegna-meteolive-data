@@ -12,6 +12,7 @@ BASE = "https://meteohub.agenziaitaliameteo.it"
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
+# Diagnostic build: force a fresh MeteoHub pull for Serpeddi metadata inspection.
 # MeteoHub: quota predefinita 10 estrazioni/ora per account.
 # Intervallo minimo di 10 min: massimo 6 estrazioni/ora, con margine
 # rispetto alla quota MeteoHub di 10/ora e agli altri utilizzi dell'account.
