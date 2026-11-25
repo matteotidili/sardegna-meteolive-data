@@ -2,11 +2,9 @@ name: Aggiorna dati MeteoHub
 
 on:
   workflow_dispatch:
-  # Backup DPCN ogni 30 minuti, sfalsato rispetto a quella
-  # generale (update-observations.yml, minuti 4/19/34/49). I trigger
-  # schedule sono best-effort: calendari ridondanti riducono i buchi.
-  # update_meteohub.py mantiene un intervallo minimo di 12 minuti
-  # tra richieste effettive MeteoHub (quota predefinita 10/ora).
+  # Backup DPCN ogni 30 minuti; il ciclo generale controlla ogni 5 minuti.
+  # update_meteohub.py mantiene 10 minuti fra richieste effettive MeteoHub
+  # per lasciare margine sulla quota di 10 estrazioni/ora condivisa con MNW.
   schedule:
     - cron: '11,41 * * * *'
   push:
