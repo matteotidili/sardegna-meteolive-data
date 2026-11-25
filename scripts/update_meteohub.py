@@ -239,6 +239,16 @@ def aggregate(raw):
     for st in stations.values():
         s=st["series"]
         if not any(s.get(c) for c in DESIRED): continue
+        if "serpeddi" in st["name"].casefold():
+            diagnostic=defaultdict(list)
+            for dt0,v0,tr0,lev0 in s.get(V_TEMP,[]):
+                diagnostic[(str(lev0),str(tr0))].append((dt0,v0-273.15))
+            print("Serpeddi B12101 livelli/timerange:", {
+                key: {"n": len(vals), "min_c": round(min(v for _,v in vals),1),
+                      "max_c": round(max(v for _,v in vals),1),
+                      "ultimi": [(dt.isoformat(),round(v,1)) for dt,v in vals[-4:]]}
+                for key, vals in diagnostic.items()
+            })
         rec={k:st[k] for k in ("name","network","lat","lon","elev")}
         # Non ripiegare sugli altri livelli: può mescolare temperatura al suolo,
         # a 2 m e a 10 m, producendo estremi incompatibili con la stazione.
