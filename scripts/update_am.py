@@ -21,7 +21,7 @@ UTC = timezone.utc
 OGIMET = "https://www.ogimet.com/cgi-bin/getsynop"
 AWC = "https://aviationweather.gov/api/data/metar"
 # Margine per la durata dei job: ciclo principale 10 min, backup 30 min.
-MIN_RUN_INTERVAL_MIN = 10
+MIN_RUN_INTERVAL_MIN = 5
 
 STATIONS = {
     "16520": {"name": "Alghero-Fertilia", "icao": "LIEA", "lat": 40.6333, "lon": 8.2833, "elev": 23},
