@@ -178,40 +178,16 @@ def latest(series):
     dt,v,_,_=max(series,key=lambda x:x[0])
     return v,dt
 
-def filter_temperature_spikes(samples):
-    """Rimuove letture termiche isolate incompatibili con i campioni vicini."""
-    ordered=sorted(samples,key=lambda x:x[0])
-    kept=[]
-    rejected=0
-    for i,(dt,value) in enumerate(ordered):
-        before=ordered[i-1] if i>0 else None
-        after=ordered[i+1] if i+1<len(ordered) else None
-        isolated=False
-        if before and after:
-            close=(dt-before[0]<=timedelta(hours=2) and after[0]-dt<=timedelta(hours=2))
-            stable_neighbors=abs(before[1]-after[1])<=4.0
-            isolated=close and stable_neighbors and abs(value-(before[1]+after[1])/2)>=12.0
-        # Also catch a bad final sample by comparing it with the freshest
-        # observed temperature when both readings are within two hours.
-        if not isolated and before is not None and i==len(ordered)-1:
-            close=dt-before[0]<=timedelta(hours=2)
-            isolated=close and abs(value-before[1])>=12.0
-        if isolated:
-            rejected+=1
-        else:
-            kept.append((dt,value))
-    return kept,rejected
-
-
-def station_temperature_ceiling(name, day):
-    """Serpeddì Meteo ha una serie MeteoHub temporaneamente fuori scala."""
-    if "serpeddi" not in str(name).casefold():
-        return None
-    if day.month in {11, 12, 1, 2, 3}:
-        return 32.0
-    if day.month in {4, 10}:
-        return 38.0
-    return 48.0
+def is_temperature_2m(level):
+    """Accetta soltanto B12101 riferito esplicitamente a 2 m."""
+    if isinstance(level, dict):
+        level = level.get("code") or level.get("value") or level.get("level")
+    if not isinstance(level, (list, tuple)) or len(level) < 2:
+        return False
+    try:
+        return int(level[0]) == 103 and int(level[1]) == 2000
+    except (TypeError, ValueError):
+        return False
 
 
 def aggregate(raw):
@@ -250,34 +226,22 @@ def aggregate(raw):
         s=st["series"]
         if not any(s.get(c) for c in DESIRED): continue
         rec={k:st[k] for k in ("name","network","lat","lon","elev")}
-        ts=[x for x in s.get(V_TEMP,[]) if x[3] and x[3][0]==103 and x[3][1]==2000] or s.get(V_TEMP,[])
+        # Non ripiegare sugli altri livelli: può mescolare temperatura al suolo,
+        # a 2 m e a 10 m, producendo estremi incompatibili con la stazione.
+        ts=[x for x in s.get(V_TEMP,[]) if is_temperature_2m(x[3])]
         tk,tk_dt=latest(ts)
-        current_temp=round(tk-273.15,1) if tk is not None else None
-        day_temp_samples=[(dt,v-273.15) for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
-        day_temp_samples,rejected_temp_spikes=filter_temperature_spikes(day_temp_samples)
-        ceiling=station_temperature_ceiling(st["name"],target_day)
-        rejected_out_of_range=0
-        if ceiling is not None:
-            valid_samples=[(dt,v) for dt,v in day_temp_samples if -30.0<=v<=ceiling]
-            rejected_out_of_range=len(day_temp_samples)-len(valid_samples)
-            rejected_temp_spikes+=rejected_out_of_range
-            day_temp_samples=valid_samples
-            if current_temp is not None and current_temp>ceiling:
-                current_temp=None
-        rec["temp"]=current_temp
-        td=[v for _,v in day_temp_samples]
-        rec["tmin"]=round(min(td),1) if td else None
-        rec["tmax"]=round(max(td),1) if td and rejected_out_of_range==0 else None
-        rec["temperature_quality_note"]=(
-            "Tmax temporaneamente non disponibile: campioni MeteoHub fuori scala, in verifica."
-            if rejected_out_of_range else None
-        )
+        rec["temp"]=round(tk-273.15,1) if tk is not None else None
+        day_temp_samples=[v-273.15 for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
+        rec["tmin"]=round(min(day_temp_samples),1) if day_temp_samples else None
+        rec["tmax"]=round(max(day_temp_samples),1) if day_temp_samples else None
+        rec["temperature_quality_note"]=None
         # La sorgente BUFR espone B12101 (temperatura campionata), non gli
         # estremi continui del sensore. Registriamo la provenienza come per
         # MeteoNetwork, senza presentarli come valori assoluti strumentali.
+        td=day_temp_samples
         rec["extrema_source"]="meteohub_dpcn_sampled" if td else None
         rec["extrema_samples"]=len(day_temp_samples)
-        rec["extrema_rejected_spikes"]=rejected_temp_spikes
+        rec["extrema_rejected_spikes"]=0
         rec["extrema_day"]=str(target_day)
         rh,_=latest(s.get(V_RH,[])); rec["rh"]=round(rh) if rh is not None else None
         ws,_=latest(s.get(V_WSPD,[])); rec["wind_ms"]=round(ws,1) if ws is not None else None; rec["wind_kmh"]=round(ws*3.6,1) if ws is not None else None
