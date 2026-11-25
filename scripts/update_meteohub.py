@@ -203,6 +203,17 @@ def filter_temperature_spikes(samples):
     return kept,rejected
 
 
+def station_temperature_ceiling(name, day):
+    """Serpeddì Meteo ha una serie MeteoHub temporaneamente fuori scala."""
+    if "serpeddi" not in str(name).casefold():
+        return None
+    if day.month in {11, 12, 1, 2, 3}:
+        return 32.0
+    if day.month in {4, 10}:
+        return 38.0
+    return 48.0
+
+
 def aggregate(raw):
     text=unpack(raw).decode("utf-8",errors="replace")
     rows=[]; max_dt=None
@@ -240,10 +251,18 @@ def aggregate(raw):
         if not any(s.get(c) for c in DESIRED): continue
         rec={k:st[k] for k in ("name","network","lat","lon","elev")}
         ts=[x for x in s.get(V_TEMP,[]) if x[3] and x[3][0]==103 and x[3][1]==2000] or s.get(V_TEMP,[])
-        tk,_=latest(ts)
-        rec["temp"]=round(tk-273.15,1) if tk is not None else None
+        tk,tk_dt=latest(ts)
+        current_temp=round(tk-273.15,1) if tk is not None else None
         day_temp_samples=[(dt,v-273.15) for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
         day_temp_samples,rejected_temp_spikes=filter_temperature_spikes(day_temp_samples)
+        ceiling=station_temperature_ceiling(st["name"],target_day)
+        if ceiling is not None:
+            valid_samples=[(dt,v) for dt,v in day_temp_samples if -30.0<=v<=ceiling]
+            rejected_temp_spikes+=len(day_temp_samples)-len(valid_samples)
+            day_temp_samples=valid_samples
+            if current_temp is not None and current_temp>ceiling:
+                current_temp=None
+        rec["temp"]=current_temp
         td=[v for _,v in day_temp_samples]
         rec["tmin"]=round(min(td),1) if td else None; rec["tmax"]=round(max(td),1) if td else None
         # La sorgente BUFR espone B12101 (temperatura campionata), non gli
@@ -265,7 +284,7 @@ def aggregate(raw):
         last=max(times) if times else None
         rec["last"]=last.isoformat().replace("+00:00","Z") if last else None
         rec["stale_min"]=round((max_dt-last).total_seconds()/60) if last else None
-        rec["available"]={"temp":bool(ts),"rh":bool(s.get(V_RH)),"wind":bool(s.get(V_WSPD)),
+        rec["available"]={"temp":rec["temp"] is not None or bool(td),"rh":bool(s.get(V_RH)),"wind":bool(s.get(V_WSPD)),
                           "wind_dir":bool(s.get(V_WDIR)),"gust":bool(s.get(V_GUST)),"rain":bool(s.get(V_RAIN))}
         output.append(rec)
     output.sort(key=lambda x:x["name"].casefold())
