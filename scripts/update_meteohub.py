@@ -256,15 +256,22 @@ def aggregate(raw):
         day_temp_samples=[(dt,v-273.15) for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
         day_temp_samples,rejected_temp_spikes=filter_temperature_spikes(day_temp_samples)
         ceiling=station_temperature_ceiling(st["name"],target_day)
+        rejected_out_of_range=0
         if ceiling is not None:
             valid_samples=[(dt,v) for dt,v in day_temp_samples if -30.0<=v<=ceiling]
-            rejected_temp_spikes+=len(day_temp_samples)-len(valid_samples)
+            rejected_out_of_range=len(day_temp_samples)-len(valid_samples)
+            rejected_temp_spikes+=rejected_out_of_range
             day_temp_samples=valid_samples
             if current_temp is not None and current_temp>ceiling:
                 current_temp=None
         rec["temp"]=current_temp
         td=[v for _,v in day_temp_samples]
-        rec["tmin"]=round(min(td),1) if td else None; rec["tmax"]=round(max(td),1) if td else None
+        rec["tmin"]=round(min(td),1) if td else None
+        rec["tmax"]=round(max(td),1) if td and rejected_out_of_range==0 else None
+        rec["temperature_quality_note"]=(
+            "Tmax temporaneamente non disponibile: campioni MeteoHub fuori scala, in verifica."
+            if rejected_out_of_range else None
+        )
         # La sorgente BUFR espone B12101 (temperatura campionata), non gli
         # estremi continui del sensore. Registriamo la provenienza come per
         # MeteoNetwork, senza presentarli come valori assoluti strumentali.
