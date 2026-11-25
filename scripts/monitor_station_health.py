@@ -76,6 +76,21 @@ def evaluate(now):
             info["blocked_until"] = health.get("blocked_until")
             info["reason"] = str(health.get("last_error") or "API throttled")[:100]
         report[name] = info
+    # Via Marco Polo e' il controllo sentinella del collector amatoriale: il suo
+    # feed deve essere ripollato ogni 5 minuti e non deve restare indietro oltre 10.
+    local_rows = read("data/local_stations.json").get("stations") or []
+    iglesias = next((r for r in local_rows if isinstance(r, dict)
+                     and r.get("station_id") == "iglesias-marco-polo-ecowitt"), None)
+    observed = parse_time(iglesias.get("last")) if iglesias else None
+    age = (now - observed).total_seconds() / 60 if observed and observed <= now + timedelta(minutes=5) else None
+    fresh = age is not None and age <= 10 and isinstance(iglesias.get("temp"), (int, float))
+    report["Iglesias · Via Marco Polo"] = {
+        "status": "ok" if fresh else "stale",
+        "stations": 1 if iglesias else 0, "fresh": 1 if fresh else 0,
+        "limit_min": 10,
+        "latest": observed.isoformat().replace("+00:00", "Z") if observed else None,
+        "age_min": age, "recovery_due": not fresh,
+    }
     return report
 
 def github(method, path, payload=None):
@@ -150,17 +165,20 @@ def self_repair(report, now):
     # Un collettore non disponibile non deve bloccare le altre reti:
     # recuperi indipendenti, senza riattivare Weather Underground.
     targets = [
-        (("DPCN", "Aeronautica Militare"), "update-observations.yml"),
-        (("Ecowitt",), "update-ecowitt.yml"),
-        (("CEDOC",), "update-cedoc.yml"),
+        (("DPCN", "Aeronautica Militare"), "update-observations.yml", 20),
+        (("Ecowitt",), "update-ecowitt.yml", 20),
+        (("CEDOC",), "update-cedoc.yml", 20),
+        # I dati locali amatoriali vengono raccolti in un unico passaggio;
+        # il watchdog riavvia il poll se Iglesias resta oltre 10 min indietro.
+        (("Iglesias · Via Marco Polo",), "update-local-stations.yml", 8),
     ]
-    for networks, workflow in targets:
+    for networks, workflow, cooldown_min in targets:
         stale = [n for n in networks if report[n].get("recovery_due",
                   report[n]["status"] == "stale")]
         if not stale:
             continue
         runs=github("GET","/actions/workflows/"+workflow+"/runs?per_page=12").get("workflow_runs",[])
-        if any(t and (now-t).total_seconds()<20*60 for t in
+        if any(t and (now-t).total_seconds()<cooldown_min*60 for t in
                [parse_time(x.get("created_at")) for x in runs]):
             print("MONITOR: tentativo recente per "+workflow+", nessun doppio avvio",flush=True)
             continue
