@@ -12,9 +12,9 @@ on:
     paths:
       - '.github/workflows/update-observations.yml'
   schedule:
-    # Ogni 10 minuti; i trigger di altri workflow e backup restano attivi.
-    # I singoli collector limitano le richieste API tramite checked_at.
-    - cron: '4,14,24,34,44,54 * * * *'
+    # Controlla ogni 5 minuti; MeteoHub conserva il proprio limite quota.
+    # Gli altri collector verificano fonti disponibili a ogni ciclo.
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
@@ -77,31 +77,28 @@ jobs:
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git reset --hard origin/main
-            # Non sovrascrivere un dato piu' recente pubblicato da un altro job.
-            # Scrivi il file soltanto se la nuova osservazione e/o acquisizione
-            # e' successiva a quanto gia' presente nel branch main.
+            # Mantieni il ramo snello: pubblica solo se cambiano dati o timestamp
+            # reali delle singole osservazioni; gli orari di controllo da soli
+            # non producono commit inutili.
             python - "$DATA_FILE" "$RUNNER_TEMP/station-update-candidate.json" <<'PY'
           import json,sys
-          from datetime import datetime,timezone
           from pathlib import Path
           target,source=map(Path,sys.argv[1:3])
           new=json.loads(source.read_text(encoding="utf-8"))
           old=json.loads(target.read_text(encoding="utf-8")) if target.exists() else {}
-          def ts(value):
-              try:
-                  v=datetime.fromisoformat(str(value).replace("Z","+00:00"))
-                  return v.astimezone(timezone.utc) if v.tzinfo else v.replace(tzinfo=timezone.utc)
-              except (ValueError,TypeError):
-                  return datetime.min.replace(tzinfo=timezone.utc)
-          nk=(ts(new.get("generated_at")),ts(new.get("checked_at")))
-          ok=(ts(old.get("generated_at")),ts(old.get("checked_at")))
-          if nk<=ok:
-              print("Gia' pubblicato un dataset equivalente o piu' recente: niente sovrascrittura")
+          def signature(payload):
+              value={k:v for k,v in payload.items() if k not in {"generated_at","checked_at"}}
+              rows=[]
+              for row in payload.get("stations",[]):
+                  if not isinstance(row,dict): continue
+                  rows.append({k:v for k,v in row.items() if k!="stale_min"})
+              value["stations"]=sorted(rows,key=lambda row:str(row.get("station_id") or row.get("name") or ""))
+              return value
+          if signature(new)==signature(old):
+              print("Nessuna nuova osservazione: evito di pubblicare un file invariato")
           else:
-              source_bytes=source.read_bytes()
-              target.write_bytes(source_bytes)
-              print("Pronto nuovo dataset: osservazione",new.get("generated_at"),
-                    "acquisizione",new.get("checked_at"))
+              target.write_bytes(source.read_bytes())
+              print("Pubblicate nuove osservazioni:",new.get("generated_at"))
           PY
             git add "$DATA_FILE"
             if git diff --cached --quiet; then
