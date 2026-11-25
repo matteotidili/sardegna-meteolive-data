@@ -9,8 +9,8 @@ on:
       - 'scripts/update_am.py'
       - '.github/workflows/update-am.yml'
   schedule:
-    # Backup ogni 30 min sfalsato rispetto al ciclo di 15 min,
-    # limite GitHub 5 min. Il collector salta i controlli troppo ravvicinati.
+    # Backup ogni 30 min; il ciclo principale controlla ogni 5 min.
+    # Il collector evita richieste duplicate durante workflow sovrapposti.
     - cron: '13,43 * * * *'
 permissions:
   contents: write
