@@ -2,7 +2,7 @@
 """Scarica le osservazioni DPCN Sardegna da MeteoHub e genera data/stations.json."""
 from __future__ import annotations
 
-import gzip, io, json, os, sys, time, urllib.parse, urllib.request, zipfile
+import gzip, io, json, math, os, sys, time, urllib.parse, urllib.request, zipfile
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -12,7 +12,6 @@ BASE = "https://meteohub.agenziaitaliameteo.it"
 ROME = ZoneInfo("Europe/Rome")
 UTC = timezone.utc
 OUT = Path("data/stations.json")
-# Diagnostic build: force a fresh MeteoHub pull for Serpeddi metadata inspection.
 # MeteoHub: quota predefinita 10 estrazioni/ora per account.
 # Intervallo minimo di 10 min: massimo 6 estrazioni/ora, con margine
 # rispetto alla quota MeteoHub di 10/ora e agli altri utilizzi dell'account.
@@ -236,40 +235,72 @@ def aggregate(raw):
                 try:v=float(obj.get("v"))
                 except (TypeError,ValueError):continue
                 st["series"][code].append((dt,v,item.get("timerange"),item.get("level")))
-                if "serpeddi" in str(st["name"]).casefold() and code == V_TEMP:
-                    st.setdefault("_raw_temp_meta",[]).append((dt.isoformat(),dict(obj),item.get("timerange"),item.get("level")))
+
     output=[]
     for st in stations.values():
         s=st["series"]
         if not any(s.get(c) for c in DESIRED): continue
-        if "serpeddi" in st["name"].casefold():
-            print("Serpeddi raw B12101:", st.get("_raw_temp_meta", [])[-8:])
-            diagnostic=defaultdict(list)
-            for dt0,v0,tr0,lev0 in s.get(V_TEMP,[]):
-                diagnostic[(str(lev0),str(tr0))].append((dt0,v0-273.15))
-            print("Serpeddi B12101 livelli/timerange:", {
-                key: {"n": len(vals), "min_c": round(min(v for _,v in vals),1),
-                      "max_c": round(max(v for _,v in vals),1),
-                      "ultimi": [(dt.isoformat(),round(v,1)) for dt,v in vals[-4:]]}
-                for key, vals in diagnostic.items()
-            })
         rec={k:st[k] for k in ("name","network","lat","lon","elev")}
         # Non ripiegare sugli altri livelli: può mescolare temperatura al suolo,
         # a 2 m e a 10 m, producendo estremi incompatibili con la stazione.
         ts=[x for x in s.get(V_TEMP,[]) if is_temperature_2m(x[3]) and is_instantaneous(x[2])]
+        latest_temp_input=latest(ts)[1]
+        day_samples=[x for x in ts if x[0].astimezone(ROME).date()==target_day]
+        rejected_nearby=0
+        if "serpeddi" in st["name"].casefold():
+            # MeteoHub osservazioni non validate: scarta campioni incompatibili
+            # con almeno tre stazioni DPCN vicine, riportate alla stessa quota.
+            valid=[]
+            for sample in day_samples:
+                dt0, value0 = sample[0], sample[1]-273.15
+                neighbors=[]
+                for other in stations.values():
+                    if other is st or other.get("network")!="dpcn-sardegna":
+                        continue
+                    dlat=math.radians(other["lat"]-st["lat"])
+                    dlon=math.radians(other["lon"]-st["lon"])
+                    a=math.sin(dlat/2)**2+math.cos(math.radians(st["lat"]))*math.cos(math.radians(other["lat"]))*math.sin(dlon/2)**2
+                    distance=6371*2*math.asin(min(1,math.sqrt(a)))
+                    if distance>35:
+                        continue
+                    for nd,nv,ntr,nlev in other["series"].get(V_TEMP,[]):
+                        if not is_temperature_2m(nlev) or not is_instantaneous(ntr):
+                            continue
+                        if abs((nd-dt0).total_seconds())>90*60:
+                            continue
+                        # Stima della temperatura alla quota della stazione bersaglio.
+                        adjusted=nv-273.15-0.0065*(st["elev"]-(other["elev"] or 0))
+                        neighbors.append((distance,adjusted))
+                if len(neighbors)>=3:
+                    neighbors.sort(key=lambda p:p[0])
+                    local=[value for _,value in neighbors[:7]]
+                    local.sort()
+                    median=local[len(local)//2]
+                    if abs(value0-median)>10.0:
+                        rejected_nearby+=1
+                        continue
+                valid.append(sample)
+            day_samples=valid
+        ts=[x for x in ts if x[0].astimezone(ROME).date()!=target_day or x in day_samples]
         tk,tk_dt=latest(ts)
-        rec["temp"]=round(tk-273.15,1) if tk is not None else None
-        day_temp_samples=[v-273.15 for dt,v,_,_ in ts if dt.astimezone(ROME).date()==target_day]
+        current_is_fresh=(tk_dt is not None and latest_temp_input is not None
+                          and (latest_temp_input-tk_dt)<=timedelta(minutes=90))
+        rec["temp"]=round(tk-273.15,1) if tk is not None and current_is_fresh else None
+        day_temp_samples=[v-273.15 for dt,v,_,_ in day_samples]
         rec["tmin"]=round(min(day_temp_samples),1) if day_temp_samples else None
         rec["tmax"]=round(max(day_temp_samples),1) if day_temp_samples else None
-        rec["temperature_quality_note"]=None
+        rec["temperature_quality_note"]=(
+            ("Letture recenti escluse perché incoerenti con le stazioni vicine; temperatura attuale non disponibile."
+             if not current_is_fresh else "Alcune letture sono state escluse perché incoerenti con le stazioni vicine.")
+            if rejected_nearby else None
+        )
         # La sorgente BUFR espone B12101 (temperatura campionata), non gli
         # estremi continui del sensore. Registriamo la provenienza come per
         # MeteoNetwork, senza presentarli come valori assoluti strumentali.
         td=day_temp_samples
         rec["extrema_source"]="meteohub_dpcn_sampled" if td else None
         rec["extrema_samples"]=len(day_temp_samples)
-        rec["extrema_rejected_spikes"]=0
+        rec["extrema_rejected_spikes"]=rejected_nearby
         rec["extrema_day"]=str(target_day)
         rh,_=latest(s.get(V_RH,[])); rec["rh"]=round(rh) if rh is not None else None
         ws,_=latest(s.get(V_WSPD,[])); rec["wind_ms"]=round(ws,1) if ws is not None else None; rec["wind_kmh"]=round(ws*3.6,1) if ws is not None else None
