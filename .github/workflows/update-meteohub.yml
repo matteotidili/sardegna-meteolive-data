@@ -48,7 +48,7 @@ jobs:
         env:
           METEOHUB_USERNAME: ${{ secrets.METEOHUB_USERNAME }}
           METEOHUB_PASSWORD: ${{ secrets.METEOHUB_PASSWORD }}
-          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_UPDATE: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[force-meteohub]') }}
         run: python scripts/update_meteohub.py
 
       - name: Pubblica insieme DPCN e MeteoNetwork dalla stessa estrazione
