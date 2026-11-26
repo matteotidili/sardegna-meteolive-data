@@ -1,6 +1,6 @@
 {
   "source": "MeteoProject · Liceo Euclide",
-  "generated_at": "2026-11-26T14:56:30.210720+00:00",
+  "generated_at": "2026-11-26T19:13:47.913938+00:00",
   "stations": [
     {
       "station_id": "cagliari-euclide",
@@ -8,18 +8,18 @@
       "lat": 39.252,
       "lon": 9.111,
       "elev": 20,
-      "last": "2026-11-26T14:55:00+00:00",
+      "last": "2026-11-26T19:12:00+00:00",
       "source_url": "https://www.meteoproject.it/ftp/stazioni/cagliari/index-vuoto.php",
-      "temp": 15.3,
-      "rh": 85.0,
+      "temp": 13.4,
+      "rh": 81.0,
       "wind_kmh": 0.0,
-      "wind_dir": 22.5,
+      "wind_dir": 315.0,
       "rain_today": 2.0,
       "rain_rate": 0.0,
-      "pressure_hpa": 1009.6,
+      "pressure_hpa": 1010.6,
       "tmax": null,
       "tmin": null,
-      "gust_kmh": 1.6,
+      "gust_kmh": 14.5,
       "observation_type": "stazione automatica Davis Vantage Pro 2"
     }
   ]
