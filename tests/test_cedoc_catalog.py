@@ -103,6 +103,7 @@ class CedocCollectorTests(unittest.TestCase):
         rows = {row["station_id"]: row for row in report["stations"]}
         self.assertEqual({p for p in client.requested if p.startswith("/stazione/")}, {f"/stazione/{c}" for c in STATIONS})
         self.assertEqual(report["status"], "degraded")
+        self.assertIn("2 stazioni con misure su 3", report["warning"])
         self.assertEqual(report["coverage"], {"censused": 3, "succeeded": 1, "failed": 2, "partial": 0,
                                              "updated": 1, "unreachable": 1, "with_value": 2,
                                              "without_value": 1, "fresh": 1, "older": 1})

@@ -545,13 +545,15 @@ def acquire(client):
     coverage = {"censused": len(rows), "succeeded": succeeded, "failed": len(rows) - succeeded,
                 "partial": partial, "updated": updated_count, "unreachable": unreachable, "with_value": with_value,
                 "without_value": len(rows) - with_value, "fresh": fresh, "older": with_value - fresh}
+    station_coverage = grouped_coverage(rows)
+    sensor_coverage = grouped_coverage(rows, sensor_only=True)
     warnings = [bulk_error] if bulk_error else []
     if state != "ok":
-        warnings.append(f"CEDOC: {succeeded} letture riuscite su {len(rows)}, {partial} parziali. "
-                        f"Disponibili {fresh} misure recenti e {with_value - fresh} stazioni con ultimo dato conservato o in ritardo.")
+        warnings.append(f"CEDOC: {station_coverage['with_value']} stazioni con misure su {station_coverage['censused']}, "
+                        f"di cui {station_coverage['fresh']} con misure recenti e {station_coverage['older']} "
+                        "con l’ultima misura conservata o in ritardo.")
     report = payload_for(rows, now, checked_at=stamp(now), scan_started_at=stamp(started), status=state,
-                         coverage=coverage, station_coverage=grouped_coverage(rows),
-                         sensor_coverage=grouped_coverage(rows, sensor_only=True),
+                         coverage=coverage, station_coverage=station_coverage, sensor_coverage=sensor_coverage,
                          warning=" ".join(warnings) or None)
     candidate_snapshot = payload_for(snapshot_rows, now, status="snapshot")
 
