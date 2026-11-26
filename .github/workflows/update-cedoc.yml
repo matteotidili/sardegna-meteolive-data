@@ -2,11 +2,11 @@ name: Aggiorna pluviometri Sardegna CEDOC
 
 on:
   workflow_dispatch:
-  # Backup al cron: il completamento di reti indipendenti riavvia CEDOC.
-  workflow_run:
-    workflows:
-      - 'Aggiorna incendi MTG FRP'
-    types: [completed]
+    inputs:
+      publish:
+        description: Pubblica sul ramo principale dopo la validazione
+        type: boolean
+        default: true
   push:
     branches: [main]
     paths:
@@ -14,130 +14,60 @@ on:
       - '.github/workflows/update-cedoc.yml'
       - 'tests/test_cedoc_catalog.py'
   schedule:
-    # Tentativo ogni 15 minuti, anche quando il portale CEDOC è offline.
-    # Per ridurre il carico sulla fonte pubblica, le stazioni sono
-    # controllate a rotazione in 3 gruppi, circa ogni 45 minuti quando il portale è disponibile.
-    - cron: '3,18,33,48 * * * *'
+    # Una scansione completa per esecuzione. Actions può avviare il job in ritardo.
+    - cron: '13,43 * * * *'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: cedoc-rainfall-five-minutely
+  group: cedoc-rainfall
   cancel-in-progress: false
 
 jobs:
   cedoc:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      CEDOC_WORKERS: '4'
+      CEDOC_REQUEST_INTERVAL: '0.75'
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          fetch-depth: 1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Installazione parser HTML
-        run: python -m pip install --disable-pip-version-check 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
-      - name: Test di regressione sul catalogo durante gli errori 503
-        run: python -m unittest discover -s tests -p 'test_cedoc_catalog.py' -v
-      - name: Leggi rete pubblica con controllo freschezza
+      - name: Installa il parser e verifica le regressioni
         run: |
-          python -m py_compile scripts/update_cedoc.py
-          python scripts/update_cedoc.py
-      - name: Conserva ultimo snapshot CEDOC con misure reali
+          python -m pip install --disable-pip-version-check 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+          python -m unittest discover -s tests -p 'test_cedoc_catalog.py' -v
+      - name: Acquisisci e valida tutte le letture CEDOC
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          current=Path('data/cedoc.json')
-          data=json.loads(current.read_text(encoding='utf-8'))
-          if data.get('status')=='ok' and data.get('stations'):
-              Path('data/cedoc_last_valid.json').write_bytes(current.read_bytes())
-              print('Ultime osservazioni CEDOC valide conservate:',len(data['stations']))
-          else:
-              print('CEDOC non disponibile: non cancellare ultime osservazioni')
-          PY
-      - name: Valida metadati e coordinate
+          python scripts/update_cedoc.py | tee -a "$GITHUB_STEP_SUMMARY"
+          python scripts/update_cedoc.py --validate
+      - name: Salva i dati per la verifica
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cedoc-validated
+          path: data/cedoc*.json
+      - name: Pubblica il dataset validato
+        if: github.ref_name == 'main' && (github.event_name != 'workflow_dispatch' || inputs.publish)
         run: |
-          python - <<'PY'
-          import json, datetime as dt
-          from pathlib import Path
-          data=json.loads(Path('data/cedoc.json').read_text(encoding='utf-8'))
-          assert data['parameter']=='rain_today' and data['refresh_minutes']==15
-          assert data['station_sweep_minutes']==30
-          assert data['status'] in {'ok','unavailable','stale'}
-          assert data['station_count']==len(data['stations'])
-          for s in data['stations']:
-              assert 38.6<=s['lat']<=41.5 and 7.5<=s['lon']<=10.4
-              assert 0<=s['rain_today']<=1800
-              assert s['source_url'].startswith('https://www.sardegnacedoc.it/idrografico/sensore/')
-              assert dt.datetime.fromisoformat(s['last'].replace('Z','+00:00')).tzinfo
-              assert s['observed_day']==data['local_day']
-          if data['status']!='ok':
-              assert not data['stations'], 'A stale or unavailable dataset must never show rain values'
-          print('CEDOC', data['status'], data['station_count'], 'stazioni con dato recente')
-          PY
-      - name: Pubblica stato e misure senza conflitti con gli altri updater
-        run: |
-          set -e
           git config user.name 'sardegna-meteolive-data-bot'
           git config user.email 'actions@users.noreply.github.com'
-          cp data/cedoc.json "$RUNNER_TEMP/cedoc-pending.json"
-          if [ -f data/cedoc_last_valid.json ]; then
-            cp data/cedoc_last_valid.json "$RUNNER_TEMP/cedoc-last-valid-pending.json"
-          fi
-          if [ -f data/cedoc_sensors.json ]; then
-            cp data/cedoc_sensors.json "$RUNNER_TEMP/cedoc-sensors-pending.json"
-          fi
-          if [ -f data/cedoc_sites.json ]; then
-            cp data/cedoc_sites.json "$RUNNER_TEMP/cedoc-sites-pending.json"
-          fi
+          git add data/cedoc*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Aggiorna osservazioni e copertura CEDOC'
           for attempt in 1 2 3 4 5; do
-            # Non effettuare rebase su file appena generati: lo stesso JSON
-            # può essere stato pubblicato da un altro workflow nel frattempo.
-            git fetch origin main
-            git reset --hard origin/main
-            # Un run più vecchio non può sovrascrivere osservazioni nuove.
-            if ! python - "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json <<'PY'
-          import json, sys
-          from pathlib import Path
-          candidate=json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
-          existing_path=Path(sys.argv[2])
-          if existing_path.exists():
-              existing=json.loads(existing_path.read_text(encoding='utf-8'))
-              # L'esecuzione conclusa per ultima non e' necessariamente quella
-              # partita piu' tardi: confrontare SEMPRE anche l'ora del check.
-              candidate_check=candidate.get('generated_at')
-              existing_check=existing.get('generated_at')
-              if candidate_check and existing_check and existing_check >= candidate_check:
-                  print('CEDOC: acquisizione gia pubblicata piu recente, salto snapshot vecchio')
-                  sys.exit(1)
-              candidate_time=candidate.get('source_time')
-              existing_time=existing.get('source_time')
-              if candidate_time and existing_time and existing_time > candidate_time:
-                  print('CEDOC: osservazioni pubblicate piu recenti, salto snapshot vecchio')
-                  sys.exit(1)
-          PY
-            then
-              exit 0
-            fi
-            cp "$RUNNER_TEMP/cedoc-pending.json" data/cedoc.json
-            if [ -f "$RUNNER_TEMP/cedoc-last-valid-pending.json" ]; then
-              cp "$RUNNER_TEMP/cedoc-last-valid-pending.json" data/cedoc_last_valid.json
-            fi
-            if [ -f "$RUNNER_TEMP/cedoc-sites-pending.json" ]; then
-              cp "$RUNNER_TEMP/cedoc-sites-pending.json" data/cedoc_sites.json
-            fi
-            if [ -f "$RUNNER_TEMP/cedoc-sensors-pending.json" ]; then
-              cp "$RUNNER_TEMP/cedoc-sensors-pending.json" data/cedoc_sensors.json
-            fi
-            git add data/cedoc.json
-            if [ -f data/cedoc_last_valid.json ]; then git add data/cedoc_last_valid.json; fi
-            if [ -f data/cedoc_sites.json ]; then git add data/cedoc_sites.json; fi
-            if [ -f data/cedoc_sensors.json ]; then git add data/cedoc_sensors.json; fi
-            if git diff --cached --quiet; then exit 0; fi
-            git commit -m 'Aggiorna CEDOC pluviometri giornalieri'
+            git fetch --depth=50 origin main
+            # Un conflitto sui file CEDOC interrompe il deploy, mentre gli updater
+            # delle altre reti possono pubblicare durante la scansione.
+            git rebase origin/main
             if git push origin HEAD:main; then exit 0; fi
             sleep "$attempt"
           done
