@@ -1,0 +1,49 @@
+name: Aggiorna storico 24 h stazioni
+
+# Legge SOLO i JSON gia' pubblicati dai collector (nessuna API, nessuna quota consumata)
+# e conserva 26 h di campioni reali per il grafico 24 h della webapp.
+# Non e' innescato da altri workflow e non ne innesca: niente catene ricorsive.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_station_history.py'
+      - 'tests/test_station_history.py'
+      - '.github/workflows/update-station-history.yml'
+  schedule:
+    - cron: '8,23,38,53 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: station-history
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test
+        run: python -m unittest tests/test_station_history.py
+      - name: Aggiorna e pubblica (con gestione collisioni)
+        run: |
+          git config user.name "sardegna-meteolive-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch --quiet origin main
+            git reset --hard origin/main --quiet
+            python scripts/update_station_history.py
+            git add data/station_history_24h.json
+            if git diff --cached --quiet; then echo "Nessuna modifica"; exit 0; fi
+            git commit -m "Aggiorna storico 24 h stazioni" --quiet
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 7))
+          done
+          echo "Push non riuscito dopo 5 tentativi"; exit 1
