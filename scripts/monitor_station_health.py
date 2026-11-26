@@ -20,7 +20,7 @@ SOURCES = {
     "Ecowitt": ("data/ecowitt.json", 25, "temp"),
     # Le misure CEDOC sono pluviometriche: controllare la pioggia,
     # non la temperatura che in questo dataset non e' prevista.
-    "CEDOC": ("data/cedoc.json", 180, "rain_today"),
+    "CEDOC": ("data/cedoc.json", 180, "rain_48h"),
     "Weather Underground": ("data/wunderground.json", 95, "temp"),
 }
 
@@ -47,7 +47,6 @@ def evaluate(now):
             parse_time(row.get("last"))
             for row in rows if isinstance(row, dict)
             and isinstance(row.get(measure), (int, float))
-            and (name != "CEDOC" or data.get("status") == "ok")
         ]
         usable = [dt for dt in usable if dt and dt <= now + timedelta(minutes=5)]
         latest = max(usable, default=None)
@@ -68,6 +67,14 @@ def evaluate(now):
                 info["status"] = "acquisition_stale"
             elif not count:
                 info["status"] = "source_delayed"
+        if name == "CEDOC":
+            checked = parse_time(data.get("checked_at") or data.get("generated_at"))
+            age = (now - checked).total_seconds() / 60 if checked and checked <= now else None
+            info["recovery_due"] = age is None or age >= 60
+            if info["recovery_due"]:
+                info["status"] = "acquisition_stale"
+            elif data.get("status") == "degraded":
+                info["status"] = "degraded"
         if name == "Weather Underground" and not WU_ACTIVE:
             info["status"] = "paused"
             info["fresh"] = 0
@@ -167,7 +174,7 @@ def self_repair(report, now):
     targets = [
         (("DPCN", "Aeronautica Militare"), "update-observations.yml", 20),
         (("Ecowitt",), "update-ecowitt.yml", 20),
-        (("CEDOC",), "update-cedoc.yml", 20),
+        (("CEDOC",), "update-cedoc.yml", 30),
         # I dati locali amatoriali vengono raccolti in un unico passaggio;
         # il watchdog riavvia il poll se Iglesias resta oltre 10 min indietro.
         (("Iglesias · Via Marco Polo",), "update-local-stations.yml", 8),
