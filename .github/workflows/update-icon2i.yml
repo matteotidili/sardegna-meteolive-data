@@ -1,0 +1,51 @@
+name: Aggiorna ICON-2I Sardegna H+72
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_icon2i.py'
+      - 'scripts/icon2i_parameters.py'
+      - '.github/workflows/update-icon2i.yml'
+  schedule:
+    - cron: '20 4,16 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: icon2i-sardegna
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Installa decoder GRIB2 e renderer
+        run: python3 -m pip install --disable-pip-version-check eccodes numpy pillow
+      - name: Scarica e rasterizza ICON-2I
+        run: python3 scripts/update_icon2i.py
+      - name: Verifica manifest, raster e valori puntuali
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('data/icon2i'); d=json.loads((root/'forecast.json').read_text())
+          assert d['model']=='ICON-2I' and len(d['frames'])==72
+          assert d['bounds']==[[37.8,7.5],[42.0,11.5]]
+          for k in d['parameters']:
+              for h in (1,24,48,72):
+                  p=root/'products'/k/f'h{h:02d}.webp'
+                  with Image.open(p) as im: assert im.format=='WEBP' and im.mode=='RGBA'
+              assert (root/'values'/k/'h72.bin').stat().st_size==d['grid']['height']*d['grid']['width']*4
+          print('ICON-2I verificato:',len(d['frames']),'frame,',len(d['parameters']),'parametri')
+          PY
+      - name: Pubblica manifest e raster
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/icon2i
+          git diff --cached --quiet || git commit -m 'Aggiorna previsione ICON-2I Sardegna'
+          git push
