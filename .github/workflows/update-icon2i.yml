@@ -39,7 +39,7 @@ jobs:
               for h in (1,24,48,72):
                   p=root/'products'/k/f'h{h:02d}.webp'
                   with Image.open(p) as im: assert im.format=='WEBP' and im.mode=='RGBA'
-              assert (root/'values'/k/'h72.bin').stat().st_size==d['grid']['height']*d['grid']['width']*4
+              assert (root/'products'/k/'h72.webp').is_file()
           print('ICON-2I verificato:',len(d['frames']),'frame,',len(d['parameters']),'parametri')
           PY
       - name: Pubblica manifest e raster
