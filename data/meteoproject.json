@@ -1,6 +1,6 @@
 {
   "source": "MeteoProject · Liceo Euclide",
-  "generated_at": "2026-11-27T11:00:58.984255+00:00",
+  "generated_at": "2026-11-27T15:14:11.509890+00:00",
   "stations": [
     {
       "station_id": "cagliari-euclide",
@@ -8,9 +8,9 @@
       "lat": 39.252,
       "lon": 9.111,
       "elev": 20,
-      "last": "2026-11-27T11:00:00+00:00",
+      "last": "2026-11-27T15:13:00+00:00",
       "source_url": "https://www.meteoproject.it/ftp/stazioni/cagliari/index-vuoto.php",
-      "temp": 16.4,
+      "temp": 15.9,
       "rh": 72.0,
       "wind_kmh": 0.0,
       "wind_dir": 292.5,
